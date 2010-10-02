@@ -32,11 +32,15 @@ public class main
 		if(result.length > 1)
 		{
 			result[0] = "";
-			cl.comment = joinStringArray(result,"");
+			cl.comment = joinStringArray(result,""); 
+			//If more than one "|" then join them all as one comment
 		}
 		
-		StringTokenizer st = new StringTokenizer(lineOfCode);
-		//st.hasMoreTokens() = true
+		StringTokenizer st = new StringTokenizer(Instruction);
+		if (st.hasMoreTokens() == true) 
+		{
+			
+		}
 		
 		while (st.hasMoreTokens()) 
 		{
