@@ -13,15 +13,10 @@ class CodeLine
 	public int error3 = -1;
 
 	// Constructor
-	CodeLine() 
+	CodeLine(String lineOfCode) 
 	{
-
-	}
-
-	public void parseLine(char lineOfCode) 
-	{
+		originalLineOfCode = lineOfCode;
 		
-
 	}
 
 	public void test() 

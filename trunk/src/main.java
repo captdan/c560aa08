@@ -1,3 +1,4 @@
+import java.util.ArrayList; 
 
 public class main
 {
@@ -5,14 +6,23 @@ public class main
 	/**
 	 * @param args
 	 */
+	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public static void main(String[] args)
 	{
-		// TODO Auto-generated method stub
 		System.out.println("test");
 		
 		// Create a new instance of CodeLine class
-		CodeLine cl = new CodeLine();
-		cl.test();
+
+		CodeLineArray.add(parseCodeLine("sdaf"));
+	}
+	
+	//This is where we will parse each line of code.
+	public static CodeLine parseCodeLine(String lineOfCode) 
+	{
+		CodeLine cl = new CodeLine(lineOfCode);
+		
+		return cl;
+
 	}
 
 }
