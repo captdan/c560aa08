@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList; 
 import java.util.StringTokenizer;
 
@@ -10,10 +16,8 @@ public class main
 	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public static void main(String[] args)
 	{
-		System.out.println("test");
+		//System.out.println("test");
 		
-		// Create a new instance of CodeLine class
-
 		CodeLineArray.add(parseCodeLine("sdaf"));
 	}
 	
@@ -51,7 +55,7 @@ public class main
 
 	}
 
-	//Simple Function that joins a String array by a delimiter.
+	//Function that joins a String array by a delimiter.
 	public static String joinStringArray(String[] stringArray, String delimiter)
 	{
 		String totalString = stringArray[0];
@@ -60,5 +64,36 @@ public class main
 			totalString += (delimiter + stringArray[x]);
 		}
 		return totalString;
+	}
+	
+	public static ArrayList<String> readFileToArrayList(String fileName)
+	{
+		ArrayList<String> linesOfCode = new ArrayList<String>();
+	    try 
+		{
+	    FileInputStream fileInputStream = new FileInputStream(fileName);
+	    DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+	    BufferedReader buffer = new BufferedReader(new InputStreamReader(dataInputStream));
+	    
+	    String lineOfCode;
+	    
+	    while (( lineOfCode = buffer.readLine()) != null)   
+	    {
+	    	linesOfCode.add(lineOfCode);
+	    }
+
+	    dataInputStream.close();
+		} 
+	    catch (FileNotFoundException e) 
+		{
+	    	System.out.println("File Not Found");
+			e.printStackTrace();
+		} 
+	    catch (IOException e) 
+		{
+	    	System.out.println("Error Reading File");
+			e.printStackTrace();
+		}
+	    return linesOfCode;
 	}
 }
