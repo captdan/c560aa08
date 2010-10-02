@@ -1,0 +1,49 @@
+Class: CodeLine
+
+	Public Variables:
+
+		Original Line of Code
+		Comment
+		reg1
+		reg2
+		reg3
+		instruction
+		Error1
+		Error2
+		Error3
+		
+
+	Methods:
+
+
+Class: Error
+
+	Public Variables:
+		number
+		Message
+
+	methods:
+		CreateError(number)
+
+Class: SymbolTable
+
+	Public Variables:
+		Text of Symbol  Symbol
+		PC Address
+		Data Element hex, str (Label)
+		
+
+	Methods:
+		constructor
+		
+Class: DirectivesTable
+
+	Public Variables:
+		Instructions
+		Hex equiv
+		Ext Hex
+		Format of Operands
+		Bit Pattern type
+
+	enum
+
