@@ -1,5 +1,6 @@
 //CodeLine.java
-class CodeLine {
+class CodeLine 
+{
 	// Define Variables
 	public String originalLineOfCode = "";
 	public String comment = "";
@@ -12,15 +13,19 @@ class CodeLine {
 	public int error3 = -1;
 
 	// Constructor
-	CodeLine() {
+	CodeLine() 
+	{
 
 	}
 
-	public void parseLine(char lineOfCode) {
+	public void parseLine(char lineOfCode) 
+	{
+		
 
 	}
 
-	public void test() {
+	public void test() 
+	{
 		System.out.println("test");
 	}
 }
