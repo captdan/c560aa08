@@ -23,7 +23,7 @@ public class main
 		//System.out.println("test");
 		
 		fillErrorArray("src/ErrorCodes.txt");
-		fillInstructionsArray("src/Instructions.txt");
+		fillInstructionsArray("MOT_TABBED.txt");
 		
 		ArrayList<String> linesOfCode = readFileToArrayList("src/asmCode1.txt");
 		for(String lineOfCode : linesOfCode)
@@ -76,7 +76,7 @@ public class main
 				if(operands.length == cl.instruction.numberOfRegisters)
 				{
 					System.out.println(cl.originalLineOfCode);
-						
+					
 					
 					
 				}
@@ -156,14 +156,25 @@ public class main
 			Boolean signed = false;
 			
 			if(variables.length > 1)
-			{
-				//System.out.println(lineOfInstruction);
-				if(variables[4]=="S")
-				{
-					signed = true;
-				}
-				
-				String[] operands = variables[3].split(",");
+			{	
+				Instruction.instructionTypes instructionType = Instruction.instructionTypes.IMMEDIATE;
+				 if (variables[5].equals("I"))
+				 {
+					 instructionType = Instruction.instructionTypes.IMMEDIATE;
+				 }
+				 else if(variables[5].equals("R"))
+				 {
+					 instructionType = Instruction.instructionTypes.REGISTER;
+				 }
+				 else if(variables[5].equals("S"))
+				 {
+					 instructionType = Instruction.instructionTypes.SIGNED;
+				 }
+
+				variables[4] = variables[4].replaceAll("\"", "");
+
+				//System.out.println(variables[4]);
+				String[] operands = variables[4].split(",");
 				ArrayList<Instruction.operandTypes> operandArray = new ArrayList<Instruction.operandTypes>();
 				for(String operand : operands)
 				{
@@ -172,24 +183,24 @@ public class main
 					 {
 						 operandArray.add(Instruction.operandTypes.REGISTER);
 					 }
-					 else if(operand.equals("IM"))
+					 else if(operand.equals("IMM"))
 					 {
 						 operandArray.add(Instruction.operandTypes.IMMEDIATE);
 					 }
-					 else if(operand.equals("AMT"))
+					 else if(operand.equals("BIT"))
 					 {
-						 operandArray.add(Instruction.operandTypes.AMOUNT);
+						 operandArray.add(Instruction.operandTypes.BIT);
 					 }
-					 else if(operand.equals("NUM"))
+					 else if(operand.equals("BITS"))
 					 {
-						 operandArray.add(Instruction.operandTypes.NUMBER);
+						 operandArray.add(Instruction.operandTypes.BITS);
 					 }
-					 else if(operand.equals("ADD"))
+					 else if(operand.equals("ADDR"))
 					 {
 						 operandArray.add(Instruction.operandTypes.ADDRESS);
 					 }
 				}
-				Instruction instruction = new Instruction(variables[2],variables[0],variables[1],operandArray,signed);
+				Instruction instruction = new Instruction(variables[0],variables[1],variables[3],operandArray,instructionType);
 				InstructionsArray.add(instruction);
 			}
 		}
