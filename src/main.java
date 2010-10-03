@@ -22,6 +22,7 @@ public class main
 	{
 		//System.out.println("test");
 		
+		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("src/Instructions.txt");
 		
 		ArrayList<String> linesOfCode = readFileToArrayList("src/asmCode1.txt");
