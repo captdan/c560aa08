@@ -34,6 +34,7 @@ public class Parser
 	}
 	
 	//This is where we will parse each line of code.
+	// ALL directive testing / checking will be in this function
 	public static CodeLine parseCodeLine(String lineOfCode) 
 	{
 		//Create an instance of CodeLine Supplying it with original line of code.
@@ -53,7 +54,8 @@ public class Parser
 			cl.comment = joinStringArray(result,""); 
 			//If more than one "|" then join them all as one comment
 		}
-		
+		//To access the code line minus the comment use the string variable lineOfCodeMinusComment
+		//this can be were directive checking comes in
 		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment," \t",false);
 		
 		if (st.hasMoreTokens() == true) 
@@ -74,15 +76,17 @@ public class Parser
 				
 				if(operands.length == cl.instruction.numberOfRegisters)
 				{
-					System.out.println(cl.originalLineOfCode);
+					//If valid number of operands
 					
+					//Check if Register or if symbol or number
+					System.out.println(cl.originalLineOfCode);
 					
 					
 				}
 				else
 				{
 					//System.out.println(cl.originalLineOfCode + "  :  " + returnError(0).message );
-					cl.errors.add(returnError(0));
+					cl.errors.add(returnError(0)); //Adds error to line of code
 				}
 			}
 			//else if instruction is in symbol table
