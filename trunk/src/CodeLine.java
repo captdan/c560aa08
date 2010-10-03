@@ -15,9 +15,4 @@ class CodeLine
 	{
 		originalLineOfCode = lineOfCode;
 	}
-
-	public void test() 
-	{
-		System.out.println("test");
-	}
 }
