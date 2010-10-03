@@ -14,7 +14,8 @@ public class Error implements ErrorInterface {
 	 *            : String containing the proper description for an error event.
 	 */
 	// creates a single instance of an error
-	public final void CreateError(final int num, String mes) {
+	public final void CreateError(final int num, String mes) 
+	{
 		this.number = num;
 		this.message = mes;
 
