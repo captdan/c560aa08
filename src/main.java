@@ -102,4 +102,37 @@ public class main
 		}
 	    return linesOfCode;
 	}
+	
+	public static ArrayList<String> readInstructions(String fileName)
+	{
+		ArrayList<String> linesOfCode = new ArrayList<String>();
+	    try 
+		{
+	    FileInputStream fileInputStream = new FileInputStream(fileName);
+	    DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+	    BufferedReader buffer = new BufferedReader(new InputStreamReader(dataInputStream));
+	    
+	    String lineOfCode;
+	    
+	    while (( lineOfCode = buffer.readLine()) != null)   
+	    {
+	    	
+	    	linesOfCode.add(lineOfCode);
+	    }
+
+	    dataInputStream.close();
+		} 
+	    catch (FileNotFoundException e) 
+		{
+	    	System.out.println("File Not Found");
+			e.printStackTrace();
+		} 
+	    catch (IOException e) 
+		{
+	    	System.out.println("Error Reading File");
+			e.printStackTrace();
+		}
+	    return linesOfCode;
+	}
 }
+
