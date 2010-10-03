@@ -1,22 +1,19 @@
+import java.util.ArrayList;
+
 //CodeLine.java
 class CodeLine 
 {
 	// Define Variables
 	public String originalLineOfCode = "";
 	public String comment = "";
-	public String reg1 = "";
-	public String reg2 = "";
-	public String reg3 = "";
-	public String instruction = "";
-	public int error1 = -1; // Set error codes to -1 for default
-	public int error2 = -1;
-	public int error3 = -1;
+	public ArrayList<Operand> operands = new ArrayList<Operand>();
+	public Instruction instruction = new Instruction();
+	public ArrayList<Error> errors = new ArrayList<Error>();
 
 	// Constructor
 	CodeLine(String lineOfCode) 
 	{
 		originalLineOfCode = lineOfCode;
-		
 	}
 
 	public void test() 
