@@ -10,21 +10,35 @@ public class Instruction
 	public String instructionExtendedHex = "";
 	public String instructionExtendedBinary = "";
 	public ArrayList<operandTypes> operands = new ArrayList<operandTypes>();
-	public Boolean signed = false;
+	public instructionTypes instructionType = Instruction.instructionTypes.REGISTER;
 	public static enum operandTypes 
 	{
-		 REGISTER, IMMEDIATE, ADDRESS, AMOUNT, NUMBER;
+		 REGISTER, IMMEDIATE, ADDRESS, BIT, BITS;
 	}
-	public Instruction(String instructionValue, String  instructionHexValue, String instructionExtendedHexValue, ArrayList<operandTypes> operandsValue, boolean signedValue)
+	public static enum instructionTypes 
+	{
+		 IMMEDIATE, SIGNED, REGISTER;
+	}
+	public Instruction(String instructionValue, String  instructionHexValue, String instructionExtendedHexValue, ArrayList<operandTypes> operandsValue, instructionTypes instructionTypeValue)
 	{
 		this.instruction = instructionValue;
 		this.instructionHex = instructionHexValue;
 		this.instructionExtendedHex = instructionExtendedHexValue;
 		this.numberOfRegisters = operandsValue.size();
-		this.instructionBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionHexValue)));
-		this.instructionExtendedBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionExtendedHexValue)));
 		this.operands = operandsValue;
-		this.signed = signedValue;
+		this.instructionType = instructionTypeValue;
+		
+		if(instructionHexValue.equals("") == false)
+		{
+			this.instructionBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionHexValue.trim(), 16)));
+		}
+		
+		if(instructionExtendedHexValue.equals("") == false)
+		{
+			this.instructionExtendedBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionExtendedHexValue.trim(), 16)));	
+		}
+
+
 	}
 	public Instruction()
 	{
