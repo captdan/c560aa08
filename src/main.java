@@ -54,7 +54,6 @@ public class main
 			//If more than one "|" then join them all as one comment
 		}
 		
-		String tempstring = lineOfCodeMinusComment;
 		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment," \t",false);
 		
 		if (st.hasMoreTokens() == true) 
