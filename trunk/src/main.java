@@ -58,22 +58,13 @@ public class main
 		
 		if (st.hasMoreTokens() == true) 
 		{
-			String instruction = "";
-			//String instruction = st.nextToken();
-			//instruction = instruction.toUpperCase();
-			
-			System.out.println(tempstring);
-			
-			/*
-			while (st.hasMoreTokens()) 
-			{
-				System.out.println(st.nextToken());
-			}
-			*/
+			String instruction = st.nextToken();
+			instruction = instruction.toUpperCase();
 			
 			if(instructionExists(instruction) == true)
 			{
 				cl.instruction = returnInstruction(instruction);
+				
 				String operandString = "";
 				while (st.hasMoreTokens()) 
 				{
@@ -81,7 +72,7 @@ public class main
 				}
 				String[] operands = operandString.split(",");
 				
-				if(operands.length == cl.instruction.numberOfRegisters )
+				if(operands.length == cl.instruction.numberOfRegisters)
 				{
 					System.out.println(cl.originalLineOfCode);
 						
@@ -176,23 +167,23 @@ public class main
 				for(String operand : operands)
 				{
 					operand = operand.toUpperCase();
-					 if (operand == "REG")
+					 if (operand.equals("REG"))
 					 {
 						 operandArray.add(Instruction.operandTypes.REGISTER);
 					 }
-					 else if(operand == "IM")
+					 else if(operand.equals("IM"))
 					 {
 						 operandArray.add(Instruction.operandTypes.IMMEDIATE);
 					 }
-					 else if(operand == "AMT")
+					 else if(operand.equals("AMT"))
 					 {
 						 operandArray.add(Instruction.operandTypes.AMOUNT);
 					 }
-					 else if(operand == "NUM")
+					 else if(operand.equals("NUM"))
 					 {
 						 operandArray.add(Instruction.operandTypes.NUMBER);
 					 }
-					 else if(operand == "ADD")
+					 else if(operand.equals("ADD"))
 					 {
 						 operandArray.add(Instruction.operandTypes.ADDRESS);
 					 }
@@ -240,10 +231,11 @@ public class main
 	
 	public static boolean instructionExists(String instructionString)
 	{
+		
 		Boolean instructionExists = false;
 		for(Instruction instruction : InstructionsArray)
 		{	
-			if(instructionString.toUpperCase() == instruction.instruction.toUpperCase())
+			if(instructionString.toUpperCase().equals(instruction.instruction.toUpperCase()))
 			{
 				instructionExists = true;
 			}
@@ -254,9 +246,10 @@ public class main
 	public static Instruction returnInstruction(String instructionString)
 	{
 		Instruction returnInstruction = new Instruction();
+		
 		for(Instruction instruction : InstructionsArray)
 		{	
-			if(instructionString.toUpperCase() == instruction.instruction.toUpperCase())
+			if(instructionString.toUpperCase().equals(instruction.instruction.toUpperCase()))
 			{
 				returnInstruction = instruction;
 			}

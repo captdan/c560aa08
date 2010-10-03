@@ -20,6 +20,7 @@ public class Instruction
 		this.instruction = instructionValue;
 		this.instructionHex = instructionHexValue;
 		this.instructionExtendedHex = instructionExtendedHexValue;
+		this.numberOfRegisters = operandsValue.size();
 		this.instructionBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionHexValue)));
 		this.instructionExtendedBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionExtendedHexValue)));
 		this.operands = operandsValue;
