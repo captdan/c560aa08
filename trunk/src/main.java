@@ -53,18 +53,20 @@ public class main
 			//If more than one "|" then join them all as one comment
 		}
 		
-		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment," \t \n \r \f  ",false);
+		String tempstring = lineOfCodeMinusComment;
+		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment," \t",false);
+		
 		if (st.hasMoreTokens() == true) 
 		{
 			String instruction = "";
 			//String instruction = st.nextToken();
 			//instruction = instruction.toUpperCase();
 			
-			System.out.println(lineOfCodeMinusComment);
+			System.out.println(tempstring);
 			
 			while (st.hasMoreTokens()) 
 			{
-				//System.out.println(st.nextToken());
+				System.out.println(st.nextToken());
 			}
 			
 			
