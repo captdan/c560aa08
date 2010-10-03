@@ -64,13 +64,14 @@ public class main
 			
 			System.out.println(tempstring);
 			
+			/*
 			while (st.hasMoreTokens()) 
 			{
 				System.out.println(st.nextToken());
 			}
+			*/
 			
-			
-			if(instructionExists(instruction))
+			if(instructionExists(instruction) == true)
 			{
 				cl.instruction = returnInstruction(instruction);
 				String operandString = "";
@@ -82,7 +83,7 @@ public class main
 				
 				if(operands.length == cl.instruction.numberOfRegisters )
 				{
-					System.out.println(cl.originalLineOfCode );
+					System.out.println(cl.originalLineOfCode);
 						
 					
 					
