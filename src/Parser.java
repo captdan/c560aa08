@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList; 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class main
+public class Parser
 {
 
 	/**
@@ -45,7 +45,7 @@ public class main
 		String lineOfCodeMinusComment = result[0];
 		
 		//System.out.println(Arrays.toString(result));
-		
+
 		//Check to see if a comment exists.
 		if(result.length > 1)
 		{
@@ -81,6 +81,7 @@ public class main
 				}
 				else
 				{
+					//System.out.println(cl.originalLineOfCode + "  :  " + returnError(0).message );
 					cl.errors.add(returnError(0));
 				}
 			}
@@ -272,7 +273,7 @@ public class main
 		if (operandString.length() == 3)
 		{
 			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(3)));
-			if(operandString.charAt(0) == '$' && (operandString.charAt(2) == 'r' || operandString.charAt(1) == 'R') &&  registerNumber > 0 && registerNumber < 9)
+			if(operandString.charAt(0) == '$' && (operandString.charAt(2) == 'r' || operandString.charAt(1) == 'R') &&  registerNumber >= 0 && registerNumber < 8)
 			{
 				isRegister = true;
 			}
