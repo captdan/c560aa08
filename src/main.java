@@ -151,9 +151,7 @@ public class main
 		ArrayList<String> linesOfInstruction = readFileToArrayList(fileName);
 		for(String lineOfInstruction : linesOfInstruction)
 		{
-			//01	23	SUBU	REG,REG,REG U
 			String[] variables = lineOfInstruction.split("\t");
-			Boolean signed = false;
 			
 			if(variables.length > 1)
 			{	
