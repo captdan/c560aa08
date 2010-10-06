@@ -8,7 +8,8 @@ import java.util.*;
  * @author danielburnett
  *
  */
-public class SymbolTable {
+public class SymbolTable 
+{
 
 	/**
 	 * A map to hold all of the symbols for the table.
@@ -23,7 +24,8 @@ public class SymbolTable {
 	 * @param sub What the symbol is a substitute for, if at all.
 	 * @param use The way the symbol is being used.
 	 */
-	public final void addSymbol(String label, String addr, String sub, String use) {
+	public final void addSymbol(String label, String addr, String sub, String use) 
+	{
 		String[] value = new String[3];
 		value[0] = addr;
 		value[1] = sub;
@@ -36,15 +38,26 @@ public class SymbolTable {
 	 * @param label The symbol to get info about.
 	 * @return Returns a string array with address, substitution and use, in that order.
 	 */
-	public final String[] getInfoFromSymbol(String label) {
+	public final String[] getInfoFromSymbol(String label) 
+	{
 		return symb.get(label);
 	}
 
 	/**
+	 * 
+	 * @param label Label of the potential symbol to be checked.
+	 * @return Returns a boolean value depending on if the label exists or not.
+	 */
+	public final Boolean isInTable(String label)
+	{
+		return symb.containsKey(label);
+	}
+	/**
 	 * Returns a sorted list containing all of the symbols in the table.
 	 * @return An array list, containing the symbols sorted alphabetically.
 	 */
-	public final ArrayList<String> getSortedListOfSymbols() {
+	public final ArrayList<String> getSortedListOfSymbols() 
+	{
 		return new ArrayList<String>(symb.keySet());
 	}
 

@@ -11,14 +11,15 @@ import java.util.StringTokenizer;
 public class Parser
 {
 
-	/**
-	 * @param args
-	 */
+
 	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public static ArrayList<Instruction> InstructionsArray = new ArrayList<Instruction>();
 	public static ArrayList<Error> ErrorArray = new ArrayList<Error>();
 	public static SymbolTable SymbTable = new SymbolTable();
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		//System.out.println("test");
@@ -33,9 +34,12 @@ public class Parser
 			CodeLineArray.add(parseCodeLine(lineOfCode));
 		}
 	}
-	
-	//This is where we will parse each line of code.
-	// ALL directive testing / checking will be in this function
+	/**
+	 * @param lineOfCode takes a string line of code to be parsed
+	 * 
+	 * This is where we will parse each line of code.
+	 * ALL directive testing / checking will be in this function
+	*/
 	public static CodeLine parseCodeLine(String lineOfCode) 
 	{
 		//Create an instance of CodeLine Supplying it with original line of code.
@@ -61,67 +65,122 @@ public class Parser
 		
 		if (st.hasMoreTokens() == true) 
 		{
-			String instruction = st.nextToken();
-			instruction = instruction.toUpperCase();
-			
-			if(instructionExists(instruction) == true)
+			if(validInstructionWithOperands(lineOfCodeMinusComment) == true)
 			{
-				cl.instruction = returnInstruction(instruction);
-				
-				String operandString = "";
-				while (st.hasMoreTokens()) 
-				{
-					operandString += st.nextToken();
-				}
-				String[] operands = operandString.split(",");
-				
-				if(operands.length == cl.instruction.numberOfRegisters)
-				{
-					//If valid number of operands
-					
-					//Check if Register or if symbol or number
-					System.out.println(cl.originalLineOfCode);
-					
-					
-					//checks each operand against the symbol table.
-					//if in table, adds the relevant value for the operand to the codeline.
-					for(int j = 0; j < operands.length; j++)
-					{
-						if(SymbTable.isInTable(operands[j]))
-						{
-							String[] symbolInfo = SymbTable.getInfoFromSymbol(operands[j]);
-							if(symbolInfo[2] == "equ")
-							{
-								cl.operands.add(new Operand(symbolInfo[1]));
-							}
-							else if(symbolInfo[2] == "data")
-							{
-								//TODO should it refer to a memory address or to the information stored there?
-							}
-							else
-							{
-								cl.operands.add(new Operand(symbolInfo[0]));
-							}
-						}
-					}
-					
-				}
-				else
-				{
-					//System.out.println(cl.originalLineOfCode + "  :  " + returnError(0).message );
-					cl.errors.add(returnError(0)); //Adds error to line of code
-				}
+				//Extract Valid Features
 			}
+			
+			if()
+			{
+				String potentialSymbol = st.nextToken();
+				
+				validInstructionWithOperands
+				//This means that it is label
+			}
+
 			//else if instruction is in symbol table
-			
-			
+
 		}
 
 		return cl;
 
 	}
+	
+	public static Boolean validStartSymbol
+	
+	public static Boolean validInstructionWithOperands(String instructionWithOperands)
+	{
+		Boolean validInstructionWithOperands = true;
+		StringTokenizer st = new StringTokenizer(instructionWithOperands," \t",false);
+		String instruction = st.nextToken();
+		instruction = instruction.toUpperCase();
+		if(instructionExists(instruction) == true)
+		{
+			String operandString = "";
+			while (st.hasMoreTokens()) 
+			{
+				operandString += st.nextToken();
+			}
+			String[] operands = operandString.split(",");
+			if(operands.length == returnInstruction(instruction).numberOfRegisters)
+			{
+				for(int x=0;x<returnInstruction(instruction).operands.size();x++)
+				{
+					Instruction.operandTypes operand = returnInstruction(instruction).operands.get(x);
+					switch(operand)
+					{
+					case ADDRESS: /*test for valid ADDRESS*/;break;
+					case BIT: /*test for valid BITS*/;break;
+					case BITS: /*test for valid BITS*/;break;
+					case IMMEDIATE: /*test for valid IMMEDIATE*/;break;
+					case REGISTER: validInstructionWithOperands = isRegister(operands[x]);break;
+					default: validInstructionWithOperands = false;break;
+					}
+				}
+			}
+		}
+		else
+		{
+			validInstructionWithOperands = false;
+		}
+		return validInstructionWithOperands;
+	}
+	
+	/*
+	 	cl.instruction = returnInstruction(instruction);
+		
+		String operandString = "";
+		while (st.hasMoreTokens()) 
+		{
+			operandString += st.nextToken();
+		}
+		String[] operands = operandString.split(",");
+		
+		if(operands.length == cl.instruction.numberOfRegisters)
+		{
+			//If valid number of operands
+			
+			//Check if Register or if symbol or number
+			System.out.println(cl.originalLineOfCode);
+			
+			
+			//checks each operand against the symbol table.
+			//if in table, adds the relevant value for the operand to the codeline.
+			for(int j = 0; j < operands.length; j++)
+			{
+				if(SymbTable.isInTable(operands[j]))
+				{
+					String[] symbolInfo = SymbTable.getInfoFromSymbol(operands[j]);
+					if(symbolInfo[2].equals("equ"))
+					{
+						cl.operands.add(new Operand(symbolInfo[1]));
+					}
+					else if(symbolInfo[2].equals("data"))
+					{
+						//TODO should it refer to a memory address or to the information stored there?
+					}
+					else
+					{
+						cl.operands.add(new Operand(symbolInfo[0]));
+					}
+				}
+			}
+			
+		}
+		else
+		{
+			
+			//System.out.println(cl.originalLineOfCode + "  :  " + returnError(0).message );
+			cl.errors.add(returnError(0)); //Adds error to line of code
+		}
+	 */
 
-	//Function that joins a String array by a delimiter.
+	/**
+	 * Function that joins a String array by a delimiter.
+	 * @param stringArray Is passed a string array that is to be joined
+	 * @param delimiter This is what string should be placed the elements joined in the stringArray
+	 * @return Returns a String that is the joined array plus delimiters
+	 */
 	public static String joinStringArray(String[] stringArray, String delimiter)
 	{
 		String totalString = stringArray[0];
@@ -132,7 +191,10 @@ public class Parser
 		return totalString;
 	}
 	
-	/*
+	/**
+	 * @param fileName Is passed the file location of the file to be read and converted into a string array
+	 * @return Returns an ArrayList<String> where each string contains one line of code in order.
+	 * 
 	 * Function that returns an ArrayList of Strings where each
 	 * line in the the file is a string.
 	 */
@@ -167,7 +229,9 @@ public class Parser
 	    return linesOfCode;
 	}
 	
-	/*
+	/**
+	 * @param fileName This is the file location of the instruction table 
+	 * 
 	 * This function reads a specified instruction file we have formatted
 	 * and it adds the data from the specified instruction file into the
 	 * public static InstructionArray. This allows us to easily check to
@@ -231,7 +295,9 @@ public class Parser
 		}
 	}
 	
-	/*
+	/**
+	 * @param The file location of the error table is passed to fill the error arraylist.
+	 * 
 	 * This function reads a specified error file we have formatted
 	 * and it adds the data from the specified instruction file into the
 	 * public static ErrorArray. This allows us to easily check to
@@ -253,6 +319,11 @@ public class Parser
 		}
 	}
 	
+	/**
+	 * 
+	 * @param ErrorId The error id number associated with the error
+	 * @return Returns an instance of the Error class object for the specified error. 
+	 */
 	public static Error returnError(int ErrorId)
 	{
 		Error returnError = new Error();
@@ -266,6 +337,11 @@ public class Parser
 		return returnError;
 	}
 	
+	/**
+	 * 
+	 * @param instructionString The text instruction name that is to be looked up.
+	 * @return Returns s boolean value depending on the existance of the instruction.
+	 */
 	public static boolean instructionExists(String instructionString)
 	{
 		
@@ -279,7 +355,11 @@ public class Parser
 		}
 		return instructionExists;
 	}
-	
+	/**
+	 * 
+	 * @param instructionString The text instruction name that is to be returned.
+	 * @return Returns an instance of the instruction class for the specified instruction.
+	 */
 	public static Instruction returnInstruction(String instructionString)
 	{
 		Instruction returnInstruction = new Instruction();
@@ -294,6 +374,11 @@ public class Parser
 		return returnInstruction;
 	}
 	
+	/**
+	 * 
+	 * @param operandString The string of the operand of an instruction.
+	 * @return Returns is the operand is a valid register or not.
+	 */
 	public static Boolean isRegister(String operandString)
 	{
 		Boolean isRegister = false;
