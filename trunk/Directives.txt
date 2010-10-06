@@ -1,0 +1,19 @@
+.start		NL	.start
+.end		NL	.end
+.data		NL	.data
+.text		NL	.text
+Int.data	NUM	OL	.data
+Str.data	STR	OL	.data
+Hex.data	HEX	OL	.data
+Bin.data	BIN	OL	.data
+Adr.data	LABEL	OL	.data
+Adr.exp	EXP	OL	
+Ent	LABELREF,LABELREF,LABELREF,LABELREF	NL	.text
+Ext	LABELREF,LABELREF,LABELREF,LABELREF	NL	.info
+NOP		OL	.text
+Exec.start	LABELREF	NL	.text
+Mem.skip	NUM	OL	.text
+Equ	STR	RL	.text
+Equ.exp	STR	RL	.text
+Reset.lc		OL	.text
+debug	BOOL	NL	.text
