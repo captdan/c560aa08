@@ -17,6 +17,7 @@ public class Parser
 	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public static ArrayList<Instruction> InstructionsArray = new ArrayList<Instruction>();
 	public static ArrayList<Error> ErrorArray = new ArrayList<Error>();
+	public static SymbolTable SymbTable = new SymbolTable();
 	
 	public static void main(String[] args)
 	{
@@ -81,6 +82,28 @@ public class Parser
 					//Check if Register or if symbol or number
 					System.out.println(cl.originalLineOfCode);
 					
+					
+					//checks each operand against the symbol table.
+					//if in table, adds the relevant value for the operand to the codeline.
+					for(int j = 0; j < operands.length; j++)
+					{
+						if(SymbTable.isInTable(operands[j]))
+						{
+							String[] symbolInfo = SymbTable.getInfoFromSymbol(operands[j]);
+							if(symbolInfo[2] == "equ")
+							{
+								cl.operands.add(new Operand(symbolInfo[1]));
+							}
+							else if(symbolInfo[2] == "data")
+							{
+								//TODO should it refer to a memory address or to the information stored there?
+							}
+							else
+							{
+								cl.operands.add(new Operand(symbolInfo[0]));
+							}
+						}
+					}
 					
 				}
 				else
