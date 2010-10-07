@@ -13,6 +13,7 @@ public class Parser
 {
 
 	public static String programName = "";
+	public static Boolean endProgram = false;
 	public static Directive.codeLocations codeLocation = null;
 	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public static ArrayList<Directive> DirectivesArray = new ArrayList<Directive>();
@@ -37,7 +38,10 @@ public class Parser
 		for(String lineOfCode : linesOfCode)
 		{
 			//System.out.println(lineOfCode);
-			CodeLineArray.add(parseCodeLine(lineOfCode));
+			if(endProgram == false)
+			{
+				CodeLineArray.add(parseCodeLine(lineOfCode));
+			}
 		}
 	}
 	/**
@@ -71,15 +75,15 @@ public class Parser
 		
 		if (st.hasMoreTokens() == true) 
 		{
-			if(validInstructionWithOperands(lineOfCodeMinusComment))
+			if(returnInstruction(lineOfCodeMinusComment) != null)
 			{
 				//Extract Valid Features
 			}
-			else if(validDirective(lineOfCodeMinusComment,true))
+			else if(returnDirective(lineOfCodeMinusComment,true) != null)
 			{
 				//Extract Valid Features
 			}
-			else if(validSymbolInstruction(lineOfCodeMinusComment))
+			else if(returnSymbolInstruction(lineOfCodeMinusComment) != null)
 			{
 				//Extract Valid Features
 			}
@@ -96,24 +100,48 @@ public class Parser
 
 	}
 	
-	public static Boolean validDirective(String codeString, Boolean includeNoLabels)
+	public static Directive returnDirective(String codeString, Boolean includeNoLabels)
 	{
-		Boolean validDirective = false;
+		
+		Directive directiveObj = new Directive();
+
+		StringTokenizer st = new StringTokenizer(codeString," \t",false);
+		String possibleDirective = st.nextToken();
+		possibleDirective = possibleDirective.toUpperCase();
 		for(Directive directive : DirectivesArray)
 		{
-			if(directive.directiveName.toUpperCase().equals(codeString.toUpperCase()))
+			if(directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase()))
 			{
+				directiveObj.directiveName = possibleDirective.toUpperCase();
 				
+				String operandString = "";
+				while (st.hasMoreTokens()) 
+				{
+					operandString += st.nextToken();
+				}
+				String[] operands = operandString.split(",");
+
+				for(int x=0;x<operands.length;x++)
+				{
+					directiveObj.operandArray.add(new Operand(operands[x]));
+				}	
 			}
 		}
-		//Code to check directives
+		String[] specialDirectives = possibleDirective.split(",");
+		if(specialDirectives[0].equals(".end"))
+		{
+			directiveObj.directiveName = ".end";
+			endProgram = true;
+		}
+
+		//Code to check special directives e.g. .end and .start
 		
-		return validDirective;
+		return directiveObj;
 	}
 	
-	public static Boolean validSymbolInstruction(String instruction)
+	public static Object returnSymbolInstruction(String instruction)
 	{
-		Boolean validSymbolInstruction = false;
+		Object symbolObj = null;
 		StringTokenizer st = new StringTokenizer(instruction," \t",false);
 		String symbol = st.nextToken();
 		
@@ -123,21 +151,25 @@ public class Parser
 			commandMinusSymbol += st.nextToken();
 		}
 		
-		if(validInstructionWithOperands(commandMinusSymbol))
+		if(returnInstruction(commandMinusSymbol) != null)
 		{
-			validSymbolInstruction = true;
+			symbolObj = returnInstruction(commandMinusSymbol);
 		}
-		else if(validDirective(commandMinusSymbol,false))
+		else if(returnDirective(commandMinusSymbol,false) != null)
 		{
-			validSymbolInstruction = true;
+			symbolObj = returnDirective(commandMinusSymbol,false);
+		}
+		else
+		{
+			symbolObj = null;
 		}
 		
-		return validSymbolInstruction;
+		return symbolObj;
 	}
 	
-	public static Boolean validInstructionWithOperands(String instructionWithOperands)
+	public static Instruction returnInstruction(String instructionWithOperands)
 	{
-		Boolean validInstructionWithOperands = true;
+		Instruction instructionObj = new Instruction();
 		StringTokenizer st = new StringTokenizer(instructionWithOperands," \t",false);
 		String instruction = st.nextToken();
 		instruction = instruction.toUpperCase();
@@ -149,28 +181,32 @@ public class Parser
 				operandString += st.nextToken();
 			}
 			String[] operands = operandString.split(",");
-			if(operands.length == returnInstruction(instruction).numberOfRegisters)
+			if(operands.length == returnInstructionViaOpcode(instruction).numberOfRegisters)
 			{
-				for(int x=0;x<returnInstruction(instruction).operands.size();x++)
+				instructionObj.instruction = instruction.toUpperCase();
+				//Boolean validOperands = false;
+				for(int x=0;x<returnInstructionViaOpcode(instruction).operands.size();x++)
 				{
-					Instruction.operandTypes operand = returnInstruction(instruction).operands.get(x);
-					switch(operand)
-					{
-					case ADDRESS: /*test for valid ADDRESS*/;break;
-					case BIT: /*test for valid BITS*/;break;
-					case BITS: /*test for valid BITS*/;break;
-					case IMMEDIATE: /*test for valid IMMEDIATE*/;break;
-					case REGISTER: validInstructionWithOperands = isRegister(operands[x]);break;
-					default: validInstructionWithOperands = false;break;
-					}
+					instructionObj.operandsArray.add(new Operand(operands[x]));
+				//	Instruction.operandTypes operand = returnInstruction(instruction).operands.get(x);
+				//	switch(operand)
+				//	{
+				//	case ADDRESS: /*test for valid ADDRESS*/;break;
+				//	case BIT: /*test for valid BITS*/;break;
+				//	case BITS: /*test for valid BITS*/;break;
+				//	case IMMEDIATE: /*test for valid IMMEDIATE*/;break;
+				//	case REGISTER: validOperands = isRegister(operands[x]);break;
+				//	default: validOperands = false;break;
+				//	}
 				}
 			}
 		}
 		else
 		{
-			validInstructionWithOperands = false;
+			instructionObj = null;
 		}
-		return validInstructionWithOperands;
+
+		return instructionObj;
 	}
 	
 	/*
@@ -407,7 +443,7 @@ public class Parser
 	 * @param instructionString The text instruction name that is to be returned.
 	 * @return Returns an instance of the instruction class for the specified instruction.
 	 */
-	public static Instruction returnInstruction(String instructionString)
+	public static Instruction returnInstructionViaOpcode(String instructionString)
 	{
 		Instruction returnInstruction = new Instruction();
 		
@@ -431,8 +467,8 @@ public class Parser
 		Boolean isRegister = false;
 		if (operandString.length() == 3)
 		{
-			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(2)));
-			if(operandString.charAt(0) == '$' && (operandString.charAt(1) == 'r' || operandString.charAt(1) == 'R') &&  registerNumber >= 0 && registerNumber < 8)
+			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(1)));
+			if(operandString.charAt(0) == '$' && registerNumber >= 0 && registerNumber < 8)
 			{
 				isRegister = true;
 			}
