@@ -1,13 +1,13 @@
-.start		NL	.start
-.end		NL	.end
+.start	LABEL,ADDR	NL	.start
+.end	LABEL	NL	.end
 .data		NL	.data
 .text		NL	.text
 Int.data	NUM	OL	.data
-Str.data	STR	OL	.data
+Str.data	[]	OL	.data
 Hex.data	HEX	OL	.data
 Bin.data	BIN	OL	.data
 Adr.data	LABEL	OL	.data
-Adr.exp	EXP	OL	
+Adr.exp	EXP	OL	.data
 Ent	LABELREF,LABELREF,LABELREF,LABELREF	NL	.text
 Ext	LABELREF,LABELREF,LABELREF,LABELREF	NL	.info
 NOP		OL	.text
