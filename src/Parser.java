@@ -5,13 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList; 
+import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Parser
 {
 
-
+	public static String programName = "";
+	public static Directive.codeLocations codeLocation = null;
 	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public static ArrayList<Directive> DirectivesArray = new ArrayList<Directive>();
 	public static ArrayList<Instruction> InstructionsArray = new ArrayList<Instruction>();
@@ -22,9 +24,12 @@ public class Parser
 	 * @param args
 	 */
 	public static void main(String[] args)
-	{
+	{	
+		// BIN regex "[01]{1,32}";
+		
 		//System.out.println("test");
 		
+		fillDirectivesArray("Directives.txt");
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 		
@@ -70,7 +75,7 @@ public class Parser
 			{
 				//Extract Valid Features
 			}
-			else if(validDirective(lineOfCodeMinusComment))
+			else if(validDirective(lineOfCodeMinusComment,true))
 			{
 				//Extract Valid Features
 			}
@@ -91,10 +96,16 @@ public class Parser
 
 	}
 	
-	public static Boolean validDirective(String instruction)
+	public static Boolean validDirective(String codeString, Boolean includeNoLabels)
 	{
 		Boolean validDirective = false;
-		
+		for(Directive directive : DirectivesArray)
+		{
+			if(directive.directiveName.toUpperCase().equals(codeString.toUpperCase()))
+			{
+				
+			}
+		}
 		//Code to check directives
 		
 		return validDirective;
@@ -116,7 +127,7 @@ public class Parser
 		{
 			validSymbolInstruction = true;
 		}
-		else if(validDirective(commandMinusSymbol))
+		else if(validDirective(commandMinusSymbol,false))
 		{
 			validSymbolInstruction = true;
 		}
@@ -420,8 +431,8 @@ public class Parser
 		Boolean isRegister = false;
 		if (operandString.length() == 3)
 		{
-			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(3)));
-			if(operandString.charAt(0) == '$' && (operandString.charAt(2) == 'r' || operandString.charAt(1) == 'R') &&  registerNumber >= 0 && registerNumber < 8)
+			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(2)));
+			if(operandString.charAt(0) == '$' && (operandString.charAt(1) == 'r' || operandString.charAt(1) == 'R') &&  registerNumber >= 0 && registerNumber < 8)
 			{
 				isRegister = true;
 			}
@@ -431,12 +442,12 @@ public class Parser
 	}
 	
 	/**
-	 * @param fileName This is the file location of the instruction table 
+	 * @param fileName This is the file location of the directives table 
 	 * 
-	 * This function reads a specified instruction file we have formatted
-	 * and it adds the data from the specified instruction file into the
-	 * public static InstructionArray. This allows us to easily check to
-	 * see if an instruction is in the correct format.
+	 * This function reads a specified directives file we have formatted
+	 * and it adds the data from the specified directives file into the
+	 * public static DirectivesArray. This allows us to easily check to
+	 * see if an directive is in the correct format.
 	 */
 	public static void fillDirectivesArray(String fileName)
 	{
@@ -447,51 +458,79 @@ public class Parser
 			
 			if(variables.length > 1)
 			{	
-				Instruction.instructionTypes instructionType = Instruction.instructionTypes.IMMEDIATE;
-				 if (variables[5].equals("I"))
-				 {
-					 instructionType = Instruction.instructionTypes.IMMEDIATE;
-				 }
-				 else if(variables[5].equals("R"))
-				 {
-					 instructionType = Instruction.instructionTypes.REGISTER;
-				 }
-				 else if(variables[5].equals("S"))
-				 {
-					 instructionType = Instruction.instructionTypes.SIGNED;
-				 }
+				//System.out.println(Arrays.toString(variables));
+				Directive.codeLocations codeLocation = Directive.codeLocations.DATA;
+				if (variables[3].toUpperCase().equals(".TEXT"))
+				{
+					codeLocation = Directive.codeLocations.TEXT;
+				}
+				else if(variables[3].toUpperCase().equals(".DATA"))
+				{
+					codeLocation = Directive.codeLocations.DATA;
+				}
+				else if(variables[3].toUpperCase().equals(".INFO"))
+				{
+					codeLocation = Directive.codeLocations.INFO;
+				}
+				else if(variables[3].toUpperCase().equals(".START"))
+				{
+					codeLocation = Directive.codeLocations.START;
+				}
+				else if(variables[3].toUpperCase().equals(".END"))
+				{
+					codeLocation = Directive.codeLocations.END;
+				}
+				
+				Directive.labelTypes labelType = Directive.labelTypes.OPTIONALLABEL;
+				if (variables[2].toUpperCase().equals("NL"))
+				{
+					labelType = Directive.labelTypes.NOLABEL;
+				}
+				else if(variables[2].toUpperCase().equals("OL"))
+				{
+					labelType = Directive.labelTypes.OPTIONALLABEL;
+				}
+				else if(variables[2].toUpperCase().equals("RL"))
+				{
+					labelType = Directive.labelTypes.REQUIREDLABEL;
+				}
 
-				variables[4] = variables[4].replaceAll("\"", "");
 
-				//System.out.println(variables[4]);
-				String[] operands = variables[4].split(",");
-				ArrayList<Instruction.operandTypes> operandArray = new ArrayList<Instruction.operandTypes>();
+				variables[1] = variables[1].replaceAll("\"", "");
+
+				String[] operands = variables[1].split(",");
+				
+				ArrayList<Directive.operandTypes> operandArray = new ArrayList<Directive.operandTypes>();
 				for(String operand : operands)
 				{
 					operand = operand.toUpperCase();
-					 if (operand.equals("REG"))
+					 if (operand.equals("BIN"))
 					 {
-						 operandArray.add(Instruction.operandTypes.REGISTER);
+						 operandArray.add(Directive.operandTypes.BINARY);
 					 }
-					 else if(operand.equals("IMM"))
+					 else if(operand.equals("HEX"))
 					 {
-						 operandArray.add(Instruction.operandTypes.IMMEDIATE);
+						 operandArray.add(Directive.operandTypes.HEX);
 					 }
-					 else if(operand.equals("BIT"))
+					 else if(operand.equals("STR"))
 					 {
-						 operandArray.add(Instruction.operandTypes.BIT);
+						 operandArray.add(Directive.operandTypes.STRING);
 					 }
-					 else if(operand.equals("BITS"))
+					 else if(operand.equals("LABEL"))
 					 {
-						 operandArray.add(Instruction.operandTypes.BITS);
+						 operandArray.add(Directive.operandTypes.LABEL);
 					 }
-					 else if(operand.equals("ADDR"))
+					 else if(operand.equals("NUM"))
 					 {
-						 operandArray.add(Instruction.operandTypes.ADDRESS);
+						 operandArray.add(Directive.operandTypes.NUMBER);
+					 }
+					 else if(operand.equals("LABELREF"))
+					 {
+						 operandArray.add(Directive.operandTypes.NUMBER);
 					 }
 				}
-				Instruction instruction = new Instruction(variables[0],variables[1],variables[3],operandArray,instructionType);
-				InstructionsArray.add(instruction);
+				Directive directive = new Directive(variables[0],labelType,codeLocation,operandArray);
+				DirectivesArray.add(directive);
 			}
 		}
 	}
