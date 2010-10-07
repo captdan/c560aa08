@@ -9,6 +9,7 @@ public class Instruction
 	public String instructionExtended = "";
 	public String instructionExtendedHex = "";
 	public String instructionExtendedBinary = "";
+	public ArrayList<Operand> operandsArray = new ArrayList<Operand>();
 	public ArrayList<operandTypes> operands = new ArrayList<operandTypes>();
 	public instructionTypes instructionType = Instruction.instructionTypes.REGISTER;
 	public static enum operandTypes 

@@ -7,6 +7,7 @@ public class Directive
 	public String directiveName = "";
 	public labelTypes labelType = labelTypes.NOLABEL;
 	public ArrayList<operandTypes> operands = new ArrayList<operandTypes>();
+	public ArrayList<Operand> operandArray = new ArrayList<Operand>();
 	
 	public static enum labelTypes
 	{
