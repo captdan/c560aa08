@@ -22,6 +22,11 @@ public class Parser
 	public static SymbolTable SymbTable = new SymbolTable();
 	
 	/**
+	 * PC is the Program Counter that will be updated as Pass 1 processes each line of code from the source.
+	 */
+	public static Integer PC;
+	
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args)
@@ -95,7 +100,11 @@ public class Parser
 			//else if instruction is in symbol table
 
 		}
-
+		
+		/**
+		 * After each codeLine object is processed, we grab its length and add it to our global Program Counter.
+		 */
+		PC += cl.length;
 		return cl;
 
 	}
