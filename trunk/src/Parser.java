@@ -34,7 +34,7 @@ public class Parser
 	{	
 		// BIN regex "[01]{1,32}";
 		
-		//System.out.println("test");
+		//System.out.println("test"); //test
 		
 		fillDirectivesArray("Directives.txt");
 		fillErrorArray("src/ErrorCodes.txt");
