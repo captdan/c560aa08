@@ -15,7 +15,7 @@ class CodeLine
 	 * This will be the field where each line of code's length is stored. 
 	 * This field is then read from each CodeLine object in our Main Parser and added to the global Program Counter.
 	 */
-	public static Integer length;
+	public Integer length = 0; //This should not be static... in instance needs to be created for to use it
 
 	// Constructor
 	CodeLine(String lineOfCode) 
