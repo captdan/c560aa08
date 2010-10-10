@@ -159,6 +159,10 @@ public class Parser
 			endProgram = true;
 		}
 
+		if(directiveObj.directiveName == "")
+		{
+			directiveObj = null;
+		}
 		//Code to check special directives e.g. .end and .start
 		
 		return directiveObj;
