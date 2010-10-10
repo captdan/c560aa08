@@ -158,10 +158,9 @@ public class Parser
 			}
 		}
 		String[] specialDirectives = possibleDirective.split(",");
-		if(specialDirectives[0].equals(".end"))
+		if(specialDirectives[0].equals(".END"))
 		{
-			System.out.println("TEST");
-			directiveObj.directiveName = ".end";
+			directiveObj.directiveName = ".END";
 			endProgram = true;
 		}
 
