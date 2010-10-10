@@ -24,7 +24,7 @@ public class Parser
 	/**
 	 * PC is the Program Counter that will be updated as Pass 1 processes each line of code from the source.
 	 */
-	public static Integer PC;
+	public static Integer PC = 0;
 	
 	/**
 	 * @param args
@@ -39,7 +39,9 @@ public class Parser
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 		
-		ArrayList<String> linesOfCode = readFileToArrayList("src/asmCode1.txt");
+		//ArrayList<String> linesOfCode = readFileToArrayList("src/asmCode1.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/AddTest.txt");
+		
 		for(String lineOfCode : linesOfCode)
 		{
 			//System.out.println(lineOfCode);
@@ -62,16 +64,18 @@ public class Parser
 		
 		//Check to see if the line contains a comment if so parse it.
 		String[] result = lineOfCode.split("\\|");
+		//System.out.println(result.length);
 		//Grab anything that is before the comment and set it aside to be parsed.
-		String lineOfCodeMinusComment = result[0];
+		String lineOfCodeMinusComment = "";
 		
 		//System.out.println(Arrays.toString(result));
 
 		//Check to see if a comment exists.
 		if(result.length > 1)
 		{
+			lineOfCodeMinusComment = result[0];
 			result[0] = "";
-			cl.comment = joinStringArray(result,""); 
+			cl.comment += joinStringArray(result,"|"); 
 			//If more than one "|" then join them all as one comment
 		}
 		//To access the code line minus the comment use the string variable lineOfCodeMinusComment
@@ -82,14 +86,24 @@ public class Parser
 		{
 			if(returnInstruction(lineOfCodeMinusComment) != null)
 			{
+				cl.instruction = returnInstruction(lineOfCodeMinusComment);
 				//Extract Valid Features
 			}
 			else if(returnDirective(lineOfCodeMinusComment,true) != null)
 			{
+				cl.directive = returnDirective(lineOfCodeMinusComment,true);
 				//Extract Valid Features
 			}
 			else if(returnSymbolInstruction(lineOfCodeMinusComment) != null)
 			{
+				if(returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class)
+				{
+					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment);
+				}
+				else if(returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Instruction.class)
+				{
+					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment);
+				}
 				//Extract Valid Features
 			}
 			else
@@ -105,6 +119,7 @@ public class Parser
 		 * After each codeLine object is processed, we grab its length and add it to our global Program Counter.
 		 */
 		PC += cl.length;
+		
 		return cl;
 
 	}
@@ -139,6 +154,7 @@ public class Parser
 		String[] specialDirectives = possibleDirective.split(",");
 		if(specialDirectives[0].equals(".end"))
 		{
+			System.out.println("TEST");
 			directiveObj.directiveName = ".end";
 			endProgram = true;
 		}
