@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList; 
-import java.util.Arrays;
+//import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
@@ -202,7 +202,7 @@ public class Parser
 	{
 		Object symbolObj = null;
 		StringTokenizer st = new StringTokenizer(instruction," \t",false);
-		String symbol = st.nextToken();
+		st.nextToken();
 		String commandMinusSymbol = "";
 		
 		while (st.hasMoreTokens()) 
