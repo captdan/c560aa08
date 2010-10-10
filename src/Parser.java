@@ -71,7 +71,7 @@ public class Parser
 		//System.out.println(Arrays.toString(result));
 
 		//Check to see if a comment exists.
-		if(result.length > 1)
+		if(result.length > 0)
 		{
 			lineOfCodeMinusComment = result[0];
 			result[0] = "";
@@ -82,10 +82,13 @@ public class Parser
 		//this can be were directive checking comes in
 		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment," \t",false);
 		
+		System.out.println("Line: " + lineOfCodeMinusComment);
+		
 		if (st.hasMoreTokens() == true) 
 		{
 			if(returnInstruction(lineOfCodeMinusComment) != null)
 			{
+				System.out.println("Instruction: " + lineOfCodeMinusComment);
 				cl.instruction = returnInstruction(lineOfCodeMinusComment);
 				//Extract Valid Features
 			}
@@ -93,9 +96,11 @@ public class Parser
 			{
 				cl.directive = returnDirective(lineOfCodeMinusComment,true);
 				//Extract Valid Features
+				System.out.println("Directive: " + lineOfCodeMinusComment);
 			}
 			else if(returnSymbolInstruction(lineOfCodeMinusComment) != null)
 			{
+				System.out.println("Symbol: " + lineOfCodeMinusComment);
 				if(returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class)
 				{
 					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment);
@@ -108,6 +113,7 @@ public class Parser
 			}
 			else
 			{
+				System.out.println("ERROR: " + lineOfCodeMinusComment);
 				//ERROR, must fall within the three categories
 			}
 
@@ -173,11 +179,11 @@ public class Parser
 		Object symbolObj = null;
 		StringTokenizer st = new StringTokenizer(instruction," \t",false);
 		String symbol = st.nextToken();
-		
 		String commandMinusSymbol = "";
+		
 		while (st.hasMoreTokens()) 
 		{
-			commandMinusSymbol += st.nextToken();
+			commandMinusSymbol += " " + st.nextToken();
 		}
 		
 		if(returnInstruction(commandMinusSymbol) != null)
@@ -198,12 +204,14 @@ public class Parser
 	
 	public static Instruction returnInstruction(String instructionWithOperands)
 	{
+		
 		Instruction instructionObj = new Instruction();
 		StringTokenizer st = new StringTokenizer(instructionWithOperands," \t",false);
 		String instruction = st.nextToken();
 		instruction = instruction.toUpperCase();
 		if(instructionExists(instruction) == true)
 		{
+			//System.out.println(instruction);
 			String operandString = "";
 			while (st.hasMoreTokens()) 
 			{
@@ -233,6 +241,7 @@ public class Parser
 		else
 		{
 			instructionObj = null;
+			//System.out.println(instruction);
 		}
 
 		return instructionObj;
