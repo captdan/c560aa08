@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 public class Parser
 {
 
+	public static int startingLocation = 0;
 	public static String programName = "";
 	public static Boolean endProgram = false;
 	public static Directive.codeLocations codeLocation = null;
@@ -160,10 +161,27 @@ public class Parser
 		String[] specialDirectives = possibleDirective.split(",");
 		if(specialDirectives[0].equals(".END"))
 		{
-			directiveObj.directiveName = ".END";
-			endProgram = true;
+			specialDirectives = removeWhiteSpace(codeString).split(",");
+			if (specialDirectives.length == 2)
+			{
+				if (programName.equals(specialDirectives[1]))
+				{
+					directiveObj.directiveName = ".END";
+					endProgram = true;
+				}
+			}
 		}
-
+		else if(specialDirectives[0].equals(".START"))
+		{
+			specialDirectives = removeWhiteSpace(codeString).split(",");
+			if (specialDirectives.length == 3)
+			{
+				directiveObj.directiveName = ".START";
+				programName = specialDirectives[1];
+				startingLocation = Integer.valueOf(specialDirectives[2]);
+				PC = startingLocation;
+			}
+		}
 		if(directiveObj.directiveName == "")
 		{
 			directiveObj = null;
@@ -171,6 +189,13 @@ public class Parser
 		//Code to check special directives e.g. .end and .start
 		
 		return directiveObj;
+	}
+	
+	public static String removeWhiteSpace(String InputString)
+	{
+		InputString = InputString.replaceAll(" ", "");
+		InputString = InputString.replaceAll("\t", "");
+		return InputString;
 	}
 	
 	public static Object returnSymbolInstruction(String instruction)
