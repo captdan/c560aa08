@@ -1,0 +1,15 @@
+.start, AddTest, 00
+|Simple Comment
+|Two Comments |In One Line
+|
+.data
+	A int.data 4 |initialize A to 4
+	B int.data 1 | initialize B to 1
+.text
+	| test comment 
+	LW $1,A	|		Test comment after 
+	LW $2,B
+	Add $1,$2,$3
+	
+
+.end, AddTest
