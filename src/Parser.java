@@ -56,6 +56,10 @@ public class Parser
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
 		}
+		ArrayList<String> table = SymbTable.getSortedListOfSymbols();
+		for(String label : table){
+			System.out.println("LABEL: " + label);
+		}
 	}
 	/**
 	 * @param lineOfCode takes a string line of code to be parsed
@@ -223,7 +227,7 @@ public class Parser
 	{
 		Object symbolObj = null;
 		StringTokenizer st = new StringTokenizer(instruction," \t",false);
-		st.nextToken();
+		String symbol = st.nextToken();
 		String commandMinusSymbol = "";
 		
 		while (st.hasMoreTokens()) 
@@ -233,6 +237,8 @@ public class Parser
 		
 		if(returnInstruction(commandMinusSymbol) != null)
 		{
+			// if the rest of the line is an Instruction, then the symbol must be a label
+			SymbTable.addSymbol(symbol, PC.toString(), "NONE", "LABEL");
 			symbolObj = returnInstruction(commandMinusSymbol);
 		}
 		else if(returnDirective(commandMinusSymbol,false) != null)
