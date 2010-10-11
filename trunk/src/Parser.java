@@ -4,13 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList; 
-//import java.util.Arrays;
+import java.util.ArrayList; //import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Parser
-{
+public class Parser {
 
 	public static int startingLocation = 0;
 	public static String programName = "";
@@ -21,643 +19,558 @@ public class Parser
 	public static ArrayList<Instruction> InstructionsArray = new ArrayList<Instruction>();
 	public static ArrayList<Error> ErrorArray = new ArrayList<Error>();
 	public static SymbolTable SymbTable = new SymbolTable();
-	
 	/**
 	 * 
-	 * PC is the Program Counter that will be updated as Pass 1 processes each line of code from the source.
+	 * PC is the Program Counter that will be updated as Pass 1 processes each
+	 * line of code from the source.
 	 */
 	public static Integer PC = 0;
 	/**
-	 * execStart indicates where the execution in the program starts as is indicated by directive Exec.start.
-	 * This value is later used in the object report after pass 2
+	 * execStart indicates where the execution in the program starts as is
+	 * indicated by directive Exec.start. This value is later used in the object
+	 * report after pass 2
 	 */
 	public static int execStart = 0;
+
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args)
-	{	
+	public static void main(String[] args) {
 		// BIN regex "[01]{1,32}";
-		
-		//System.out.println("test"); //test
-		
+		// System.out.println("test"); //test
 		fillDirectivesArray("Directives.txt");
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
-		
-		//ArrayList<String> linesOfCode = readFileToArrayList("src/asmCode1.txt");
+		// ArrayList<String> linesOfCode =
+		// readFileToArrayList("src/asmCode1.txt");
 		ArrayList<String> linesOfCode = readFileToArrayList("src/AddTest.txt");
-		
-		for(String lineOfCode : linesOfCode)
-		{
-			//System.out.println(lineOfCode);
-			if(endProgram == false)
-			{
+		for (String lineOfCode : linesOfCode) {
+			// System.out.println(lineOfCode);
+			if (endProgram == false) {
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
 		}
 		ArrayList<String> table = SymbTable.getSortedListOfSymbols();
-		for(String label : table){
+		for (String label : table) {
 			System.out.println("LABEL: " + label);
 		}
 	}
-	/**
-	 * @param lineOfCode takes a string line of code to be parsed
-	 * 
-	 * This is where we will parse each line of code.
-	 * ALL directive testing / checking will be in this function
-	*/
-	public static CodeLine parseCodeLine(String lineOfCode) 
-	{
-		//Create an instance of CodeLine Supplying it with original line of code.
-		CodeLine cl = new CodeLine(lineOfCode);
-		
-		//Check to see if the line contains a comment if so parse it.
-		String[] result = lineOfCode.split("\\|");
-		//System.out.println(result.length);
-		//Grab anything that is before the comment and set it aside to be parsed.
-		String lineOfCodeMinusComment = "";
-		
-		//System.out.println(Arrays.toString(result));
 
-		//Check to see if a comment exists.
-		if(result.length > 0)
-		{
+	/**
+	 * @param lineOfCode
+	 *            takes a string line of code to be parsed
+	 * 
+	 *            This is where we will parse each line of code. ALL directive
+	 *            testing / checking will be in this function
+	 */
+	public static CodeLine parseCodeLine(String lineOfCode) {
+		// Create an instance of CodeLine Supplying it with original line of
+		// code.
+		CodeLine cl = new CodeLine(lineOfCode);
+		// Check to see if the line contains a comment if so parse it.
+		String[] result = lineOfCode.split("\\|");
+		// System.out.println(result.length);
+		// Grab anything that is before the comment and set it aside to be
+		// parsed.
+		String lineOfCodeMinusComment = "";
+		// System.out.println(Arrays.toString(result));
+
+		// Check to see if a comment exists.
+		if (result.length > 0) {
 			lineOfCodeMinusComment = result[0];
 			result[0] = "";
-			cl.comment += joinStringArray(result,"|"); 
-			//If more than one "|" then join them all as one comment
+			cl.comment += joinStringArray(result, "|");
+			// If more than one "|" then join them all as one comment
 		}
-		//To access the code line minus the comment use the string variable lineOfCodeMinusComment
-		//this can be were directive checking comes in
-		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment," \t",false);
-		
+		// To access the code line minus the comment use the string variable
+		// lineOfCodeMinusComment
+		// this can be were directive checking comes in
+		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment, " \t",
+				false);
 		System.out.println("Line: " + lineOfCodeMinusComment);
-		
-		if (st.hasMoreTokens() == true) 
-		{
-			if(returnInstruction(lineOfCodeMinusComment) != null)
-			{
+		if (st.hasMoreTokens() == true) {
+			if (returnInstruction(lineOfCodeMinusComment) != null) {
 				System.out.println("Instruction: " + lineOfCodeMinusComment);
 				cl.instruction = returnInstruction(lineOfCodeMinusComment);
-				//Extract Valid Features
-			}
-			else if(returnDirective(lineOfCodeMinusComment,true) != null)
-			{
-				cl.directive = returnDirective(lineOfCodeMinusComment,true);
-				//Extract Valid Features
+				// Extract Valid Features
+			} else if (returnDirective(lineOfCodeMinusComment, true) != null) {
+				cl.directive = returnDirective(lineOfCodeMinusComment, true);
+				// Extract Valid Features
 				System.out.println("Directive: " + lineOfCodeMinusComment);
-				
-			if (cl.directive.equals("Reset.lc"))
-				{
-					//TODO segment cl to find the address and reset PC to that address.
-				}
-				else if (cl.directive.equals("Exec.start"))
-				{
-					//TODO segment cl to find the address for Exec.start and load it into the variable execStart.
-				}
-				else if (cl.directive.equals("MEM.SKIP"))
-				{
-					//increment pc counter by amount indicated that needs to be skipped.
-				}
-				
-				
-			}
-			else if(returnSymbolInstruction(lineOfCodeMinusComment) != null)
-			{
+			} else if (returnSymbolInstruction(lineOfCodeMinusComment) != null) {
 				System.out.println("Symbol: " + lineOfCodeMinusComment);
-				if(returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class)
-				{
+				if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class) {
 					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment);
-				}
-				else if(returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Instruction.class)
-				{
+				} else if (returnSymbolInstruction(lineOfCodeMinusComment)
+						.getClass() == Instruction.class) {
 					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment);
 				}
-				//Extract Valid Features
-			}
-			else
-			{
+				// Extract Valid Features
+			} else {
 				System.out.println("ERROR: " + lineOfCodeMinusComment);
-				//ERROR, must fall within the three categories
+				// ERROR, must fall within the three categories
 			}
 
-			//else if instruction is in symbol table
+			// else if instruction is in symbol table
 
 		}
-		
 		/**
-		 * After each codeLine object is processed, we grab its length and add it to our global Program Counter.
+		 * After each codeLine object is processed, we grab its length and add
+		 * it to our global Program Counter.
 		 */
-		PC += cl.length;
-		
+		int length = cl.lineLength();
+		PC += length;
 		return cl;
 
 	}
-	
-	public static Directive returnDirective(String codeString, Boolean includeNoLabels)
-	{
-		
+
+	public static Directive returnDirective(String codeString,
+			Boolean includeNoLabels) {
 		Directive directiveObj = new Directive();
 
-		StringTokenizer st = new StringTokenizer(codeString," \t",false);
+		StringTokenizer st = new StringTokenizer(codeString, " \t", false);
 		String possibleDirective = st.nextToken();
 		possibleDirective = possibleDirective.toUpperCase();
-		for(Directive directive : DirectivesArray)
-		{
-			if(directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase()))
-			{
+		for (Directive directive : DirectivesArray) {
+			if (directive.directiveName.toUpperCase().equals(
+					possibleDirective.toUpperCase())) {
 				directiveObj.directiveName = possibleDirective.toUpperCase();
-				
 				String operandString = "";
-				while (st.hasMoreTokens()) 
-				{
+				while (st.hasMoreTokens()) {
 					operandString += st.nextToken();
 				}
 				String[] operands = operandString.split(",");
 
-				for(int x=0;x<operands.length;x++)
-				{
+				for (int x = 0; x < operands.length; x++) {
 					directiveObj.operandArray.add(new Operand(operands[x]));
-				}	
+				}
 			}
 		}
 		String[] specialDirectives = possibleDirective.split(",");
-		if(specialDirectives[0].equals(".END"))
-		{
+		if (specialDirectives[0].equals(".END")) {
 			specialDirectives = removeWhiteSpace(codeString).split(",");
-			if (specialDirectives.length == 2)
-			{
-				if (programName.equals(specialDirectives[1]))
-				{
+			if (specialDirectives.length == 2) {
+				if (programName.equals(specialDirectives[1])) {
 					directiveObj.directiveName = ".END";
 					endProgram = true;
 				}
 			}
-		}
-		else if(specialDirectives[0].equals(".START"))
-		{
+		} else if (specialDirectives[0].equals(".START")) {
 			specialDirectives = removeWhiteSpace(codeString).split(",");
-			if (specialDirectives.length == 3)
-			{
+			if (specialDirectives.length == 3) {
 				directiveObj.directiveName = ".START";
 				programName = specialDirectives[1];
 				startingLocation = Integer.valueOf(specialDirectives[2]);
 				PC = startingLocation;
 			}
 		}
-		
-		if(directiveObj.directiveName == "")
-		{
+		if (specialDirectives[0].equals("Reset.lc")) {
+			directiveObj.directiveName = possibleDirective.toUpperCase();
+			int resetValue = Integer.valueOf(st.nextToken());
+			if (resetValue > PC) {
+				PC = resetValue;
+			} else {
+				// System.out.println("Error reset value must be larger than PC");
+			}
+		} else if (specialDirectives[0].equals("Exec.start")) {
+			directiveObj.directiveName = possibleDirective.toUpperCase();
+			int execValue = Integer.valueOf(st.nextToken());
+			execStart = execValue;
+		} else if (specialDirectives[0].equals("MEM.SKIP")) {
+			directiveObj.directiveName = possibleDirective.toUpperCase();
+			int skipValue = Integer.valueOf(st.nextToken());
+			if (PC + skipValue < 65536) {
+				PC += skipValue;
+			} else {
+				// System.out.println("Error not enough memory");
+			}
+		}
+		if (directiveObj.directiveName == "") {
 			directiveObj = null;
 		}
-		//Code to check special directives e.g. .end and .start
-		
+		// Code to check special directives e.g. .end and .start
 		return directiveObj;
 	}
-	
-	public static String removeWhiteSpace(String InputString)
-	{
+
+	public static String removeWhiteSpace(String InputString) {
 		InputString = InputString.replaceAll(" ", "");
 		InputString = InputString.replaceAll("\t", "");
 		return InputString;
 	}
-	
-	public static Object returnSymbolInstruction(String instruction)
-	{
+
+	public static Object returnSymbolInstruction(String instruction) {
 		Object symbolObj = null;
-		StringTokenizer st = new StringTokenizer(instruction," \t",false);
+		StringTokenizer st = new StringTokenizer(instruction, " \t", false);
 		String symbol = st.nextToken();
 		String commandMinusSymbol = "";
-		
-		while (st.hasMoreTokens()) 
-		{
+		while (st.hasMoreTokens()) {
 			commandMinusSymbol += " " + st.nextToken();
 		}
-		
-		if(returnInstruction(commandMinusSymbol) != null)
-		{
-			// if the rest of the line is an Instruction, then the symbol must be a label
+		if (returnInstruction(commandMinusSymbol) != null) {
+			// if the rest of the line is an Instruction, then the symbol must
+			// be a label
 			SymbTable.addSymbol(symbol, PC.toString(), "NONE", "LABEL");
 			symbolObj = returnInstruction(commandMinusSymbol);
-		}
-		else if(returnDirective(commandMinusSymbol,false) != null)
-		{
-			symbolObj = returnDirective(commandMinusSymbol,false);
-		}
-		else
-		{
+		} else if (returnDirective(commandMinusSymbol, false) != null) {
+			symbolObj = returnDirective(commandMinusSymbol, false);
+		} else {
 			symbolObj = null;
 		}
-		
 		return symbolObj;
 	}
-	
-	public static Instruction returnInstruction(String instructionWithOperands)
-	{
-		
+
+	public static Instruction returnInstruction(String instructionWithOperands) {
 		Instruction instructionObj = new Instruction();
-		StringTokenizer st = new StringTokenizer(instructionWithOperands," \t",false);
+		StringTokenizer st = new StringTokenizer(instructionWithOperands,
+				" \t", false);
 		String instruction = st.nextToken();
 		instruction = instruction.toUpperCase();
-		if(instructionExists(instruction) == true)
-		{
-			//System.out.println(instruction);
+		if (instructionExists(instruction) == true) {
+			// System.out.println(instruction);
 			String operandString = "";
-			while (st.hasMoreTokens()) 
-			{
+			while (st.hasMoreTokens()) {
 				operandString += st.nextToken();
 			}
 			String[] operands = operandString.split(",");
-			if(operands.length == returnInstructionViaOpcode(instruction).numberOfRegisters)
-			{
+			if (operands.length == returnInstructionViaOpcode(instruction).numberOfRegisters) {
 				instructionObj.instruction = instruction.toUpperCase();
-				//Boolean validOperands = false;
-				for(int x=0;x<returnInstructionViaOpcode(instruction).operands.size();x++)
-				{
+				// Boolean validOperands = false;
+				for (int x = 0; x < returnInstructionViaOpcode(instruction).operands
+						.size(); x++) {
 					instructionObj.operandsArray.add(new Operand(operands[x]));
-				//	Instruction.operandTypes operand = returnInstruction(instruction).operands.get(x);
-				//	switch(operand)
-				//	{
-				//	case ADDRESS: /*test for valid ADDRESS*/;break;
-				//	case BIT: /*test for valid BITS*/;break;
-				//	case BITS: /*test for valid BITS*/;break;
-				//	case IMMEDIATE: /*test for valid IMMEDIATE*/;break;
-				//	case REGISTER: validOperands = isRegister(operands[x]);break;
-				//	default: validOperands = false;break;
-				//	}
+					//
+					Instruction.operandTypes operand = returnInstruction(instruction).operands
+							.get(x);
+					//
+					switch (operand)
+					//
+					{
+					//
+					case ADDRESS: /* test for valid ADDRESS */
+						;
+						break;
+					//
+					case BIT: /* test for valid BITS */
+						;
+						break;
+					//
+					case BITS: /* test for valid BITS */
+						;
+						break;
+					//
+					case IMMEDIATE: /* test for valid IMMEDIATE */
+						;
+						break;
+					//
+					case REGISTER:
+						validOperands = isRegister(operands[x]);
+						break;
+					//
+					default:
+						validOperands = false;
+						break;
+					//
+					}
 				}
 			}
-		}
-		else
-		{
+		} else {
 			instructionObj = null;
-			//System.out.println(instruction);
+			// System.out.println(instruction);
 		}
 
 		return instructionObj;
 	}
-	
+
 	/*
-	 	cl.instruction = returnInstruction(instruction);
-		
-		String operandString = "";
-		while (st.hasMoreTokens()) 
-		{
-			operandString += st.nextToken();
-		}
-		String[] operands = operandString.split(",");
-		
-		if(operands.length == cl.instruction.numberOfRegisters)
-		{
-			//If valid number of operands
-			
-			//Check if Register or if symbol or number
-			System.out.println(cl.originalLineOfCode);
-			
-			
-			//checks each operand against the symbol table.
-			//if in table, adds the relevant value for the operand to the codeline.
-			for(int j = 0; j < operands.length; j++)
-			{
-				if(SymbTable.isInTable(operands[j]))
-				{
-					String[] symbolInfo = SymbTable.getInfoFromSymbol(operands[j]);
-					if(symbolInfo[2].equals("equ"))
-					{
-						cl.operands.add(new Operand(symbolInfo[1]));
-					}
-					else if(symbolInfo[2].equals("data"))
-					{
-						//TODO should it refer to a memory address or to the information stored there?
-					}
-					else
-					{
-						cl.operands.add(new Operand(symbolInfo[0]));
-					}
-				}
-			}
-			
-		}
-		else
-		{
-			
-			//System.out.println(cl.originalLineOfCode + "  :  " + returnError(0).message );
-			cl.errors.add(returnError(0)); //Adds error to line of code
-		}
+	 * cl.instruction = returnInstruction(instruction); String operandString =
+	 * ""; while (st.hasMoreTokens()) { operandString += st.nextToken(); }
+	 * String[] operands = operandString.split(","); if(operands.length ==
+	 * cl.instruction.numberOfRegisters) { //If valid number of operands //Check
+	 * if Register or if symbol or number
+	 * System.out.println(cl.originalLineOfCode); //checks each operand against
+	 * the symbol table. //if in table, adds the relevant value for the operand
+	 * to the codeline. for(int j = 0; j < operands.length; j++) {
+	 * if(SymbTable.isInTable(operands[j])) { String[] symbolInfo =
+	 * SymbTable.getInfoFromSymbol(operands[j]); if(symbolInfo[2].equals("equ"))
+	 * { cl.operands.add(new Operand(symbolInfo[1])); } else
+	 * if(symbolInfo[2].equals("data")) { //TODO should it refer to a memory
+	 * address or to the information stored there? } else { cl.operands.add(new
+	 * Operand(symbolInfo[0])); } } } } else {
+	 * //System.out.println(cl.originalLineOfCode + "  :  " +
+	 * returnError(0).message ); cl.errors.add(returnError(0)); //Adds error to
+	 * line of code }
 	 */
 
 	/**
 	 * Function that joins a String array by a delimiter.
-	 * @param stringArray Is passed a string array that is to be joined
-	 * @param delimiter This is what string should be placed the elements joined in the stringArray
+	 * 
+	 * @param stringArray
+	 *            Is passed a string array that is to be joined
+	 * @param delimiter
+	 *            This is what string should be placed the elements joined in
+	 *            the stringArray
 	 * @return Returns a String that is the joined array plus delimiters
 	 */
-	public static String joinStringArray(String[] stringArray, String delimiter)
-	{
+	public static String joinStringArray(String[] stringArray, String delimiter) {
 		String totalString = stringArray[0];
-		for(int x=1;x<stringArray.length;x++)
-		{
+		for (int x = 1; x < stringArray.length; x++) {
 			totalString += (delimiter + stringArray[x]);
 		}
 		return totalString;
 	}
-	
-	/**
-	 * @param fileName Is passed the file location of the file to be read and converted into a string array
-	 * @return Returns an ArrayList<String> where each string contains one line of code in order.
-	 * 
-	 * Function that returns an ArrayList of Strings where each
-	 * line in the the file is a string.
-	 */
-	public static ArrayList<String> readFileToArrayList(String fileName)
-	{
-		ArrayList<String> linesOfCode = new ArrayList<String>();
-	    try 
-		{
-	    FileInputStream fileInputStream = new FileInputStream(fileName);
-	    DataInputStream dataInputStream = new DataInputStream(fileInputStream);
-	    BufferedReader buffer = new BufferedReader(new InputStreamReader(dataInputStream));
-	    
-	    String lineOfCode;
-	    
-	    while (( lineOfCode = buffer.readLine()) != null)   
-	    {
-	    	linesOfCode.add(lineOfCode);
-	    }
 
-	    dataInputStream.close();
-		} 
-	    catch (FileNotFoundException e) 
-		{
-	    	System.out.println("File Not Found");
+	/**
+	 * @param fileName
+	 *            Is passed the file location of the file to be read and
+	 *            converted into a string array
+	 * @return Returns an ArrayList<String> where each string contains one line
+	 *         of code in order.
+	 * 
+	 *         Function that returns an ArrayList of Strings where each line in
+	 *         the the file is a string.
+	 */
+	public static ArrayList<String> readFileToArrayList(String fileName) {
+		ArrayList<String> linesOfCode = new ArrayList<String>();
+		try {
+			FileInputStream fileInputStream = new FileInputStream(fileName);
+			DataInputStream dataInputStream = new DataInputStream(
+					fileInputStream);
+			BufferedReader buffer = new BufferedReader(new InputStreamReader(
+					dataInputStream));
+
+			String lineOfCode;
+
+			while ((lineOfCode = buffer.readLine()) != null) {
+
+				linesOfCode.add(lineOfCode);
+			}
+
+			dataInputStream.close();
+		} catch (FileNotFoundException e) {
+
+			System.out.println("File Not Found");
 			e.printStackTrace();
-		} 
-	    catch (IOException e) 
-		{
-	    	System.out.println("Error Reading File");
+		} catch (IOException e) {
+
+			System.out.println("Error Reading File");
 			e.printStackTrace();
 		}
-	    return linesOfCode;
+		return linesOfCode;
 	}
-	
+
 	/**
-	 * @param fileName This is the file location of the instruction table 
+	 * @param fileName
+	 *            This is the file location of the instruction table
 	 * 
-	 * This function reads a specified instruction file we have formatted
-	 * and it adds the data from the specified instruction file into the
-	 * public static InstructionArray. This allows us to easily check to
-	 * see if an instruction is in the correct format.
+	 *            This function reads a specified instruction file we have
+	 *            formatted and it adds the data from the specified instruction
+	 *            file into the public static InstructionArray. This allows us
+	 *            to easily check to see if an instruction is in the correct
+	 *            format.
 	 */
-	public static void fillInstructionsArray(String fileName)
-	{
+	public static void fillInstructionsArray(String fileName) {
 		ArrayList<String> linesOfInstruction = readFileToArrayList(fileName);
-		for(String lineOfInstruction : linesOfInstruction)
-		{
+		for (String lineOfInstruction : linesOfInstruction) {
 			String[] variables = lineOfInstruction.split("\t");
-			
-			if(variables.length > 1)
-			{	
+			if (variables.length > 1) {
 				Instruction.instructionTypes instructionType = Instruction.instructionTypes.IMMEDIATE;
-				 if (variables[5].equals("I"))
-				 {
-					 instructionType = Instruction.instructionTypes.IMMEDIATE;
-				 }
-				 else if(variables[5].equals("R"))
-				 {
-					 instructionType = Instruction.instructionTypes.REGISTER;
-				 }
-				 else if(variables[5].equals("S"))
-				 {
-					 instructionType = Instruction.instructionTypes.SIGNED;
-				 }
+				if (variables[5].equals("I")) {
+					instructionType = Instruction.instructionTypes.IMMEDIATE;
+				} else if (variables[5].equals("R")) {
+					instructionType = Instruction.instructionTypes.REGISTER;
+				} else if (variables[5].equals("S")) {
+					instructionType = Instruction.instructionTypes.SIGNED;
+				}
 
 				variables[4] = variables[4].replaceAll("\"", "");
 
-				//System.out.println(variables[4]);
+				// System.out.println(variables[4]);
 				String[] operands = variables[4].split(",");
 				ArrayList<Instruction.operandTypes> operandArray = new ArrayList<Instruction.operandTypes>();
-				for(String operand : operands)
-				{
+				for (String operand : operands) {
 					operand = operand.toUpperCase();
-					 if (operand.equals("REG"))
-					 {
-						 operandArray.add(Instruction.operandTypes.REGISTER);
-					 }
-					 else if(operand.equals("IMM"))
-					 {
-						 operandArray.add(Instruction.operandTypes.IMMEDIATE);
-					 }
-					 else if(operand.equals("BIT"))
-					 {
-						 operandArray.add(Instruction.operandTypes.BIT);
-					 }
-					 else if(operand.equals("BITS"))
-					 {
-						 operandArray.add(Instruction.operandTypes.BITS);
-					 }
-					 else if(operand.equals("ADDR"))
-					 {
-						 operandArray.add(Instruction.operandTypes.ADDRESS);
-					 }
+					if (operand.equals("REG")) {
+						operandArray.add(Instruction.operandTypes.REGISTER);
+					} else if (operand.equals("IMM")) {
+						operandArray.add(Instruction.operandTypes.IMMEDIATE);
+					} else if (operand.equals("BIT")) {
+						operandArray.add(Instruction.operandTypes.BIT);
+					} else if (operand.equals("BITS")) {
+						operandArray.add(Instruction.operandTypes.BITS);
+					} else if (operand.equals("ADDR")) {
+						operandArray.add(Instruction.operandTypes.ADDRESS);
+					}
 				}
-				Instruction instruction = new Instruction(variables[0],variables[1],variables[3],operandArray,instructionType);
+				Instruction instruction = new Instruction(variables[0],
+						variables[1], variables[3], operandArray,
+						instructionType);
 				InstructionsArray.add(instruction);
 			}
 		}
 	}
-	
+
 	/**
-	 * @param The file location of the error table is passed to fill the error arraylist.
+	 * @param The
+	 *            file location of the error table is passed to fill the error
+	 *            arraylist.
 	 * 
-	 * This function reads a specified error file we have formatted
-	 * and it adds the data from the specified instruction file into the
-	 * public static ErrorArray. This allows us to easily check to
-	 * see if an error is in the correct format.
+	 *            This function reads a specified error file we have formatted
+	 *            and it adds the data from the specified instruction file into
+	 *            the public static ErrorArray. This allows us to easily check
+	 *            to see if an error is in the correct format.
 	 */
 	public static void fillErrorArray(String fileName)
-	{
-		ArrayList<String> linesOfError = readFileToArrayList(fileName);
-		for(String lineOfError : linesOfError)
-		{
-			//01	23	SUBU	REG,REG,REG U
-			String[] variables = lineOfError.split("\t");
-			if(variables.length > 1)
-			{
-				Error error = new Error();
-				error.CreateError(Integer.parseInt(variables[0]),variables[1]);
-				ErrorArray.add(error);
-			}
-		}
-	}
-	
+{
+ArrayList<String> linesOfError = readFileToArrayList(fileName);
+for(String lineOfError : linesOfError)
+{
+//01
+23 SUBU
+REG,REG,REG U
+String[] variables = lineOfError.split("\t");
+if(variables.length > 1)
+{
+Error error = new Error();
+error.CreateError(Integer.parseInt(variables[0]),variables[1]);
+ErrorArray.add(error);
+}
+}
+}
+
 	/**
 	 * 
-	 * @param ErrorId The error id number associated with the error
-	 * @return Returns an instance of the Error class object for the specified error. 
+	 * @param ErrorId
+	 *            The error id number associated with the error
+	 * @return Returns an instance of the Error class object for the specified
+	 *         error.
 	 */
-	public static Error returnError(int ErrorId)
-	{
+	public static Error returnError(int ErrorId) {
 		Error returnError = new Error();
-		for(Error error : ErrorArray)
-		{	
-			if(ErrorId == error.number)
-			{
+		for (Error error : ErrorArray) {
+			if (ErrorId == error.number) {
 				returnError = error;
 			}
 		}
 		return returnError;
 	}
-	
+
 	/**
 	 * 
-	 * @param instructionString The text instruction name that is to be looked up.
-	 * @return Returns s boolean value depending on the existance of the instruction.
+	 * @param instructionString
+	 *            The text instruction name that is to be looked up.
+	 * @return Returns s boolean value depending on the existance of the
+	 *         instruction.
 	 */
-	public static boolean instructionExists(String instructionString)
-	{
-		
+	public static boolean instructionExists(String instructionString) {
 		Boolean instructionExists = false;
-		for(Instruction instruction : InstructionsArray)
-		{	
-			if(instructionString.toUpperCase().equals(instruction.instruction.toUpperCase()))
-			{
+		for (Instruction instruction : InstructionsArray) {
+			if (instructionString.toUpperCase().equals(
+					instruction.instruction.toUpperCase())) {
 				instructionExists = true;
 			}
 		}
 		return instructionExists;
 	}
+
 	/**
 	 * 
-	 * @param instructionString The text instruction name that is to be returned.
-	 * @return Returns an instance of the instruction class for the specified instruction.
+	 * @param instructionString
+	 *            The text instruction name that is to be returned.
+	 * @return Returns an instance of the instruction class for the specified
+	 *         instruction.
 	 */
-	public static Instruction returnInstructionViaOpcode(String instructionString)
-	{
+	public static Instruction returnInstructionViaOpcode(
+			String instructionString) {
 		Instruction returnInstruction = new Instruction();
-		
-		for(Instruction instruction : InstructionsArray)
-		{	
-			if(instructionString.toUpperCase().equals(instruction.instruction.toUpperCase()))
-			{
+		for (Instruction instruction : InstructionsArray) {
+			if (instructionString.toUpperCase().equals(
+					instruction.instruction.toUpperCase())) {
 				returnInstruction = instruction;
 			}
 		}
 		return returnInstruction;
 	}
-	
+
 	/**
 	 * 
-	 * @param operandString The string of the operand of an instruction.
+	 * @param operandString
+	 *            The string of the operand of an instruction.
 	 * @return Returns is the operand is a valid register or not.
 	 */
-	public static Boolean isRegister(String operandString)
-	{
+	public static Boolean isRegister(String operandString) {
 		Boolean isRegister = false;
-		if (operandString.length() == 3)
-		{
-			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(1)));
-			if(operandString.charAt(0) == '$' && registerNumber >= 0 && registerNumber < 8)
-			{
+		if (operandString.length() == 3) {
+			int registerNumber = Integer.parseInt(Character
+					.toString(operandString.charAt(1)));
+			if (operandString.charAt(0) == '$' && registerNumber >= 0
+					&& registerNumber < 8) {
 				isRegister = true;
 			}
 		}
 
 		return isRegister;
 	}
-	
+
 	/**
-	 * @param fileName This is the file location of the directives table 
+	 * @param fileName
+	 *            This is the file location of the directives table
 	 * 
-	 * This function reads a specified directives file we have formatted
-	 * and it adds the data from the specified directives file into the
-	 * public static DirectivesArray. This allows us to easily check to
-	 * see if an directive is in the correct format.
+	 *            This function reads a specified directives file we have
+	 *            formatted and it adds the data from the specified directives
+	 *            file into the public static DirectivesArray. This allows us to
+	 *            easily check to see if an directive is in the correct format.
 	 */
-	public static void fillDirectivesArray(String fileName)
-	{
+	public static void fillDirectivesArray(String fileName) {
 		ArrayList<String> linesOfInstruction = readFileToArrayList(fileName);
-		for(String lineOfInstruction : linesOfInstruction)
-		{
+		for (String lineOfInstruction : linesOfInstruction) {
 			String[] variables = lineOfInstruction.split("\t");
-			
-			if(variables.length > 1)
-			{	
-				//System.out.println(Arrays.toString(variables));
+			if (variables.length > 1) {
+				// System.out.println(Arrays.toString(variables));
 				Directive.codeLocations codeLocation = Directive.codeLocations.DATA;
-				if (variables[3].toUpperCase().equals(".TEXT"))
-				{
+				if (variables[3].toUpperCase().equals(".TEXT")) {
 					codeLocation = Directive.codeLocations.TEXT;
-				}
-				else if(variables[3].toUpperCase().equals(".DATA"))
-				{
+				} else if (variables[3].toUpperCase().equals(".DATA")) {
 					codeLocation = Directive.codeLocations.DATA;
-				}
-				else if(variables[3].toUpperCase().equals(".INFO"))
-				{
+				} else if (variables[3].toUpperCase().equals(".INFO")) {
 					codeLocation = Directive.codeLocations.INFO;
-				}
-				else if(variables[3].toUpperCase().equals(".START"))
-				{
+				} else if (variables[3].toUpperCase().equals(".START")) {
 					codeLocation = Directive.codeLocations.START;
-				}
-				else if(variables[3].toUpperCase().equals(".END"))
-				{
+				} else if (variables[3].toUpperCase().equals(".END")) {
 					codeLocation = Directive.codeLocations.END;
 				}
-				
 				Directive.labelTypes labelType = Directive.labelTypes.OPTIONALLABEL;
-				if (variables[2].toUpperCase().equals("NL"))
-				{
+				if (variables[2].toUpperCase().equals("NL")) {
 					labelType = Directive.labelTypes.NOLABEL;
-				}
-				else if(variables[2].toUpperCase().equals("OL"))
-				{
+				} else if (variables[2].toUpperCase().equals("OL")) {
 					labelType = Directive.labelTypes.OPTIONALLABEL;
-				}
-				else if(variables[2].toUpperCase().equals("RL"))
-				{
+				} else if (variables[2].toUpperCase().equals("RL")) {
 					labelType = Directive.labelTypes.REQUIREDLABEL;
 				}
-
 
 				variables[1] = variables[1].replaceAll("\"", "");
 
 				String[] operands = variables[1].split(",");
-				
 				ArrayList<Directive.operandTypes> operandArray = new ArrayList<Directive.operandTypes>();
-				for(String operand : operands)
-				{
+				for (String operand : operands) {
 					operand = operand.toUpperCase();
-					 if (operand.equals("BIN"))
-					 {
-						 operandArray.add(Directive.operandTypes.BINARY);
-					 }
-					 else if(operand.equals("HEX"))
-					 {
-						 operandArray.add(Directive.operandTypes.HEX);
-					 }
-					 else if(operand.equals("STR"))
-					 {
-						 operandArray.add(Directive.operandTypes.STRING);
-					 }
-					 else if(operand.equals("LABEL"))
-					 {
-						 operandArray.add(Directive.operandTypes.LABEL);
-					 }
-					 else if(operand.equals("NUM"))
-					 {
-						 operandArray.add(Directive.operandTypes.NUMBER);
-					 }
-					 else if(operand.equals("LABELREF"))
-					 {
-						 operandArray.add(Directive.operandTypes.NUMBER);
-					 }
+					if (operand.equals("BIN")) {
+						operandArray.add(Directive.operandTypes.BINARY);
+					} else if (operand.equals("HEX")) {
+						operandArray.add(Directive.operandTypes.HEX);
+					} else if (operand.equals("STR")) {
+						operandArray.add(Directive.operandTypes.STRING);
+					} else if (operand.equals("LABEL")) {
+						operandArray.add(Directive.operandTypes.LABEL);
+					} else if (operand.equals("NUM")) {
+						operandArray.add(Directive.operandTypes.NUMBER);
+					} else if (operand.equals("LABELREF")) {
+						operandArray.add(Directive.operandTypes.NUMBER);
+					}
 				}
-				Directive directive = new Directive(variables[0],labelType,codeLocation,operandArray);
+				Directive directive = new Directive(variables[0], labelType,
+						codeLocation, operandArray);
 				DirectivesArray.add(directive);
 			}
 		}
 	}
 }
-
