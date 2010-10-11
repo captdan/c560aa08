@@ -22,34 +22,57 @@ class CodeLine
 	{
 		this.originalLineOfCode = lineOfCode;
 	}
-	public static int lineLength(CodeLine line)
+	public int lineLength()
 	{
 		int length = 0;
-		
-		if (line.instruction != null)
+		double intermediate = 0;
+		if (this.instruction != null)
 		{
-			length = 1;
+			intermediate = 1;
 		}
-		else if (line.directive != null)
+		else if (this.directive != null)
 		{
-			if (line.directive.equals("INT.DATA")||line.directive.equals("HEX.DATA")||
-				line.directive.equals("BIN.DATA")|| line.directive.equals("NOP")||line.directive.equals("EQU")||
-					line.directive.equals("EQU.EXP"))
+			if (this.directive.equals("INT.DATA")||this.directive.equals("HEX.DATA")||
+				this.directive.equals("BIN.DATA")|| this.directive.equals("NOP")||
+					this.directive.equals("EQU.EXP"))
 			{
-				length = 1;
+				intermediate = 1;
 			}
 			
-			else if (line.directive.equals("STR.DATA"))
+			else if (this.directive.equals("STR.DATA"))
 			{
-				length = 1;
-				String stringLine = line.toString();
-				String[] dataVariables = stringLine.split("\t");
+				intermediate = 1;
+				String stringLine = this.toString();
+				String[] dataVariables = stringLine.split(" ");
+				
 				if (dataVariables[3].length()/4>1)
 				{
-					length = (dataVariables[3].length()/4);
+					intermediate = (dataVariables[3].length()/4);
 				}
+				
+				if (intermediate>4)
+				{
+				//System.out.println("Error too many characters");	
+				}
+				
+			}
+			else if (this.directive.equals("EQU"))
+			{
+				intermediate = 1;
+				String stringLine = this.toString();
+				String[] dataVariables = stringLine.split(" ");
+				if (dataVariables[3].length()/4>1)
+				{
+					intermediate = (dataVariables[3].length()/4);
+				}
+				if (intermediate>8)
+				{
+				//System.out.println("Error too many characters");	
+				}
+				
 			}
 		}
+		length = (int)Math.ceil(intermediate);
 		return length;
 	}
 }
