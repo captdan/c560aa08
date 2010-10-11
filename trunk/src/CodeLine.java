@@ -22,4 +22,34 @@ class CodeLine
 	{
 		this.originalLineOfCode = lineOfCode;
 	}
+	public static int lineLength(CodeLine line)
+	{
+		int length = 0;
+		
+		if (line.instruction != null)
+		{
+			length = 1;
+		}
+		else if (line.directive != null)
+		{
+			if (line.directive.equals("INT.DATA")||line.directive.equals("HEX.DATA")||
+				line.directive.equals("BIN.DATA")|| line.directive.equals("NOP")||line.directive.equals("EQU")||
+					line.directive.equals("EQU.EXP"))
+			{
+				length = 1;
+			}
+			
+			else if (line.directive.equals("STR.DATA"))
+			{
+				length = 1;
+				String stringLine = line.toString();
+				String[] dataVariables = stringLine.split("\t");
+				if (dataVariables[3].length()/4>1)
+				{
+					length = (dataVariables[3].length()/4);
+				}
+			}
+		}
+		return length;
+	}
 }
