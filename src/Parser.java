@@ -27,7 +27,11 @@ public class Parser
 	 * PC is the Program Counter that will be updated as Pass 1 processes each line of code from the source.
 	 */
 	public static Integer PC = 0;
-	
+	/**
+	 * execStart indicates where the execution in the program starts as is indicated by directive Exec.start.
+	 * This value is later used in the object report after pass 2
+	 */
+	public static int execStart = 0;
 	/**
 	 * @param args
 	 */
@@ -99,6 +103,21 @@ public class Parser
 				cl.directive = returnDirective(lineOfCodeMinusComment,true);
 				//Extract Valid Features
 				System.out.println("Directive: " + lineOfCodeMinusComment);
+				
+			if (cl.directive.equals("Reset.lc"))
+				{
+					//TODO segment cl to find the address and reset PC to that address.
+				}
+				else if (cl.directive.equals("Exec.start"))
+				{
+					//TODO segment cl to find the address for Exec.start and load it into the variable execStart.
+				}
+				else if (cl.directive.equals("MEM.SKIP"))
+				{
+					//increment pc counter by amount indicated that needs to be skipped.
+				}
+				
+				
 			}
 			else if(returnSymbolInstruction(lineOfCodeMinusComment) != null)
 			{
@@ -183,6 +202,7 @@ public class Parser
 				PC = startingLocation;
 			}
 		}
+		
 		if(directiveObj.directiveName == "")
 		{
 			directiveObj = null;
