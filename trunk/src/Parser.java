@@ -23,6 +23,7 @@ public class Parser
 	public static SymbolTable SymbTable = new SymbolTable();
 	
 	/**
+	 * 
 	 * PC is the Program Counter that will be updated as Pass 1 processes each line of code from the source.
 	 */
 	public static Integer PC = 0;
