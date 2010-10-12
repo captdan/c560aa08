@@ -199,24 +199,50 @@ public class Parser {
 		return InputString;
 	}
 
-	public static Object returnSymbolInstruction(String instruction) {
+	public static Object returnSymbolInstruction(String instruction)
+	{
 		Object symbolObj = null;
-		StringTokenizer st = new StringTokenizer(instruction, " \t", false);
+		StringTokenizer st = new StringTokenizer(instruction," \t",false);
 		String symbol = st.nextToken();
 		String commandMinusSymbol = "";
-		while (st.hasMoreTokens()) {
+		
+		while (st.hasMoreTokens()) 
+		{
 			commandMinusSymbol += " " + st.nextToken();
 		}
-		if (returnInstruction(commandMinusSymbol) != null) {
-			// if the rest of the line is an Instruction, then the symbol must
-			// be a label
+		
+		if(returnInstruction(commandMinusSymbol) != null)
+		{
+			// if the rest of the line is an Instruction, then the symbol must be a label
 			SymbTable.addSymbol(symbol, PC.toString(), "NONE", "LABEL");
 			symbolObj = returnInstruction(commandMinusSymbol);
-		} else if (returnDirective(commandMinusSymbol, false) != null) {
-			symbolObj = returnDirective(commandMinusSymbol, false);
-		} else {
+		}
+		else if(returnDirective(commandMinusSymbol,false) != null)
+		{
+			// if it's a directive, it could be EQU or DATA
+			StringTokenizer symb = new StringTokenizer(commandMinusSymbol," \t",false);
+			symbolObj = returnDirective(commandMinusSymbol,false);
+			// the first thing should be a directive
+			if(symb.hasMoreTokens()){
+			String directive = symb.nextToken().toUpperCase();
+			if(directive.equals("EQU") || directive.equals("EQU.EXT")){
+				String EQU = "";
+				
+				while(symb.hasMoreTokens()){
+					EQU += symb.nextToken();
+				}
+				SymbTable.addSymbol(symbol, PC.toString(), EQU, "EQU");
+			}
+			else{
+				SymbTable.addSymbol(symbol, PC.toString(), "NONE", "LABEL");
+			}
+		}
+		}
+		else
+		{
 			symbolObj = null;
 		}
+		
 		return symbolObj;
 	}
 
