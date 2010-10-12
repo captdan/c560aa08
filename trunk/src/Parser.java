@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 
 public class Parser {
 
+	public static LiteralTable litTable = new LiteralTable();
 	public static int startingLocation = 0;
 	public static String programName = "";
 	public static Boolean endProgram = false;
@@ -259,6 +260,7 @@ public class Parser {
 						break;
 					//
 					case IMMEDIATE: /* test for valid IMMEDIATE */
+						validOperands = isLiteral(operands[x]);
 						;
 						break;
 					//
@@ -293,8 +295,7 @@ public class Parser {
 	 * if(SymbTable.isInTable(operands[j])) { String[] symbolInfo =
 	 * SymbTable.getInfoFromSymbol(operands[j]); if(symbolInfo[2].equals("equ"))
 	 * { cl.operands.add(new Operand(symbolInfo[1])); } else
-	 * if(symbolInfo[2].equals("data")) { //TODO should it refer to a memory
-	 * address or to the information stored there? } else { cl.operands.add(new
+	 * if(symbolInfo[2].equals("data")) {  } else { cl.operands.add(new
 	 * Operand(symbolInfo[0])); } } } } else {
 	 * //System.out.println(cl.originalLineOfCode + "  :  " +
 	 * returnError(0).message ); cl.errors.add(returnError(0)); //Adds error to
@@ -509,6 +510,32 @@ ErrorArray.add(error);
 		}
 
 		return isRegister;
+	}
+	
+	/**
+	 * Checks to see if an operand is a valid literal. If so, it is added to the literal table.
+	 * 
+	 * @param operandString
+	 * 			The string containing the operand to be checked.
+	 * @return Returns true if the operand is a valid literal, otherwise returns false.
+	 */
+	public static boolean isLiteral(String operandString) {
+		boolean isLiteral = false;
+		
+		//TODO generate errors for incorrect operands.
+		
+		try {
+			if(Integer.parseInt(operandString) >= -32768 && Integer.parseInt(operandString) < 32768) {
+				isLiteral = true;
+				litTable.AddLiteral(operandString, Integer.toString(PC));
+			}
+		} catch(NumberFormatException err) {
+			if(operandString.length() <= 4) {
+				isLiteral = true;
+				litTable.AddLiteral(operandString, Integer.toString(PC));
+			}
+		}
+		return isLiteral;
 	}
 
 	/**
