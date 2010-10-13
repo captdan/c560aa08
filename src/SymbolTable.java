@@ -8,13 +8,14 @@ import java.util.*;
  * @author danielburnett
  *
  */
-public class SymbolTable {
+public class SymbolTable 
+{
 
 	/**
 	 * A map to hold all of the symbols for the table.
 	 * The label will be the key and the remaining information will be the value.
 	 */
-	private SortedMap<String, String[]> symb = new TreeMap<String, String[]>();
+	private SortedMap<String, ArrayList<Object>> symb = new TreeMap<String, ArrayList<Object>>();
 
 	/**
 	 * Allows a symbol, along with its information, to be added to the table.
@@ -23,11 +24,16 @@ public class SymbolTable {
 	 * @param sub What the symbol is a substitute for, if at all.
 	 * @param use The way the symbol is being used.
 	 */
-	public final void addSymbol(String label, String addr, String sub, String use) {
-		String[] value = new String[3];
-		value[0] = addr;
-		value[1] = sub;
-		value[2] = use;
+	public static enum Uses
+	{
+		DATA_LABEL,PROGRAM_NAME,EXTERNAL,EQU
+	}
+	public final void addSymbol(String label, String addr, String sub, Uses use) 
+	{
+		ArrayList<Object> value = new ArrayList<Object>();
+		value.add(addr);
+		value.add(sub);
+		value.add(use);
 		symb.put(label, value);
 	}
 
@@ -36,7 +42,8 @@ public class SymbolTable {
 	 * @param label The symbol to get info about.
 	 * @return Returns a string array with address, substitution and use, in that order.
 	 */
-	public final String[] getInfoFromSymbol(String label) {
+	public final ArrayList<Object> getInfoFromSymbol(String label) 
+	{
 		return symb.get(label);
 	}
 
@@ -46,7 +53,8 @@ public class SymbolTable {
 	 * 			The label to be checked in the table.
 	 * @return True if the label exists in the table, otherwise false.
 	 */
-	public final boolean isInTable(String label) {
+	public final boolean isInTable(String label) 
+	{
 		return symb.containsKey(label);
 	}
 
@@ -54,17 +62,20 @@ public class SymbolTable {
 	 * Returns a sorted list containing all of the symbols in the table.
 	 * @return An array list, containing the symbols sorted alphabetically.
 	 */
-	public final ArrayList<String> getSortedListOfSymbols() {
+	public final ArrayList<String> getSortedListOfSymbols() 
+	{
 		return new ArrayList<String>(symb.keySet());
 	}
 	
 	/**
 	 * Prints a "formatted" version of the symbol table.
 	 */
-	public final void prettyFerret() {
-		Iterator<Map.Entry<String, String[]>> it = symb.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String, String[]> entry = it.next();
+	public final void prettyFerret() 
+	{
+		Iterator<Map.Entry<String, ArrayList<Object>>> it = symb.entrySet().iterator();
+		while (it.hasNext()) 
+		{
+			Map.Entry<String, ArrayList<Object>> entry = it.next();
 			System.out.println(entry.getKey() + "\t" + entry.getValue());
 		}
 		
