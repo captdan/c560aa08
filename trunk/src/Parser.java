@@ -516,10 +516,10 @@ public static void fillErrorArray(String fileName)
 	//23 SUBU
 	//REG,REG,REG U
 		String[] variables = lineOfError.split("\t");
-		if(variables.length > 1)
+		if(variables.length == 3)
 		{
 			Error error = new Error();
-			error.CreateError(Integer.parseInt(variables[0]),variables[1]);
+			error.CreateError(Integer.parseInt(variables[0]),variables[1], variables[2]);
 			ErrorArray.add(error);
 		}
 	}
