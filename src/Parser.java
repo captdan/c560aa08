@@ -100,9 +100,9 @@ public class Parser
 				cl.instruction = returnInstruction(lineOfCodeMinusComment);
 				// Extract Valid Features
 			} 
-			else if (returnDirective(lineOfCodeMinusComment, true) != null) 
+			else if (returnDirective(lineOfCodeMinusComment) != null) 
 			{
-				cl.directive = returnDirective(lineOfCodeMinusComment, true);
+				cl.directive = returnDirective(lineOfCodeMinusComment);
 				// Extract Valid Features
 				System.out.println("Directive: " + lineOfCodeMinusComment);
 			} 
@@ -138,7 +138,7 @@ public class Parser
 
 	}
 
-	public static Directive returnDirective(String codeString,Boolean includeNoLabels) 
+	public static Directive returnDirective(String codeString) 
 	{
 		Directive directiveObj = new Directive();
 
@@ -222,6 +222,27 @@ public class Parser
 				// System.out.println("Error not enough memory");
 			}
 		}
+		//TODO test this get it working
+		/*
+		if(symb.hasMoreTokens())
+		{
+			String directive = symb.nextToken().toUpperCase();
+			if(directive.equals("EQU") || directive.equals("EQU.EXT"))
+			{
+				String EQU = "";
+			
+				while(symb.hasMoreTokens())
+				{
+					EQU += symb.nextToken();
+				}
+				SymbTable.addSymbol(symbol, PC.toString(), EQU, SymbolTable.Uses.EQU);
+			}
+			else
+			{
+				SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
+			}
+		}
+		*/
 		if (directiveObj.directiveName == "") 
 		{
 			directiveObj = null;
@@ -255,30 +276,16 @@ public class Parser
 			SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
 			symbolObj = returnInstruction(commandMinusSymbol);
 		}
-		else if(returnDirective(commandMinusSymbol,false) != null)
+		else if(returnDirective(commandMinusSymbol) != null)
 		{
 			// if it's a directive, it could be EQU or DATA
-			StringTokenizer symb = new StringTokenizer(commandMinusSymbol," \t",false);
-			symbolObj = returnDirective(commandMinusSymbol,false);
-			// the first thing should be a directive
-			if(symb.hasMoreTokens())
+			StringTokenizer symb = new StringTokenizer(commandMinusSymbol," \t");
+			if(returnDirective(commandMinusSymbol).labelType != Directive.labelTypes.NOLABEL)
 			{
-				String directive = symb.nextToken().toUpperCase();
-				if(directive.equals("EQU") || directive.equals("EQU.EXT"))
-				{
-					String EQU = "";
-				
-					while(symb.hasMoreTokens())
-					{
-						EQU += symb.nextToken();
-					}
-					SymbTable.addSymbol(symbol, PC.toString(), EQU, SymbolTable.Uses.EQU);
-				}
-				else
-				{
-					SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
-				}
+				symbolObj = returnDirective(commandMinusSymbol);
 			}
+			// the first thing should be a directive
+
 		}
 		else
 		{
