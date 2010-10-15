@@ -1,0 +1,17 @@
+.Start,CommentTest,00 |Test Script for All Possible comments
+|
+| 
+ | 
+ 	| Single Line comment
+| Two Comments |In One Line
+	  | Comment with random offset
+|Comment Containing Directories .Start .End .Data .Text
+
+.Data |Comment after directive
+A	int.data 10 	| Comment After data
+.Text
+
+
+.End, CommentTest	  |Comment After .end
+
+|Comment after .end????
