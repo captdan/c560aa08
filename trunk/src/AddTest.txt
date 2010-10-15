@@ -1,15 +1,28 @@
 .start, AddTest, 00
-|Simple Comment
-|Two Comments |In One Line
+|Test script for ADD and ADDI AND ADDIU
 |
 .data
 	A int.data 4 |initialize A to 4
 	B int.data 1 | initialize B to 1
+	C hex.data 5
+	D hex.data 2
 .text
 	| test comment 
-	LW $1,A	|		Test comment after 
-	LW $2,B
-	Add $1,$2,$3
-	
-
+	LW $2 ,A	|		Test comment after 
+AA	LW $3,B
+BB	Lw $5, C
+CC  lW $6 , D
+	Add $1,$2,$3	| R1 = R2 + R3
+	Add $4 , $5 , $6	|R4 = R5 + R6
+ADD	ADDI $2, $5, 20
+	SUB	ADDI $2, $5, -20
+ADDSIGNED	ADDI $2, $5, +20
+		LW $2 ,A	|		Test comment after 
+	aA	LW $3,B
+	bB	Lw $5, C
+		CC  lW $6 , D
+		
+	Z	ADDiu 	$1,$2,50
+	F	ADDiu 	$1,$3,0
+	T	ADDiu 	$1,$5,100	
 .end, AddTest
