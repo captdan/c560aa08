@@ -1,0 +1,28 @@
+.start, SubTest, 00
+|Test script for SUB and SUBI AND SUBIU
+|
+.data
+	A int.data 4 |initialize A to 4
+	B int.data 1 | initialize B to 1
+	C hex.data 5
+	D hex.data 2
+.text
+	| test comment 
+	LW $2 ,A	|		Test comment after 
+AA	LW $3,B
+BB	Lw $5, C
+CC  lW $6 , D
+	SUB $1,$2,$3	| R1 = R2 + R3
+	sUb $4 , $5 , $6	|R4 = R5 + R6
+SUB	SUBi $2, $5, 20
+	ADD	suBi $2, $5, -20
+ADDSIGNED	SuBiI $2, $5, +20
+		LW $2 ,A	|		Test comment after 
+	aA	LW $3,B
+	bB	Lw $5, C
+		CC  lW $6 , D
+		
+	Z	SUBiu 	$1,$2,50
+	F	subiu 	$1,$3,0
+	T	subiu 	$1,$5,100	
+.end, SubTest
