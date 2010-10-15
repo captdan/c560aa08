@@ -52,11 +52,8 @@ public class Parser
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
 		}
-		ArrayList<String> table = SymbTable.getSortedListOfSymbols();
-		for (String label : table) 
-		{
-			System.out.println("LABEL: " + label);
-		}
+		
+		SymbTable.prettyFerret();
 	}
 
 	/**
