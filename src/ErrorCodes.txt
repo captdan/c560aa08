@@ -1,2 +1,4 @@
 0	Incorrect number of arguments for specified instruction.	Check instruction arguments
 1	End name not same as the start name.	Check program name at start and end
+2	Duplicate Labels.	Change label name
+3 	Missing ".Start" directive.		add .start Directive
