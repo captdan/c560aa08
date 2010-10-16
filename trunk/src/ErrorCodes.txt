@@ -2,3 +2,5 @@
 1	End name not same as the start name.	Check program name at start and end
 2	Duplicate Labels.	Change label name
 3 	Missing ".Start" directive.		add .start Directive
+4 	Missing ".End" Directive.		add .End Directive
+5 	Out of boundaries number.		check validity of the number.
