@@ -153,6 +153,7 @@ public class Parser
 			if (directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase())) 
 			{
 				directiveObj.directiveName = possibleDirective.toUpperCase();
+				directiveObj.labelType = directive.labelType;
 				String operandString = "";
 				while (st.hasMoreTokens()) 
 				{
@@ -288,6 +289,7 @@ public class Parser
 			{
 				symbolObj = returnDirective(commandMinusSymbol);
 			}
+			
 			// the first thing should be a directive
 
 		}
