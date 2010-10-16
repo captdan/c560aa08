@@ -109,6 +109,7 @@ public class Parser
 				StringTokenizer st2 = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
 				String symbol = st2.nextToken();
 				System.out.println("Symbol: " + lineOfCodeMinusComment);
+				SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
 				if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class) 
 				{
 					
@@ -118,7 +119,7 @@ public class Parser
 				else if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Instruction.class)
 				{
 					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment);
-					SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
+					
 				}
 				// Extract Valid Features
 			} 
@@ -265,7 +266,7 @@ public class Parser
 	{
 		Object symbolObj = null;
 		StringTokenizer st = new StringTokenizer(instruction," \t",false);
-		String symbol = st.nextToken();
+		st.nextToken();
 		String commandMinusSymbol = "";
 		
 		while (st.hasMoreTokens()) 
@@ -282,7 +283,7 @@ public class Parser
 		else if(returnDirective(commandMinusSymbol) != null)
 		{
 			// if it's a directive, it could be EQU or DATA
-			StringTokenizer symb = new StringTokenizer(commandMinusSymbol," \t");
+			
 			if(returnDirective(commandMinusSymbol).labelType != Directive.labelTypes.NOLABEL)
 			{
 				symbolObj = returnDirective(commandMinusSymbol);
