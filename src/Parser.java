@@ -297,8 +297,9 @@ public class Parser
 		Instruction instructionObj = new Instruction();
 		StringTokenizer st = new StringTokenizer(instructionWithOperands," \t", false);
 		String instruction = st.nextToken();
+		
 		instruction = instruction.toUpperCase();
-		if (instructionExists(instruction) == true) 
+		if (instructionExists(instruction) == true && returnSymbolInstruction(instructionWithOperands) == null) 
 		{
 			// System.out.println(instruction);
 			String operandString = "";
