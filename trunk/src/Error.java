@@ -23,5 +23,12 @@ public class Error
 		this.message = mes;
 
 	}
+	
+	public final void printError(){
+		System.out.println("Error number " + this.number + ":\t" );
+		System.out.println(this.message);
+		System.out.println(this.correction);
+		
+	}
 
 }

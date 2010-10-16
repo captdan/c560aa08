@@ -105,14 +105,19 @@ public class Parser
 			} 
 			else if (returnSymbolInstruction(lineOfCodeMinusComment) != null) 
 			{
+				StringTokenizer st2 = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
+				String symbol = st2.nextToken();
 				System.out.println("Symbol: " + lineOfCodeMinusComment);
 				if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class) 
 				{
+					
 					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment);
+					SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
 				} 
 				else if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Instruction.class)
 				{
 					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment);
+					SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
 				}
 				// Extract Valid Features
 			} 
@@ -270,7 +275,7 @@ public class Parser
 		if(returnInstruction(commandMinusSymbol) != null)
 		{
 			// if the rest of the line is an Instruction, then the symbol must be a label
-			SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
+			
 			symbolObj = returnInstruction(commandMinusSymbol);
 		}
 		else if(returnDirective(commandMinusSymbol) != null)
