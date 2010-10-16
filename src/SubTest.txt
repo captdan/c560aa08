@@ -28,7 +28,7 @@ ADDSIGNED	SuBiI $2, $5, +20
 .data
 	A1 INT.data 1
 	A2 InT.DaTa 2
-	A3 iNT.daTA 3
+	A3 iNT.daTA 3 
 	A4 INT.DATA	-4
 .text
 	LW $4, A1
