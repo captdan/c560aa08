@@ -89,6 +89,7 @@ public class Parser
 		// this can be were directive checking comes in
 		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
 		System.out.println("Line: " + lineOfCodeMinusComment);
+
 		if (st.hasMoreTokens() == true) 
 		{
 			if (returnInstruction(lineOfCodeMinusComment) != null) 
@@ -112,7 +113,7 @@ public class Parser
 				{
 					
 					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment);
-					SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
+					
 				} 
 				else if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Instruction.class)
 				{
@@ -189,7 +190,7 @@ public class Parser
 				programName = specialDirectives[1];
 				startingLocation = Integer.valueOf(specialDirectives[2]);
 				PC = startingLocation;
-				SymbTable.addSymbol(programName, Integer.toString(PC), "NONE", SymbolTable.Uses.PROGRAM_NAME);
+				SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
 			}
 		}
 		if (specialDirectives[0].equals("Reset.lc")) 
