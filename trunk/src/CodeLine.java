@@ -66,36 +66,6 @@ class CodeLine
 				//System.out.println(this.directive.operandArray.get(0).operand);
 				
 			}
-			else if (this.directive.directiveName.equals("MEM.SKIP"))
-			{
-				Parser.addToPC(Integer.valueOf(this.directive.operandArray.get(0).operand));
-			}
-			else if (this.directive.directiveName.equals("RESET.LC"))
-			{
-				if (Integer.valueOf(this.directive.operandArray.get(0).operand) > Parser.PC) 
-				{
-					Parser.PC = Integer.valueOf(this.directive.operandArray.get(0).operand);
-				} 
-				else 
-				{
-					//Error
-				}
-			}
-			else if (this.directive.directiveName.equals("EQU"))
-			{
-				intermediate = 1;
-				String stringLine = this.toString();
-				String[] dataVariables = stringLine.split(" ");
-				if (dataVariables[3].length()/4>1)
-				{
-					intermediate = (dataVariables[3].length()/4);
-				}
-				if (intermediate>8)
-				{
-				//System.out.println("Error too many characters");	
-				}
-				
-			}
 		}
 		length = (int)Math.ceil(intermediate);
 		return length;
