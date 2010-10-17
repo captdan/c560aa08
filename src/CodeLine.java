@@ -66,6 +66,10 @@ class CodeLine
 				//System.out.println(this.directive.operandArray.get(0).operand);
 				
 			}
+			else if (this.directive.directiveName.equals("MEM.SKIP"))
+			{
+				Parser.addToPC(Integer.valueOf(this.directive.operandArray.get(0).operand));
+			}
 			else if (this.directive.directiveName.equals("EQU"))
 			{
 				intermediate = 1;
