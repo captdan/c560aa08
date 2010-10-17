@@ -170,7 +170,8 @@ public class Parser
 		}
 		
 		possibleDirective = possibleDirective.toUpperCase();
-		for (Directive directive : DirectivesArray) {
+		for (Directive directive : DirectivesArray) 
+		{
 			if (directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase())) 
 			{
 				directiveObj.directiveName = possibleDirective.toUpperCase();
@@ -194,11 +195,11 @@ public class Parser
 		{
 			possibleDirective = st.nextToken();
 		}
+		possibleDirective = possibleDirective.toUpperCase();
 		
 		String[] specialDirectives = possibleDirective.split(",");
 		if (specialDirectives[0].equals(".END")) 
 		{
-			
 			specialDirectives = removeWhiteSpace(codeString).split(",");
 			if (specialDirectives.length == 2) 
 			{
