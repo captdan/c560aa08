@@ -8,8 +8,13 @@ import java.util.ArrayList; //import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
+//import Directive.labelTypes;
+
 public class Parser 
 {
+	/**
+	 * @
+	 */
 	public static LiteralTable litTable = new LiteralTable();
 	public static int startingLocation = 0;
 	public static String programName = "";
@@ -181,6 +186,7 @@ public class Parser
 				{
 					operandString += st.nextToken();
 				}
+
 				String[] operands = operandString.split(",");
 
 				for (int x = 0; x < operands.length; x++) 
@@ -214,7 +220,6 @@ public class Parser
 					{
 						currentErrorArray.add(returnError(1));
 					}
-					//ERROR not same as start code.
 				}
 			}
 			else

@@ -15,11 +15,11 @@ public class Directive
 	}
 	public static enum codeLocations
 	{
-		START,END,DATA,TEXT,INFO
+		START, END, DATA, TEXT, INFO
 	}
 	public static enum operandTypes
 	{
-		NUMBER,BINARY,HEX,STRING,LABEL,LABELREF,BOOLEAN
+		NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN
 	}
 	public Directive(String directiveNameValue,labelTypes labelTypeValue, codeLocations codeLocationValue, ArrayList<operandTypes> operandsValue)
 	{
