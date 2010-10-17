@@ -229,7 +229,7 @@ public class Parser
 					currentErrorArray.add(returnError(7));
 				}
 			}
-		} 
+		}
 		else if (specialDirectives[0].equals(".START")) 
 		{
 			specialDirectives = removeWhiteSpace(codeString).split(",");
@@ -389,7 +389,7 @@ public class Parser
 		{
 			// if the rest of the line is an Instruction, then the symbol must be a label
 			
-			symbolObj = returnInstruction(commandMinusSymbol, true);
+			symbolObj = returnInstruction(commandMinusSymbol, addErrors);
 		}
 		else if(returnDirective(commandMinusSymbol, false) != null)
 		{
@@ -397,7 +397,7 @@ public class Parser
 			
 			if(returnDirective(commandMinusSymbol, false).labelType != Directive.labelTypes.NOLABEL)
 			{
-				symbolObj = returnDirective(commandMinusSymbol, true);
+				symbolObj = returnDirective(commandMinusSymbol, addErrors);
 			}
 			
 			// the first thing should be a directive
