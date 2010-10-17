@@ -17,7 +17,7 @@ public class Parser
 	 */
 	public static LiteralTable litTable = new LiteralTable();
 	/**
-	 * StartingLocation stores the indicated starting address of execution.
+	 * StartingLocation stores the indicated starting address of the program.
 	 */
 	public static int startingLocation = 0;
 	/**
@@ -56,7 +56,7 @@ public class Parser
 	 */
 	public static SymbolTable SymbTable = new SymbolTable();
 	/**
-	 * 
+	 * Contains the errors that are found in the code being assembled.
 	 */
 	public static ArrayList<Error> currentErrorArray = new ArrayList<Error>();
 	/**
@@ -75,8 +75,9 @@ public class Parser
 	 * report after pass 2
 	 */
 	public static int execStart = 0;
-
 	/**
+	 * Main program of Parser loads directives, ErrorCodes and instructions into arrays.
+	 * Also parses the lines of code read from the source code.
 	 * @param args
 	 */
 	public static void main(String[] args) 
@@ -106,11 +107,10 @@ public class Parser
 	}
 
 	/**
+	 * This is where we will parse each line of code. All directive
+	 * testing / checking will be in this function.
 	 * @param lineOfCode
-	 *            takes a string line of code to be parsed
-	 * 
-	 *            This is where we will parse each line of code. ALL directive
-	 *            testing / checking will be in this function
+	 *            Takes a string line of code to be parsed.
 	 */
 	public static CodeLine parseCodeLine(String lineOfCode) 
 	{
@@ -186,7 +186,12 @@ public class Parser
 		return cl;
 
 	}
-	
+	/**
+	 * Checks code line for special directives MEM.SKIP and RESET.LC and updates the program
+	 * counter accordingly.
+	 * @param cl CodeLine
+	 * 			holds the codeline object that is to be checked for MEM.SKIP and RESET.LC.
+	 */
 	public static void checkSymbolsAndSpecialDirectives(CodeLine cl)
 	{
 		if (cl.directive != null)
@@ -215,7 +220,11 @@ public class Parser
 			}
 		}
 	}
-	
+	/**
+	 * Adds the value of the parameter to the value of PC if within acceptable range
+	 * of values of PC. If not then returns an error.
+	 * @param addValue
+	 */
 	/**
 	 * Goes through an expression and determines the result.
 	 * 
@@ -373,7 +382,17 @@ public class Parser
 			currentErrorArray.add(returnError(6));
 		}
 	}
-
+	/**
+	 * @author
+	 * Examines the String parameter that is passed in the function and returns a directive if present.
+	 * @param codeString
+	 * 			Holds the codeString that we check for directives.
+	 * @param addErrors
+	 * 			Used to indicate when we want to add errors to the currentErrorArray in order 
+	 * 			to only add a specific error once. 
+	 * @return Directive directiveObj
+	 * 			Holds the Directive object extracted from the codeString. 
+	 */
 	public static Directive returnDirective(String codeString, Boolean addErrors) 
 	{
 		Directive directiveObj = new Directive();
@@ -576,14 +595,34 @@ public class Parser
 		// Code to check special directives e.g. .end and .start
 		return directiveObj;
 	}
-
+	/**
+	 * @author Robert Schmidt
+	 * Strips the parameter string from whitespace and tab characters.
+	 * @param InputString
+	 * 			Contains the String that is to have whitespace and tabs removed.
+	 * @return InputString 
+	 * 			Contains parameter string void of whitespace and tab characters.
+	 */
 	public static String removeWhiteSpace(String InputString) 
 	{
 		InputString = InputString.replaceAll(" ", "");
 		InputString = InputString.replaceAll("\t", "");
 		return InputString;
 	}
-
+	/**
+	 * @author Robert Schmidt
+	 * returnSymbolInstruction extracts and returns the symbol found in the string parameter.
+	 * Additionally, if an error is encountered it adds the error to the currentErrorArray if the 
+	 * addErrors parameter is set to true.
+	 * @param instruction
+	 * 			Carries string to have symbol instruction extracted from.
+	 * @param addErrors 
+	 * 			Indicates if we should add errors to the currentArrayList.
+	 * 			This helps avoid repeating errors for a single line.		
+	 * @return Object symbolObj
+	 * 			Holds the symbol (directive or instruction or null) found in the instructions String and 
+	 * 			updates the currentErrorArray when needed and the addError boolean is set to true.
+	 */
 	public static Object returnSymbolInstruction(String instruction, Boolean addErrors)
 	{
 		Object symbolObj = null;
@@ -619,6 +658,19 @@ public class Parser
 		
 		return symbolObj;
 	}
+	/**
+	 * @author Robert Schmidt
+	 * returnInstruction takes a String parameter extracts any instruction if present.
+	 * @param instructionWithOperands
+	 * 			Holds a string with a possible instruction and its operands to be checked and returned to caller
+	 * 			if present.
+	 * @param addErrors
+	 * 			Boolean that contains permission to add to currentErrorArray.
+	 * @return instructionObj
+	 * 			Holds an instruction object that is constructed from information gathered from incoming parameters
+	 * 			or null if instruction were not present in parameters.
+	 * 			
+	 */	
 
 	public static Instruction returnInstruction(String instructionWithOperands, Boolean addErrors) 
 	{
@@ -701,6 +753,7 @@ public class Parser
 	 */
 
 	/**
+	 * @author 
 	 * Function that joins a String array by a delimiter.
 	 * 
 	 * @param stringArray
@@ -721,6 +774,9 @@ public class Parser
 	}
 
 	/**
+	 * @author 
+	 * readFileToArrayList reads a file and stores its contents in an array with 
+	 * each line in the file occupying a specific position in the array.
 	 * @param fileName
 	 *            Is passed the file location of the file to be read and
 	 *            converted into a string array
@@ -763,14 +819,14 @@ public class Parser
 	}
 
 	/**
+	 * @author 
+	 * This function reads a specified instruction file we have
+	 * formatted and it adds the data from the specified instruction
+	 * file into the public static InstructionArray. This allows us
+	 * to easily check to see if an instruction is in the correct
+	 * format.
 	 * @param fileName
 	 *            This is the file location of the instruction table
-	 * 
-	 *            This function reads a specified instruction file we have
-	 *            formatted and it adds the data from the specified instruction
-	 *            file into the public static InstructionArray. This allows us
-	 *            to easily check to see if an instruction is in the correct
-	 *            format.
 	 */
 	public static void fillInstructionsArray(String fileName) 
 	{
@@ -829,14 +885,14 @@ public class Parser
 	}
 
 	/**
-	 * @param The
-	 *            file location of the error table is passed to fill the error
-	 *            arraylist.
-	 * 
-	 *            This function reads a specified error file we have formatted
-	 *            and it adds the data from the specified instruction file into
-	 *            the public static ErrorArray. This allows us to easily check
-	 *            to see if an error is in the correct format.
+	 * @author
+	 * fillErrorArray is a function that reads a specified error file we have formatted
+	 * and it adds the data from the specified instruction file into
+	 * the public static ErrorArray. This allows us to easily check
+	 * to see if an error is in the correct format.
+	 * @param fileName
+	 *          Is a String that represents the name of the Error file that is to be read
+	 *          into the ErrorArray.
 	 */
 public static void fillErrorArray(String fileName)
 {
@@ -857,11 +913,15 @@ public static void fillErrorArray(String fileName)
 }
 
 	/**
-	 * 
+	 * @author 
+	 * The function returnError returns an error whose position in the ErrorArray
+	 * corresponds to the number that we pass in as a parameter.
 	 * @param ErrorId
-	 *            The error id number associated with the error
-	 * @return Returns an instance of the Error class object for the specified
-	 *         error.
+	 *            The error id number associated with the error.
+	 *            
+	 * @return returnError
+	 * 			Returns an instance of the Error class object for the specified
+	 *         	error.
 	 */
 	public static Error returnError(int ErrorId) 
 	{
@@ -877,10 +937,13 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * 
+	 * @author
+	 * the function instructionExists checks the String parameter we pass in to 
+	 * see if it holds an instruction and returns a boolean accordingly.
 	 * @param instructionString
 	 *            The text instruction name that is to be looked up.
-	 * @return Returns s boolean value depending on the existance of the
+	 * @return instructionExists
+	 * 		   Returns a boolean value depending on the existence of the
 	 *         instruction.
 	 */
 	public static boolean instructionExists(String instructionString) 
@@ -897,10 +960,13 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * 
+	 * @author 
+	 * The function returnInstructionViaOpcode returns the instruction extracted 
+	 * from the String parameter instructionString.
 	 * @param instructionString
 	 *            The text instruction name that is to be returned.
-	 * @return Returns an instance of the instruction class for the specified
+	 * @return returnInstruction
+	 * 			Returns an instance of the instruction class for the specified
 	 *         instruction.
 	 */
 	public static Instruction returnInstructionViaOpcode(String instructionString) 
@@ -917,10 +983,13 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * 
+	 * @author 
+	 * The function isRegister checks to see if the parameter String represents a valid register
+	 * and returns a boolean accordingly.
 	 * @param operandString
 	 *            The string of the operand of an instruction.
-	 * @return Returns is the operand is a valid register or not.
+	 * @return isRegister
+	 * 			 Returns is the operand is a valid register or not.
 	 */
 	public static Boolean isRegister(String operandString) 
 	{
@@ -942,7 +1011,8 @@ public static void fillErrorArray(String fileName)
 	 * 
 	 * @param operandString
 	 * 			The string containing the operand to be checked.
-	 * @return Returns true if the operand is a valid literal, otherwise returns false.
+	 * @return Returns isLiteral
+	 * 			true if the operand is a valid literal, otherwise returns false.
 	 */
 	public static boolean isLiteral(String operandString) 
 	{
@@ -970,13 +1040,12 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
+	 * This function reads a specified directives file we have
+	 * formatted and it adds the data from the specified directives
+	 * file into the public static DirectivesArray. This allows us to
+	 * easily check to see if an directive is in the correct format.
 	 * @param fileName
-	 *            This is the file location of the directives table
-	 * 
-	 *            This function reads a specified directives file we have
-	 *            formatted and it adds the data from the specified directives
-	 *            file into the public static DirectivesArray. This allows us to
-	 *            easily check to see if an directive is in the correct format.
+	 *            This is the file location of the directives table.
 	 */
 	public static void fillDirectivesArray(String fileName) 
 	{
