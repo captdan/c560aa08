@@ -300,8 +300,9 @@ public class Parser
 				try
 				{
 					directiveObj.directiveName = possibleDirective.toUpperCase();
+					directiveObj.operandArray.add(new Operand(removeWhiteSpace(st.nextToken())));
 					//This is requires a label why are we checking a number?
-					execStart = Integer.valueOf(removeWhiteSpace(st.nextToken()));
+					//execStart = Integer.valueOf(removeWhiteSpace(st.nextToken()));
 				}
 				catch(Exception e)
 				{
@@ -328,7 +329,8 @@ public class Parser
 				try
 				{
 					directiveObj.directiveName = possibleDirective.toUpperCase();
-					addToPC(Integer.valueOf(removeWhiteSpace(st.nextToken())));
+					directiveObj.operandArray.add(new Operand(String.valueOf(Integer.valueOf(removeWhiteSpace(st.nextToken())))));
+					//moved add to PC to length function
 				}
 				catch (Exception e)
 				{
