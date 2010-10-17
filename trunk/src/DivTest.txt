@@ -1,0 +1,32 @@
+.Start, MultiplyTest, 05
+.data
+| declare a1-a5
+a1	int.data 1
+a2	int.data -2
+a3 	int.data 3
+a4	int.data -4
+a5	int.data 5
+.text
+
+LW a1,$1
+LW a2,$2
+LW a3,$3
+LW a4,$4
+LW a5,$5
+	|	DIV Test
+A	DIV	$6,$1,$2	| R6 = 1/-2
+B	DIV	$7,$3,$4	| R7 = 3/-4
+C	DIV	$6,$3,$7	| R6 = (3/-4)/3
+	| 	DIVi Test
+D	DIVi	$6,$1,2	| R6 = 1/-2
+E	DIVi	$7,$3,4	| R7 = 3/-4
+F	DIVi	$6,$7,-7	| R6 = (3/-4)/7
+	| 	DIViu Test
+G	DIViu	$6,$1,2	| R6 = 1/2
+H	DIViu	$7,$3,4	| R7 = 3/4
+I	DIViu	$6,$7,7	| R6 = (3/4)/7
+	|	DIVu Test
+J	DIVU	$6,$1,$2	| R6 = 1/2
+K	DIVu	$7,$3,$4	| R7 = 3/4
+L	DIVu	$6,$3,$7	| R6 = (3/4)/3
+.End,MultiplyTest

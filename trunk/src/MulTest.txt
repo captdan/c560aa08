@@ -1,0 +1,32 @@
+.Start, MultiplyTest, 05
+.data
+| declare a1-a5
+a1	int.data 1
+a2	int.data -2
+a3 	int.data 3
+a4	int.data -4
+a5	int.data 5
+.text
+
+LW a1,$1
+LW a2,$2
+LW a3,$3
+LW a4,$4
+LW a5,$5
+	|	MUL Test
+A	MUL	$6,$1,$2	| R6 = 1*-2
+B	MUL	$7,$3,$4	| R7 = 3*-4
+C	MUL	$6,$3,$7	| R6 = (3*-4)*3
+	| 	MULi Test
+D	MULi	$6,$1,2	| R6 = 1*-2
+E	MULi	$7,$3,4	| R7 = 3*-4
+F	MULi	$6,$7,-7	| R6 = (3*-4)*7
+	| 	MULiu Test
+G	MULiu	$6,$1,2	| R6 = 1*2
+H	MULiu	$7,$3,4	| R7 = 3*4
+I	MULiu	$6,$7,7	| R6 = (3*4)*7
+	|	MULu Test
+J	MULu	$6,$1,$2	| R6 = 1*2
+K	MULu	$7,$3,$4	| R7 = 3*4
+L	MULu	$6,$3,$7	| R6 = (3*4)*3
+.End,MultiplyTest
