@@ -17,4 +17,5 @@ K Reset.lc
 	debug 0 
 .text
 Y LW $1,A
-.END, SimpleAllDirectiveTest
+Z LW $2,B
+.END,SimpleAllDirectiveTest
