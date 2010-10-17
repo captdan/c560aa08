@@ -43,18 +43,27 @@ class CodeLine
 			{
 				 
 				intermediate = 1;
-				String stringLine = this.toString();
-				String[] dataVariables = stringLine.split(" ");
+				String stringLine = this.directive.operandArray.get(0).operand;
 				
-				if (dataVariables[3].length()/4>1)
+				if(this.directive.operandArray.get(0).operand.startsWith("'") && this.directive.operandArray.get(0).operand.endsWith("'"))
 				{
-					intermediate = (dataVariables[3].length()/4);
+					stringLine = stringLine.substring(1, stringLine.length()-1);
+					System.out.println(stringLine);
+					if ((stringLine.length()/4)>1)
+					{
+						intermediate = Math.ceil(stringLine.length()/4.0);
+					}
+					
+					if (intermediate>4)
+					{
+					//System.out.println("Error too many characters");	
+					}
 				}
-				
-				if (intermediate>4)
+				else
 				{
-				//System.out.println("Error too many characters");	
+					//Error
 				}
+				//System.out.println(this.directive.operandArray.get(0).operand);
 				
 			}
 			else if (this.directive.directiveName.equals("EQU"))
