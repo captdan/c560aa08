@@ -20,6 +20,8 @@ public class Parser
 	public static ArrayList<Instruction> InstructionsArray = new ArrayList<Instruction>();
 	public static ArrayList<Error> ErrorArray = new ArrayList<Error>();
 	public static SymbolTable SymbTable = new SymbolTable();
+	public static ArrayList<Error> currentErrorArray = new ArrayList<Error>();
+	public static int maxPC = 65536;
 	/**
 	 * 
 	 * PC is the Program Counter that will be updated as Pass 1 processes each
@@ -42,7 +44,6 @@ public class Parser
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
-		// readFileToArrayList("src/asmCode1.txt");
 		ArrayList<String> linesOfCode = readFileToArrayList("src/MulTest.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
@@ -51,12 +52,16 @@ public class Parser
 			{
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
+			currentErrorArray.clear();
 		}
+		/*
 		for (Error currenterror : ErrorArray) 
 		{
 			currenterror.printError();
 		}
+		*/
 		SymbTable.prettyFerret();
+		
 	}
 
 	/**
@@ -87,41 +92,37 @@ public class Parser
 			cl.comment += joinStringArray(result, "|");
 			// If more than one "|" then join them all as one comment
 		}
-		// To access the code line minus the comment use the string variable
-		// lineOfCodeMinusComment
-		// this can be were directive checking comes in
+
 		StringTokenizer st = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
-		System.out.println("Line: " + lineOfCodeMinusComment);
+		//System.out.println("Line: " + lineOfCodeMinusComment);
 
 		if (st.hasMoreTokens() == true) 
 		{
-			if (returnInstruction(lineOfCodeMinusComment) != null) 
+			if (returnInstruction(lineOfCodeMinusComment,false) != null) 
 			{
 				System.out.println("Instruction: " + lineOfCodeMinusComment);
-				cl.instruction = returnInstruction(lineOfCodeMinusComment);
+				cl.instruction = returnInstruction(lineOfCodeMinusComment,false);
 				// Extract Valid Features
 			} 
-			else if (returnDirective(lineOfCodeMinusComment) != null) 
+			else if (returnDirective(lineOfCodeMinusComment,false) != null) 
 			{
-				cl.directive = returnDirective(lineOfCodeMinusComment);
+				cl.directive = returnDirective(lineOfCodeMinusComment,true);
 				// Extract Valid Features
 				System.out.println("Directive: " + lineOfCodeMinusComment);
 			} 
-			else if (returnSymbolInstruction(lineOfCodeMinusComment) != null) 
+			else if (returnSymbolInstruction(lineOfCodeMinusComment,false) != null) 
 			{
 				StringTokenizer st2 = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
 				String symbol = st2.nextToken();
 				System.out.println("Symbol: " + lineOfCodeMinusComment);
 				SymbTable.addSymbol(symbol,PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
-				if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class) 
+				if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Directive.class) 
 				{
-					
-					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment);
-					
+					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment, true);	
 				} 
-				else if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Instruction.class)
+				else if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Instruction.class)
 				{
-					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment);
+					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment, true);
 					
 				}
 				// Extract Valid Features
@@ -133,24 +134,41 @@ public class Parser
 			}
 
 			// else if instruction is in symbol table
-
 		}
 		/**
 		 * After each codeLine object is processed, we grab its length and add
 		 * it to our global Program Counter.
 		 */
-		int length = cl.lineLength();
-		PC += length;
+		
+		addToPC(cl.lineLength());
+		cl.errors = currentErrorArray;
 		return cl;
 
 	}
+	
+	public static void addToPC(int addValue)
+	{
+		if((addValue + PC) <= maxPC && (addValue + PC) > 0)
+		{
+			PC += addValue;
+		}
+		else
+		{
+			currentErrorArray.add(returnError(6));
+		}
+	}
 
-	public static Directive returnDirective(String codeString) 
+	public static Directive returnDirective(String codeString, Boolean addErrors) 
 	{
 		Directive directiveObj = new Directive();
 
 		StringTokenizer st = new StringTokenizer(codeString, " \t", false);
-		String possibleDirective = st.nextToken();
+		String possibleDirective = "";
+		if (st.hasMoreTokens())
+		{
+			possibleDirective = st.nextToken();
+		}
+		
 		possibleDirective = possibleDirective.toUpperCase();
 		for (Directive directive : DirectivesArray) {
 			if (directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase())) 
@@ -170,6 +188,13 @@ public class Parser
 				}
 			}
 		}
+
+		st = new StringTokenizer(codeString, " \t", false);
+		if (st.hasMoreTokens())
+		{
+			possibleDirective = st.nextToken();
+		}
+		
 		String[] specialDirectives = possibleDirective.split(",");
 		if (specialDirectives[0].equals(".END")) 
 		{
@@ -184,52 +209,137 @@ public class Parser
 				}
 				else
 				{
+					if(addErrors == true)
+					{
+						currentErrorArray.add(returnError(1));
+					}
 					//ERROR not same as start code.
 				}
 			}
-		} else if (specialDirectives[0].equals(".START")) 
+			else
+			{
+				if(addErrors == true)
+				{
+					currentErrorArray.add(returnError(7));
+				}
+			}
+		} 
+		else if (specialDirectives[0].equals(".START")) 
 		{
 			specialDirectives = removeWhiteSpace(codeString).split(",");
 			if (specialDirectives.length == 3) 
 			{
-				directiveObj.directiveName = ".START";
-				programName = specialDirectives[1];
-				startingLocation = Integer.valueOf(specialDirectives[2]);
-				PC = startingLocation;
-				SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
+				try
+				{
+					directiveObj.directiveName = ".START";
+					programName = specialDirectives[1];
+					startingLocation = Integer.valueOf(specialDirectives[2]);
+					PC = startingLocation;
+					SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
+				}
+				catch(Exception e)
+				{
+					if(addErrors == true)
+					{
+						currentErrorArray.add(returnError(9));
+					}
+				}
+
+			}
+			else
+			{
+				if(addErrors == true)
+				{
+					currentErrorArray.add(returnError(8));
+				}
 			}
 		}
-		if (specialDirectives[0].equals("Reset.lc")) 
+		if (possibleDirective.equals("Reset.lc")) 
 		{
-			directiveObj.directiveName = possibleDirective.toUpperCase();
-			int resetValue = Integer.valueOf(st.nextToken());
-			if (resetValue > PC) 
+			if(st.countTokens()==1)
 			{
-				PC = resetValue;
-			} 
-			else 
-			{
-				// System.out.println("Error reset value must be larger than PC");
+				try
+				{
+					directiveObj.directiveName = possibleDirective.toUpperCase();
+					
+					int resetValue = Integer.valueOf(removeWhiteSpace(st.nextToken()));
+					
+					if (resetValue > PC) 
+					{
+						PC = resetValue;
+					} 
+					else 
+					{
+						if(addErrors == true)
+						{
+							currentErrorArray.add(returnError(10));
+						}
+					}
+				}
+				catch(Exception e)
+				{
+					if(addErrors == true)
+					{
+						currentErrorArray.add(returnError(11));
+					}
+				}
+
 			}
+
 		} 
-		else if (specialDirectives[0].equals("Exec.start")) 
+		else if (possibleDirective.equals("Exec.start")) 
 		{
-			directiveObj.directiveName = possibleDirective.toUpperCase();
-			int execValue = Integer.valueOf(st.nextToken());
-			execStart = execValue;
-		} 
-		else if (specialDirectives[0].equals("MEM.SKIP")) 
-		{
-			directiveObj.directiveName = possibleDirective.toUpperCase();
-			int skipValue = Integer.valueOf(st.nextToken());
-			if (PC + skipValue < 65536) 
+			if(st.countTokens() == 1)
 			{
-				PC += skipValue;
-			} 
-			else 
-			{
-				// System.out.println("Error not enough memory");
+				try
+				{
+					directiveObj.directiveName = possibleDirective.toUpperCase();
+					//This is requires a label why are we checking a number?
+					execStart = Integer.valueOf(removeWhiteSpace(st.nextToken()));
+				}
+				catch(Exception e)
+				{
+					if(addErrors == true)
+					{
+						currentErrorArray.add(returnError(13));
+					}
+				}
 			}
+			else
+			{
+				if(addErrors == true)
+				{
+					currentErrorArray.add(returnError(14));
+				}
+			}
+
+
+		} 
+		else if (possibleDirective.equals("MEM.SKIP")) 
+		{
+			if(st.countTokens() == 1)
+			{
+				try
+				{
+					directiveObj.directiveName = possibleDirective.toUpperCase();
+					addToPC(Integer.valueOf(removeWhiteSpace(st.nextToken())));
+				}
+				catch (Exception e)
+				{
+					if(addErrors == true)
+					{
+						currentErrorArray.add(returnError(12));
+					}
+				}
+			}
+			else
+			{
+				if(addErrors == true)
+				{
+					currentErrorArray.add(returnError(14));
+				}
+			}
+
 		}
 		//TODO test this get it working
 		/*
@@ -267,7 +377,7 @@ public class Parser
 		return InputString;
 	}
 
-	public static Object returnSymbolInstruction(String instruction)
+	public static Object returnSymbolInstruction(String instruction, Boolean addErrors)
 	{
 		Object symbolObj = null;
 		StringTokenizer st = new StringTokenizer(instruction," \t",false);
@@ -279,19 +389,19 @@ public class Parser
 			commandMinusSymbol += " " + st.nextToken();
 		}
 		
-		if(returnInstruction(commandMinusSymbol) != null)
+		if(returnInstruction(commandMinusSymbol, false) != null)
 		{
 			// if the rest of the line is an Instruction, then the symbol must be a label
 			
-			symbolObj = returnInstruction(commandMinusSymbol);
+			symbolObj = returnInstruction(commandMinusSymbol, true);
 		}
-		else if(returnDirective(commandMinusSymbol) != null)
+		else if(returnDirective(commandMinusSymbol, false) != null)
 		{
 			// if it's a directive, it could be EQU or DATA
 			
-			if(returnDirective(commandMinusSymbol).labelType != Directive.labelTypes.NOLABEL)
+			if(returnDirective(commandMinusSymbol, false).labelType != Directive.labelTypes.NOLABEL)
 			{
-				symbolObj = returnDirective(commandMinusSymbol);
+				symbolObj = returnDirective(commandMinusSymbol, true);
 			}
 			
 			// the first thing should be a directive
@@ -305,15 +415,19 @@ public class Parser
 		return symbolObj;
 	}
 
-	public static Instruction returnInstruction(String instructionWithOperands) 
+	public static Instruction returnInstruction(String instructionWithOperands, Boolean addErrors) 
 	{
 		Instruction instructionObj = new Instruction();
 		StringTokenizer st = new StringTokenizer(instructionWithOperands," \t", false);
-		String instruction = st.nextToken();
+		String instruction = "";
+		if (st.hasMoreTokens())
+		{
+			instruction = st.nextToken();
+		}
 		
 		instruction = instruction.toUpperCase();
-		System.out.println("Instruction: " + instructionWithOperands);
-		if (instructionExists(instruction) == true && returnSymbolInstruction(instructionWithOperands) == null) 
+
+		if (instructionExists(instruction) == true && returnSymbolInstruction(instructionWithOperands, false) == null) 
 		{
 			// System.out.println(instruction);
 			String operandString = "";
