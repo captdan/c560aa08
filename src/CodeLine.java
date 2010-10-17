@@ -32,15 +32,16 @@ class CodeLine
 		}
 		else if (this.directive != null)
 		{
-			if (this.directive.equals("INT.DATA")||this.directive.equals("HEX.DATA")||
-				this.directive.equals("BIN.DATA")|| this.directive.equals("NOP")||
-					this.directive.equals("EQU.EXP"))
+			if (this.directive.directiveName.equals("INT.DATA")||this.directive.directiveName.equals("HEX.DATA")||
+					this.directive.directiveName.equals("BIN.DATA")|| this.directive.directiveName.equals("NOP")||
+					this.directive.directiveName.equals("EQU.EXP"))
 			{
 				intermediate = 1;
 			}
 			
-			else if (this.directive.equals("STR.DATA"))
+			else if (this.directive.directiveName.equals("STR.DATA"))
 			{
+				 
 				intermediate = 1;
 				String stringLine = this.toString();
 				String[] dataVariables = stringLine.split(" ");
@@ -56,7 +57,7 @@ class CodeLine
 				}
 				
 			}
-			else if (this.directive.equals("EQU"))
+			else if (this.directive.directiveName.equals("EQU"))
 			{
 				intermediate = 1;
 				String stringLine = this.toString();
