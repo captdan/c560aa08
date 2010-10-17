@@ -1,6 +1,6 @@
 .start	LABEL,ADDR	NL	.start
 .end	LABEL	NL	.end
-.data		NL	
+.data		NL	.data
 .text		NL	.text
 Int.data	NUM	OL	.data
 Str.data	STR	OL	.data
