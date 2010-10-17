@@ -13,19 +13,55 @@ import java.util.StringTokenizer;
 public class Parser 
 {
 	/**
-	 * @
+	 * LiteralTable holds the all occurences of literals in our program.
 	 */
 	public static LiteralTable litTable = new LiteralTable();
+	/**
+	 * StartingLocation stores the indicated starting address of execution.
+	 */
 	public static int startingLocation = 0;
+	/**
+	 * ProgramName has the name of the program as indicated after the directive .start.
+	 */
 	public static String programName = "";
+	/**
+	 * Program ends when variable endProgram is true.
+	 */
 	public static Boolean endProgram = false;
+	/**
+	 * Holds the code location of a particular directive.
+	 */
 	public static Directive.codeLocations codeLocation = null;
+	/**
+	 * CodeLineArray holds the lines of code retrieved from the source code each line in a separate 
+	 * position in the array. 
+	 */
 	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
+	/**
+	 * Holds the directives as retrieved from the Directives file.
+	 */
 	public static ArrayList<Directive> DirectivesArray = new ArrayList<Directive>();
+	/**
+	 * Holds the Instructions as retrieved from the Instructions file.
+	 * Each instruction is stored in a separate position in the array.
+	 */
 	public static ArrayList<Instruction> InstructionsArray = new ArrayList<Instruction>();
+	/**
+	 * Holds the errors as retrieved by the Error file , each file in the position of the 
+	 * array that corresponds to the error's identification number.
+	 */
 	public static ArrayList<Error> ErrorArray = new ArrayList<Error>();
+	/**
+	 * Holds all symbols encountered while passing through source code.
+	 */
 	public static SymbolTable SymbTable = new SymbolTable();
+	/**
+	 * 
+	 */
 	public static ArrayList<Error> currentErrorArray = new ArrayList<Error>();
+	/**
+	 * maxPC is the maximum value PC can hold without exceeding the memory capacity of the system.
+	 */
 	public static int maxPC = 65536;
 	/**
 	 * 
