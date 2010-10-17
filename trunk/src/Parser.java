@@ -260,7 +260,7 @@ public class Parser
 				}
 			}
 		}
-		if (possibleDirective.equals("Reset.lc")) 
+		if (possibleDirective.equals("RESET.LC")) 
 		{
 			if(st.countTokens()==1)
 			{
@@ -268,19 +268,7 @@ public class Parser
 				{
 					directiveObj.directiveName = possibleDirective.toUpperCase();
 					
-					int resetValue = Integer.valueOf(removeWhiteSpace(st.nextToken()));
-					
-					if (resetValue > PC) 
-					{
-						PC = resetValue;
-					} 
-					else 
-					{
-						if(addErrors == true)
-						{
-							currentErrorArray.add(returnError(10));
-						}
-					}
+					directiveObj.operandArray.add(new Operand(String.valueOf(Integer.valueOf(removeWhiteSpace(st.nextToken())))));
 				}
 				catch(Exception e)
 				{
@@ -293,7 +281,7 @@ public class Parser
 			}
 
 		} 
-		else if (possibleDirective.equals("Exec.start")) 
+		else if (possibleDirective.equals("EXEC.START")) 
 		{
 			if(st.countTokens() == 1)
 			{

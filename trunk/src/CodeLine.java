@@ -70,6 +70,17 @@ class CodeLine
 			{
 				Parser.addToPC(Integer.valueOf(this.directive.operandArray.get(0).operand));
 			}
+			else if (this.directive.directiveName.equals("RESET.LC"))
+			{
+				if (Integer.valueOf(this.directive.operandArray.get(0).operand) > Parser.PC) 
+				{
+					Parser.PC = Integer.valueOf(this.directive.operandArray.get(0).operand);
+				} 
+				else 
+				{
+					//Error
+				}
+			}
 			else if (this.directive.directiveName.equals("EQU"))
 			{
 				intermediate = 1;
