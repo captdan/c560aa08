@@ -43,7 +43,7 @@ public class Parser
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		// readFileToArrayList("src/asmCode1.txt");
-		ArrayList<String> linesOfCode = readFileToArrayList("src/JumpTest.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/AlTest1.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
@@ -52,7 +52,10 @@ public class Parser
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
 		}
-		
+		for (Error currenterror : ErrorArray) 
+		{
+			currenterror.printError();
+		}
 		SymbTable.prettyFerret();
 	}
 
