@@ -8,9 +8,13 @@
 |Comment Containing Directories .Start .End .Data .Text
 
 .Data |Comment after directive
-A	int.data 10 	| Comment After data
-.Text
+A	int.data 10 | Comment After data
+B	MEM.SKIP 2
 
+.Text
+LW	$1,A
+SW 	$1,A(2)
+C LW $1,A
 
 .End, CommentTest	  |Comment After .end
 

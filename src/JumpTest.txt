@@ -1,0 +1,7 @@
+.Start, JumpTest, 00
+.data
+A MEM.Skip	10 |Create a 10 word array
+
+
+
+.End JumpTest
