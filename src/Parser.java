@@ -43,7 +43,7 @@ public class Parser
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		// readFileToArrayList("src/asmCode1.txt");
-		ArrayList<String> linesOfCode = readFileToArrayList("src/AlTest1.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/SimpleAllDirectiveTest.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);

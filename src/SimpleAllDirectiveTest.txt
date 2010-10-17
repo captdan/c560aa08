@@ -1,0 +1,20 @@
+.Start,SimpleAllDirectiveTest,00
+.data
+A int.data 10
+B Str.data 'ABC'
+C hex.data 8
+D bin.data 0110
+E Adr.data A
+F ard.exp '1+2'
+	ent A,B,C
+	ext Z
+G NOP
+	exec.start Y
+H mem.skip 2
+I equ 'DEF'
+J equ.exp '3+5'
+K Reset.lc
+	debug 0 
+.text
+Y LW $1,A
+.END, SimpleAllDirectiveTest
