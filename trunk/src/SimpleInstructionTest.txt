@@ -1,0 +1,25 @@
+.Start,SimpleInstructionTest,00
+A int.data 10
+B Str.data 'ABC'
+C hex.data 8
+D bin.data 0110
+E Adr.data A
+F adr.exp '1+2'
+G int.data 8
+.text
+	LW $1,A
+	LW $2,G
+	|already tested add sun mul and div
+H	JEQ	$1,$2,K		|jump to k if $1 == $2
+I	JNE	$1,$2,K		|jump to K if $1 != $2
+J	JGT	$1,$2,N		|jump to N if $1 > $2
+K	add $2,$2,$1
+L	JLT	$1,$2,N		|jump to N if $1 < $2
+M	JLE	$1,$2,O		|jump to N if $1 <= $2
+N	add $1,$2,$1	
+O	
+P
+Q
+R
+
+.END,SimpleInstructionTest

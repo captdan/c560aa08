@@ -43,7 +43,7 @@ public class Parser
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		// readFileToArrayList("src/asmCode1.txt");
-		ArrayList<String> linesOfCode = readFileToArrayList("src/SimpleAllDirectiveTest.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/MulTest.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
@@ -173,6 +173,7 @@ public class Parser
 		String[] specialDirectives = possibleDirective.split(",");
 		if (specialDirectives[0].equals(".END")) 
 		{
+			
 			specialDirectives = removeWhiteSpace(codeString).split(",");
 			if (specialDirectives.length == 2) 
 			{
@@ -311,6 +312,7 @@ public class Parser
 		String instruction = st.nextToken();
 		
 		instruction = instruction.toUpperCase();
+		System.out.println("Instruction: " + instructionWithOperands);
 		if (instructionExists(instruction) == true && returnSymbolInstruction(instructionWithOperands) == null) 
 		{
 			// System.out.println(instruction);
