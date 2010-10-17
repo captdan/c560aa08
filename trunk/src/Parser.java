@@ -43,7 +43,7 @@ public class Parser
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		// readFileToArrayList("src/asmCode1.txt");
-		ArrayList<String> linesOfCode = readFileToArrayList("src/AddTest.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/JumpTest.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
@@ -109,7 +109,7 @@ public class Parser
 				StringTokenizer st2 = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
 				String symbol = st2.nextToken();
 				System.out.println("Symbol: " + lineOfCodeMinusComment);
-				SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
+				SymbTable.addSymbol(symbol,PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
 				if (returnSymbolInstruction(lineOfCodeMinusComment).getClass() == Directive.class) 
 				{
 					
