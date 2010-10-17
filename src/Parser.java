@@ -144,11 +144,34 @@ public class Parser
 		 * After each codeLine object is processed, we grab its length and add
 		 * it to our global Program Counter.
 		 */
-		
+		checkSymbolsAndSpecialDirectives(cl);
 		addToPC(cl.lineLength());
 		cl.errors = currentErrorArray;
 		return cl;
 
+	}
+	
+	public static void checkSymbolsAndSpecialDirectives(CodeLine cl)
+	{
+		if (cl.directive != null)
+		{
+
+			if (cl.directive.directiveName.equals("MEM.SKIP"))
+			{
+				Parser.addToPC(Integer.valueOf(cl.directive.operandArray.get(0).operand));
+			}
+			else if (cl.directive.directiveName.equals("RESET.LC"))
+			{
+				if (Integer.valueOf(cl.directive.operandArray.get(0).operand) > Parser.PC) 
+				{
+					Parser.PC = Integer.valueOf(cl.directive.operandArray.get(0).operand);
+				} 
+				else 
+				{
+					//Error
+				}
+			}
+		}
 	}
 	
 	public static void addToPC(int addValue)
@@ -342,7 +365,7 @@ public class Parser
 		if(symb.hasMoreTokens())
 		{
 			String directive = symb.nextToken().toUpperCase();
-			if(directive.equals("EQU") || directive.equals("EQU.EXT"))
+			if(directive.equals("EQU") || directive.equals("EQU.EXP"))
 			{
 				String EQU = "";
 			
@@ -399,9 +422,7 @@ public class Parser
 			{
 				symbolObj = returnDirective(commandMinusSymbol, addErrors);
 			}
-			
 			// the first thing should be a directive
-
 		}
 		else
 		{
