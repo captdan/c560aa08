@@ -5,7 +5,7 @@ B Str.data 'ABC'
 C hex.data 8
 D bin.data 0110
 E Adr.data A
-F ard.exp '1+2'
+F adr.exp '1+2'
 	ent A,B,C
 	ext Z
 G NOP
