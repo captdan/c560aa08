@@ -207,9 +207,161 @@ public class Parser
 					//Error
 				}
 			}
+			else if (cl.directive.directiveName.equals("EQU.EXP") || cl.directive.directiveName.equals("ADR.EXP"))
+			{
+					//Adds the integer value of an expression to the operand array of these special directives.
+					cl.directive.operandArray.add(new Operand(String.valueOf(evaluateExpression(cl))));	
+				
+			}
 		}
 	}
 	
+	/**
+	 * Goes through an expression and determines the result.
+	 * 
+	 * @param cl The CodeLine object with the .EXP directive.
+	 * @return The integer value of the evaluated expression.
+	 */
+	public static int evaluateExpression (CodeLine cl)
+	{
+		int result = 0;
+		StringTokenizer st = new StringTokenizer(String.valueOf(cl.directive.operandArray.get(0)),"+-",true);
+		String op1 = st.nextToken();
+		
+		//Check 1st operand
+		if (SymbTable.isInTable(op1))
+		{
+			result += (Integer)SymbTable.getInfoFromSymbol(op1).get(2);
+		}
+		else if (op1 == "*")
+		{
+			result += PC;
+		}
+		else
+		{
+			result += Integer.valueOf(op1);
+		}
+		
+		//Check for 2nd symbol, if its there, then we have another operand as well
+		if(st.hasMoreTokens())
+		{
+			String symb1 = st.nextToken();
+			String op2 = st.nextToken();
+			
+			if (symb1 == "+")
+			{
+				if (SymbTable.isInTable(op2))
+				{
+					result += (Integer)SymbTable.getInfoFromSymbol(op2).get(2);
+				}
+				else if (op2 == "*")
+				{
+					result += PC;
+				}
+				else
+				{
+					result += Integer.valueOf(op2);
+				}
+			}
+			else
+			{
+				if (SymbTable.isInTable(op2))
+				{
+					result -= (Integer)SymbTable.getInfoFromSymbol(op2).get(2);
+				}
+				else if (op2 == "*")
+				{
+					result -= PC;
+				}
+				else
+				{
+					result -= Integer.valueOf(op2);
+				}
+			}
+			
+			
+		}
+		
+		//Check for 3rd symbol, if its there, then we have another operand as well
+		if(st.hasMoreTokens())
+		{
+			String symb2 = st.nextToken();
+			String op3 = st.nextToken();
+			
+			if (symb2 == "+")
+			{
+				if (SymbTable.isInTable(op3))
+				{
+					result += (Integer)SymbTable.getInfoFromSymbol(op3).get(2);
+				}
+				else if (op3 == "*")
+				{
+					result += PC;
+				}
+				else
+				{
+					result += Integer.valueOf(op3);
+				}
+			}
+			else
+			{
+				if (SymbTable.isInTable(op3))
+				{
+					result -= (Integer)SymbTable.getInfoFromSymbol(op3).get(2);
+				}
+				else if (op3 == "*")
+				{
+					result -= PC;
+				}
+				else
+				{
+					result -= Integer.valueOf(op3);
+				}
+			}
+		
+		}
+		
+		//Check for 5th symbol, if its there, then we have another operand as well
+		if(st.hasMoreTokens())
+		{
+			String symb3 = st.nextToken();
+			String op4 = st.nextToken();
+			
+			if (symb3 == "+")
+			{
+				if (SymbTable.isInTable(op4))
+				{
+					result += (Integer)SymbTable.getInfoFromSymbol(op4).get(2);
+				}
+				else if (op4 == "*")
+				{
+					result += PC;
+				}
+				else
+				{
+					result += Integer.valueOf(op4);
+				}
+			}
+			else
+			{
+				if (SymbTable.isInTable(op4))
+				{
+					result -= (Integer)SymbTable.getInfoFromSymbol(op4).get(2);
+				}
+				else if (op4 == "*")
+				{
+					result -= PC;
+				}
+				else
+				{
+					result -= Integer.valueOf(op4);
+				}
+			}
+		
+		}
+		
+		return result;
+	}
 	public static void addToPC(int addValue)
 	{
 		if((addValue + PC) <= maxPC && (addValue + PC) > 0)
