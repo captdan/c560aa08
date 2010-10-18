@@ -3,14 +3,17 @@
 2	Duplicate Labels.	Change label name
 3 	Missing ".Start" directive.		add .start Directive
 4 	Missing ".End" Directive.		add .End Directive
-5 	Out of boundaries number.		check validity of the number.
+5 	Out of boundaries value.		check validity of the value.
 6	Memory out of bounds.		change address number
-7	.END code missing program name	Add program name after the .END
-8	.START missing parameters	Add parameters to .start
-9	Error Processing .START	Add a proper .START directive
-10	Reset over under of PC	Change reset value to fall over PC
-11	Error Processing Reset.	Check reset operation.
-12	Error Processing Mem.skip	Check Syntax of Mem.Skip
-13	Error Processing Exec.start	Check Exec.start Syntax
-14	Mem.skip has too many parameters	Change Mem.skip parameters.
-15	Exec.start has too many parameters	Change Exec.start parameters.
+7	.END code missing program name.	Add program name after the .END
+8	.START missing parameters.	Add parameters to .start
+9	Error Processing .START.	Add a proper .START directive
+10	Reset over under of PC.		Change reset value to fall over PC
+11	Error Processing Reset.		Check reset operation.
+12	Error Processing Mem.skip.		Check Syntax of Mem.Skip
+13	Error Processing Exec.start.		Check Exec.start Syntax
+14	Mem.skip has too many parameters.	Change Mem.skip parameters.
+15	Exec.start has too many parameters.	Change Exec.start parameters.
+16	Missing required label.		Add label
+17	Unnecessary label found.	delete label.
+18	Unrecognized syntax.		check line syntax.
