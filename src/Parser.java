@@ -89,7 +89,7 @@ public class Parser
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
-		ArrayList<String> linesOfCode = readFileToArrayList("src/alTest1.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/SimpleInstructionTest.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
@@ -233,7 +233,8 @@ public class Parser
 			else if (cl.directive.directiveName.equals("EQU.EXP") || cl.directive.directiveName.equals("ADR.EXP"))
 			{
 					//Adds the integer value of an expression to the operand array of these special directives.
-					cl.directive.operandArray.add(new Operand(String.valueOf(evaluateExpression(cl))));	
+				//cl.directive.operandArray.add(new Operand(String.valueOf(cl.directive.operandArray.get(0).operand)));	
+				//cl.directive.operandArray.add(new Operand(String.valueOf(evaluateExpression(cl))));	
 			}
 			else if (cl.directive.directiveName.equals("EXT"))
 			{
@@ -453,7 +454,7 @@ public class Parser
 					operands = new String[0];
 				}
 				
-				//System.out.println("QWER:"+operands.length + "  " + directive.operands.size());
+				System.out.println("QWER:"+operands.length + "  " + directive.operands.size());
 				//System.out.println(Arrays.toString(operands));
 				if (directive.operands.size() == operands.length || directive.directiveName.equals("EXT") || directive.directiveName.equals("ENT"))
 				{
@@ -622,6 +623,20 @@ public class Parser
 				//System.out.println("QWER+: " + tempString[1]);
 			}
 		}
+		else if (possibleDirective.equals("ADR.EXP")) 
+		{
+			String[] tempString = codeString.split("'");
+			
+			
+			
+			if(tempString.length < 4)
+			{
+				directiveObj.operandArray.clear();
+				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'"));
+				//System.out.println("QWER+: " + tempString[1]);
+			}
+		}
+		
 		//TODO test this get it working
 		/*
 		if(symb.hasMoreTokens())
@@ -1157,6 +1172,7 @@ public static void fillErrorArray(String fileName)
 				{
 					codeLocation = Directive.codeLocations.END;
 				}
+				
 				Directive.labelTypes labelType = Directive.labelTypes.OPTIONALLABEL;
 				if (variables[2].toUpperCase().equals("NL")) 
 				{
@@ -1202,6 +1218,10 @@ public static void fillErrorArray(String fileName)
 					else if (operand.equals("LABELREF")) 
 					{
 						operandArray.add(Directive.operandTypes.NUMBER);
+					}
+					else if (operand.equals("EXP")) 
+					{
+						operandArray.add(Directive.operandTypes.EXP);
 					}
 				}
 				Directive directive = new Directive(variables[0].toUpperCase(), labelType,codeLocation, operandArray);
