@@ -1,19 +1,19 @@
-.start	LABEL,ADDR	NL	.start
-.end	LABEL	NL	.end
-.data		NL	.data
-.text		NL	.text
-Int.data	NUM	OL	.data
-Str.data	STR	OL	.data
-Hex.data	HEX	OL	.data
-Bin.data	BIN	OL	.data
-Adr.data	LABEL	OL	.data
-Adr.exp	EXP	OL	.data
-Ent	LABELREF,LABELREF,LABELREF,LABELREF	NL	.text
-Ext	LABELREF,LABELREF,LABELREF,LABELREF	NL	.info
+.START	LABEL,ADDR	NL	.start
+.END	LABEL	NL	.end
+.DATA		NL	.data
+.TEXT		NL	.text
+INT.DATA	NUM	OL	.data
+STR.DATA	STR	OL	.data
+HEX.DATA	HEX	OL	.data
+BIN.DATA	BIN	OL	.data
+ADR.DATA	LABEL	OL	.data
+ADR.EXP	EXP	OL	.data
+ENT	LABELREF,LABELREF,LABELREF,LABELREF	NL	.text
+EXT	LABELREF,LABELREF,LABELREF,LABELREF	NL	.info
 NOP		OL	.text
-Exec.start	LABELREF	NL	.text
-Mem.skip	NUM	OL	.text
-Equ	STR	RL	.text
-Equ.exp	STR	RL	.text
-Reset.lc	NUM	OL	.text
-debug	BOOL	NL	.text
+EXEC.START	LABELREF	NL	.text
+MEM.SKIP	NUM	OL	.text
+EQU	STR	RL	.text
+EQU.EXP	STR	RL	.text
+RESET.LC	NUM	OL	.text
+DEBUG	BOOL	NL	.text
