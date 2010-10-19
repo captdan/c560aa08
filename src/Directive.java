@@ -32,4 +32,24 @@ public class Directive
 	{
 		
 	}
+	public String returnPrintString()
+	{
+		String returnString = "";
+		returnString += "Directive Name: " + this.directiveName + "\n";
+		returnString += "Directive Label: " + this.labelType.toString() + "\n";
+		returnString += "Directive Code Location: " + this.codeLocation + "\n";
+		returnString += "Operands: \n";
+		for(Operand operand : this.operandArray)
+		{
+			returnString += "\t" + operand.operand + "\n";
+		}
+		
+		returnString += "Operand Types: \n";
+		for(operandTypes operand : this.operands)
+		{
+			returnString += "\t" + operand.toString() + "\n";
+		}
+		
+		return returnString;
+	}
 }
