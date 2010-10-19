@@ -18,7 +18,7 @@ public class Instruction
 	}
 	public static enum instructionTypes 
 	{
-		 IMMEDIATE, SIGNED, REGISTER;
+		 IMMEDIATE, SIGNED, REGISTER, J;
 	}
 	public String returnPrintString()
 	{
@@ -57,12 +57,7 @@ public class Instruction
 		
 		if(instructionHexValue.equals("") == false)
 		{
-			
 			this.instructionBinary = String.valueOf(Integer.toBinaryString(Integer.parseInt(instructionHexValue.trim(), 16)));
-			if(instructionValue.equals("LW"))
-			{
-				System.out.println(this.instructionBinary);
-			}
 		}
 		
 		if(instructionExtendedHexValue.equals("") == false)
