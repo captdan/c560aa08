@@ -108,6 +108,7 @@ public class SymbolTable
 				bufferedWriter.write(entry.getKey() + "\t" + entry.getValue() + "\n");
 				//System.out.println(entry.getKey() + "\t" + entry.getValue());
 			}
+			bufferedWriter.close();
 			
 			//int x = 0;
 			
@@ -124,7 +125,7 @@ public class SymbolTable
 		}
 		catch (Exception e)
 		{
-			//ERROR
+			//error
 		}
 		
 	}
