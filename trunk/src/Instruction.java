@@ -14,7 +14,7 @@ public class Instruction
 	public instructionTypes instructionType = Instruction.instructionTypes.REGISTER;
 	public static enum operandTypes 
 	{
-		 REGISTER, IMMEDIATE, ADDRESS, BIT, BITS, NUMBER;
+		 REGISTER, IMMEDIATE, ADDRESS, BIT, BITS, NUMBER, IO;
 	}
 	public static enum instructionTypes 
 	{

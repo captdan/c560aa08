@@ -37,7 +37,6 @@ class CodeLine
 			{
 				intermediate = 1;
 			}
-			
 			else if (this.directive.directiveName.equals("STR.DATA"))
 			{
 				 
@@ -65,6 +64,11 @@ class CodeLine
 				//System.out.println(this.directive.operandArray.get(0).operand);
 				
 			}
+			else if (this.directive.directiveName.equals("MEM.SKIP"))
+			{
+				length = Integer.valueOf(this.directive.operandArray.get(0).operand);
+				System.out.println("QWER: " + Integer.valueOf(this.directive.operandArray.get(0).operand));
+			}
 		}
 		length = (int)Math.ceil(intermediate);
 		return length;
@@ -74,7 +78,7 @@ class CodeLine
 		String returnString = "";
 		returnString += "Original Line Of Code: " + this.originalLineOfCode + "\n";
 		returnString += "Line Comment: " + this.comment + "\n";
-		returnString += "Line Length: " + this.lineLength() + "\n";
+		returnString += "Line Length: " + Integer.toString(this.lineLength()) + "\n";
 		returnString += "Errors:\n";
 		for(Error error : this.errors)
 		{
