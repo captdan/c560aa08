@@ -104,7 +104,7 @@ public class Parser
 			
 			currentErrorArray.clear();
 		}
-		System.out.println(CodeLineArray.get(8).instruction.returnPrintString());
+		//System.out.println(CodeLineArray.get(8).instruction.returnPrintString());
 		printIntermediateFile("IntermediateFile.txt");
 
 		SymbTable.prettyFerret();		
@@ -223,12 +223,7 @@ public class Parser
 	{
 		if (cl.directive != null)
 		{
-
-			if (cl.directive.directiveName.equals("MEM.SKIP"))
-			{
-				Parser.addToPC(Integer.valueOf(cl.directive.operandArray.get(0).operand));
-			}
-			else if (cl.directive.directiveName.equals("RESET.LC"))
+			if (cl.directive.directiveName.equals("RESET.LC"))
 			{
 				if (Integer.valueOf(cl.directive.operandArray.get(0).operand) > Parser.PC) 
 				{
@@ -243,6 +238,18 @@ public class Parser
 			{
 					//Adds the integer value of an expression to the operand array of these special directives.
 					cl.directive.operandArray.add(new Operand(String.valueOf(evaluateExpression(cl))));	
+			}
+			else if (cl.directive.directiveName.equals("EXT"))
+			{
+				int x = 0;
+				for(Operand operand : cl.directive.operandArray)
+				{
+					if(x<4)
+					{
+						SymbTable.addSymbol(operand.operand, "99999","NONE", SymbolTable.Uses.EXTERNAL);
+					}
+					x++;
+				}
 				
 			}
 		}
@@ -459,10 +466,18 @@ public class Parser
 				{
 					operandString += st.nextToken();
 				}
-
+				operandString = removeWhiteSpace(operandString);
 				String[] operands = operandString.split(",");
 				
-				if (directive.operands.size() == operands.length)
+
+				if(operands[0].equals(""))
+				{
+					operands = new String[0];
+				}
+				
+				//System.out.println("QWER:"+operands.length + "  " + directive.operands.size());
+				//System.out.println(Arrays.toString(operands));
+				if (directive.operands.size() == operands.length || directive.directiveName.equals("EXT") || directive.directiveName.equals("ENT"))
 				{
 				
 					directiveObj.directiveName = directive.directiveName;
@@ -770,11 +785,11 @@ public class Parser
 				operandString += st.nextToken();
 			}
 			String[] operands = operandString.split(",");
-			System.out.println("\n\n" +instructionWithOperands + "\n" + Arrays.toString(operands));
-			System.out.println(returnInstructionViaOpcode(instruction).numberOfRegisters);
+			//System.out.println("\n\n" +instructionWithOperands + "\n" + Arrays.toString(operands));
+			//System.out.println(returnInstructionViaOpcode(instruction).numberOfRegisters);
 			if (operands.length == returnInstructionViaOpcode(instruction).numberOfRegisters) 
 			{
-				System.out.println("WORKS");
+				//System.out.println("WORKS");
 				instructionObj.instruction = returnInstructionViaOpcode(instruction).instruction;
 				instructionObj.instructionBinary = returnInstructionViaOpcode(instruction).instructionBinary;
 				instructionObj.instructionExtended = returnInstructionViaOpcode(instruction).instructionExtended;
@@ -924,7 +939,7 @@ public class Parser
 		for (String lineOfInstruction : linesOfInstruction) 
 		{
 			String[] variables = lineOfInstruction.split("\t");
-			System.out.println(Arrays.toString(variables) + "\n");
+			//System.out.println(Arrays.toString(variables) + "\n");
 			if (variables.length > 1) 
 			{
 				Instruction.instructionTypes instructionType = Instruction.instructionTypes.IMMEDIATE;
@@ -940,12 +955,16 @@ public class Parser
 				{
 					instructionType = Instruction.instructionTypes.SIGNED;
 				}
+				else if (variables[5].equals("J"))
+				{
+					instructionType = Instruction.instructionTypes.J;
+				}
 
 				variables[4] = variables[4].replaceAll("\"", "");
 
 				// System.out.println(variables[4]);
 				String[] operands = variables[4].split(",");
-				System.out.println(Arrays.toString(operands) + "\n");
+				//System.out.println(Arrays.toString(operands) + "\n");
 				ArrayList<Instruction.operandTypes> operandArray = new ArrayList<Instruction.operandTypes>();
 				for (String operand : operands) 
 				{
@@ -975,7 +994,7 @@ public class Parser
 						operandArray.add(Instruction.operandTypes.NUMBER);
 					}
 				}
-				System.out.print(operandArray.size());
+				//System.out.print(operandArray.size());
 				Instruction instruction = new Instruction(variables[0],variables[1], variables[3], operandArray,instructionType);
 				InstructionsArray.add(instruction);
 			}
