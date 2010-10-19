@@ -431,12 +431,7 @@ public class Parser
 		for (Directive directive : DirectivesArray) 
 		{
 			if (directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase())) 
-			{
-				directiveObj.directiveName = possibleDirective.toUpperCase();
-				directiveObj.labelType = directive.labelType;
-				directiveObj.codeLocation = directive.codeLocation;
-				directiveObj.operands = directive.operands;
-				
+			{				
 				String operandString = "";
 				while (st.hasMoreTokens()) 
 				{
@@ -444,10 +439,19 @@ public class Parser
 				}
 
 				String[] operands = operandString.split(",");
-
-				for (int x = 0; x < operands.length; x++) 
+				
+				if (directive.operands.size() == operands.length)
 				{
-					directiveObj.operandArray.add(new Operand(operands[x]));
+				
+					directiveObj.directiveName = directive.directiveName;
+					directiveObj.labelType = directive.labelType;
+					directiveObj.codeLocation = directive.codeLocation;
+					directiveObj.operands = directive.operands;
+				
+					for (int x = 0; x < operands.length; x++) 
+					{
+						directiveObj.operandArray.add(new Operand(operands[x]));
+					}
 				}
 			}
 		}
@@ -524,7 +528,7 @@ public class Parser
 				{
 					directiveObj.directiveName = possibleDirective.toUpperCase();
 					
-					directiveObj.operandArray.add(new Operand(String.valueOf(Integer.valueOf(removeWhiteSpace(st.nextToken())))));
+					//directiveObj.operandArray.add(new Operand(String.valueOf(Integer.valueOf(removeWhiteSpace(st.nextToken())))));
 				}
 				catch(Exception e)
 				{
@@ -573,7 +577,7 @@ public class Parser
 				try
 				{
 					directiveObj.directiveName = possibleDirective.toUpperCase();
-					directiveObj.operandArray.add(new Operand(String.valueOf(Integer.valueOf(removeWhiteSpace(st.nextToken())))));
+					//directiveObj.operandArray.add(new Operand(String.valueOf(Integer.valueOf(removeWhiteSpace(st.nextToken())))));
 					//moved add to PC to length function
 				}
 				catch (Exception e)
@@ -924,7 +928,7 @@ public class Parser
 						operandArray.add(Instruction.operandTypes.NUMBER);
 					}
 				}
-				System.out.println(operandArray.size());
+				System.out.print(operandArray.size());
 				Instruction instruction = new Instruction(variables[0],variables[1], variables[3], operandArray,instructionType);
 				InstructionsArray.add(instruction);
 			}
@@ -1145,6 +1149,7 @@ public static void fillErrorArray(String fileName)
 				for (String operand : operands) 
 				{
 					operand = operand.toUpperCase();
+					operand = removeWhiteSpace(operand);
 					if (operand.equals("BIN")) 
 					{
 						operandArray.add(Directive.operandTypes.BINARY);

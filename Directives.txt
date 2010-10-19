@@ -15,5 +15,5 @@ Exec.start	LABELREF	NL	.text
 Mem.skip	NUM	OL	.text
 Equ	STR	RL	.text
 Equ.exp	STR	RL	.text
-Reset.lc		OL	.text
+Reset.lc	NUM	OL	.text
 debug	BOOL	NL	.text
