@@ -29,9 +29,9 @@ E1 	outc 4,M2
 A1 adr.data DQ | ADDRESS OF DQ.
 A2 adr.data XX | ADDRESS of XX.
 C4 int.data 4
-ME str.data ‘ Y IS 0’ | MESSAGE IS: Y IS 0
-M1 str.data ‘ Q= ‘ | MESSAGE IS: Q=
-M2 str.data ‘END of Program’
+ME str.data ' Y IS 0' | MESSAGE IS: Y IS 0
+M1 str.data ' Q= ' | MESSAGE IS: Q=
+M2 str.data 'END of Program'
 QQ mem.SKIP 4
 Q1 mem.SKIP 1
 XX mem.SKIP 4

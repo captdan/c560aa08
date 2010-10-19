@@ -597,6 +597,16 @@ public class Parser
 			}
 
 		}
+		else if (possibleDirective.equals("STR.DATA")) 
+		{
+			String[] tempString = codeString.split("'");
+			if(tempString.length < 4)
+			{
+				directiveObj.operandArray.clear();
+				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'"));
+				//System.out.println("QWER+: " + tempString[1]);
+			}
+		}
 		//TODO test this get it working
 		/*
 		if(symb.hasMoreTokens())
@@ -1149,7 +1159,7 @@ public static void fillErrorArray(String fileName)
 				for (String operand : operands) 
 				{
 					operand = operand.toUpperCase();
-					operand = removeWhiteSpace(operand);
+					//operand = removeWhiteSpace(operand);
 					if (operand.equals("BIN")) 
 					{
 						operandArray.add(Directive.operandTypes.BINARY);
@@ -1175,7 +1185,7 @@ public static void fillErrorArray(String fileName)
 						operandArray.add(Directive.operandTypes.NUMBER);
 					}
 				}
-				Directive directive = new Directive(variables[0], labelType,codeLocation, operandArray);
+				Directive directive = new Directive(variables[0].toUpperCase(), labelType,codeLocation, operandArray);
 				DirectivesArray.add(directive);
 			}
 		}
