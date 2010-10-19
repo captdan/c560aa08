@@ -15,7 +15,6 @@ class CodeLine
 	 * This will be the field where each line of code's length is stored. 
 	 * This field is then read from each CodeLine object in our Main Parser and added to the global Program Counter.
 	 */
-	public Integer length = 0; //This should not be static... in instance needs to be created for to use it
 
 	// Constructor
 	CodeLine(String lineOfCode) 
@@ -69,5 +68,26 @@ class CodeLine
 		}
 		length = (int)Math.ceil(intermediate);
 		return length;
+	}
+	public String returnPrintString()
+	{
+		String returnString = "";
+		returnString += "Original Line Of Code: " + this.originalLineOfCode + "\n";
+		returnString += "Line Comment: " + this.comment + "\n";
+		returnString += "Line Length: " + this.lineLength() + "\n";
+		returnString += "Errors:\n";
+		for(Error error : this.errors)
+		{
+			returnString += "\t" + error.number + "\t" + error.message + "\t" + error.correction + "\n";
+		}
+		if (this.instruction != null)
+		{
+			returnString += this.instruction.returnPrintString() + "\n";
+		}
+		if (this.directive != null)
+		{
+			returnString += this.directive.returnPrintString() + "\n";
+		}		
+		return returnString;
 	}
 }
