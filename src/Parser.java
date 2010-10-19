@@ -664,6 +664,7 @@ public class Parser
 			directiveObj = null;
 		}
 		// Code to check special directives e.g. .end and .start
+		}
 		return directiveObj;
 	}
 	/**
