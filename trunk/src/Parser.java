@@ -1,10 +1,13 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList; //import java.util.Arrays;
+import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
@@ -86,7 +89,7 @@ public class Parser
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
-		ArrayList<String> linesOfCode = readFileToArrayList("src/MulTest.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/alTest1.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
@@ -94,18 +97,38 @@ public class Parser
 			{
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
+			
 			currentErrorArray.clear();
 		}
-		/*
-		for (Error currenterror : ErrorArray) 
-		{
-			currenterror.printError();
-		}
-		*/
-		SymbTable.prettyFerret();
-		
+		System.out.println(CodeLineArray.get(8).instruction.returnPrintString());
+		printIntermediateFile("IntermediateFile.txt");
+
+		SymbTable.prettyFerret();		
 	}
 
+	public static void printIntermediateFile(String fileName)
+	{		
+		try
+		{
+			FileWriter fileStream = new FileWriter(fileName);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
+			
+			int x = 0;
+			for(CodeLine codeline : CodeLineArray)
+			{
+				bufferedWriter.write("------------------------------------------\n");
+				bufferedWriter.write("CodeLine " + x + "\n");
+				bufferedWriter.write(codeline.returnPrintString());
+				x++;
+			}
+			bufferedWriter.close();
+		}
+		catch (Exception e)
+		{
+			//ERROR
+		}
+	}
+	
 	/**
 	 * This is where we will parse each line of code. All directive
 	 * testing / checking will be in this function.
@@ -411,6 +434,9 @@ public class Parser
 			{
 				directiveObj.directiveName = possibleDirective.toUpperCase();
 				directiveObj.labelType = directive.labelType;
+				directiveObj.codeLocation = directive.codeLocation;
+				directiveObj.operands = directive.operands;
+				
 				String operandString = "";
 				while (st.hasMoreTokens()) 
 				{
@@ -693,15 +719,27 @@ public class Parser
 				operandString += st.nextToken();
 			}
 			String[] operands = operandString.split(",");
+			System.out.println("\n\n" +instructionWithOperands + "\n" + Arrays.toString(operands));
+			System.out.println(returnInstructionViaOpcode(instruction).numberOfRegisters);
 			if (operands.length == returnInstructionViaOpcode(instruction).numberOfRegisters) 
 			{
-				instructionObj.instruction = instruction.toUpperCase();
-				/*
-				Boolean validOperands = false;
+				System.out.println("WORKS");
+				instructionObj.instruction = returnInstructionViaOpcode(instruction).instruction;
+				instructionObj.instructionBinary = returnInstructionViaOpcode(instruction).instructionBinary;
+				instructionObj.instructionExtended = returnInstructionViaOpcode(instruction).instructionExtended;
+				instructionObj.instructionExtendedBinary = returnInstructionViaOpcode(instruction).instructionExtendedBinary;
+				instructionObj.instructionExtendedHex = returnInstructionViaOpcode(instruction).instructionExtendedHex;
+				instructionObj.instructionHex = returnInstructionViaOpcode(instruction).instructionHex;
+				instructionObj.instructionType = returnInstructionViaOpcode(instruction).instructionType;
+				instructionObj.numberOfRegisters = returnInstructionViaOpcode(instruction).numberOfRegisters;
+				instructionObj.operands = returnInstructionViaOpcode(instruction).operands;
+
+				//Boolean validOperands = false;
 				for (int x = 0; x < returnInstructionViaOpcode(instruction).operands.size(); x++) 
 				{
 					instructionObj.operandsArray.add(new Operand(operands[x]));
-					Instruction.operandTypes operand = returnInstruction(instruction).operands.get(x);
+					/*
+					Instruction.operandTypes operand = returnInstructionViaOpcode(instruction).operands.get(x);
 					
 					switch (operand)
 					{
@@ -720,8 +758,9 @@ public class Parser
 						validOperands = false;
 						break;
 					}
+					*/
 				}
-				*/
+	
 			}
 		} 
 		else 
@@ -834,6 +873,7 @@ public class Parser
 		for (String lineOfInstruction : linesOfInstruction) 
 		{
 			String[] variables = lineOfInstruction.split("\t");
+			System.out.println(Arrays.toString(variables) + "\n");
 			if (variables.length > 1) 
 			{
 				Instruction.instructionTypes instructionType = Instruction.instructionTypes.IMMEDIATE;
@@ -854,8 +894,10 @@ public class Parser
 
 				// System.out.println(variables[4]);
 				String[] operands = variables[4].split(",");
+				System.out.println(Arrays.toString(operands) + "\n");
 				ArrayList<Instruction.operandTypes> operandArray = new ArrayList<Instruction.operandTypes>();
-				for (String operand : operands) {
+				for (String operand : operands) 
+				{
 					operand = operand.toUpperCase();
 					if (operand.equals("REG")) 
 					{
@@ -877,7 +919,12 @@ public class Parser
 					{
 						operandArray.add(Instruction.operandTypes.ADDRESS);
 					}
+					else if (operand.equals("NUM"))
+					{
+						operandArray.add(Instruction.operandTypes.NUMBER);
+					}
 				}
+				System.out.println(operandArray.size());
 				Instruction instruction = new Instruction(variables[0],variables[1], variables[3], operandArray,instructionType);
 				InstructionsArray.add(instruction);
 			}
