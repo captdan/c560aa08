@@ -24,36 +24,32 @@ class CodeLine
 	public int lineLength()
 	{
 		int length = 0;
-		double intermediate = 0;
 		if (this.instruction != null)
 		{
-			intermediate = 1;
+			length = 1;
 		}
 		else if (this.directive != null)
 		{
 			
 			if (this.directive.directiveName.equals("INT.DATA")||this.directive.directiveName.equals("HEX.DATA")||
 					this.directive.directiveName.equals("BIN.DATA")|| this.directive.directiveName.equals("NOP")||
-					this.directive.directiveName.equals("EQU.EXP"))
+					this.directive.directiveName.equals("EQU.EXP") || this.directive.directiveName.equals("ADR.DATA"))
 			{
-				intermediate = 1;
+				length = 1;
 			}
 			else if (this.directive.directiveName.equals("STR.DATA"))
 			{
 				 
-				intermediate = 1;
 				String stringLine = this.directive.operandArray.get(0).operand;
-				
-				
 				
 				if(this.directive.operandArray.get(0).operand.startsWith("'") && this.directive.operandArray.get(0).operand.endsWith("'"))
 				{
 					stringLine = stringLine.substring(1, stringLine.length()-1);
-					System.out.println("TREWQ: " + stringLine);
+					//System.out.println("TREWQ: " + stringLine);
 					//System.out.println(stringLine);
 					length = (int) Math.ceil(stringLine.length()/4.0);
 					
-					if (intermediate>4.0)
+					if (length>4)
 					{
 					//System.out.println("Error too many characters");	
 					}
@@ -69,7 +65,7 @@ class CodeLine
 			else if (this.directive.directiveName.equals("MEM.SKIP"))
 			{
 				length = Integer.valueOf(this.directive.operandArray.get(0).operand);
-				System.out.println("QWER: " + Integer.valueOf(this.directive.operandArray.get(0).operand));
+				//System.out.println("QWER: " + Integer.valueOf(this.directive.operandArray.get(0).operand));
 			}
 
 		}

@@ -16,12 +16,32 @@ Original Line Of Code: .text
 Line Comment: 
 Line Length: 0
 Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
 ------------------------------------------
 CodeLine 2
-Original Line Of Code: 	EXT DQ
+Original Line Of Code: 	EXT DQ, ABC, TEST, HATE
 Line Comment: 
 Line Length: 0
 Errors:
+Directive Name: EXT
+Directive Label: NOLABEL
+Directive Code Location: INFO
+Operands: 
+	DQ
+	ABC
+	TEST
+	HATE
+Operand Types: 
+	NUMBER
+	NUMBER
+	NUMBER
+	NUMBER
+
 ------------------------------------------
 CodeLine 3
 Original Line Of Code: 	Reset.lc 8
@@ -40,7 +60,7 @@ Operand Types:
 CodeLine 4
 Original Line Of Code: P2 	inn 1,XX($1) | READ NEXT XX from keyboard
 Line Comment: | READ NEXT XX from keyboard
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: INN
 Instruction Type: IMMEDIATE
@@ -57,7 +77,7 @@ Operand Types:
 CodeLine 5
 Original Line Of Code: 	Outn 1,XX($1) | ECHO XX to the display
 Line Comment: | ECHO XX to the display
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: OUTN
 Instruction Type: IMMEDIATE
@@ -74,7 +94,7 @@ Operand Types:
 CodeLine 6
 Original Line Of Code: 	Inc 1,YY($1) | READ IN NEXT YY from keyboard
 Line Comment: | READ IN NEXT YY from keyboard
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: INC
 Instruction Type: IMMEDIATE
@@ -91,7 +111,7 @@ Operand Types:
 CodeLine 7
 Original Line Of Code: 	Outc 1,YY($1) | ECHO YY to the display
 Line Comment: | ECHO YY to the display
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: OUTC
 Instruction Type: IMMEDIATE
@@ -108,7 +128,7 @@ Operand Types:
 CodeLine 8
 Original Line Of Code: 	Lw $2,XX($1) | Begin to FORM XX/YY
 Line Comment: | Begin to FORM XX/YY
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: LW
 Instruction Type: SIGNED
@@ -125,7 +145,7 @@ Operand Types:
 CodeLine 9
 Original Line Of Code: 	Lw $3,YY($1)
 Line Comment: 
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: LW
 Instruction Type: SIGNED
@@ -142,7 +162,7 @@ Operand Types:
 CodeLine 10
 Original Line Of Code: 	JEQ $3,$0,ER | IF DIVIDE BY 0, GO PRT MSG AND HALT
 Line Comment: | IF DIVIDE BY 0, GO PRT MSG AND HALT
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: JEQ
 Instruction Type: SIGNED
@@ -161,7 +181,7 @@ Operand Types:
 CodeLine 11
 Original Line Of Code: 	DIV $2,$2,$3 | OTHERWISE DIVIDE
 Line Comment: | OTHERWISE DIVIDE
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: DIV
 Instruction Type: REGISTER
@@ -180,7 +200,7 @@ Operand Types:
 CodeLine 12
 Original Line Of Code: 	SW $2,QQ($1) | STORE RESULT
 Line Comment: | STORE RESULT
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: SW
 Instruction Type: SIGNED
@@ -197,7 +217,7 @@ Operand Types:
 CodeLine 13
 Original Line Of Code: 	ADD $10,$10,$2 | ADD QUOTIENT TO SUM REGISTER
 Line Comment: | ADD QUOTIENT TO SUM REGISTER
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: ADD
 Instruction Type: REGISTER
@@ -216,7 +236,7 @@ Operand Types:
 CodeLine 14
 Original Line Of Code: 	ADDi $1,$2,1 | INCREMENT INDEX REGISTER
 Line Comment: | INCREMENT INDEX REGISTER
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: ADDI
 Instruction Type: IMMEDIATE
@@ -233,22 +253,28 @@ Operand Types:
 
 ------------------------------------------
 CodeLine 15
-Original Line Of Code: 	SUBi $2,4
+Original Line Of Code: 	SUBi $2,$1,4
 Line Comment: 
-Line Length: 0
+Line Length: 1
 Errors:
-Instruction: 
-Instruction Type: REGISTER
-Instruction Binary: 
-Instruction Hex: 
+Instruction: SUBI
+Instruction Type: IMMEDIATE
+Instruction Binary: 10010
+Instruction Hex: 12
 Operands: 
+	$2
+	$1
+	4
 Operand Types: 
+	REGISTER
+	REGISTER
+	IMMEDIATE
 
 ------------------------------------------
 CodeLine 16
 Original Line Of Code: 	JEQ $2,$0,P2 | IF NOT DONE, LOOP BACK
 Line Comment: | IF NOT DONE, LOOP BACK
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: JEQ
 Instruction Type: SIGNED
@@ -267,7 +293,7 @@ Operand Types:
 CodeLine 17
 Original Line Of Code: 	Sw $10,Q1 | IF DONE, STORE AND PRINT RESULT
 Line Comment: | IF DONE, STORE AND PRINT RESULT
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: SW
 Instruction Type: SIGNED
@@ -284,7 +310,7 @@ Operand Types:
 CodeLine 18
 Original Line Of Code: 	outc 2,M1 | Output 2 words
 Line Comment: | Output 2 words
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: OUTC
 Instruction Type: IMMEDIATE
@@ -301,7 +327,7 @@ Operand Types:
 CodeLine 19
 Original Line Of Code: 	outc 1,Q1
 Line Comment: 
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: OUTC
 Instruction Type: IMMEDIATE
@@ -318,7 +344,7 @@ Operand Types:
 CodeLine 20
 Original Line Of Code: 	J E1 | THEN GO TO THE EXIT ROUTINE
 Line Comment: | THEN GO TO THE EXIT ROUTINE
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: J
 Instruction Type: SIGNED
@@ -333,7 +359,7 @@ Operand Types:
 CodeLine 21
 Original Line Of Code: ER 	outc 2,ME | ZERO DIVISOR, PRINT Y IS 0
 Line Comment: | ZERO DIVISOR, PRINT Y IS 0
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: OUTC
 Instruction Type: IMMEDIATE
@@ -350,10 +376,10 @@ Operand Types:
 CodeLine 22
 Original Line Of Code: 	HALT 256 | DUMP AND HALT
 Line Comment: | DUMP AND HALT
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: HALT
-Instruction Type: IMMEDIATE
+Instruction Type: J
 Instruction Binary: 1000
 Instruction Hex: 08
 Operands: 
@@ -365,7 +391,7 @@ Operand Types:
 CodeLine 23
 Original Line Of Code: E1 	outc 4,M2
 Line Comment: 
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: OUTC
 Instruction Type: IMMEDIATE
@@ -382,7 +408,7 @@ Operand Types:
 CodeLine 24
 Original Line Of Code: 	Lw $1,A1
 Line Comment: 
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: LW
 Instruction Type: SIGNED
@@ -399,10 +425,10 @@ Operand Types:
 CodeLine 25
 Original Line Of Code: 	HALT 0 | HALT normal exit user code 0
 Line Comment: | HALT normal exit user code 0
-Line Length: 0
+Line Length: 1
 Errors:
 Instruction: HALT
-Instruction Type: IMMEDIATE
+Instruction Type: J
 Instruction Binary: 1000
 Instruction Hex: 08
 Operands: 
@@ -422,11 +448,17 @@ Original Line Of Code: .data
 Line Comment: 
 Line Length: 0
 Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
 ------------------------------------------
 CodeLine 28
 Original Line Of Code: A1 adr.data DQ | ADDRESS OF DQ.
 Line Comment: | ADDRESS OF DQ.
-Line Length: 0
+Line Length: 1
 Errors:
 Directive Name: ADR.DATA
 Directive Label: OPTIONALLABEL
@@ -440,7 +472,7 @@ Operand Types:
 CodeLine 29
 Original Line Of Code: A2 adr.data XX | ADDRESS of XX.
 Line Comment: | ADDRESS of XX.
-Line Length: 0
+Line Length: 1
 Errors:
 Directive Name: ADR.DATA
 Directive Label: OPTIONALLABEL
@@ -454,7 +486,7 @@ Operand Types:
 CodeLine 30
 Original Line Of Code: C4 int.data 4
 Line Comment: 
-Line Length: 0
+Line Length: 1
 Errors:
 Directive Name: INT.DATA
 Directive Label: OPTIONALLABEL
