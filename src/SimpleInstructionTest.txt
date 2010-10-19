@@ -1,4 +1,5 @@
 .Start,SimpleInstructionTest,00
+.data
 A int.data 10
 B Str.data 'ABC'
 C hex.data 8
