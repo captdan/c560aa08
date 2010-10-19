@@ -915,12 +915,6 @@ Operand Types:
 
 ------------------------------------------
 CodeLine 55
-Original Line Of Code: 	ara $5,$3 , 5
-Line Comment: 
-Line Length: 0
-Errors:
-------------------------------------------
-CodeLine 56
 Original Line Of Code: Y	nori $5, $1,56
 Line Comment: 
 Line Length: 1
@@ -939,7 +933,7 @@ Operand Types:
 	IMMEDIATE
 
 ------------------------------------------
-CodeLine 57
+CodeLine 56
 Original Line Of Code: Z	jal $1,$2, halt2
 Line Comment: 
 Line Length: 1
@@ -958,7 +952,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 58
+CodeLine 57
 Original Line Of Code: 	muls $1,$2, R3
 Line Comment: 
 Line Length: 1
@@ -977,7 +971,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 59
+CodeLine 58
 Original Line Of Code: 	adds $5,$6, R3
 Line Comment: 
 Line Length: 1
@@ -996,7 +990,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 60
+CodeLine 59
 Original Line Of Code: 	subs $3,$4,R3
 Line Comment: 
 Line Length: 1
@@ -1015,7 +1009,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 61
+CodeLine 60
 Original Line Of Code: 	LW $r3, A3
 Line Comment: 
 Line Length: 1
@@ -1032,7 +1026,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 62
+CodeLine 61
 Original Line Of Code: 	LA $1, 0($3)
 Line Comment: 
 Line Length: 1
@@ -1049,7 +1043,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 63
+CodeLine 62
 Original Line Of Code: 	SA $1, 0($3)
 Line Comment: 
 Line Length: 1
@@ -1066,7 +1060,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 64
+CodeLine 63
 Original Line Of Code: 	outni	5, 5
 Line Comment: 
 Line Length: 1
@@ -1083,7 +1077,7 @@ Operand Types:
 	IMMEDIATE
 
 ------------------------------------------
-CodeLine 65
+CodeLine 64
 Original Line Of Code: 	outci 3,'the'
 Line Comment: 
 Line Length: 1
@@ -1100,7 +1094,7 @@ Operand Types:
 	IMMEDIATE
 
 ------------------------------------------
-CodeLine 66
+CodeLine 65
 Original Line Of Code: 	outci 3,'end'
 Line Comment: 
 Line Length: 1
@@ -1117,7 +1111,7 @@ Operand Types:
 	IMMEDIATE
 
 ------------------------------------------
-CodeLine 67
+CodeLine 66
 Original Line Of Code: 	J HALT($0)
 Line Comment: 
 Line Length: 1
@@ -1132,7 +1126,7 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 68
+CodeLine 67
 Original Line Of Code: HALT	Halt 0
 Line Comment: 
 Line Length: 1
@@ -1147,7 +1141,7 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 69
+CodeLine 68
 Original Line Of Code: halt2 	halt 2
 Line Comment: 
 Line Length: 1
@@ -1162,7 +1156,7 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 70
+CodeLine 69
 Original Line Of Code: .END,SimpleInstructionTest
 Line Comment: 
 Line Length: 0
