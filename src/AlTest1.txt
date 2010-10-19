@@ -4,7 +4,7 @@
 	Reset.lc 8
 P2 	inn 1,XX($1) | READ NEXT XX from keyboard
 	Outn 1,XX($1) | ECHO XX to the display
-	Innc 1,YY($1) | READ IN NEXT YY from keyboard
+	Inc 1,YY($1) | READ IN NEXT YY from keyboard
 	Outc 1,YY($1) | ECHO YY to the display
 	Lw $2,XX($1) | Begin to FORM XX/YY
 	Lw $3,YY($1)
