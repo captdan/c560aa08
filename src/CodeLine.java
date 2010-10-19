@@ -1,26 +1,53 @@
 import java.util.ArrayList;
-//import java.util.HashSet;
+/**
+ * @author Robert Schmidt.
+ * This class is an object that allows us to store a line of code and determine certain
+ * attributes of that codeline such as comment, possible instruction, directives or errors. 
+ */
 
 //CodeLine.java
 class CodeLine 
 {
-	// Define Variables
+	/**
+	 * originalLineOfCode stores the line of code from the source program.
+	 */
 	public String originalLineOfCode = "";
+	/**
+	 * Stores the comment associated with the originalLineOfCode.
+	 */
 	public String comment = "";
+	/**
+	 * Stores an instruction if present in the originalLineOfCode.
+	 */
 	public Instruction instruction = null;
+	/**
+	 * Stores a directive if present in the originalLineOfCode.
+	 */
 	public Directive directive = null;
+	/**
+	 * Holds the errors found in the codeline.
+	 */
 	public ArrayList<Error> errors = new ArrayList<Error>();
 	
 	/**
-	 * This will be the field where each line of code's length is stored. 
-	 * This field is then read from each CodeLine object in our Main Parser and added to the global Program Counter.
+	 * This constructs a CodeLine object from a string thats passed in.
+	 * @param lineOfCode
+	 * 			The string that is to be converted to a lineOfCode.
+	 * 
 	 */
-
-	// Constructor
 	CodeLine(String lineOfCode) 
 	{
 		this.originalLineOfCode = lineOfCode;
 	}
+	 /**
+	 * This function returns the length in terms of increments to the PC counter caused by the line of code
+	 * the function is called on. 
+	 * @author Rakaan Kayali and Kermit Stearns.
+	 * Modified: changed global variable length by removing its 'static' label. 
+	 * Now an instance must be created before it is used. Additionally, 
+	 * STR.DATA and EQU are now handled separately.
+	 * Date Modified: 10/10/2010, by Kermit Stearns and Rakaan Kayali.
+	 */
 	public int lineLength()
 	{
 		int length = 0;
@@ -72,6 +99,10 @@ class CodeLine
 		//length = (int)Math.ceil(intermediate);
 		return length;
 	}
+	/**
+	 * This method prints out the original line of code along with the line comment the line length and 
+	 * all applicable errors.
+	 */
 	public String returnPrintString()
 	{
 		String returnString = "";
