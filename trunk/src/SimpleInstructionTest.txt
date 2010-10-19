@@ -53,7 +53,6 @@ U	xor $6,$6,$5
 V	nor $2,$4,$3
 W	ori $2,$5,6
 X	xori $5,$6,9
-	ara $5,$3 , 5
 Y	nori $5, $1,56
 Z	jal $1,$2, halt2
 	muls $1,$2, R3
