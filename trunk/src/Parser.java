@@ -16,6 +16,10 @@ import java.util.StringTokenizer;
 public class Parser 
 {
 	/**
+	 * Boolean to keep track of if we are in the .data section or the .text section.
+	 */
+	public static boolean isInData = false;
+	/**
 	 * LiteralTable holds the all occurences of literals in our program.
 	 */
 	public static LiteralTable litTable = new LiteralTable();
@@ -432,6 +436,24 @@ public class Parser
 		{
 			if (directive.directiveName.toUpperCase().equals(possibleDirective.toUpperCase())) 
 			{				
+				if (directiveObj.directiveName == ".DATA")
+				{
+					isInData = true;
+				}
+				else if (directiveObj.directiveName == ".TEXT")
+				{
+					isInData = false;
+				}
+				
+				if (directiveObj.directiveName == "INT.DATA" || directiveObj.directiveName == "STR.DATA" || directiveObj.directiveName == "BIN.DATA" || directiveObj.directiveName == "HEX.DATA" || directiveObj.directiveName == "ADR.DATA")
+				{
+					if (!isInData)
+					{
+						//TODO throw error
+					}
+				}
+				
+			{				
 				String operandString = "";
 				while (st.hasMoreTokens()) 
 				{
@@ -443,6 +465,15 @@ public class Parser
 				if (directive.operands.size() == operands.length)
 				{
 				
+					directiveObj.directiveName = directive.directiveName;
+					directiveObj.labelType = directive.labelType;
+					directiveObj.codeLocation = directive.codeLocation;
+					directiveObj.operands = directive.operands;
+				
+					for (int x = 0; x < operands.length; x++) 
+					{
+						directiveObj.operandArray.add(new Operand(operands[x]));
+					}				
 					directiveObj.directiveName = directive.directiveName;
 					directiveObj.labelType = directive.labelType;
 					directiveObj.codeLocation = directive.codeLocation;
@@ -726,6 +757,11 @@ public class Parser
 
 		if (instructionExists(instruction) == true && returnSymbolInstruction(instructionWithOperands, false) == null) 
 		{
+			if (isInData)
+			{
+				//TODO throw error
+			}
+
 			// System.out.println(instruction);
 			String operandString = "";
 			while (st.hasMoreTokens()) 
