@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList; //import java.util.Arrays;
-import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
@@ -282,8 +281,8 @@ public class Parser
 	public static int evaluateExpression (CodeLine cl)
 	{
 		int result = 0;
-		StringTokenizer st = new StringTokenizer(String.valueOf(cl.directive.operandArray.get(0)),"+-",true);
-		String op1 = st.nextToken();
+		StringTokenizer expressionTokenizer = new StringTokenizer(String.valueOf(cl.directive.operandArray.get(0)),"+-",true);
+		String op1 = expressionTokenizer.nextToken();
 		
 		//Check 1st operand
 		if (SymbTable.isInTable(op1))
@@ -300,10 +299,10 @@ public class Parser
 		}
 		
 		//Check for 2nd symbol, if its there, then we have another operand as well
-		if(st.hasMoreTokens())
+		if(expressionTokenizer.hasMoreTokens())
 		{
-			String symb1 = st.nextToken();
-			String op2 = st.nextToken();
+			String symb1 = expressionTokenizer.nextToken();
+			String op2 = expressionTokenizer.nextToken();
 			
 			if (symb1 == "+")
 			{
@@ -340,10 +339,10 @@ public class Parser
 		}
 		
 		//Check for 3rd symbol, if its there, then we have another operand as well
-		if(st.hasMoreTokens())
+		if(expressionTokenizer.hasMoreTokens())
 		{
-			String symb2 = st.nextToken();
-			String op3 = st.nextToken();
+			String symb2 = expressionTokenizer.nextToken();
+			String op3 = expressionTokenizer.nextToken();
 			
 			if (symb2 == "+")
 			{
@@ -379,10 +378,10 @@ public class Parser
 		}
 		
 		//Check for 5th symbol, if its there, then we have another operand as well
-		if(st.hasMoreTokens())
+		if(expressionTokenizer.hasMoreTokens())
 		{
-			String symb3 = st.nextToken();
-			String op4 = st.nextToken();
+			String symb3 = expressionTokenizer.nextToken();
+			String op4 = expressionTokenizer.nextToken();
 			
 			if (symb3 == "+")
 			{
