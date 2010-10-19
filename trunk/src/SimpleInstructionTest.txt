@@ -43,7 +43,7 @@ O	SRV $1,$2,10
 N	SW $5,0($2)	
 P	LnW $3, 0($2)
 Q	LWi	$1, 0($2)
-	jar	$5,$1,0($1)
+	jal	$5,$1,0($1)
 R	Lui $2, 50
 	|compare values of regs
 S	or $1,$1,2
