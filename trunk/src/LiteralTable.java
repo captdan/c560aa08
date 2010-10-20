@@ -11,7 +11,7 @@ public class LiteralTable {
 	/**
 	 * Holds all of the literals and their addresses.
 	 */
-	private ArrayList<String[]> tableOfLiterals = new ArrayList<String[]>();
+	private ArrayList<String[]> table = new ArrayList<String[]>();
 
 	/**
 	 * Allows a literal along with its corresponding address to be added to the table.
@@ -24,7 +24,7 @@ public class LiteralTable {
 		String[] temp = new String[2];
 		temp[0] = literal;
 		temp[1] = addr;
-		tableOfLiterals.add(temp);
+		table.add(temp);
 	}
 
 	/**
@@ -32,6 +32,6 @@ public class LiteralTable {
 	 * @return The list to be returned.
 	 */
 	public final ArrayList<String[]> getLiteralList() {
-		return tableOfLiterals;
+		return table;
 	}
 }
