@@ -1,0 +1,332 @@
+------------------------------------------
+CodeLine 0
+Original Line Of Code: .start,crazyal,0                    |LC HEX     a/r/e
+Line Comment: |LC HEX     a/r/e
+Line Length: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+Original Line Of Code: .data
+Line Comment: 
+Line Length: 0
+Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+Original Line Of Code: YY      int.data        0           |0  00000000
+Line Comment: |0  00000000
+Line Length: 1
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 3
+Original Line Of Code: ZZ      int.data        0           |1  00000000
+Line Comment: |1  00000000
+Line Length: 1
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 4
+Original Line Of Code: XX      int.data        0           |2  00000000
+Line Comment: |2  00000000
+Line Length: 1
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 5
+Original Line Of Code: Err     str.data        'ZZ=0'  |3      59593D30
+Line Comment: |3      59593D30
+Line Length: 1
+Errors:
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	'ZZ=0'
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 6
+Original Line Of Code: .text                               |n/a        n/a
+Line Comment: |n/a        n/a
+Line Length: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 7
+Original Line Of Code: ENT     XX                          |n/a        n/a
+Line Comment: |n/a        n/a
+Line Length: 0
+Errors:
+Directive Name: ENT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	XX
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 8
+Original Line Of Code: exec.start      *                   |4  n/a
+Line Comment: |4  n/a
+Line Length: 0
+Errors:
+Directive Name: EXEC.START
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	*
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 9
+Original Line Of Code: inn     2,YY                     |4
+Line Comment: |4
+Line Length: 1
+Errors:
+Instruction: INN
+Instruction Type: REGISTER
+Instruction Binary: 100
+Instruction Hex: 04
+Operands: 
+	2
+	YY
+Operand Types: 
+	NUMBER
+	ADDRESS
+
+------------------------------------------
+CodeLine 10
+Original Line Of Code: LW      $3,YY               |5
+Line Comment: |5
+Line Length: 1
+Errors:
+Instruction: LW
+Instruction Type: SIGNED
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$3
+	YY
+Operand Types: 
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 11
+Original Line Of Code: JEQ     $3,$0,ERROR         |6
+Line Comment: |6
+Line Length: 1
+Errors:
+Instruction: JEQ
+Instruction Type: SIGNED
+Instruction Binary: 100000
+Instruction Hex: 20
+Operands: 
+	$3
+	$0
+	ERROR
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 12
+Original Line Of Code: LW      $2,ZZ               |7
+Line Comment: |7
+Line Length: 1
+Errors:
+Instruction: LW
+Instruction Type: SIGNED
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$2
+	ZZ
+Operand Types: 
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 13
+Original Line Of Code: mul     $4,$3,$2                    |8
+Line Comment: |8
+Line Length: 1
+Errors:
+Instruction: MUL
+Instruction Type: REGISTER
+Instruction Binary: 1
+Instruction Hex: 01
+Operands: 
+	$4
+	$3
+	$2
+Operand Types: 
+	REGISTER
+	REGISTER
+	REGISTER
+
+------------------------------------------
+CodeLine 14
+Original Line Of Code: muli    $5,$4,20                    |9          ????????????????????????00010100
+Line Comment: |9          ????????????????????????00010100
+Line Length: 1
+Errors:
+Instruction: MULI
+Instruction Type: IMMEDIATE
+Instruction Binary: 10100
+Instruction Hex: 14
+Operands: 
+	$5
+	$4
+	20
+Operand Types: 
+	REGISTER
+	REGISTER
+	IMMEDIATE
+
+------------------------------------------
+CodeLine 15
+Original Line Of Code: Div     $5,$5,$3                    |A
+Line Comment: |A
+Line Length: 1
+Errors:
+Instruction: DIV
+Instruction Type: REGISTER
+Instruction Binary: 1
+Instruction Hex: 01
+Operands: 
+	$5
+	$5
+	$3
+Operand Types: 
+	REGISTER
+	REGISTER
+	REGISTER
+
+------------------------------------------
+CodeLine 16
+Original Line Of Code: sw      $5,XX               |B
+Line Comment: |B
+Line Length: 1
+Errors:
+Instruction: 
+Instruction Type: REGISTER
+Instruction Binary: 
+Instruction Hex: 
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 17
+Original Line Of Code: outn    1,XX                        |C
+Line Comment: |C
+Line Length: 1
+Errors:
+Instruction: OUTN
+Instruction Type: REGISTER
+Instruction Binary: 100
+Instruction Hex: 04
+Operands: 
+	1
+	XX
+Operand Types: 
+	NUMBER
+	ADDRESS
+
+------------------------------------------
+CodeLine 18
+Original Line Of Code: HALT    0                   |D          00100000000000000000000000000000
+Line Comment: |D          00100000000000000000000000000000
+Line Length: 1
+Errors:
+Instruction: 
+Instruction Type: REGISTER
+Instruction Binary: 
+Instruction Hex: 
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 19
+Original Line Of Code: ERROR   outc    1,Err       |E
+Line Comment: |E
+Line Length: 1
+Errors:
+Instruction: OUTC
+Instruction Type: REGISTER
+Instruction Binary: 100
+Instruction Hex: 04
+Operands: 
+	1
+	Err
+Operand Types: 
+	NUMBER
+	ADDRESS
+
+------------------------------------------
+CodeLine 20
+Original Line Of Code: HALT    250     |F
+Line Comment: |F
+Line Length: 1
+Errors:
+Instruction: 
+Instruction Type: REGISTER
+Instruction Binary: 
+Instruction Hex: 
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 21
+Original Line Of Code: .end,crazyal           | n/a     n/a     00100000000000000000000011111010
+Line Comment: | n/a     n/a     00100000000000000000000011111010
+Line Length: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

@@ -7,7 +7,7 @@ public class Operand
 	{
 		operand = operandValue;
 	}
-	public Operand()
+	public Operand() 
 	{
 
 	}
