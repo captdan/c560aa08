@@ -1,0 +1,22 @@
+.start,crazyal,0                    |LC HEX     a/r/e
+.data
+YY      int.data        0           |0  00000000
+ZZ      int.data        0           |1  00000000
+XX      int.data        0           |2  00000000
+Err     str.data        'ZZ=0'  |3      59593D30
+.text                               |n/a        n/a
+ENT     XX                          |n/a        n/a
+exec.start      *                   |4  n/a
+inn     2,YY                     |4
+LW      $3,YY               |5
+JEQ     $3,$0,ERROR         |6
+LW      $2,ZZ               |7
+mul     $4,$3,$2                    |8
+muli    $5,$4,20                    |9          ????????????????????????00010100
+Div     $5,$5,$3                    |A
+sw      $5,XX               |B
+outn    1,XX                        |C
+HALT    0                   |D          00100000000000000000000000000000
+ERROR   outc    1,Err       |E
+HALT    250     |F
+.end,crazyal           | n/a     n/a     00100000000000000000000011111010
