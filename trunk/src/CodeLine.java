@@ -81,8 +81,8 @@ class CodeLine
 		returnString += "Errors:\n";
 		for(Error error : this.errors)
 		{
-			returnString += "\t" + error.number + "\t" + error.message + "\t" + error.correction + "\n";
-		}
+			returnString += "\t" + Integer.toString(error.number) + "\t" + error.message.toString() + "\t" + error.correction + "\n";
+		} 
 		if (this.instruction != null)
 		{
 			returnString += this.instruction.returnPrintString() + "\n";

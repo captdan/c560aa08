@@ -43,7 +43,8 @@ public class Error
 	/**
 	 * Prints the contents of an Error object as a report to the user.
 	 */
-	public final void printError(){
+	public final void printError()
+	{
 		System.out.println("Error number " + this.number + ":\t");
 		System.out.print(this.message);
 		System.out.println(this.correction);

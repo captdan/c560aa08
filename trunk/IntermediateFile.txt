@@ -328,7 +328,13 @@ Operand Types:
 
 ------------------------------------------
 CodeLine 21
-Original Line Of Code: .end,crazyal            n/a     n/a     00100000000000000000000011111010
-Line Comment: 
+Original Line Of Code: .end,crazyal           | n/a     n/a     00100000000000000000000011111010
+Line Comment: | n/a     n/a     00100000000000000000000011111010
 Line Length: 0
 Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

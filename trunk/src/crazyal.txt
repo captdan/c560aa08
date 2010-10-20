@@ -19,4 +19,4 @@ outn    1,XX                        |C
 HALT    0                   |D          00100000000000000000000000000000
 ERROR   outc    1,Err       |E
 HALT    250     |F
-.end,crazyal            n/a     n/a     00100000000000000000000011111010
+.end,crazyal           | n/a     n/a     00100000000000000000000011111010
