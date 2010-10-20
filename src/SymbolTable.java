@@ -1,5 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.util.*;
 
 /**
@@ -30,18 +28,6 @@ public class SymbolTable
 	{
 		DATA_LABEL,PROGRAM_NAME,EXTERNAL,EQU
 	}
-	
-	/**
-	 * Allows a symbol, along with its information, to be added to the table.
-	 * @param label
-	 * 			Name of the symbol to be added
-	 * @param addr
-	 * 			Address of the symbol in hex
-	 * @param sub
-	 * 			What the symbol is a substitute for, if at all.
-	 * @param use
-	 * 			The way the symbol is being used.
-	 */
 	public final void addSymbol(String label, String addr, String sub, Uses use) 
 	{	
 		/**if(this.symb.containsKey(label))
@@ -95,37 +81,11 @@ public class SymbolTable
 	 */
 	public final void prettyFerret() 
 	{
-		try
+		Iterator<Map.Entry<String, ArrayList<Object>>> it = symb.entrySet().iterator();
+		while (it.hasNext()) 
 		{
-			FileWriter fileStream = new FileWriter("symboltable.txt");
-			BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
-			
-			Iterator<Map.Entry<String, ArrayList<Object>>> it = symb.entrySet().iterator();
-			while (it.hasNext()) 
-			{
-				Map.Entry<String, ArrayList<Object>> entry = it.next();
-				bufferedWriter.write("------------------------------------------\n");
-				bufferedWriter.write(entry.getKey() + "\t" + entry.getValue() + "\n");
-				//System.out.println(entry.getKey() + "\t" + entry.getValue());
-			}
-			bufferedWriter.close();
-			
-			//int x = 0;
-			
-			/*
-			for(CodeLine codeline : CodeLineArray)
-			{
-				bufferedWriter.write("------------------------------------------\n");
-				bufferedWriter.write("CodeLine " + x + "\n");
-				bufferedWriter.write(codeline.returnPrintString());
-				x++;
-			}
-			bufferedWriter.close();
-			*/
-		}
-		catch (Exception e)
-		{
-			//error
+			Map.Entry<String, ArrayList<Object>> entry = it.next();
+			System.out.println(entry.getKey() + "\t" + entry.getValue());
 		}
 		
 	}

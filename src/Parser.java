@@ -7,17 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList; //import java.util.Arrays;
+import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
-/**
- * @authors Robert Schmidt, Kermit Stearns, Daniel Burnett, Oscar Flores, Rakaan Kayali.
- * Contains the code for parsing the source code read from the source. Code is segmented 
- * into numerous functions and is interdependent on other classes.
- * Modified to include startinglocation global variable and added removeWhiteSpace function.
- * Date Modified: 10/10/2010 by all authors.
- */
-
+//import Directive.labelTypes;
 
 public class Parser 
 {
@@ -85,8 +79,6 @@ public class Parser
 	 */
 	public static int execStart = 0;
 	/**
-	 * @authors Robert Schmidt, Daniel Burnett, Kermit Stearns, Oscar Flores and Rakaan Kayali.
-	 * 
 	 * Main program of Parser loads directives, ErrorCodes and instructions into arrays.
 	 * Also parses the lines of code read from the source code.
 	 * @param args
@@ -97,7 +89,7 @@ public class Parser
 		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
-		ArrayList<String> linesOfCode = readFileToArrayList("src/SimpleInstructionTest.txt");
+		ArrayList<String> linesOfCode = readFileToArrayList("src/crazyal.txt");
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
@@ -138,16 +130,8 @@ public class Parser
 	}
 	
 	/**
-	 * @author Robert Schmidt add 10/2/2010.
 	 * This is where we will parse each line of code. All directive
 	 * testing / checking will be in this function.
-	 * Modified to include extra functionality to check for instructions and directives.
-	 * Also Modified module to print out instructions , directives, symbols or errors found.
-	 * Added test to see if line of code was neither an instruction, directive or symbol we printed an error.
-	 * Date Modified: 10/10/2010
-	 * Modified Fixed Mem.skip code added various error checks.
-	 * Date Modified 10/17/2010 by Robert Schmidt
-	 * 
 	 * @param lineOfCode
 	 *            Takes a string line of code to be parsed.
 	 */
@@ -226,11 +210,8 @@ public class Parser
 
 	}
 	/**
-	 * @author Robert Schmidt added 10/2/2010
-	 * Checks code line for special directives MEM.SKIP and RESET.LC and EQU.EXP updates the program
+	 * Checks code line for special directives MEM.SKIP and RESET.LC and updates the program
 	 * counter accordingly.
-	 * Modified to include checking and dealing with directives (MEM.SKIP and RESET.LC)
-	 * Date modified: 10/11/2010 by Robert Schmidt.
 	 * @param cl CodeLine
 	 * 			holds the codeline object that is to be checked for MEM.SKIP and RESET.LC.
 	 */
@@ -271,18 +252,21 @@ public class Parser
 		}
 	}
 	/**
-	 * @author Kermit Stearns added 10/17/2010.
-	 * 
 	 * Adds the value of the parameter to the value of PC if within acceptable range
 	 * of values of PC. If not then returns an error.
+	 * @param addValue
+	 */
+	/**
+	 * Goes through an expression and determines the result.
+	 * 
 	 * @param cl The CodeLine object with the .EXP directive.
 	 * @return The integer value of the evaluated expression.
 	 */
 	public static int evaluateExpression (CodeLine cl)
 	{
 		int result = 0;
-		StringTokenizer expressionTokenizer = new StringTokenizer(String.valueOf(cl.directive.operandArray.get(0)),"+-",true);
-		String op1 = expressionTokenizer.nextToken();
+		StringTokenizer st = new StringTokenizer(String.valueOf(cl.directive.operandArray.get(0)),"+-",true);
+		String op1 = st.nextToken();
 		
 		//Check 1st operand
 		if (SymbTable.isInTable(op1))
@@ -299,10 +283,10 @@ public class Parser
 		}
 		
 		//Check for 2nd symbol, if its there, then we have another operand as well
-		if(expressionTokenizer.hasMoreTokens())
+		if(st.hasMoreTokens())
 		{
-			String symb1 = expressionTokenizer.nextToken();
-			String op2 = expressionTokenizer.nextToken();
+			String symb1 = st.nextToken();
+			String op2 = st.nextToken();
 			
 			if (symb1 == "+")
 			{
@@ -339,10 +323,10 @@ public class Parser
 		}
 		
 		//Check for 3rd symbol, if its there, then we have another operand as well
-		if(expressionTokenizer.hasMoreTokens())
+		if(st.hasMoreTokens())
 		{
-			String symb2 = expressionTokenizer.nextToken();
-			String op3 = expressionTokenizer.nextToken();
+			String symb2 = st.nextToken();
+			String op3 = st.nextToken();
 			
 			if (symb2 == "+")
 			{
@@ -378,10 +362,10 @@ public class Parser
 		}
 		
 		//Check for 5th symbol, if its there, then we have another operand as well
-		if(expressionTokenizer.hasMoreTokens())
+		if(st.hasMoreTokens())
 		{
-			String symb3 = expressionTokenizer.nextToken();
-			String op4 = expressionTokenizer.nextToken();
+			String symb3 = st.nextToken();
+			String op4 = st.nextToken();
 			
 			if (symb3 == "+")
 			{
@@ -418,13 +402,6 @@ public class Parser
 		
 		return result;
 	}
-	/**
-	 * @author Robert Schmidt added 10/17/2010
-	 * 
-	 * addToPC is a method used to update the PC counter. 
-	 * @param addValue 
-	 * 			Is the integer that is to be added to the PC.
-	 */
 	public static void addToPC(int addValue)
 	{
 		if((addValue + PC) <= maxPC && (addValue + PC) > 0)
@@ -437,11 +414,8 @@ public class Parser
 		}
 	}
 	/**
-	 * @author Robert Schmidt.
+	 * @author
 	 * Examines the String parameter that is passed in the function and returns a directive if present.
-	 * Modified to accept a boolean parameter weather or not we
-	 * want to added errors.
-	 * Date Modified: 10/17/2010 by Robert Schmidt.
 	 * @param codeString
 	 * 			Holds the codeString that we check for directives.
 	 * @param addErrors
@@ -488,10 +462,11 @@ public class Parser
 					directiveObj.directiveName = directive.directiveName;
 					directiveObj.labelType = directive.labelType;
 					directiveObj.codeLocation = directive.codeLocation;
-					directiveObj.operands = directive.operands;
+					directiveObj.operands.clear();
 				
 					for (int x = 0; x < operands.length; x++) 
 					{
+						directiveObj.operands.add(Directive.operandTypes.LABELREF);
 						directiveObj.operandArray.add(new Operand(operands[x]));
 					}
 				}
@@ -590,7 +565,7 @@ public class Parser
 				try
 				{
 					directiveObj.directiveName = possibleDirective.toUpperCase();
-					directiveObj.operandArray.add(new Operand(removeWhiteSpace(st.nextToken())));
+					//directiveObj.operandArray.add(new Operand(removeWhiteSpace(st.nextToken())));
 					//This is requires a label why are we checking a number?
 					//execStart = Integer.valueOf(removeWhiteSpace(st.nextToken()));
 				}
@@ -710,8 +685,6 @@ public class Parser
 	 * returnSymbolInstruction extracts and returns the symbol found in the string parameter.
 	 * Additionally, if an error is encountered it adds the error to the currentErrorArray if the 
 	 * addErrors parameter is set to true.
-	 * Modified to include adding symbols found to the symbol table.
-	 * Date Modified: 10/11/2010 by Oscar Flores.
 	 * @param instruction
 	 * 			Carries string to have symbol instruction extracted from.
 	 * @param addErrors 
@@ -759,8 +732,6 @@ public class Parser
 	/**
 	 * @author Robert Schmidt
 	 * returnInstruction takes a String parameter extracts any instruction if present.
-	 * Modified to accept a boolean parameter to determine if we
-	 * want to added errors or not.
 	 * @param instructionWithOperands
 	 * 			Holds a string with a possible instruction and its operands to be checked and returned to caller
 	 * 			if present.
@@ -866,8 +837,7 @@ public class Parser
 	 */
 
 	/**
-	 * @author Robert Schmidt added 10/12/2010.
-	 * 
+	 * @author 
 	 * Function that joins a String array by a delimiter.
 	 * 
 	 * @param stringArray
@@ -888,7 +858,7 @@ public class Parser
 	}
 
 	/**
-	 * @author Robert Schmidt added 10/4/2010.
+	 * @author 
 	 * readFileToArrayList reads a file and stores its contents in an array with 
 	 * each line in the file occupying a specific position in the array.
 	 * @param fileName
@@ -933,7 +903,7 @@ public class Parser
 	}
 
 	/**
-	 * @author Robert Schmidt added 10/4/2010.
+	 * @author 
 	 * This function reads a specified instruction file we have
 	 * formatted and it adds the data from the specified instruction
 	 * file into the public static InstructionArray. This allows us
@@ -1011,7 +981,7 @@ public class Parser
 	}
 
 	/**
-	 * @author Robert Schmidt added 10/4/2010.
+	 * @author
 	 * fillErrorArray is a function that reads a specified error file we have formatted
 	 * and it adds the data from the specified instruction file into
 	 * the public static ErrorArray. This allows us to easily check
@@ -1038,17 +1008,17 @@ public static void fillErrorArray(String fileName)
 	}
 }
 
-/**
- * @author Oscar Flores added 10/4/2010.
- * The function returnError returns an error whose position in the ErrorArray
- * corresponds to the number that we pass in as a parameter.
- * @param ErrorId
- *            The error id number associated with the error.
- *            
- * @return returnError
- * 			Returns an instance of the Error class object for the specified
- *         	error.
- */
+	/**
+	 * @author 
+	 * The function returnError returns an error whose position in the ErrorArray
+	 * corresponds to the number that we pass in as a parameter.
+	 * @param ErrorId
+	 *            The error id number associated with the error.
+	 *            
+	 * @return returnError
+	 * 			Returns an instance of the Error class object for the specified
+	 *         	error.
+	 */
 	public static Error returnError(int ErrorId) 
 	{
 		Error returnError = new Error();
@@ -1063,7 +1033,7 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Daniel Burnett add 10/6/2010.
+	 * @author
 	 * the function instructionExists checks the String parameter we pass in to 
 	 * see if it holds an instruction and returns a boolean accordingly.
 	 * @param instructionString
@@ -1086,8 +1056,7 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Rakaan Kayali added 10/11/2010.
-	 * 
+	 * @author 
 	 * The function returnInstructionViaOpcode returns the instruction extracted 
 	 * from the String parameter instructionString.
 	 * @param instructionString
@@ -1110,7 +1079,7 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Kermit Stearns added 10/11/2010.
+	 * @author 
 	 * The function isRegister checks to see if the parameter String represents a valid register
 	 * and returns a boolean accordingly.
 	 * @param operandString
@@ -1134,7 +1103,6 @@ public static void fillErrorArray(String fileName)
 	}
 	
 	/**
-	 * @author Daniel Burnett 10/11/2010.
 	 * Checks to see if an operand is a valid literal. If so, it is added to the literal table.
 	 * 
 	 * @param operandString
@@ -1168,7 +1136,6 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Robert Schmidt add 10/5/2010.
 	 * This function reads a specified directives file we have
 	 * formatted and it adds the data from the specified directives
 	 * file into the public static DirectivesArray. This allows us to
