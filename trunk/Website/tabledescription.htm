@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="NeoOffice 3.1.1  (Unix)">
+	<META NAME="CREATED" CONTENT="20101017;17211900">
+	<META NAME="CHANGED" CONTENT="20101017;20285300">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		TD P { margin-bottom: 0in }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR" bgcolor="#B3B3B3">
+<P STYLE="margin-bottom: 0in">Table Descriptions</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Symbol Table:</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">The symbol table is used to hold all of
+the symbols/labels encountered in the program. The layout is
+demonstrated below.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=25%>
+			<P>Symbol</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P>Address</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P>Substitution</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P>Use</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Symbol refers to the symbol or label
+encountered in the program. Address refers to the address the symbol
+occurs at, if applicable. Substitution refers to the value to be
+substituted for a symbol when it is encountered if the symbol is an
+EQU. Use refers to the usage of the symbol in the program. It can be
+a data label, referencing a memory location where the desired data is
+stored,  a program name, specifically referencing the name of the
+program (this only appears in the .start and .end directives), an
+EQU, referring to a substitution for a symbol, or an external,
+referring to an outside program that is also relevant. 
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Literal Table:</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">The literal table is very similar to
+the symbol table, except instead of holding symbolic values used
+within the program, it holds the literal values used within the
+program. The layout is demonstrated below.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>Literal</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Address</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Literal refers to the literal value
+being used in the program and address refers to the address where
+that literal is used. 
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Machine Operations Table:</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">The machine operations table is used to
+hold all of the instructions in the SAL560 language along with their
+opcodes, function codes, the acceptable operand types and the
+instruction type. This is read in to the assembler from a .txt file.
+The layout is demonstrated below.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=17%>
+			<P>Instruction</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>OP</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>OP extended</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>FC</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>Syntax</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>Type</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Instruction refers to the actual name
+of the instruction. OP is the two-digit hexadecimal operation-code.
+OP extended is that same operation-code extended out to 8 digits. FC
+is the function code, an additional code used by some instructions.
+Syntax is the syntax of the operands, that is, whether they should be
+registers, immediates or addresses. Type refers to the type of the
+instruction, either S-type, R-type, I-type or J-type.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Directives Table:</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Similar to the machine operations
+table, the directives table contains all of the directives in the
+SAL560 language along with their operand types (if any), their label
+requirements and their location in the program (either .text, .data,
+.start or .end). This table is read in to the assembler from a .txt
+file. The layout is demonstrated below.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=25%>
+			<P>Directive</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P>Operand</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P>Label Requirement</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P>Location</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Directive refers to the actual name of
+the directive. Operand refers the operand(s) that follow the
+directive, if applicable. Label Requirement refers to whether the
+directive requires a label, can optionally have a label or cannot
+have a label. Location refers to where in the program the directive
+will occur, either in the .data or .text section. Unless it is on of
+the special .start or .end directives, then it it will appear at the
+start or end of the program.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">Error Table:</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">The error table holds all of the errors
+that the assembler can throw based on the input program. Each error
+has a number, a message and a possible correction. This table is read
+in from a .txt file. The layout is demonstrated below.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=85*>
+	<COL WIDTH=85*>
+	<COL WIDTH=85*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=33%>
+			<P>Error Number</P>
+		</TD>
+		<TD WIDTH=33%>
+			<P>Message</P>
+		</TD>
+		<TD WIDTH=33%>
+			<P>Correction</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">The error number refers to a unique
+number that is associated with each error for the purpose of being
+able to look up errors. Message refers to the message that will be
+displayed when the error occurs. Correction refers to a possible
+suggestion for correcting the error.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+</BODY>
+</HTML>

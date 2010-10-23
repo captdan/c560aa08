@@ -102,11 +102,11 @@ public class Parser
 		}
 		else
 		{
-			linesOfCode = readFileToArrayList("src/SimpleInstructionTest.txt");
+			linesOfCode = readFileToArrayList("TestCode/altest01.txt");
 		}
 		
 		fillDirectivesArray("Directives.txt");
-		fillErrorArray("src/ErrorCodes.txt");
+		fillErrorArray("ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		
