@@ -1,0 +1,64 @@
+
+body 
+{
+	margin: 0 0 20px 0;
+	padding: 0; 
+	background: url('planks.jpg') repeat-y;
+	text-align: center;
+	font: normal 11px verdana;
+}
+
+#total
+{
+	margin: 0 auto;
+	WIDTH: 1200px;
+}
+
+#top
+{
+	Overflow: hidden;
+	text-align: center;
+	font-size: 180%;
+	margin: 10px 5px 5px 0;
+	Float: right;
+	WIDTH: 1200px;
+	HEIGHT: 154px;
+	background-image: url('tree_header.jpg');
+}
+
+#topspacer
+{
+	Overflow: hidden;
+    Float: left;
+    Height: 15px;
+	WIDTH: 337px;
+}
+
+#middle
+{
+    Float: left;
+	WIDTH: 1200px;
+}
+#midnav
+{
+	text-align:top;
+    Float: left;
+	WIDTH: 105px;
+}
+#midcontent
+{
+	text-align: center;
+    Float: left;
+	WIDTH: 1085px;
+	background-color: #f9f9f9;
+	border-style:solid solid none;
+	border-width:1px 1px 0pt;
+	border-color:#CCCCCC rgb(204, 204, 204);
+}
+
+#topnav
+{
+	Float: left;
+	WIDTH: 700px;
+	HEIGHT: 5px;
+}

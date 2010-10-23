@@ -1,0 +1,650 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 12">
+<link id=Main-File rel=Main-File href="../dednotparser.html">
+<link rel=File-List href=filelist.xml>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:.79in .79in .79in .79in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../dednotparser.html");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link=blue vlink=purple lang=en-US dir=LTR>
+
+<table border=0 cellpadding=0 cellspacing=0 width=997 style='border-collapse:
+ collapse;table-layout:fixed;width:747pt'>
+ <col class=xl67 width=163 style='mso-width-source:userset;mso-width-alt:5961;
+ width:122pt'>
+ <col class=xl67 width=79 style='mso-width-source:userset;mso-width-alt:2889;
+ width:59pt'>
+ <col class=xl67 width=112 style='mso-width-source:userset;mso-width-alt:4096;
+ width:84pt'>
+ <col class=xl67 width=232 style='mso-width-source:userset;mso-width-alt:8484;
+ width:174pt'>
+ <col class=xl67 width=267 style='mso-width-source:userset;mso-width-alt:9764;
+ width:200pt'>
+ <col class=xl67 width=144 style='mso-width-source:userset;mso-width-alt:5266;
+ width:108pt'>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl66 width=163 style='height:15.0pt;width:122pt'>Variable
+  Name</td>
+  <td class=xl66 width=79 style='border-left:none;width:59pt'>Class</td>
+  <td class=xl66 width=112 style='border-left:none;width:84pt'>Function</td>
+  <td class=xl66 width=232 style='border-left:none;width:174pt'>Purpose</td>
+  <td class=xl66 width=267 style='border-left:none;width:200pt'>Data Type</td>
+  <td class=xl66 width=144 style='border-left:none;width:108pt'>Range</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>originalLineOfCode</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  a line of code in its original form</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid line of code</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>comment</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  a comment from a line of code, if it contains a comment</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid comment</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instruction</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the instruction from a line of code, if it contains an instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>Instruction</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid instruction</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>directive</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  a directive from a line of code, if it contains a directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>Directive</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid directive</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>errors</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  any errors found with the line of code</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;Errors&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  error a line of code could have</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>lineOfCode</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  parameter to the constructor for CodeLine to specify the line of code to be
+  contained by the object</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid line of code</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>length</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>lineLength</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Used
+  to hold the length (in words of memory), while calculating a line of code.</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>int</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid length for a codeLine</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>intermediate</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>CodeLine</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>lineLength</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Used
+  to perform intermediate calculations in determining line length</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>double</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  value the comes up while calculating length</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>codeLocation</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Enum
+  that specifies the location of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>codeLocations</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  of the enum values of codeLocations</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>directiveName</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  string containing the name of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid directive name</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>labelType</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Enum
+  that specifies whether or not a directive requires, disallows, or has an
+  optional label.</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>labelTypes</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  of the enum values of labelTypes</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>operands</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>List
+  used to hold enum of the types of operands allowed by the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;operandTypes&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid list of the enum operandTypes for a directive</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>operandArray</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>List
+  containing any operands of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;Operand&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid list of operands</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>directiveNameValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor holding the name of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid directive name</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>labelTypeValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor holding the label type of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>labelTypes</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  enum labelTypes</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>codeLocationValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor holding the location of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>codeLocations</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  enum codeLocations</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>operandsValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Directive</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor holding the operands of the directive</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;operandTypes&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid list of enum operandTypes</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>number</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Error</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the number of the error</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>int</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid error number</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>message</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Error</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the message to be reported for the error</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid error message</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>correction</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Error</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  a possible correction for the error</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid error correction</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>num</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Error</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the error number</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>int</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid error number</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>mes</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Error</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the error message</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid error message</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>correctionValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Error</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the correction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid error correction</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>numberOfRegisters</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the number of registers the instruction uses</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>int</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid number of registers</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionBinary</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the binary representation of the instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid binary representation</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionHex</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the hex representation of the instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid hex representation</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>instructionExtended</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>&nbsp;</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>&nbsp;</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionExtendedHex</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the extended hex representation, if applicable</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid extended hex representation</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionExtendedBinary</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the extended binary representation, if applicable</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid extended binary representation</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>operandsArray</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the operands for the instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;Operand&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  list of valid operands</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>operands</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the possible operand types for the instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;operandTypes&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  list of valid operand types</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionType</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the type of the instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>instructionTypes</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid type of instruction</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid instruction</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionHexValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the instruction in hex</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid hex representation</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>instructionExtendedHexValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the extended hex, if applicable</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid extended hex representation</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>operandsValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Instruction</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing a list with the valid operand types for the
+  instruction</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;operandTypes&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  list of valid operand types</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>tableOfLiterals</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>LiteralTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  table to hold the literal values and their addresses for the class</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;String[]&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid combination of literal value and address</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>literal</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>LiteralTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addLiteral</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  parameter to addLiteral that contains the literal to be added to the table</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid literal value</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>addr</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>LiteralTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addLiteral</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  parameter to addLiteral that contains the address of the literal being added
+  to the table</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid address</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>temp</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>LiteralTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addLiteral</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  temporary array of the literal/address to be added to the table</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String[]</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid array/address pair</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>operand</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Operand</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Holds
+  the operand</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid operand</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>operandValue</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>Operand</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Constructor</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to the constructor containing the operand</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid operand</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>symb</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>Global</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>A
+  map to hold all of the symbols and the information associated with them</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>SortedMap&lt;String,
+  ArrayList&lt;Object&gt;&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid combination of symbol and information</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>label</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addSymbol</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to addSymbol containing the label to be added to the table</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>And
+  valid label</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>addr</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addSymbol</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to addSymbol containing the address of the symbol, if applicable</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid address</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>sub</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addSymbol</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to addSymbol containing the substitution for the symbol, if applicable</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid substitution</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>use</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addSymbol</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to addSymbol containing the use or type of the symbol</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>Uses</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid symbol usage</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>value</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>addSymbol</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Temporary
+  list to hold the information associated with the label to be added to the
+  table</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>ArrayList&lt;Object&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid combination of address, substitution and use.</td>
+ </tr>
+ <tr class=xl65 height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=163 style='height:36.0pt;border-top:none;
+  width:122pt'>label</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>getInfoFromSymbol</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to getInfoFromSymbol containing the symbol whose information is desired</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  label in the table</td>
+ </tr>
+ <tr class=xl65 height=32 style='height:24.0pt'>
+  <td height=32 class=xl68 width=163 style='height:24.0pt;border-top:none;
+  width:122pt'>label</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>isInTable</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Parameter
+  to isInTable containing the symbol to check the table for</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>String</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid label</td>
+ </tr>
+ <tr class=xl65 height=20 style='height:15.0pt'>
+  <td height=20 class=xl68 width=163 style='height:15.0pt;border-top:none;
+  width:122pt'>it</td>
+  <td class=xl68 width=79 style='border-top:none;border-left:none;width:59pt'>SymbolTable</td>
+  <td class=xl68 width=112 style='border-top:none;border-left:none;width:84pt'>prettyFerret</td>
+  <td class=xl68 width=232 style='border-top:none;border-left:none;width:174pt'>Iterator
+  for printing of the symbol table</td>
+  <td class=xl68 width=267 style='border-top:none;border-left:none;width:200pt'>Iterator&lt;Map.Entry&lt;String,
+  ArrayList&lt;Object&gt;&gt;&gt;</td>
+  <td class=xl68 width=144 style='border-top:none;border-left:none;width:108pt'>Any
+  valid iterator value.</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=163 style='width:122pt'></td>
+  <td width=79 style='width:59pt'></td>
+  <td width=112 style='width:84pt'></td>
+  <td width=232 style='width:174pt'></td>
+  <td width=267 style='width:200pt'></td>
+  <td width=144 style='width:108pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

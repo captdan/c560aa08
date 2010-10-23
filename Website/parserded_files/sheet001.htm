@@ -1,0 +1,1485 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 12">
+<link id=Main-File rel=Main-File href="../parserded.htm">
+<link rel=File-List href=filelist.xml>
+<title>Parser&nbsp;DED</title>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:1.0in .75in 1.0in .75in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../parserded.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link=blue vlink=purple>
+
+<table border=0 cellpadding=0 cellspacing=0 width=996 style='border-collapse:
+ collapse;table-layout:fixed;width:748pt'>
+ <col class=xl65 width=145 style='mso-width-source:userset;mso-width-alt:5302;
+ width:109pt'>
+ <col class=xl65 width=208 style='mso-width-source:userset;mso-width-alt:7606;
+ width:156pt'>
+ <col class=xl65 width=222 style='mso-width-source:userset;mso-width-alt:8118;
+ width:167pt'>
+ <col class=xl65 width=212 style='mso-width-source:userset;mso-width-alt:7753;
+ width:159pt'>
+ <col class=xl65 width=209 style='mso-width-source:userset;mso-width-alt:7643;
+ width:157pt'>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl66 width=145 style='height:15.0pt;width:109pt'>Variable
+  Name</td>
+  <td class=xl67 width=208 style='width:156pt'>Function</td>
+  <td class=xl67 width=222 style='width:167pt'>Purpose</td>
+  <td class=xl67 width=212 style='width:159pt'>Data Type</td>
+  <td class=xl67 width=209 style='width:157pt'>Range</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>InputString</td>
+  <td class=xl69 width=208 style='width:156pt'>removeWhiteSpace</td>
+  <td class=xl69 width=222 style='width:167pt'>to be returned to caller void of
+  all white space characters or tabs</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any string in the code being
+  read</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>instruction</td>
+  <td class=xl69 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>carries line of code from which
+  a possible symbol is to be retrieved</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>list of all possible instruction
+  in SAL560</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>symbolObj</td>
+  <td class=xl69 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>carries an instruction,
+  directive or null back to caller</td>
+  <td class=xl69 width=212 style='width:159pt'>object</td>
+  <td class=xl69 width=209 style='width:157pt'>all possible symbols and null</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>st</td>
+  <td class=xl69 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>parses string of code passed to
+  function by tab inorder to determine presence and type of symbol</td>
+  <td class=xl69 width=212 style='width:159pt'>StringTokenizer</td>
+  <td class=xl69 width=209 style='width:157pt'>all tokens extracted from
+  codeline after parsing by &quot; \t&quot;</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>comandMinusSymbol</td>
+  <td class=xl69 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to infer what type of
+  symbol first token from string of code is<span
+  style='mso-spacerun:yes'> </span></td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>all lines of code in the source
+  code excluding their first tokens</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>instructionWithOperands</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>passes into function the line of
+  code from which an instruction is to be extracted</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>all lines of code that may carry
+  an instruction</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl68 width=145 style='height:60.0pt;width:109pt'>instuctionObj</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>either returns null if no
+  instruction is present or returns the instruction together with its operands,
+  operand types, hexvalue, ext hex, binary and ext binary values.</td>
+  <td class=xl69 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl69 width=209 style='width:157pt'>all possible instructions of
+  SAL560 along with their associated operand numbers and types</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>st</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>parses string of code passed to
+  function by tab inorder to determine presence and type of symbol</td>
+  <td class=xl69 width=212 style='width:159pt'>StringTokenizer</td>
+  <td class=xl69 width=209 style='width:157pt'>all tokens extracted from
+  codeline after parsing by &quot; \t&quot;</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>instruction</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>carries first token of code line
+  which may be an instruction</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>all possible instructions of
+  SAL560<span style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>operandString</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>carries line of code minus
+  extracted instruction<span style='mso-spacerun:yes'> </span></td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>remaining strings of code after
+  instruction is extracted</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>operands</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl69 width=222 style='width:167pt'>splits the line of code minus
+  instruction by its commas i.e. loads the operands of line of code into a
+  string array</td>
+  <td class=xl69 width=212 style='width:159pt'>String []</td>
+  <td class=xl69 width=209 style='width:157pt'>any string array that carries
+  possible operands for instruction in the SAL560</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>stringArray</td>
+  <td class=xl69 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl69 width=222 style='width:167pt'>carries the strings that are to
+  be concatenated with the delimeter between them</td>
+  <td class=xl69 width=212 style='width:159pt'>String []</td>
+  <td class=xl69 width=209 style='width:157pt'>Any sequence of Strings that
+  needs concatenation with a certain separating delimeter</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>delimiter</td>
+  <td class=xl69 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the separating string
+  between the strings to be joined</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any string we want to serve as
+  seperation between an array of other strings</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>x</td>
+  <td class=xl69 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl69 width=222 style='width:167pt'>serves as a counter in the loop
+  wherein a string of array is concatenated with a separating delimeter</td>
+  <td class=xl69 width=212 style='width:159pt'>int</td>
+  <td class=xl69 width=209 style='width:157pt'>0&lt;x&lt;=stringArray.length</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>totalString</td>
+  <td class=xl69 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the elements of a string
+  array separated by a specified delimeter</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any string that is the
+  combination of an array of strings separated by a common delimeter</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>fileName</td>
+  <td class=xl69 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl69 width=222 style='width:167pt'>contains name of file to be read
+  from</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>linesOfCode</td>
+  <td class=xl69 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl69 width=222 style='width:167pt'>carries the lines read from the
+  input file; each line is stored in a separate position in the array.</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>any ArrayList containing strings
+  read from an input file</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>fileInputStream</td>
+  <td class=xl69 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl69 width=222 style='width:167pt'>used for reading streams of raw
+  bytes from our input file</td>
+  <td class=xl69 width=212 style='width:159pt'>FileInputStream</td>
+  <td class=xl69 width=209 style='width:157pt'>any FileInputStream type</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>dataInputStream</td>
+  <td class=xl69 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl69 width=222 style='width:167pt'>A data input stream lets an
+  application read primitive Java data types from an underlying input stream in
+  a machine-independent way</td>
+  <td class=xl69 width=212 style='width:159pt'>DataInputStream</td>
+  <td class=xl69 width=209 style='width:157pt'>any DataInputStream type</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>buffer</td>
+  <td class=xl69 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl69 width=222 style='width:167pt'>Reads text from a
+  character-input stream, buffering characters so as to provide for the
+  efficient reading of characters, arrays, and lines.</td>
+  <td class=xl69 width=212 style='width:159pt'>BufferReader</td>
+  <td class=xl69 width=209 style='width:157pt'>any BufferReader type</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>lineOfCode</td>
+  <td class=xl69 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the individual lines as
+  they are being read from the input file and passed into the array of
+  linesOfCode</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any line of code read from the
+  input file</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>fileName</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>contains name of file that holds
+  instruction names</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>linesOfInstruction</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>carries the lines read from the
+  instruction file; each line is stored in a separate position in the array.</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>any array carrying the contents
+  of the instruction file, each line in a separate position</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>lineOfInstruction</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>carries the line of instruction
+  to be analysize to see what type of instuction and how many operands it has</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any line read from the
+  Instruction file</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl68 width=145 style='height:60.0pt;width:109pt'>variables</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the pieces of the line of
+  instruction data after having been split by &quot; \t&quot;, each piece in a
+  separate position in the String array, provides easy access to lines
+  components</td>
+  <td class=xl69 width=212 style='width:159pt'>String []</td>
+  <td class=xl69 width=209 style='width:157pt'>line in instructions file
+  segmented by &quot;\t&quot; and loaded into a String array.</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>instructionType</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the type of instruction
+  that is read from the instruction file.</td>
+  <td class=xl69 width=212 style='width:159pt'>Instruction.instructionTypes</td>
+  <td class=xl69 width=209 style='width:157pt'>&quot;IMMEDIATE&quot;,
+  &quot;REGISTER&quot; OR &quot;SIGNED&quot;</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>operands</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>splits the operands section of
+  the line of code by &quot;,&quot; i.e. loads the operands into a String array
+  to be accessed later inorder to determine their type</td>
+  <td class=xl69 width=212 style='width:159pt'>String []</td>
+  <td class=xl69 width=209 style='width:157pt'>REG, IMM, BIT, BITS, ADDR loaded
+  into a String array</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>operandArray</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the operands extracted
+  from the instruction file</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;Instruction.operandTypes&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>REGISTER, IMMEDIATE, BIT, BITS,
+  ADDRESS Loaded into an Array list</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>instruction</td>
+  <td class=xl69 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds each instruction extracted
+  from the instruction file together with its hex value, extended hex value,
+  operand values and instruction types</td>
+  <td class=xl69 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl69 width=209 style='width:157pt'>all possible instruction in the
+  SAL560 along with its associated data</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>fileName</td>
+  <td class=xl69 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl69 width=222 style='width:167pt'>contains name of file that holds
+  error lines</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>linesOfError</td>
+  <td class=xl69 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl69 width=222 style='width:167pt'>an ArrayList that carries the
+  lines read from the error file, each line is stored in a separate position in
+  the ArrayList</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>any array carrying the contents
+  of the error file, each line in a separate position of the array</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>lineOfError</td>
+  <td class=xl69 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl69 width=222 style='width:167pt'>carries an individual line read
+  from the error file to be analyzed and possibly added to our list of errors</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any String in the linesOfError
+  array</td>
+ </tr>
+ <tr height=53 style='mso-height-source:userset;height:39.75pt'>
+  <td height=53 class=xl68 width=145 style='height:39.75pt;width:109pt'>variables</td>
+  <td class=xl69 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds portions of lineOfError
+  that is split based on the &quot;\t&quot; character, loaded into an array of
+  String</td>
+  <td class=xl69 width=212 style='width:159pt'>String []</td>
+  <td class=xl69 width=209 style='width:157pt'>any String containing the
+  contents of line in the error file split by the &quot;\t&quot; character</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl68 width=145 style='height:60.0pt;width:109pt'>error</td>
+  <td class=xl69 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl69 width=222 style='width:167pt'>creates an error object based on
+  the information extracted from a particular line in the error file.</td>
+  <td class=xl69 width=212 style='width:159pt'>Error</td>
+  <td class=xl69 width=209 style='width:157pt'>any object containing a number
+  representing the number of the error and a string that holds the message to
+  be printed when the error occurs</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>ErrorId</td>
+  <td class=xl69 width=208 style='width:156pt'>returnError</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to identify the error to be
+  returned<span style='mso-spacerun:yes'> </span></td>
+  <td class=xl69 width=212 style='width:159pt'>int</td>
+  <td class=xl69 width=209 style='width:157pt'>0&lt;=ErrorId&lt;ErrorArray.length</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>returnError</td>
+  <td class=xl69 width=208 style='width:156pt'>returnError</td>
+  <td class=xl69 width=222 style='width:167pt'>An Error object from ErrorArray
+  with an error number that is equal to ErrorId, which is returned to caller of
+  function returnError.</td>
+  <td class=xl69 width=212 style='width:159pt'>Error</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Error in the ErrorArray</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>error</td>
+  <td class=xl69 width=208 style='width:156pt'>returnError</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to search through the
+  ErrorArray for an Error with a matching number as<span
+  style='mso-spacerun:yes'>  </span>ErrorId at which point Error is set to
+  returnError.</td>
+  <td class=xl69 width=212 style='width:159pt'>Error</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Error in the ErrorArray</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>instructionString</td>
+  <td class=xl69 width=208 style='width:156pt'>instructionExists</td>
+  <td class=xl69 width=222 style='width:167pt'>String that is to be checked to
+  see whether it is an instruction or not.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any String that needs to be
+  check for instructions</td>
+ </tr>
+ <tr height=60 style='mso-height-source:userset;height:45.0pt'>
+  <td height=60 class=xl68 width=145 style='height:45.0pt;width:109pt'>instructionExists</td>
+  <td class=xl69 width=208 style='width:156pt'>instructionExists</td>
+  <td class=xl69 width=222 style='width:167pt'>Tells us whether a string
+  contains an instruction (instructionExists=true) or doesn’t
+  (instructionExists = false).</td>
+  <td class=xl69 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl69 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>instruction</td>
+  <td class=xl69 width=208 style='width:156pt'>instructionExists</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to search through the
+  InstructionArray to see whether the String of code passed is an instruction .</td>
+  <td class=xl69 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl69 width=209 style='width:157pt'>Any instruction in the
+  instructionArray</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>instructionString</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstructionViaOpcode</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to search for an
+  instruction object to be returned.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any instruction in the
+  instructionArray</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>instruction</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstructionViaOpcode</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to search through the
+  InstructionArray to see whether the String passed matches an instruction in
+  the instruction array.</td>
+  <td class=xl69 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl69 width=209 style='width:157pt'>Any instruction in the
+  instructionArray</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>returnInstruction</td>
+  <td class=xl69 width=208 style='width:156pt'>returnInstructionViaOpcode</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to return the instruction
+  object that has a name that is equal to the instructionString that was passed
+  into the function.</td>
+  <td class=xl69 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl69 width=209 style='width:157pt'>Any instruction object with a
+  name that is in the instructionArray.</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>operandString</td>
+  <td class=xl69 width=208 style='width:156pt'>isRegister</td>
+  <td class=xl69 width=222 style='width:167pt'>is the string that we are
+  checking to see if it is a register or not.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any string that we want to check
+  if it’s a register</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>isRegister</td>
+  <td class=xl69 width=208 style='width:156pt'>isRegister</td>
+  <td class=xl69 width=222 style='width:167pt'>tells us whether the String we
+  passed in represents a register or not.</td>
+  <td class=xl69 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl69 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>registerNumber</td>
+  <td class=xl69 width=208 style='width:156pt'>isRegister</td>
+  <td class=xl69 width=222 style='width:167pt'>represents the number of the
+  register.</td>
+  <td class=xl69 width=212 style='width:159pt'>int</td>
+  <td class=xl69 width=209 style='width:157pt'>0&lt;=registerNumber&lt;8</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>operandString</td>
+  <td class=xl69 width=208 style='width:156pt'>isLiteral</td>
+  <td class=xl69 width=222 style='width:167pt'>String to be check if it’s a
+  literal.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any String that we want to check
+  to see if it represents a literal or not</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>isLiteral</td>
+  <td class=xl69 width=208 style='width:156pt'>isLiteral</td>
+  <td class=xl69 width=222 style='width:167pt'>Boolean to tell us if the
+  parameter passed is a literal (isLiteral = true) or not (isLiteral = false),
+  this boolean is then returned to the caller.</td>
+  <td class=xl69 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl69 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>fileName</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Contains the name of the file
+  that we want to extract directives from.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>linesOfInstruction</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Contains the lines of
+  instruction read from the Directives file. These lines are stored in an
+  ArrayList with each line in a separate position in the Array.</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>Any arraylist containing the
+  lines of instruction read from the directives file.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>lineOfInstruction</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to go through the
+  &quot;linesOfInstuction&quot; array and analyze each line.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any line in the
+  &quot;linesOfInstruction&quot; array list.</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl68 width=145 style='height:60.0pt;width:109pt'>variables</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>An array resulting from
+  splitting a line of instruction read from the directives file by
+  &quot;\t&quot;. This array is then used to analyze the various components of
+  each line.</td>
+  <td class=xl69 width=212 style='width:159pt'>String[]</td>
+  <td class=xl69 width=209 style='width:157pt'>Any array containing an
+  instruction line from the directives file without the &quot;\t&quot;
+  character</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>codeLocation</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Stores the code location of the
+  directive extracted from the line of instruction read from the directives
+  file.</td>
+  <td class=xl69 width=212 style='width:159pt'>Directive.codeLocation</td>
+  <td class=xl69 width=209 style='width:157pt'>DATA, TEXT, INFO, START,
+  END,<span style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>labelType</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Stores the labelType of the
+  directive extracted from the line of instruction read from the directives
+  file.</td>
+  <td class=xl69 width=212 style='width:159pt'>Directive.labelTypes</td>
+  <td class=xl69 width=209 style='width:157pt'>OPTIONALLABEL, REQUIREDLABEL,
+  NOLABEL</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>operands</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>holds the operands in the read
+  directive. Obtained by splitting string of operands by comma and loading
+  parts into the String array.</td>
+  <td class=xl69 width=212 style='width:159pt'>String[]</td>
+  <td class=xl69 width=209 style='width:157pt'>An array of BIN, HEX, STR,
+  LABEL, NUM.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>operandArray</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the name of the operands
+  found in the directives' line of instructions.</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;Directive.operandTypes&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>An array of BINARY, HEX, STRING,
+  LABEL, NUMBER.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>operand</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>Used to go through the
+  &quot;operands&quot; array and the full word of each type to the
+  &quot;operandArray&quot;.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Can be any of BIN, HEX, STR,
+  LABEL or NUM.</td>
+ </tr>
+ <tr height=96 style='height:72.0pt'>
+  <td height=96 class=xl68 width=145 style='height:72.0pt;width:109pt'>directive</td>
+  <td class=xl69 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl69 width=222 style='width:167pt'>The result of a directive object
+  construction using the information gathered from the line of directive
+  gathered from the directives file. This object is then added to the
+  DirectivesArray.</td>
+  <td class=xl69 width=212 style='width:159pt'>Directive</td>
+  <td class=xl69 width=209 style='width:157pt'>Any valid directive in the
+  SAL560.</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl68 width=145 style='height:48.0pt;width:109pt'>directiveObj</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>This variable is assigned a new
+  Directive object so that it can be returned with its Directive objects
+  filled.</td>
+  <td class=xl69 width=212 style='width:159pt'>Directive</td>
+  <td class=xl69 width=209 style='width:157pt'>Any valid Directive object</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>st</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>This variable is a string
+  tokenizer that removes the tokens from the code string object</td>
+  <td class=xl69 width=212 style='width:159pt'>StringTokenizer</td>
+  <td class=xl69 width=209 style='width:157pt'>Valid StringObject</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>codeString</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>This variable is a parameter in
+  the returnDirective that is a single line string that contains one line of
+  code.</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>One line of text with any
+  characters except the new line character</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl68 width=145 style='height:60.0pt;width:109pt'>addErrors</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>This variable is a parameter in
+  the returnDirective that is holds a boolean value that determines if Errors
+  are to be added or not to the currentErrorArray object.</td>
+  <td class=xl69 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl69 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>possibleDirective</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the first token from the
+  StringTokenizer of the codeString object</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any string without whitespace.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>directive</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds a temporary Directive
+  object that goes through evey object in the DirectivesArray</td>
+  <td class=xl69 width=212 style='width:159pt'>Directive</td>
+  <td class=xl69 width=209 style='width:157pt'>Any valid Directive Object</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>operandString</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>This hold a concatenated string
+  of the operands</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any String</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>operands</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>This holds a String Array with
+  each operand as a separate string in the array</td>
+  <td class=xl69 width=212 style='width:159pt'>String[]</td>
+  <td class=xl69 width=209 style='width:157pt'>Any String, with up to four
+  strings.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>x</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds a temporary number value
+  for the for statement when looping through the operands String array.</td>
+  <td class=xl69 width=212 style='width:159pt'>int</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Integer</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>specialDirectives</td>
+  <td class=xl69 width=208 style='width:156pt'>returnDirective</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds a String Array that
+  contains the possible directive split by a comma.<span
+  style='mso-spacerun:yes'> </span></td>
+  <td class=xl69 width=212 style='width:159pt'>String[]</td>
+  <td class=xl69 width=209 style='width:157pt'>Any String</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>addValues</td>
+  <td class=xl69 width=208 style='width:156pt'>addToPC</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds a number value that is
+  added to the PC</td>
+  <td class=xl69 width=212 style='width:159pt'>int</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Integer below or equal to
+  65536</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>cl</td>
+  <td class=xl69 width=208 style='width:156pt'>checkSymbolsAndSpecialDirectives</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds a CodeLine object that is
+  used to check the directives and symbols.</td>
+  <td class=xl69 width=212 style='width:159pt'>CodeLine</td>
+  <td class=xl69 width=209 style='width:157pt'>Any CodeLine Object</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>args</td>
+  <td class=xl69 width=208 style='width:156pt'>main</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the input arguments that
+  are used to start the program</td>
+  <td class=xl69 width=212 style='width:159pt'>String[]</td>
+  <td class=xl69 width=209 style='width:157pt'>any string array that carries
+  possible operands for instruction in the SAL560</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>linesOfCode</td>
+  <td class=xl69 width=208 style='width:156pt'>main</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the String Array of the
+  input files contents</td>
+  <td class=xl69 width=212 style='width:159pt'>String[]</td>
+  <td class=xl69 width=209 style='width:157pt'>Any String Array</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>lineOfCode</td>
+  <td class=xl69 width=208 style='width:156pt'>main</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds a temporary line of code
+  from the input file</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any possible String<span
+  style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>execStart</td>
+  <td class=xl69 width=208 style='width:156pt'>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the int starting position
+  of the execStart</td>
+  <td class=xl69 width=212 style='width:159pt'>Integer</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Integer below or equal to
+  65536</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>PC</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the counter of the current
+  memory location in the code</td>
+  <td class=xl69 width=212 style='width:159pt'>Integer</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Integer below or equal to
+  65536</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>maxPC</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the maximum PC number
+  possible</td>
+  <td class=xl69 width=212 style='width:159pt'>Integer</td>
+  <td class=xl70>65536</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>currentErrorArray</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the current CodeLine's
+  Errors in an ArrayList&lt;Error&gt;</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;Error&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Error in the ErrorArray</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl68 width=145 style='height:60.0pt;width:109pt'>SymbTable</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds all the symbols of the
+  symbol table</td>
+  <td class=xl69 width=212 style='width:159pt'>SymbolTable</td>
+  <td class=xl69 width=209 style='width:157pt'>An Object formated with Three
+  String with any value and an Enum with the possible values of DATA_LABEL,
+  PROGRAM_NAME, EXTERNAL, EQU</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>ErrorArray</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds all the Errors in the
+  Error text file via an ArrayList of Error</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;Error&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>Any possible Error Object, as
+  many times as possible</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>InstructionsArray</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds all the instructions that
+  are in the text file via an ArrayList of Instruction</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;Instruction&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>Any possible Instruction object
+  as many times as possible</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl68 width=145 style='height:36.0pt;width:109pt'>DirectivesArray</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds all the directives that
+  are in the directives text file via an ArrayList of Directive</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;Directive&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>Any possible Directive object as
+  many times as possible</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>CodeLineArray</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds all the code line objects
+  that are created</td>
+  <td class=xl69 width=212 style='width:159pt'>ArrayList&lt;CodeLine&gt;</td>
+  <td class=xl69 width=209 style='width:157pt'>Any possible CodeLine Object as
+  many times as possible</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>codeLocation</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the current code location
+  in a codeLocations Enum</td>
+  <td class=xl69 width=212 style='width:159pt'>Directive.codeLocations</td>
+  <td class=xl69 width=209 style='width:157pt'>Any possible object in the
+  CodeLocation Enum: START, END, DATA, TEXT, INFO</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>endProgram</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the boolean value if the
+  program has ended</td>
+  <td class=xl69 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl69 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>programName</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the Program Name</td>
+  <td class=xl69 width=212 style='width:159pt'>String</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Valid Program Name in the
+  SAL 560 Program Language</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>startingLocation</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds the location of the
+  starting location in memory for the program</td>
+  <td class=xl69 width=212 style='width:159pt'>Integer</td>
+  <td class=xl69 width=209 style='width:157pt'>Any Integer below or equal to
+  65536</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>litTable</td>
+  <td class=xl70>&nbsp;</td>
+  <td class=xl69 width=222 style='width:167pt'>Holds all the literals used in
+  the program being assembled</td>
+  <td class=xl69 width=212 style='width:159pt'>LiteralTable</td>
+  <td class=xl69 width=209 style='width:157pt'>Any valid Literal Table Object.</td>
+ </tr>
+ <tr height=65 style='height:48.75pt'>
+  <td height=65 class=xl68 width=145 style='height:48.75pt;width:109pt'>op1</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>1st Operand in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl72 width=209 style='width:157pt'>String representation of any
+  Integer &lt;= 65536 or any previously equated label representing an integer
+  &lt;= 65536</td>
+ </tr>
+ <tr height=65 style='height:48.75pt'>
+  <td height=65 class=xl68 width=145 style='height:48.75pt;width:109pt'>op2</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>2nd Operand in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl72 width=209 style='width:157pt'>String representation of any
+  Integer &lt;= 65536 or any previously equated label representing an integer
+  &lt;= 65536</td>
+ </tr>
+ <tr height=65 style='height:48.75pt'>
+  <td height=65 class=xl68 width=145 style='height:48.75pt;width:109pt'>op3</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>3rd Operand in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl72 width=209 style='width:157pt'>String representation of any
+  Integer &lt;= 65536 or any previously equated label representing an integer
+  &lt;= 65536</td>
+ </tr>
+ <tr height=65 style='height:48.75pt'>
+  <td height=65 class=xl68 width=145 style='height:48.75pt;width:109pt'>op4</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>4th Operand in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl72 width=209 style='width:157pt'>String representation of any
+  Integer &lt;= 65536 or any previously equated label representing an integer
+  &lt;= 65536</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>symb1</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>1st Symbol in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl71>&quot;+&quot; or &quot;-&quot; or &quot;*&quot;</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>symb2</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>2nd Symbol in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl71>&quot;+&quot; or &quot;-&quot; or &quot;*&quot;</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>symb3</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>3rd Symbol in the expression
+  being evaluated.</td>
+  <td class=xl71>String</td>
+  <td class=xl71>&quot;+&quot; or &quot;-&quot; or &quot;*&quot;</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl68 width=145 style='height:15.0pt;width:109pt'>result</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>Integer result of the evaluated
+  expression</td>
+  <td class=xl71>int</td>
+  <td class=xl71>Any integer &lt;= 65536</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl68 width=145 style='height:30.0pt;width:109pt'>expressionTokenizer</td>
+  <td class=xl71>evaluateExpression</td>
+  <td class=xl72 width=222 style='width:167pt'>String tokenizer for expression
+  based on &quot;+&quot; or &quot;-&quot;</td>
+  <td class=xl71>StringTokenizer</td>
+  <td class=xl72 width=209 style='width:157pt'>All tokens of the expression
+  including the operands the the operation symbols.</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>InputString</td>
+  <td class=xl74 width=208 style='width:156pt'>removeWhiteSpace</td>
+  <td class=xl74 width=222 style='width:167pt'>to be returned to caller void of
+  all white space characters or tabs</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any string in the code being
+  read</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>instruction</td>
+  <td class=xl74 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>carries line of code from which
+  a possible symbol is to be retrieved</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>list of all possible instruction
+  in SAL560</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>symbolObj</td>
+  <td class=xl74 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>carries an instruction,
+  directive or null back to caller</td>
+  <td class=xl74 width=212 style='width:159pt'>object</td>
+  <td class=xl74 width=209 style='width:157pt'>all possible symbols and null</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>st</td>
+  <td class=xl74 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>parses string of code passed to
+  function by tab inorder to determine presence and type of symbol</td>
+  <td class=xl74 width=212 style='width:159pt'>StringTokenizer</td>
+  <td class=xl74 width=209 style='width:157pt'>all tokens extracted from
+  codeline after parsing by &quot; \t&quot;</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>comandMinusSymbol</td>
+  <td class=xl74 width=208 style='width:156pt'>returnSymbolInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to infer what type of
+  symbol first token from string of code is<span
+  style='mso-spacerun:yes'> </span></td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>all lines of code in the source
+  code excluding their first tokens</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>instructionWithOperands</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>passes into function the line of
+  code from which an instruction is to be extracted</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>all lines of code that may carry
+  an instruction</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl73 width=145 style='height:60.0pt;width:109pt'>instuctionObj</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>either returns null if no
+  instruction is present or returns the instruction together with its operands,
+  operand types, hexvalue, ext hex, binary and ext binary values.</td>
+  <td class=xl74 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl74 width=209 style='width:157pt'>all possible instructions of
+  SAL560 along with their associated operand numbers and types</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>st</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>parses string of code passed to
+  function by tab inorder to determine presence and type of symbol</td>
+  <td class=xl74 width=212 style='width:159pt'>StringTokenizer</td>
+  <td class=xl74 width=209 style='width:157pt'>all tokens extracted from
+  codeline after parsing by &quot; \t&quot;</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>instruction</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>carries first token of code line
+  which may be an instruction</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>all possible instructions of
+  SAL560<span style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>operandString</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>carries line of code minus
+  extracted instruction<span style='mso-spacerun:yes'> </span></td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>remaining strings of code after
+  instruction is extracted</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>operands</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstruction</td>
+  <td class=xl74 width=222 style='width:167pt'>splits the line of code minus
+  instruction by its commas i.e. loads the operands of line of code into a
+  string array</td>
+  <td class=xl74 width=212 style='width:159pt'>String []</td>
+  <td class=xl74 width=209 style='width:157pt'>any string array that carries
+  possible operands for instruction in the SAL560</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>stringArray</td>
+  <td class=xl74 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl74 width=222 style='width:167pt'>carries the strings that are to
+  be concatenated with the delimeter between them</td>
+  <td class=xl74 width=212 style='width:159pt'>String []</td>
+  <td class=xl74 width=209 style='width:157pt'>Any sequence of Strings that
+  needs concatenation with a certain separating delimeter</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>delimiter</td>
+  <td class=xl74 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the separating string
+  between the strings to be joined</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any string we want to serve as
+  seperation between an array of other strings</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>x</td>
+  <td class=xl74 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl74 width=222 style='width:167pt'>serves as a counter in the loop
+  wherein a string of array is concatenated with a separating delimeter</td>
+  <td class=xl74 width=212 style='width:159pt'>int</td>
+  <td class=xl74 width=209 style='width:157pt'>0&lt;x&lt;=stringArray.length</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>totalString</td>
+  <td class=xl74 width=208 style='width:156pt'>joinStringArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the elements of a string
+  array separated by a specified delimeter</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any string that is the
+  combination of an array of strings separated by a common delimeter</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>fileName</td>
+  <td class=xl74 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl74 width=222 style='width:167pt'>contains name of file to be read
+  from</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>linesOfCode</td>
+  <td class=xl74 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl74 width=222 style='width:167pt'>carries the lines read from the
+  input file; each line is stored in a separate position in the array.</td>
+  <td class=xl74 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl74 width=209 style='width:157pt'>any ArrayList containing strings
+  read from an input file</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>fileInputStream</td>
+  <td class=xl74 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl74 width=222 style='width:167pt'>used for reading streams of raw
+  bytes from our input file</td>
+  <td class=xl74 width=212 style='width:159pt'>FileInputStream</td>
+  <td class=xl74 width=209 style='width:157pt'>any FileInputStream type</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>dataInputStream</td>
+  <td class=xl74 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl74 width=222 style='width:167pt'>A data input stream lets an
+  application read primitive Java data types from an underlying input stream in
+  a machine-independent way</td>
+  <td class=xl74 width=212 style='width:159pt'>DataInputStream</td>
+  <td class=xl74 width=209 style='width:157pt'>any DataInputStream type</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>buffer</td>
+  <td class=xl74 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl74 width=222 style='width:167pt'>Reads text from a
+  character-input stream, buffering characters so as to provide for the
+  efficient reading of characters, arrays, and lines.</td>
+  <td class=xl74 width=212 style='width:159pt'>BufferReader</td>
+  <td class=xl74 width=209 style='width:157pt'>any BufferReader type</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>lineOfCode</td>
+  <td class=xl74 width=208 style='width:156pt'>readFileToArrayList</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the individual lines as
+  they are being read from the input file and passed into the array of
+  linesOfCode</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any line of code read from the
+  input file</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>fileName</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>contains name of file that holds
+  instruction names</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>linesOfInstruction</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>carries the lines read from the
+  instruction file; each line is stored in a separate position in the array.</td>
+  <td class=xl74 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl74 width=209 style='width:157pt'>any array carrying the contents
+  of the instruction file, each line in a separate position</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>lineOfInstruction</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>carries the line of instruction
+  to be analysize to see what type of instuction and how many operands it has</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any line read from the
+  Instruction file</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl73 width=145 style='height:60.0pt;width:109pt'>variables</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the pieces of the line of
+  instruction data after having been split by &quot; \t&quot;, each piece in a
+  separate position in the String array, provides easy access to lines
+  components</td>
+  <td class=xl74 width=212 style='width:159pt'>String []</td>
+  <td class=xl74 width=209 style='width:157pt'>line in instructions file
+  segmented by &quot;\t&quot; and loaded into a String array.</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>instructionType</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the type of instruction
+  that is read from the instruction file.</td>
+  <td class=xl74 width=212 style='width:159pt'>Instruction.instructionTypes</td>
+  <td class=xl74 width=209 style='width:157pt'>&quot;IMMEDIATE&quot;,
+  &quot;REGISTER&quot; OR &quot;SIGNED&quot;</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>operands</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>splits the operands section of
+  the line of code by &quot;,&quot; i.e. loads the operands into a String array
+  to be accessed later inorder to determine their type</td>
+  <td class=xl74 width=212 style='width:159pt'>String []</td>
+  <td class=xl74 width=209 style='width:157pt'>REG, IMM, BIT, BITS, ADDR loaded
+  into a String array</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>operandArray</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the operands extracted
+  from the instruction file</td>
+  <td class=xl74 width=212 style='width:159pt'>ArrayList&lt;Instruction.operandTypes&gt;</td>
+  <td class=xl74 width=209 style='width:157pt'>REGISTER, IMMEDIATE, BIT, BITS,
+  ADDRESS Loaded into an Array list</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>instruction</td>
+  <td class=xl74 width=208 style='width:156pt'>fillInstructionsArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds each instruction extracted
+  from the instruction file together with its hex value, extended hex value,
+  operand values and instruction types</td>
+  <td class=xl74 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl74 width=209 style='width:157pt'>all possible instruction in the
+  SAL560 along with its associated data</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>fileName</td>
+  <td class=xl74 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl74 width=222 style='width:167pt'>contains name of file that holds
+  error lines</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>linesOfError</td>
+  <td class=xl74 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl74 width=222 style='width:167pt'>an ArrayList that carries the
+  lines read from the error file, each line is stored in a separate position in
+  the ArrayList</td>
+  <td class=xl74 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl74 width=209 style='width:157pt'>any array carrying the contents
+  of the error file, each line in a separate position of the array</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>lineOfError</td>
+  <td class=xl74 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl74 width=222 style='width:167pt'>carries an individual line read
+  from the error file to be analyzed and possibly added to our list of errors</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any String in the linesOfError
+  array</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>variables</td>
+  <td class=xl74 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds portions of lineOfError
+  that is split based on the &quot;\t&quot; character, loaded into an array of
+  String</td>
+  <td class=xl74 width=212 style='width:159pt'>String []</td>
+  <td class=xl74 width=209 style='width:157pt'>any String containing the
+  contents of line in the error file split by the &quot;\t&quot; character</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl73 width=145 style='height:60.0pt;width:109pt'>error</td>
+  <td class=xl74 width=208 style='width:156pt'>fillErrorArray</td>
+  <td class=xl74 width=222 style='width:167pt'>creates an error object based on
+  the information extracted from a particular line in the error file.</td>
+  <td class=xl74 width=212 style='width:159pt'>Error</td>
+  <td class=xl74 width=209 style='width:157pt'>any object containing a number
+  representing the number of the error and a string that holds the message to
+  be printed when the error occurs</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>ErrorId</td>
+  <td class=xl74 width=208 style='width:156pt'>returnError</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to identify the error to be
+  returned<span style='mso-spacerun:yes'> </span></td>
+  <td class=xl74 width=212 style='width:159pt'>int</td>
+  <td class=xl74 width=209 style='width:157pt'>0&lt;=ErrorId&lt;ErrorArray.length</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>returnError</td>
+  <td class=xl74 width=208 style='width:156pt'>returnError</td>
+  <td class=xl74 width=222 style='width:167pt'>An Error object from ErrorArray
+  with an error number that is equal to ErrorId, which is returned to caller of
+  function returnError.</td>
+  <td class=xl74 width=212 style='width:159pt'>Error</td>
+  <td class=xl74 width=209 style='width:157pt'>Any Error in the ErrorArray</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>error</td>
+  <td class=xl74 width=208 style='width:156pt'>returnError</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to search through the
+  ErrorArray for an Error with a matching number as<span
+  style='mso-spacerun:yes'>  </span>ErrorId at which point Error is set to
+  returnError.</td>
+  <td class=xl74 width=212 style='width:159pt'>Error</td>
+  <td class=xl74 width=209 style='width:157pt'>Any Error in the ErrorArray</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl73 width=145 style='height:24.0pt;width:109pt'>instructionString</td>
+  <td class=xl74 width=208 style='width:156pt'>instructionExists</td>
+  <td class=xl74 width=222 style='width:167pt'>String that is to be checked to
+  see whether it is an instruction or not.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>Any String that needs to be
+  check for instructions</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>instructionExists</td>
+  <td class=xl74 width=208 style='width:156pt'>instructionExists</td>
+  <td class=xl74 width=222 style='width:167pt'>Tells us whether a string
+  contains an instruction (instructionExists=true) or doesn’t
+  (instructionExists = false).</td>
+  <td class=xl74 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl74 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>instruction</td>
+  <td class=xl74 width=208 style='width:156pt'>instructionExists</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to search through the
+  InstructionArray to see whether the String of code passed is an instruction .</td>
+  <td class=xl74 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl74 width=209 style='width:157pt'>Any instruction in the
+  instructionArray</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>instructionString</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstructionViaOpcode</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to search for an
+  instruction object to be returned.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>Any instruction in the
+  instructionArray</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>instruction</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstructionViaOpcode</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to search through the
+  InstructionArray to see whether the String passed matches an instruction in
+  the instruction array.</td>
+  <td class=xl74 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl74 width=209 style='width:157pt'>Any instruction in the
+  instructionArray</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>returnInstruction</td>
+  <td class=xl74 width=208 style='width:156pt'>returnInstructionViaOpcode</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to return the instruction
+  object that has a name that is equal to the instructionString that was passed
+  into the function.</td>
+  <td class=xl74 width=212 style='width:159pt'>Instruction</td>
+  <td class=xl74 width=209 style='width:157pt'>Any instruction object with a
+  name that is in the instructionArray.</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>operandString</td>
+  <td class=xl74 width=208 style='width:156pt'>isRegister</td>
+  <td class=xl74 width=222 style='width:167pt'>is the string that we are
+  checking to see if it is a register or not.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>Any string that we want to check
+  if it’s a register</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>isRegister</td>
+  <td class=xl74 width=208 style='width:156pt'>isRegister</td>
+  <td class=xl74 width=222 style='width:167pt'>tells us whether the String we
+  passed in represents a register or not.</td>
+  <td class=xl74 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl74 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 class=xl73 width=145 style='height:15.0pt;width:109pt'>registerNumber</td>
+  <td class=xl74 width=208 style='width:156pt'>isRegister</td>
+  <td class=xl74 width=222 style='width:167pt'>represents the number of the
+  register.</td>
+  <td class=xl74 width=212 style='width:159pt'>int</td>
+  <td class=xl74 width=209 style='width:157pt'>0&lt;=registerNumber&lt;8</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>operandString</td>
+  <td class=xl74 width=208 style='width:156pt'>isLiteral</td>
+  <td class=xl74 width=222 style='width:167pt'>String to be check if it’s a
+  literal.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>Any String that we want to check
+  to see if it represents a literal or not</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>isLiteral</td>
+  <td class=xl74 width=208 style='width:156pt'>isLiteral</td>
+  <td class=xl74 width=222 style='width:167pt'>Boolean to tell us if the
+  parameter passed is a literal (isLiteral = true) or not (isLiteral = false),
+  this boolean is then returned to the caller.</td>
+  <td class=xl74 width=212 style='width:159pt'>Boolean</td>
+  <td class=xl74 width=209 style='width:157pt'>True or False</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl73 width=145 style='height:30.0pt;width:109pt'>fileName</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Contains the name of the file
+  that we want to extract directives from.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>any acceptable name for a file</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>linesOfInstruction</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Contains the lines of
+  instruction read from the Directives file. These lines are stored in an
+  ArrayList with each line in a separate position in the Array.</td>
+  <td class=xl74 width=212 style='width:159pt'>ArrayList&lt;String&gt;</td>
+  <td class=xl74 width=209 style='width:157pt'>Any arraylist containing the
+  lines of instruction read from the directives file.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>lineOfInstruction</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to go through the
+  &quot;linesOfInstuction&quot; array and analyze each line.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>Any line in the
+  &quot;linesOfInstruction&quot; array list.</td>
+ </tr>
+ <tr height=80 style='height:60.0pt'>
+  <td height=80 class=xl73 width=145 style='height:60.0pt;width:109pt'>variables</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>An array resulting from
+  splitting a line of instruction read from the directives file by
+  &quot;\t&quot;. This array is then used to analyze the various components of
+  each line.</td>
+  <td class=xl74 width=212 style='width:159pt'>String[]</td>
+  <td class=xl74 width=209 style='width:157pt'>Any array containing an
+  instruction line from the directives file without the &quot;\t&quot;
+  character</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>codeLocation</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Stores the code location of the
+  directive extracted from the line of instruction read from the directives
+  file.</td>
+  <td class=xl74 width=212 style='width:159pt'>Directive.codeLocation</td>
+  <td class=xl74 width=209 style='width:157pt'>DATA, TEXT, INFO, START,
+  END,<span style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>labelType</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Stores the labelType of the
+  directive extracted from the line of instruction read from the directives
+  file.</td>
+  <td class=xl74 width=212 style='width:159pt'>Directive.labelTypes</td>
+  <td class=xl74 width=209 style='width:157pt'>OPTIONALLABEL, REQUIREDLABEL,
+  NOLABEL</td>
+ </tr>
+ <tr height=64 style='height:48.0pt'>
+  <td height=64 class=xl73 width=145 style='height:48.0pt;width:109pt'>operands</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>holds the operands in the read
+  directive. Obtained by splitting string of operands by comma and loading
+  parts into the String array.</td>
+  <td class=xl74 width=212 style='width:159pt'>String[]</td>
+  <td class=xl74 width=209 style='width:157pt'>An array of BIN, HEX, STR,
+  LABEL, NUM.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>operandArray</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Holds the name of the operands
+  found in the directives' line of instructions.</td>
+  <td class=xl74 width=212 style='width:159pt'>ArrayList&lt;Directive.operandTypes&gt;</td>
+  <td class=xl74 width=209 style='width:157pt'>An array of BINARY, HEX, STRING,
+  LABEL, NUMBER.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl73 width=145 style='height:36.0pt;width:109pt'>operand</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>Used to go through the
+  &quot;operands&quot; array and the full word of each type to the
+  &quot;operandArray&quot;.</td>
+  <td class=xl74 width=212 style='width:159pt'>String</td>
+  <td class=xl74 width=209 style='width:157pt'>Can be any of BIN, HEX, STR,
+  LABEL or NUM.</td>
+ </tr>
+ <tr height=96 style='height:72.0pt'>
+  <td height=96 class=xl73 width=145 style='height:72.0pt;width:109pt'>directive</td>
+  <td class=xl74 width=208 style='width:156pt'>fillDirectivesArray</td>
+  <td class=xl74 width=222 style='width:167pt'>The result of a directive object
+  construction using the information gathered from the line of directive
+  gathered from the directives file. This object is then added to the
+  DirectivesArray.</td>
+  <td class=xl74 width=212 style='width:159pt'>Directive</td>
+  <td class=xl74 width=209 style='width:157pt'>Any valid directive in the
+  SAL560.<!-----------------------------><!--END OF OUTPUT FROM EXCEL PUBLISH AS WEB PAGE WIZARD--><!-----------------------------></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=145 style='width:109pt'></td>
+  <td width=208 style='width:156pt'></td>
+  <td width=222 style='width:167pt'></td>
+  <td width=212 style='width:159pt'></td>
+  <td width=209 style='width:157pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>
