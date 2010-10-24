@@ -23,7 +23,7 @@ public class Operand
 	 * Directive Operand checking:
 	 * 	NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN, EXP
 	 */
-	static boolean validLabel (String label) 
+	static boolean isValidLabel (String label) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		return false;
