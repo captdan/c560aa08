@@ -29,6 +29,8 @@ class CodeLine
 	 */
 	public ArrayList<Error> errors = new ArrayList<Error>();
 	
+	public int PC = 0;
+	
 	/**
 	 * This constructs a CodeLine object from a string thats passed in.
 	 * @param lineOfCode
@@ -112,6 +114,7 @@ class CodeLine
 		returnString += "Errors:\n";
 		for(Error error : this.errors)
 		{
+			//System.out.println("QWER");
 			returnString += "\t" + error.number + "\t" + error.message + "\t" + error.correction + "\n";
 		}
 		if (this.instruction != null)
