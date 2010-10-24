@@ -102,11 +102,11 @@ public class Parser
 		}
 		else
 		{
-			linesOfCode = readFileToArrayList("TestCode/altest01.txt");
+			linesOfCode = readFileToArrayList("src/SimpleInstructionTest.txt");
 		}
 		
 		fillDirectivesArray("Directives.txt");
-		fillErrorArray("ErrorCodes.txt");
+		fillErrorArray("src/ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		
@@ -138,6 +138,7 @@ public class Parser
 			{
 				bufferedWriter.write("------------------------------------------\n");
 				bufferedWriter.write("CodeLine " + x + "\n");
+				bufferedWriter.write("PC: " + codeline.PC + "\n");
 				bufferedWriter.write(codeline.returnPrintString());
 				x++;
 			}
@@ -222,6 +223,8 @@ public class Parser
 			else 
 			{
 				System.out.println("ERROR: " + lineOfCodeMinusComment);
+				cl.errors.add(returnError(99));
+				//System.out.println(cl.errors.size());
 				// ERROR, must fall within the three categories
 			}
 
@@ -233,7 +236,8 @@ public class Parser
 		 */
 		checkSymbolsAndSpecialDirectives(cl);
 		addToPC(cl.lineLength());
-		cl.errors = currentErrorArray;
+		cl.PC = PC;
+		//cl.errors = currentErrorArray;
 		return cl;
 
 	}
@@ -504,6 +508,12 @@ public class Parser
 				
 					for (int x = 0; x < operands.length; x++) 
 					{
+						/*
+						if(directiveObj.operands.get(x) == Directive.operandTypes.STRING)
+						{
+							
+						}
+						*/
 						directiveObj.operands.add(Directive.operandTypes.LABELREF);
 						directiveObj.operandArray.add(new Operand(operands[x]));
 					}
@@ -662,7 +672,7 @@ public class Parser
 				//System.out.println("QWER+: " + tempString[1]);
 			}
 		}
-		else if (possibleDirective.equals("ADR.EXP")) 
+		else if (possibleDirective.equals("ADR.EXP") && possibleDirective.equals("EQU.EXP")) 
 		{
 			String[] tempString = codeString.split("'");
 			
@@ -671,6 +681,7 @@ public class Parser
 			if(tempString.length < 4)
 			{
 				directiveObj.operandArray.clear();
+				tempString[1] = tempString[1].replaceAll("*", Integer.toString(PC));
 				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'"));
 				//System.out.println("QWER+: " + tempString[1]);
 			}
@@ -848,6 +859,10 @@ public class Parser
 					*/
 				}
 	
+			}
+			else
+			{
+				instructionObj = null;
 			}
 		} 
 		else 
