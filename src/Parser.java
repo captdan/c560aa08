@@ -102,11 +102,11 @@ public class Parser
 		}
 		else
 		{
-			linesOfCode = readFileToArrayList("src/SimpleInstructionTest.txt");
+			linesOfCode = readFileToArrayList("TestCode/SimpleInstructionTest.txt");
 		}
 		
 		fillDirectivesArray("Directives.txt");
-		fillErrorArray("src/ErrorCodes.txt");
+		fillErrorArray("ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
 		
@@ -191,19 +191,19 @@ public class Parser
 
 		if (st.hasMoreTokens() == true) 
 		{
-			if (returnInstruction(lineOfCodeMinusComment,false) != null) 
+			if (returnInstruction(lineOfCodeMinusComment,true) != null) 
 			{
 				System.out.println("Instruction: " + lineOfCodeMinusComment);
 				cl.instruction = returnInstruction(lineOfCodeMinusComment,false);
 				// Extract Valid Features
 			} 
-			else if (returnDirective(lineOfCodeMinusComment,false) != null) 
+			else if (returnDirective(lineOfCodeMinusComment,true) != null) 
 			{
 				cl.directive = returnDirective(lineOfCodeMinusComment,true);
 				// Extract Valid Features
 				System.out.println("Directive: " + lineOfCodeMinusComment);
 			} 
-			else if (returnSymbolInstruction(lineOfCodeMinusComment,false) != null) 
+			else if (returnSymbolInstruction(lineOfCodeMinusComment,true) != null) 
 			{
 				StringTokenizer st2 = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
 				String symbol = st2.nextToken();
@@ -222,8 +222,9 @@ public class Parser
 			} 
 			else 
 			{
+				currentErrorArray.add(returnError(99));
 				System.out.println("ERROR: " + lineOfCodeMinusComment);
-				cl.errors.add(returnError(99));
+				//cl.errors.add(returnError(99));
 				//System.out.println(cl.errors.size());
 				// ERROR, must fall within the three categories
 			}
@@ -237,7 +238,7 @@ public class Parser
 		checkSymbolsAndSpecialDirectives(cl);
 		addToPC(cl.lineLength());
 		cl.PC = PC;
-		//cl.errors = currentErrorArray;
+		cl.errors = currentErrorArray;
 		return cl;
 
 	}
