@@ -1,22 +1,24 @@
 ------------------------------------------
 CodeLine 0
 PC: 0
-Original Line Of Code: .Start,SimpleInstructionTest,00
+Original Line Of Code: .start,altest03,0 
 Line Comment: 
 Line Length: 0
+Error Count: 0
 Errors:
 Directive Name: .START
 Directive Label: NOLABEL
-Directive Code Location: TEXT
+Directive Code Location: START
 Operands: 
 Operand Types: 
 
 ------------------------------------------
 CodeLine 1
 PC: 0
-Original Line Of Code: .data
+Original Line Of Code: .data               
 Line Comment: 
 Line Length: 0
+Error Count: 0
 Errors:
 Directive Name: .DATA
 Directive Label: NOLABEL
@@ -27,189 +29,74 @@ Operand Types:
 ------------------------------------------
 CodeLine 2
 PC: 1
-Original Line Of Code: A int.data 10
+Original Line Of Code: YY     int.data     0
 Line Comment: 
 Line Length: 1
+Error Count: 0
 Errors:
 Directive Name: INT.DATA
 Directive Label: OPTIONALLABEL
 Directive Code Location: DATA
 Operands: 
-	10
+	0
 Operand Types: 
 	LABELREF
 
 ------------------------------------------
 CodeLine 3
 PC: 2
-Original Line Of Code: B Str.data 'ABC'
+Original Line Of Code: ZZ     int.data     0
 Line Comment: 
 Line Length: 1
+Error Count: 0
 Errors:
-Directive Name: STR.DATA
+Directive Name: INT.DATA
 Directive Label: OPTIONALLABEL
 Directive Code Location: DATA
 Operands: 
-	'ABC'
+	0
 Operand Types: 
 	LABELREF
 
 ------------------------------------------
 CodeLine 4
 PC: 3
-Original Line Of Code: C hex.data 8
+Original Line Of Code: XX     int.data     0
 Line Comment: 
 Line Length: 1
+Error Count: 0
 Errors:
-Directive Name: HEX.DATA
+Directive Name: INT.DATA
 Directive Label: OPTIONALLABEL
 Directive Code Location: DATA
 Operands: 
-	8
+	0
 Operand Types: 
 	LABELREF
 
 ------------------------------------------
 CodeLine 5
 PC: 4
-Original Line Of Code: D bin.data 0110
+Original Line Of Code: Err     str.data    'ZZ=0' 
 Line Comment: 
 Line Length: 1
+Error Count: 0
 Errors:
-Directive Name: BIN.DATA
+Directive Name: STR.DATA
 Directive Label: OPTIONALLABEL
 Directive Code Location: DATA
 Operands: 
-	0110
+	'ZZ=0'
 Operand Types: 
 	LABELREF
 
 ------------------------------------------
 CodeLine 6
-PC: 5
-Original Line Of Code: E Adr.data A
-Line Comment: 
-Line Length: 1
-Errors:
-Directive Name: ADR.DATA
-Directive Label: OPTIONALLABEL
-Directive Code Location: DATA
-Operands: 
-	A
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 7
-PC: 5
-Original Line Of Code: F adr.exp '1+2'
+PC: 4
+Original Line Of Code: .text               
 Line Comment: 
 Line Length: 0
-Errors:
-Directive Name: ADR.EXP
-Directive Label: OPTIONALLABEL
-Directive Code Location: DATA
-Operands: 
-	'1+2'
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 8
-PC: 6
-Original Line Of Code: G int.data 8
-Line Comment: 
-Line Length: 1
-Errors:
-Directive Name: INT.DATA
-Directive Label: OPTIONALLABEL
-Directive Code Location: DATA
-Operands: 
-	8
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 9
-PC: 7
-Original Line Of Code: A1 int.data 15
-Line Comment: 
-Line Length: 1
-Errors:
-Directive Name: INT.DATA
-Directive Label: OPTIONALLABEL
-Directive Code Location: DATA
-Operands: 
-	15
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 10
-PC: 8
-Original Line Of Code: A2 int.data 6
-Line Comment: 
-Line Length: 1
-Errors:
-Directive Name: INT.DATA
-Directive Label: OPTIONALLABEL
-Directive Code Location: DATA
-Operands: 
-	6
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 11
-PC: 9
-Original Line Of Code: A3 int.data 3
-Line Comment: 
-Line Length: 1
-Errors:
-Directive Name: INT.DATA
-Directive Label: OPTIONALLABEL
-Directive Code Location: DATA
-Operands: 
-	3
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 12
-PC: 69
-Original Line Of Code: 	mem.skip 60
-Line Comment: 
-Line Length: 60
-Errors:
-Directive Name: MEM.SKIP
-Directive Label: OPTIONALLABEL
-Directive Code Location: TEXT
-Operands: 
-	60
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 13
-PC: 69
-Original Line Of Code: R3	EQU  50
-Line Comment: 
-Line Length: 0
-Errors:
-Directive Name: EQU
-Directive Label: REQUIREDLABEL
-Directive Code Location: TEXT
-Operands: 
-	50
-Operand Types: 
-	LABELREF
-
-------------------------------------------
-CodeLine 14
-PC: 69
-Original Line Of Code: .text
-Line Comment: 
-Line Length: 0
+Error Count: 0
 Errors:
 Directive Name: .TEXT
 Directive Label: NOLABEL
@@ -218,67 +105,63 @@ Operands:
 Operand Types: 
 
 ------------------------------------------
-CodeLine 15
-PC: 70
-Original Line Of Code: 	dump 1,0,0
-Line Comment: 
-Line Length: 1
+CodeLine 7
+PC: 4
+Original Line Of Code:      ENT     XX         | Another program may come looking for the result
+Line Comment: | Another program may come looking for the result
+Line Length: 0
+Error Count: 0
 Errors:
-Instruction: DUMP
+Directive Name: ENT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	XX
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 8
+PC: 4
+Original Line Of Code:      exec.start * 
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EXEC.START
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	*
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 9
+PC: 5
+Original Line Of Code:      inn     2,YY       |read in 2 numbers into locations YY and ZZ
+Line Comment: |read in 2 numbers into locations YY and ZZ
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: INN
 Instruction Type: REGISTER
-Instruction Binary: 111111
-Instruction Hex: 3F
+Instruction Binary: 100
+Instruction Hex: 04
 Operands: 
-	1
-	0
-	0
+	2
+	YY
 Operand Types: 
-	BIT
-	BIT
-	BIT
-
-------------------------------------------
-CodeLine 16
-PC: 71
-Original Line Of Code: 	LW $1,A
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: LW
-Instruction Type: SIGNED
-Instruction Binary: 110000
-Instruction Hex: 30
-Operands: 
-	$1
-	A
-Operand Types: 
-	REGISTER
+	NUMBER
 	ADDRESS
 
 ------------------------------------------
-CodeLine 17
-PC: 72
-Original Line Of Code: 	LW $2,G
+CodeLine 10
+PC: 6
+Original Line Of Code:      LW      $3,YY     
 Line Comment: 
 Line Length: 1
-Errors:
-Instruction: LW
-Instruction Type: SIGNED
-Instruction Binary: 110000
-Instruction Hex: 30
-Operands: 
-	$2
-	G
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 18
-PC: 73
-Original Line Of Code: 	LW $3,A1
-Line Comment: 
-Line Length: 1
+Error Count: 0
 Errors:
 Instruction: LW
 Instruction Type: SIGNED
@@ -286,388 +169,79 @@ Instruction Binary: 110000
 Instruction Hex: 30
 Operands: 
 	$3
-	A1
+	YY
 Operand Types: 
 	REGISTER
 	ADDRESS
 
 ------------------------------------------
-CodeLine 19
-PC: 74
-Original Line Of Code: 	LW $4,A2
+CodeLine 11
+PC: 7
+Original Line Of Code:      JEQ     $3,$0,ERROR 
 Line Comment: 
 Line Length: 1
-Errors:
-Instruction: LW
-Instruction Type: SIGNED
-Instruction Binary: 110000
-Instruction Hex: 30
-Operands: 
-	$4
-	A2
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 20
-PC: 75
-Original Line Of Code: 	LW $5,A3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: LW
-Instruction Type: SIGNED
-Instruction Binary: 110000
-Instruction Hex: 30
-Operands: 
-	$5
-	A3
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 21
-PC: 75
-Original Line Of Code: 	|already tested add sun mul and div
-Line Comment: |already tested add sun mul and div
-Line Length: 0
-Errors:
-------------------------------------------
-CodeLine 22
-PC: 76
-Original Line Of Code: H	JEQ	$1,$2,I		|jump to I if $1 == $2
-Line Comment: |jump to I if $1 == $2
-Line Length: 1
+Error Count: 0
 Errors:
 Instruction: JEQ
 Instruction Type: SIGNED
 Instruction Binary: 100000
 Instruction Hex: 20
 Operands: 
-	$1
-	$2
-	I
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 23
-PC: 77
-Original Line Of Code: 	div $6, $3,$4
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: DIV
-Instruction Type: REGISTER
-Instruction Binary: 1
-Instruction Hex: 01
-Operands: 
-	$6
 	$3
-	$4
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 24
-PC: 78
-Original Line Of Code: I	JNE	$1,$2,J		|jump to J if $1 != $2
-Line Comment: |jump to J if $1 != $2
-Line Length: 1
-Errors:
-Instruction: JNE
-Instruction Type: SIGNED
-Instruction Binary: 100001
-Instruction Hex: 21
-Operands: 
-	$1
-	$2
-	J
+	$0
+	ERROR
 Operand Types: 
 	REGISTER
 	REGISTER
 	ADDRESS
 
 ------------------------------------------
-CodeLine 25
-PC: 79
-Original Line Of Code: 	mul $1,$1,$3
+CodeLine 12
+PC: 8
+Original Line Of Code:      LW      $2,ZZ     
 Line Comment: 
 Line Length: 1
-Errors:
-Instruction: MUL
-Instruction Type: REGISTER
-Instruction Binary: 1
-Instruction Hex: 01
-Operands: 
-	$1
-	$1
-	$3
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 26
-PC: 80
-Original Line Of Code: 	andi $1,$5,50
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: ANDI
-Instruction Type: IMMEDIATE
-Instruction Binary: 110111
-Instruction Hex: 37
-Operands: 
-	$1
-	$5
-	50
-Operand Types: 
-	REGISTER
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 27
-PC: 81
-Original Line Of Code: J	JGT	$1,$2,K		|jump to K if $1 > $2
-Line Comment: |jump to K if $1 > $2
-Line Length: 1
-Errors:
-Instruction: JGT
-Instruction Type: SIGNED
-Instruction Binary: 100010
-Instruction Hex: 22
-Operands: 
-	$1
-	$2
-	K
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 28
-PC: 82
-Original Line Of Code: 	add $2,$2,$1
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: ADD
-Instruction Type: REGISTER
-Instruction Binary: 1
-Instruction Hex: 01
-Operands: 
-	$2
-	$2
-	$1
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 29
-PC: 83
-Original Line Of Code: K	JLT	$1,$2,L		|jump to L if $1 < $2
-Line Comment: |jump to L if $1 < $2
-Line Length: 1
-Errors:
-Instruction: JLT
-Instruction Type: SIGNED
-Instruction Binary: 100011
-Instruction Hex: 23
-Operands: 
-	$1
-	$2
-	L
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 30
-PC: 84
-Original Line Of Code: 	sub $1, $3,$4
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SUB
-Instruction Type: REGISTER
-Instruction Binary: 1
-Instruction Hex: 01
-Operands: 
-	$1
-	$3
-	$4
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 31
-PC: 85
-Original Line Of Code: 	LW $5,A3
-Line Comment: 
-Line Length: 1
+Error Count: 0
 Errors:
 Instruction: LW
 Instruction Type: SIGNED
 Instruction Binary: 110000
 Instruction Hex: 30
 Operands: 
-	$5
-	A3
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 32
-PC: 86
-Original Line Of Code: 	ands $1,0($5)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: ANDS
-Instruction Type: SIGNED
-Instruction Binary: 111010
-Instruction Hex: 3A
-Operands: 
-	$1
-	0($5)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 33
-PC: 87
-Original Line Of Code: 	ors $1,2($5)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: ORS
-Instruction Type: SIGNED
-Instruction Binary: 111011
-Instruction Hex: 3B
-Operands: 
-	$1
-	2($5)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 34
-PC: 88
-Original Line Of Code: L	JLE	$1,$2,M		|jump to M if $1 <= $2
-Line Comment: |jump to M if $1 <= $2
-Line Length: 1
-Errors:
-Instruction: JLE
-Instruction Type: SIGNED
-Instruction Binary: 100100
-Instruction Hex: 24
-Operands: 
-	$1
 	$2
-	M
+	ZZ
 Operand Types: 
-	REGISTER
 	REGISTER
 	ADDRESS
 
 ------------------------------------------
-CodeLine 35
-PC: 89
-Original Line Of Code: 	add $1,$2,$1	
-Line Comment: 
+CodeLine 13
+PC: 9
+Original Line Of Code:      mul     $4,$3,$2    | place intermediate result in reg 4
+Line Comment: | place intermediate result in reg 4
 Line Length: 1
+Error Count: 0
 Errors:
-Instruction: ADD
+Instruction: MUL
 Instruction Type: REGISTER
 Instruction Binary: 1
 Instruction Hex: 01
 Operands: 
-	$1
-	$2
-	$1
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 36
-PC: 90
-Original Line Of Code: 	SW $1,0($2)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SW
-Instruction Type: SIGNED
-Instruction Binary: 100111
-Instruction Hex: 27
-Operands: 
-	$1
-	0($2)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 37
-PC: 91
-Original Line Of Code: 	JR $1
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: JR
-Instruction Type: REGISTER
-Instruction Binary: 11
-Instruction Hex: 03
-Operands: 
-	$1
-Operand Types: 
-	REGISTER
-
-------------------------------------------
-CodeLine 38
-PC: 92
-Original Line Of Code: 	PWR $1,$2,$3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: PWR
-Instruction Type: REGISTER
-Instruction Binary: 1
-Instruction Hex: 01
-Operands: 
-	$1
-	$2
+	$4
 	$3
+	$2
 Operand Types: 
 	REGISTER
 	REGISTER
 	REGISTER
 
 ------------------------------------------
-CodeLine 39
-PC: 93
-Original Line Of Code: M	muli $5,$1,-2
-Line Comment: 
+CodeLine 14
+PC: 10
+Original Line Of Code:      muli    $5,$4,20    | place intermediate result in reg 5
+Line Comment: | place intermediate result in reg 5
 Line Length: 1
+Error Count: 0
 Errors:
 Instruction: MULI
 Instruction Type: IMMEDIATE
@@ -675,79 +249,41 @@ Instruction Binary: 10100
 Instruction Hex: 14
 Operands: 
 	$5
-	$1
-	-2
+	$4
+	20
 Operand Types: 
 	REGISTER
 	REGISTER
 	IMMEDIATE
 
 ------------------------------------------
-CodeLine 40
-PC: 94
-Original Line Of Code: O	SRV $1,$2,10
-Line Comment: 
+CodeLine 15
+PC: 11
+Original Line Of Code:      Div     $5,$5,$3    | Final result is in reg 5
+Line Comment: | Final result is in reg 5
 Line Length: 1
+Error Count: 0
 Errors:
-Instruction: SRV
-Instruction Type: IMMEDIATE
-Instruction Binary: 111101
-Instruction Hex: 3D
-Operands: 
-	$1
-	$2
-	10
-Operand Types: 
-	REGISTER
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 41
-PC: 95
-Original Line Of Code: 	SLL $2,$1,5
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SLL
+Instruction: DIV
 Instruction Type: REGISTER
-Instruction Binary: 10
-Instruction Hex: 02
-Operands: 
-	$2
-	$1
-	5
-Operand Types: 
-	REGISTER
-	REGISTER
-	BITS
-
-------------------------------------------
-CodeLine 42
-PC: 96
-Original Line Of Code: 	SRL $5,$5,2
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SRL
-Instruction Type: REGISTER
-Instruction Binary: 10
-Instruction Hex: 02
+Instruction Binary: 1
+Instruction Hex: 01
 Operands: 
 	$5
 	$5
-	2
+	$3
 Operand Types: 
 	REGISTER
 	REGISTER
-	BITS
+	REGISTER
 
 ------------------------------------------
-CodeLine 43
-PC: 97
-Original Line Of Code: N	SW $5,0($2)	
+CodeLine 16
+PC: 12
+Original Line Of Code:      sw      $5,XX 
 Line Comment: 
 Line Length: 1
+Error Count: 0
 Errors:
 Instruction: SW
 Instruction Type: SIGNED
@@ -755,462 +291,37 @@ Instruction Binary: 100111
 Instruction Hex: 27
 Operands: 
 	$5
-	0($2)
+	XX
 Operand Types: 
 	REGISTER
 	ADDRESS
 
 ------------------------------------------
-CodeLine 44
-PC: 98
-Original Line Of Code: P	LnW $3, 0($2)
-Line Comment: 
+CodeLine 17
+PC: 13
+Original Line Of Code:      outn    1,XX        | output 1 word at location XX
+Line Comment: | output 1 word at location XX
 Line Length: 1
+Error Count: 0
 Errors:
-Instruction: LNW
-Instruction Type: SIGNED
-Instruction Binary: 110001
-Instruction Hex: 31
-Operands: 
-	$3
-	0($2)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 45
-PC: 99
-Original Line Of Code: Q	LWi	$1, 0($2)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: LWI
-Instruction Type: SIGNED
-Instruction Binary: 110010
-Instruction Hex: 32
-Operands: 
-	$1
-	0($2)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 46
-PC: 100
-Original Line Of Code: 	jal	$5,$1,0($1)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: JAL
-Instruction Type: SIGNED
-Instruction Binary: 111
-Instruction Hex: 07
-Operands: 
-	$5
-	$1
-	0($1)
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 47
-PC: 101
-Original Line Of Code: R	Lui $2, 50
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: LUI
-Instruction Type: IMMEDIATE
-Instruction Binary: 110011
-Instruction Hex: 33
-Operands: 
-	$2
-	50
-Operand Types: 
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 48
-PC: 101
-Original Line Of Code: 	|compare values of regs
-Line Comment: |compare values of regs
-Line Length: 0
-Errors:
-------------------------------------------
-CodeLine 49
-PC: 102
-Original Line Of Code: S	or $1,$1,2
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: OR
+Instruction: OUTN
 Instruction Type: REGISTER
-Instruction Binary: 10
-Instruction Hex: 02
+Instruction Binary: 100
+Instruction Hex: 04
 Operands: 
-	$1
-	$1
-	2
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 50
-PC: 103
-Original Line Of Code: T	and $1,$1,3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: AND
-Instruction Type: REGISTER
-Instruction Binary: 10
-Instruction Hex: 02
-Operands: 
-	$1
-	$1
-	3
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 51
-PC: 104
-Original Line Of Code: 	SRV $5,$2,2
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SRV
-Instruction Type: IMMEDIATE
-Instruction Binary: 111101
-Instruction Hex: 3D
-Operands: 
-	$5
-	$2
-	2
-Operand Types: 
-	REGISTER
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 52
-PC: 105
-Original Line Of Code: U	xor $6,$6,$5
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: XOR
-Instruction Type: REGISTER
-Instruction Binary: 10
-Instruction Hex: 02
-Operands: 
-	$6
-	$6
-	$5
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 53
-PC: 106
-Original Line Of Code: V	nor $2,$4,$3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: NOR
-Instruction Type: REGISTER
-Instruction Binary: 10
-Instruction Hex: 02
-Operands: 
-	$2
-	$4
-	$3
-Operand Types: 
-	REGISTER
-	REGISTER
-	REGISTER
-
-------------------------------------------
-CodeLine 54
-PC: 107
-Original Line Of Code: W	ori $2,$5,6
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: ORI
-Instruction Type: IMMEDIATE
-Instruction Binary: 110100
-Instruction Hex: 34
-Operands: 
-	$2
-	$5
-	6
-Operand Types: 
-	REGISTER
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 55
-PC: 108
-Original Line Of Code: X	xori $5,$6,9
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: XORI
-Instruction Type: IMMEDIATE
-Instruction Binary: 110101
-Instruction Hex: 35
-Operands: 
-	$5
-	$6
-	9
-Operand Types: 
-	REGISTER
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 56
-PC: 109
-Original Line Of Code: Y	nori $5, $1,56
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: NORI
-Instruction Type: IMMEDIATE
-Instruction Binary: 110110
-Instruction Hex: 36
-Operands: 
-	$5
-	$1
-	56
-Operand Types: 
-	REGISTER
-	REGISTER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 57
-PC: 110
-Original Line Of Code: Z	jal $1,$2, halt2
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: JAL
-Instruction Type: SIGNED
-Instruction Binary: 111
-Instruction Hex: 07
-Operands: 
-	$1
-	$2
-	halt2
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 58
-PC: 111
-Original Line Of Code: 	muls $1,$2, R3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: MULS
-Instruction Type: SIGNED
-Instruction Binary: 11100
-Instruction Hex: 1C
-Operands: 
-	$1
-	$2
-	R3
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 59
-PC: 112
-Original Line Of Code: 	adds $5,$6, R3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: ADDS
-Instruction Type: SIGNED
-Instruction Binary: 11010
-Instruction Hex: 1A
-Operands: 
-	$5
-	$6
-	R3
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 60
-PC: 113
-Original Line Of Code: 	subs $3,$4,R3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SUBS
-Instruction Type: SIGNED
-Instruction Binary: 11011
-Instruction Hex: 1B
-Operands: 
-	$3
-	$4
-	R3
-Operand Types: 
-	REGISTER
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 61
-PC: 114
-Original Line Of Code: 	LW $r3, A3
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: LW
-Instruction Type: SIGNED
-Instruction Binary: 110000
-Instruction Hex: 30
-Operands: 
-	$r3
-	A3
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 62
-PC: 115
-Original Line Of Code: 	LA $1, 0($3)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: LA
-Instruction Type: SIGNED
-Instruction Binary: 111000
-Instruction Hex: 38
-Operands: 
-	$1
-	0($3)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 63
-PC: 116
-Original Line Of Code: 	SA $1, 0($3)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: SA
-Instruction Type: SIGNED
-Instruction Binary: 111001
-Instruction Hex: 39
-Operands: 
-	$1
-	0($3)
-Operand Types: 
-	REGISTER
-	ADDRESS
-
-------------------------------------------
-CodeLine 64
-PC: 117
-Original Line Of Code: 	outni	5, 5
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: OUTNI
-Instruction Type: IMMEDIATE
-Instruction Binary: 11110
-Instruction Hex: 1E
-Operands: 
-	5
-	5
+	1
+	XX
 Operand Types: 
 	NUMBER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 65
-PC: 118
-Original Line Of Code: 	outci 3,'the'
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: OUTCI
-Instruction Type: IMMEDIATE
-Instruction Binary: 11111
-Instruction Hex: 1F
-Operands: 
-	3
-	'the'
-Operand Types: 
-	NUMBER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 66
-PC: 119
-Original Line Of Code: 	outci 3,'end'
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: OUTCI
-Instruction Type: IMMEDIATE
-Instruction Binary: 11111
-Instruction Hex: 1F
-Operands: 
-	3
-	'end'
-Operand Types: 
-	NUMBER
-	IMMEDIATE
-
-------------------------------------------
-CodeLine 67
-PC: 120
-Original Line Of Code: 	J HALT($0)
-Line Comment: 
-Line Length: 1
-Errors:
-Instruction: J
-Instruction Type: SIGNED
-Instruction Binary: 110
-Instruction Hex: 06
-Operands: 
-	HALT($0)
-Operand Types: 
 	ADDRESS
 
 ------------------------------------------
-CodeLine 68
-PC: 121
-Original Line Of Code: HALT	Halt 0
+CodeLine 18
+PC: 14
+Original Line Of Code:      HALT    0 
 Line Comment: 
 Line Length: 1
+Error Count: 0
 Errors:
 Instruction: HALT
 Instruction Type: J
@@ -1222,27 +333,48 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 69
-PC: 122
-Original Line Of Code: halt2 	halt 2
+CodeLine 19
+PC: 15
+Original Line Of Code: ERROR outc   1,Err 
 Line Comment: 
 Line Length: 1
+Error Count: 0
+Errors:
+Instruction: OUTC
+Instruction Type: REGISTER
+Instruction Binary: 100
+Instruction Hex: 04
+Operands: 
+	1
+	Err
+Operand Types: 
+	NUMBER
+	ADDRESS
+
+------------------------------------------
+CodeLine 20
+PC: 16
+Original Line Of Code:      HALT    250        | Halt and display error code 250
+Line Comment: | Halt and display error code 250
+Line Length: 1
+Error Count: 0
 Errors:
 Instruction: HALT
 Instruction Type: J
 Instruction Binary: 1000
 Instruction Hex: 08
 Operands: 
-	2
+	250
 Operand Types: 
 	NUMBER
 
 ------------------------------------------
-CodeLine 70
-PC: 122
-Original Line Of Code: .END,SimpleInstructionTest
+CodeLine 21
+PC: 16
+Original Line Of Code: .end,altest03
 Line Comment: 
 Line Length: 0
+Error Count: 0
 Errors:
 Directive Name: .END
 Directive Label: NOLABEL

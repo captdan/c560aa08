@@ -96,6 +96,10 @@ class CodeLine
 				length = Integer.valueOf(this.directive.operandArray.get(0).operand);
 				//System.out.println("QWER: " + Integer.valueOf(this.directive.operandArray.get(0).operand));
 			}
+			else
+			{
+				length = 0;
+			}
 
 		}
 		//length = (int)Math.ceil(intermediate);
@@ -111,6 +115,7 @@ class CodeLine
 		returnString += "Original Line Of Code: " + this.originalLineOfCode + "\n";
 		returnString += "Line Comment: " + this.comment + "\n";
 		returnString += "Line Length: " + Integer.toString(this.lineLength()) + "\n";
+		returnString += "Error Count: " + this.errors.size() + "\n";
 		returnString += "Errors:\n";
 		for(Error error : this.errors)
 		{

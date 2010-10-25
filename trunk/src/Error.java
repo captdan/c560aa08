@@ -40,6 +40,17 @@ public class Error
 		this.message = mes;
 
 	}
+	
+	public Error(int num, String mes, String correctionValue)
+	{
+		this.correction = correctionValue;
+		this.number = num;
+		this.message = mes;
+	}
+	public Error()
+	{
+
+	}
 	/**
 	 * Prints the contents of an Error object as a report to the user.
 	 */

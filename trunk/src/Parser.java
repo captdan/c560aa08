@@ -102,17 +102,25 @@ public class Parser
 		}
 		else
 		{
-			linesOfCode = readFileToArrayList("TestCode/SimpleInstructionTest.txt");
+			linesOfCode = readFileToArrayList("TestCode/altest01.txt");
 		}
 		
 		fillDirectivesArray("Directives.txt");
 		fillErrorArray("ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
+		if (linesOfCode.size() > 0 && (parseCodeLine(linesOfCode.get(0)).directive == null || parseCodeLine(linesOfCode.get(0)).directive.directiveName.toUpperCase().equals(".START") == false))
+		{
+			currentErrorArray.clear();
+			currentErrorArray.add(returnError(20));
+			CodeLineArray.add(parseCodeLine(linesOfCode.get(0)));
+			endProgram = true;
+		}
 		
 		for (String lineOfCode : linesOfCode) 
 		{
 			// System.out.println(lineOfCode);
+				
 			if (endProgram == false) 
 			{
 				CodeLineArray.add(parseCodeLine(lineOfCode));
@@ -199,7 +207,7 @@ public class Parser
 			} 
 			else if (returnDirective(lineOfCodeMinusComment,true) != null) 
 			{
-				cl.directive = returnDirective(lineOfCodeMinusComment,true);
+				cl.directive = returnDirective(lineOfCodeMinusComment,false);
 				// Extract Valid Features
 				System.out.println("Directive: " + lineOfCodeMinusComment);
 			} 
@@ -211,17 +219,18 @@ public class Parser
 				SymbTable.addSymbol(symbol,PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
 				if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Directive.class) 
 				{
-					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment, true);	
+					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment, false);	
 				} 
 				else if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Instruction.class)
 				{
-					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment, true);
+					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment, false);
 					
 				}
 				// Extract Valid Features
 			} 
 			else 
 			{
+				
 				currentErrorArray.add(returnError(99));
 				System.out.println("ERROR: " + lineOfCodeMinusComment);
 				//cl.errors.add(returnError(99));
@@ -238,7 +247,13 @@ public class Parser
 		checkSymbolsAndSpecialDirectives(cl);
 		addToPC(cl.lineLength());
 		cl.PC = PC;
-		cl.errors = currentErrorArray;
+		
+		for(Error error : currentErrorArray)
+		{
+			cl.errors.add(error);
+		}
+		
+		System.out.println(currentErrorArray.size());
 		return cl;
 
 	}
@@ -444,7 +459,7 @@ public class Parser
 	 */
 	public static void addToPC(int addValue)
 	{
-		if((addValue + PC) <= maxPC && (addValue + PC) > 0)
+		if((addValue + PC) <= maxPC && (addValue + PC) >= 0)
 		{
 			PC += addValue;
 		}
@@ -563,6 +578,8 @@ public class Parser
 			{
 				try
 				{
+					directiveObj.codeLocation = Directive.codeLocations.START;
+					directiveObj.labelType = Directive.labelTypes.NOLABEL;
 					directiveObj.directiveName = ".START";
 					programName = specialDirectives[1];
 					startingLocation = Integer.valueOf(specialDirectives[2]);
@@ -833,36 +850,53 @@ public class Parser
 				instructionObj.numberOfRegisters = returnInstructionViaOpcode(instruction).numberOfRegisters;
 				instructionObj.operands = returnInstructionViaOpcode(instruction).operands;
 
-				//Boolean validOperands = false;
+				
 				for (int x = 0; x < returnInstructionViaOpcode(instruction).operands.size(); x++) 
 				{
-					instructionObj.operandsArray.add(new Operand(operands[x]));
-					/*
-					Instruction.operandTypes operand = returnInstructionViaOpcode(instruction).operands.get(x);
-					
-					switch (operand)
-					{
-					case ADDRESS: // test for valid ADDRESS 
-						break;
-					case BIT: // test for valid BITS 
-						break;
-					case BITS: // test for valid BITS 
-						break;
-					case IMMEDIATE: // test for valid IMMEDIATE 
-						validOperands = isLiteral(operands[x]);
-						break;
-					case REGISTER: validOperands = isRegister(operands[x]);
-					break;
-					default:
-						validOperands = false;
-						break;
-					}
-					*/
+						Instruction.operandTypes operand = returnInstructionViaOpcode(instruction).operands.get(x);
+						Boolean validOperands = false;
+						//REGISTER, IMMEDIATE, ADDRESS, BIT, BITS, NUMBER, IO;
+						switch (operand)
+						{
+						case ADDRESS: validOperands = true;
+							break;
+						case BIT: validOperands = true;
+							break;
+						case BITS: validOperands = true;
+							break;
+						case IMMEDIATE: validOperands = true;
+							break;
+						case NUMBER: validOperands = true;
+							break;
+						case IO: validOperands = true;
+							break;
+						case REGISTER: validOperands = isRegister(operands[x]);
+							break;
+						default: validOperands = false;
+							break;
+						}
+						
+						if(validOperands == true)
+						{
+							instructionObj.operandsArray.add(new Operand(operands[x]));
+						}
+						else
+						{
+							if(addErrors == true)
+							{
+								currentErrorArray.add(new Error(19,"The operand " + x + ": " + operands[x].toString() + " did not match the operand type "+operand.toString()+".","Change Operand"));
+							}
+						}
 				}
 	
 			}
 			else
 			{
+				if(addErrors == true)
+				{
+					currentErrorArray.add(new Error(0,"Expected " + returnInstructionViaOpcode(instruction).numberOfRegisters + " operands and received " + operands.length + " operands.","Add or Remove Operands accordingly."));
+					//currentErrorArray.add(returnError(0));
+				}
 				instructionObj = null;
 			}
 		} 
@@ -870,6 +904,11 @@ public class Parser
 		{
 			instructionObj = null;
 			// System.out.println(instruction);
+		}
+		
+		if(currentErrorArray.size() > 0)
+		{
+			instructionObj = null;
 		}
 
 		return instructionObj;
@@ -1150,7 +1189,7 @@ public static void fillErrorArray(String fileName)
 	public static Boolean isRegister(String operandString) 
 	{
 		Boolean isRegister = false;
-		if (operandString.length() == 3) 
+		if (operandString.length() == 2) 
 		{
 			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(1)));
 			if (operandString.charAt(0) == '$' && registerNumber >= 0 && registerNumber < 8) 
