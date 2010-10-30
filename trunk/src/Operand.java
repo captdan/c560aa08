@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 
 public class Operand
 {
@@ -79,34 +82,110 @@ public class Operand
 		//max of 8 hex digits, fill in with signed value in front (either 0 or F)
 		return false;
 	}
+	
+	/**
+	 * 
+	 * @param string A possibly valid STR.DATA value in the SAL560.
+	 * @return True iff the length of "string" is <= 16 and contains only the characters A-Z,a-z,_,0-9.
+	 */
 	static boolean isValidDirectiveString (String string) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
-		//length is limited to 16 characters (this was our choice)
-		return false;
+		//length is limited to 16 characters (this was our choice) and contains only A-Z,a-z,_,0-9
+		return ((string.length() <= 16) && (string.matches("\\w")));
 	}
+	
+	/**
+	 * @param label The possibly valid label for the ENT and ADR.DATAa directives.
+	 * @return True iff the String "label" is a previously declared label that already exists in the SymbolTable.
+	 */
 	static boolean isValidDirectiveLabel (String label) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
-		//A-Z,a-z,_,0-9
-		return false;
+		//Must be an internal or external label already defined in the symbol table
+		return Parser.SymbTable.isInTable(label);
 	}
-	static boolean isValidDirectiveLabelRef (String lableref) 
-	{
-		//need to flesh this out, but each method to check operands should just return a boolean 
-		//label must already be in our Symbol Table at this point (function in SymbolTable class)
-		return false;
-	}
+	
+	/**
+	 * 
+	 * @param bool The possiblly valid Boolean flag for the debug function.
+	 * @return True iff the String "bool" is a valid Boolean flag.
+	 */
 	static boolean isValidDirectiveBoolean (String bool) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//Boolean debug flag, length 1, either 1 or 0
+		if(bool.length() ==1)
+		{
+			char flag = bool.charAt(0);
+			return (flag == '1' || flag == '0');
+		}
 		return false;
 	}
+	/**
+	 * 
+	 * @param exp The String value of the potentially valid expression.
+	 * @return True iff the String is a valid SAL560 expression (max of 3 operands separated my '+' or '-')
+	 */
 	static boolean isValidDirectiveExp (String exp) 
 	{
-		//need to flesh this out, but each method to check operands should just return a boolean 
+
 		//valid expression(include handling * notation)
-		return false;
+		
+		//boolean value to return
+		
+		boolean result = false;
+		
+		//Tokenizing machine ensures only valid operators are '+' and '-' so a valid expression will have a max of 3 tokens in the machine
+		
+		StringTokenizer expressionTokenizer = new StringTokenizer(exp,"+-",false);
+		
+		//Should only have 3 operands
+		
+		if(expressionTokenizer.countTokens() <= 3)
+		{
+			while(expressionTokenizer.hasMoreTokens())
+			{
+				String operand = expressionTokenizer.nextToken();
+				
+				//first check to see if it's a valide integer value
+				try
+				{
+					Integer.parseInt(operand);
+					result = true;
+				}
+				catch(NumberFormatException e)
+				{
+					result = false;
+				}
+				
+				//if it's not an integer, it could still be a label that is a valid integer, so check SymbTable
+				if(result == false)
+				{
+					if(Parser.SymbTable.isInTable(operand))
+					{
+						ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(operand);
+						try
+						{
+							//Checks the "sub" value of the label to see if the label is a substitute for a valid integer
+							Integer.parseInt(String.valueOf(values.get(1)));
+							result = true;
+						}
+						catch(NumberFormatException e)
+						{
+							result = false;
+						}
+					
+					}
+				}
+			
+				//failing that, it could be a "*" so we check for that
+				if(result == false)
+				{
+					result = ((operand.length() == 1) && (operand.charAt(0) == '*'));
+				}
+			}
+		}
+		return result;
 	}
 }
