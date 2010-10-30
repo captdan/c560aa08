@@ -29,21 +29,89 @@ public class Operand
 	}
 	static boolean isValidInstructionImmediate (String immediate) 
 	{
+		String unsigned = "";
+		boolean isImmediate = false;
+		char startsign = immediate.charAt(0);
+		if(startsign != '+' || startsign != '-' || Character.isDigit(startsign)){
+			// if it contains something else, it must be an error
+			Parser.currentErrorArray.add(Parser.returnError(21));
+			return false;
+		}
+		else{
+			if(startsign == '+' || startsign == '-'){
+				for(int i =1; i <immediate.length();i++){
+					unsigned = unsigned + immediate.charAt(i);
+				}
+			}
+			else{
+				unsigned = new String (immediate);
+			}
+			// check that the unsigned immediate has only digits
+			
+			for(int i =0; i < unsigned.length() ; i++){
+				if(!Character.isDigit(unsigned.charAt(i))){
+					// if the immediate contains anything other that digits, throw an error
+					Parser.currentErrorArray.add(Parser.returnError(21));
+					return false;
+				}
+			}
+			// at this point we know the immediate is a valid integer, so we check the bounds
+			int valueOfUnsigned = Integer.parseInt(unsigned);
+			if(startsign == '-'){
+				isImmediate =  (valueOfUnsigned <= 231);
+				if(isImmediate == false){
+					Parser.currentErrorArray.add(Parser.returnError(5));
+				}
+			}
+			else{
+				isImmediate = (valueOfUnsigned<= 230);
+				if(isImmediate == false){
+					Parser.currentErrorArray.add(Parser.returnError(5));
+				}
+			}
+			
+			
+		}
+		
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//can have a single '+' or '-' preceeding it, must fit signed value in 16 bits (-231<=x<=230)
-		return false;
+		
+		
+		return isImmediate;
 	}
 	static boolean isValidInstructionAddress (String address) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//has to be greater than starting LC, less than 65536
-		return false;
+		int addr = Integer.parseInt(address);
+		return ((addr > Parser.startingLocation) && (addr < 65536));
 	}
 	static boolean isValidInstructionBit (String bit) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//operand should have 3 fields, each containing 1 or 0
-		return false;
+		boolean result = true;
+		StringTokenizer st = new StringTokenizer(bit,", 	",false);
+		//it has to have 3 operands
+		if(st.countTokens() == 3){
+			String currentOperand;
+			// check each operand contains only 0s and 1s
+			while(st.hasMoreTokens()){
+				currentOperand  = st.nextToken();
+				for(int i = 0; i < currentOperand.length();i++){
+					if(currentOperand.charAt(i) != '0' || currentOperand.charAt(i) != '1'){
+						result = false;
+						Parser.currentErrorArray.add(Parser.returnError(22));
+						break;
+					}
+				}
+			}
+		}
+		else{
+			Parser.currentErrorArray.add(Parser.returnError(0));
+		}
+		
+		return result;
 	}
 	static boolean isValidInstructionBits (String bits) 
 	{
