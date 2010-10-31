@@ -148,7 +148,14 @@ public class Operand
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//max of 8 hex digits, fill in with signed value in front (either 0 or F)
-		return false;
+		boolean result = true;
+		for(int i =0; i <hex.length();i++){
+			if (!(Character.isDigit(hex.charAt(i))|| hex.charAt(i)== 'A' || hex.charAt(i)== 'B'|| hex.charAt(i)== 'C' || hex.charAt(i)== 'D' || hex.charAt(i)== 'E' || hex.charAt(i)== 'F')){
+				result = false;
+			}
+			
+		}
+		return (hex.length() <= 8 && result);
 	}
 	
 	/**
