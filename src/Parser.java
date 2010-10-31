@@ -11,6 +11,8 @@ import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.StringTokenizer;
 
+//import Instruction.instructionTypes;
+
 /**
  * @authors Robert Schmidt, Kermit Stearns, Daniel Burnett, Oscar Flores, Rakaan Kayali.
  * Contains the code for parsing the source code read from the source. Code is segmented 
@@ -109,6 +111,7 @@ public class Parser
 		fillErrorArray("ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
+		//Check to see if there is a valid start operation else end program.
 		if (linesOfCode.size() > 0 && (parseCodeLine(linesOfCode.get(0)).directive == null || parseCodeLine(linesOfCode.get(0)).directive.directiveName.toUpperCase().equals(".START") == false))
 		{
 			currentErrorArray.clear();
@@ -130,8 +133,15 @@ public class Parser
 		}
 		//System.out.println(CodeLineArray.get(8).instruction.returnPrintString());
 		printIntermediateFile("IntermediateFile.txt");
-
-		SymbTable.prettyFerret();		
+		
+		for (CodeLine codeLine : CodeLineArray) 
+		{
+			if(codeLine.instruction != null && codeLine.instruction.instructionType == Instruction.instructionTypes.REGISTER)
+			{
+				System.out.println(codeLine.instruction.instruction + "  :  " + codeLine.instruction.returnHexCodeLine());
+			}
+		}
+			
 	}
 
 	public static void printIntermediateFile(String fileName)
