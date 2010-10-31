@@ -117,14 +117,54 @@ public class Operand
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//# of bits to be shifted in a shift instruction (makes sense to limit this to 0-15???)
-		return false;
+	
+		//Integer.valueOf doesn't work if we have a '+' character in the number however I believe we are allowed
+		//to use the '+' character for positive numbers despite that its unnecessary, therefore I check for its
+		//occurrence and disregard it if its present.
+		boolean answer = true;
+		String absoluteValue = "";
+		//check first character to see if +,- or digit
+		if (bits.charAt(0)=='+'||bits.charAt(0)=='-'||Character.isDigit(bits.charAt(0)))
+		{
+				//check all characters that are supposed to be digits to make sure that they in fact are.
+				for(int counter = 1; counter<bits.length();counter++)
+				{
+					if(Character.isDigit(bits.charAt(counter)))
+					{
+					absoluteValue = absoluteValue + bits.charAt(counter);
+					}
+					else
+					{
+						answer = false;
+					}
+				}
+				
+			int comparisonValue = Integer.valueOf(absoluteValue);
+			
+			if (bits.charAt(0)=='-')
+			{
+				comparisonValue = comparisonValue*(-1);
+			}
+			//check to see if our number falls within the required range of acceptable values.
+			answer = (-32<=comparisonValue && comparisonValue <=31);
+		}
+		else
+		{
+			//if first character isn't +,- or digit than the directive number is invalid.
+			answer = false;
+		}
+		
+		return answer;
 	}
 	static boolean isValidInstructionNumber (String number) 
 	{
+		//This is a superfluous function since it will always return true, unless we decide to set a limit
+		//for acceptable strings and/or numbers.
+		
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//words of memory to be reserved for IO instructions...should we limit this? 
 		
-		return false;
+		return true;
 	}
 	
 	
@@ -138,12 +178,10 @@ public class Operand
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		// -231<=x<=230
 		boolean answer = true;
+		String absoluteValue = "";
 		//check first character to see if +,- or digit
 		if (number.charAt(0)=='+'||number.charAt(0)=='-'||Character.isDigit(number.charAt(0)))
 		{
-			String absoluteValue = "";
-			if(number.charAt(0)=='+'||number.charAt(0)=='-')
-			{
 				//check all characters that are supposed to be digits to make sure that they in fact are.
 				for(int counter = 1; counter<number.length();counter++)
 				{
@@ -156,24 +194,19 @@ public class Operand
 						answer = false;
 					}
 				}
-			}
-			else
+				
+			int comparisonValue = Integer.valueOf(absoluteValue);
+			
+			if (number.charAt(0)=='-')
 			{
-				absoluteValue = number;
+				comparisonValue = comparisonValue*(-1);
 			}
 			//check to see if our number falls within the required range of acceptable values.
-			if (number.charAt(0)=='-'&&Integer.valueOf(absoluteValue)>231)
-			{
-				answer = false;
-			}
-			else if (number.charAt(0)!='-'&&Integer.valueOf(absoluteValue)>230)
-			{
-				answer = false;
-			}
+			answer = (-231<=comparisonValue && comparisonValue <=230);
 		}
 		else
 		{
-			//if first character isnt +,- or digit than the directive number is invalid.
+			//if first character isn't +,- or digit than the directive number is invalid.
 			answer = false;
 		}
 		
