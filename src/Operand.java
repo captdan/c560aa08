@@ -123,6 +123,7 @@ public class Operand
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//words of memory to be reserved for IO instructions...should we limit this? 
+		
 		return false;
 	}
 	
@@ -136,13 +137,62 @@ public class Operand
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		// -231<=x<=230
-		return false;
+		boolean answer = true;
+		//check first character to see if +,- or digit
+		if (number.charAt(0)=='+'||number.charAt(0)=='-'||Character.isDigit(number.charAt(0)))
+		{
+			String absoluteValue = "";
+			if(number.charAt(0)=='+'||number.charAt(0)=='-')
+			{
+				//check all characters that are supposed to be digits to make sure that they in fact are.
+				for(int counter = 1; counter<number.length();counter++)
+				{
+					if(Character.isDigit(number.charAt(counter)))
+					{
+					absoluteValue = absoluteValue + number.charAt(counter);
+					}
+					else
+					{
+						answer = false;
+					}
+				}
+			}
+			else
+			{
+				absoluteValue = number;
+			}
+			//check to see if our number falls within the required range of acceptable values.
+			if (number.charAt(0)=='-'&&Integer.valueOf(absoluteValue)>231)
+			{
+				answer = false;
+			}
+			else if (number.charAt(0)!='-'&&Integer.valueOf(absoluteValue)>230)
+			{
+				answer = false;
+			}
+		}
+		else
+		{
+			//if first character isnt +,- or digit than the directive number is invalid.
+			answer = false;
+		}
+		
+		return answer;
 	}
 	static boolean isValidDirectiveBinary (String binary) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//32 binary digits
-		return false;
+		boolean answer = true;
+		
+		for(int i=0; i<binary.length();i++){
+				if(Character.getNumericValue(binary.charAt(i))!=0||Character.getNumericValue(binary.charAt(i))!=1)
+						{
+							answer = false;
+						}
+			}
+		
+		return (binary.length()<= 32 && answer);
 	}
 	static boolean isValidDirectiveHex (String hex) 
 	{
