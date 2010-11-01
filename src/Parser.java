@@ -868,17 +868,17 @@ public class Parser
 						//REGISTER, IMMEDIATE, ADDRESS, BIT, BITS, NUMBER, IO;
 						switch (operand)
 						{
-						case ADDRESS: validOperands = true;
+						case ADDRESS:  validOperands = Operand.isValidInstructionAddress(operands[x]);
 							break;
-						case BIT: validOperands = true;
+						case BIT:  validOperands = Operand.isValidInstructionBit(operands[x]);
 							break;
-						case BITS: validOperands = true;
+						case BITS: validOperands = Operand.isValidInstructionBits(operands[x]);
 							break;
 						case IMMEDIATE: validOperands = true;
 							break;
-						case NUMBER: validOperands = true;
+						case NUMBER: validOperands = Operand.isValidInstructionNumber(operands[x]);
 							break;
-						case IO: validOperands = true;
+						case IO: validOperands = Operand.isValidInstructionImmediate(operands[x]);
 							break;
 						case REGISTER: validOperands = isRegister(operands[x]);
 							break;

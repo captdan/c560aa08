@@ -87,6 +87,10 @@ public class Instruction
 			hexCodeLine += padZeros("",3); 								//Unused 	2 bits
 			hexCodeLine += padZeros(this.instructionExtendedBinary,6);	//Function 	2 bits
 		}
+		if(this.instructionType == Instruction.instructionTypes.J)
+		{
+			
+		}
 		
 		
 		return hexCodeLine;
