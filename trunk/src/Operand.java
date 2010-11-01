@@ -126,6 +126,10 @@ public class Operand
 		//check first character to see if +,- or digit
 		if (bits.charAt(0)=='+'||bits.charAt(0)=='-'||Character.isDigit(bits.charAt(0)))
 		{
+			if (Character.isDigit(bits.charAt(0))){
+				
+				absoluteValue = String.valueOf(bits.charAt(0));
+			}
 				//check all characters that are supposed to be digits to make sure that they in fact are.
 				for(int counter = 1; counter<bits.length();counter++)
 				{
@@ -182,6 +186,12 @@ public class Operand
 		//check first character to see if +,- or digit
 		if (number.charAt(0)=='+'||number.charAt(0)=='-'||Character.isDigit(number.charAt(0)))
 		{
+			if (Character.isDigit(number.charAt(0))){
+				
+				absoluteValue = String.valueOf(number.charAt(0));
+			}
+
+			
 				//check all characters that are supposed to be digits to make sure that they in fact are.
 				for(int counter = 1; counter<number.length();counter++)
 				{
