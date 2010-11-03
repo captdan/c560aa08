@@ -7,8 +7,12 @@ import java.util.Date;
 public class ObjectFile {
 	
 	private Program p;
-	int linkingrecordsize;
-	int textrecordsize;
+	ArrayList<String> headerRecord = new ArrayList<String>();
+	ArrayList<ArrayList<String>> linkingRecord = new ArrayList<ArrayList<String>>();
+	ArrayList<String> textRecord = new ArrayList<String>();
+	ArrayList<String> endRecord = new ArrayList<String>();
+	
+	
 	
 	public ObjectFile (Program program)
 	{
@@ -36,7 +40,7 @@ public class ObjectFile {
 				linkingrecord.add(record);
 			}
 		}
-		linkingrecordsize = linkingrecord.size();
+		
 		return linkingrecord;
 	}
 	
@@ -54,17 +58,29 @@ public class ObjectFile {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date time = new Date();
 		header.add(String.valueOf(dateFormat.format(time)));
-		header.add(String.valueOf(Integer.toHexString(linkingrecordsize)));
-		header.add(String.valueOf(textrecordsize));
+		header.add(String.valueOf(Integer.toHexString(linkingRecord.size())));
+		header.add(String.valueOf(textRecord.size()));
 		header.add(String.valueOf(p.executionStart));
 		header.add("SAL");
 		header.add("1");
 		header.add("2");
 		header.add(p.programName);
 
+		headerRecord = header;
 		return header;
 	}
 
+	public ArrayList<String> createEndRecord ()
+	{
+		ArrayList<String> endRecord = new ArrayList<String>();
+		
+		endRecord.add("E");
+		endRecord.add(String.valueOf(Integer.toHexString(linkingRecord.size() + textRecord.size() + 2)));
+		endRecord.add(p.programName);
+		
+		return endRecord;
+	}
+	
 	private ArrayList<String> makeOneLinkingRecord(String symbol,
 			boolean start) {
 
@@ -84,7 +100,7 @@ public class ObjectFile {
 		return linkingrecord;
 	}
 
-	public static String joinStringArray(ArrayList<String> stringArray,
+	private String joinStringArray(ArrayList<String> stringArray,
 			String delimiter) {
 		String totalString = stringArray.get(0);
 		for (int x = 1; x < stringArray.size(); x++) {
