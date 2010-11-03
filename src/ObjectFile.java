@@ -6,56 +6,72 @@ import java.util.Date;
 
 public class ObjectFile {
 	
-	public static void createObjectFile(Program p) {
+	private Program p;
+	int linkingrecordsize;
+	int textrecordsize;
+	
+	public ObjectFile (Program program)
+	{
+		p = program;
+	}
+	
+	public ArrayList<ArrayList<String>> createLinkingRecord() {
+		
 		ArrayList<ArrayList<String>> linkingrecord = new ArrayList<ArrayList<String>>();
 
 		// First we create Linking Record, starting with the program name
-		ArrayList<String> record = makeLinkingRecord(Program.programName, true);
+		ArrayList<String> record = makeOneLinkingRecord(p.programName, true);
 		linkingrecord.add(record);
 
 		// Get list of all symbols in Symbol Table
-		ArrayList<String> symbols = Program.symbolTable.getSortedListOfSymbols();
+		ArrayList<String> symbols = p.symbolTable.getSortedListOfSymbols();
 
 		// Iterate through all the symbols checking for ENT symbols
 		for (int i = 0; i <= symbols.size(); i++) {
-			ArrayList<Object> values = Program.symbolTable.getInfoFromSymbol(symbols
+			ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbols
 					.get(i));
 
 			if (values.get(2) == SymbolTable.Uses.ENT) {
-				record = makeLinkingRecord(symbols.get(i), false);
+				record = makeOneLinkingRecord(symbols.get(i), false);
 				linkingrecord.add(record);
 			}
 		}
-
+		linkingrecordsize = linkingrecord.size();
+		return linkingrecord;
+	}
+	
+	public ArrayList<String> createHeaderRecord()
+	{
 		// Then we create header file
 		ArrayList<String> header = new ArrayList<String>();
 
 		header.add("H");
-		header.add(Program.programName);
-		header.add(Integer.toHexString(Integer.valueOf(Program.programLength)));
-		header.add(String.valueOf(Program.startLocation));
+		header.add(p.programName);
+		header.add(Integer.toHexString(Integer.valueOf(p.programLength)));
+		header.add(String.valueOf(p.startLocation));
 		header.add(String.valueOf(Calendar.YEAR) + ":"
 				+ String.valueOf(Calendar.DAY_OF_YEAR));
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date time = new Date();
 		header.add(String.valueOf(dateFormat.format(time)));
-		header.add(String.valueOf(Integer.toHexString(linkingrecord.size())));
-		header.add("Number of Text Records");
-		header.add(String.valueOf(Program.executionStart));
+		header.add(String.valueOf(Integer.toHexString(linkingrecordsize)));
+		header.add(String.valueOf(textrecordsize));
+		header.add(String.valueOf(p.executionStart));
 		header.add("SAL");
 		header.add("1");
 		header.add("2");
-		header.add(Program.programName);
+		header.add(p.programName);
 
+		return header;
 	}
 
-	public static ArrayList<String> makeLinkingRecord(String symbol,
+	private ArrayList<String> makeOneLinkingRecord(String symbol,
 			boolean start) {
 
 		ArrayList<String> linkingrecord = new ArrayList<String>();
 		linkingrecord.add("L");
 		linkingrecord.add(symbol);
-		ArrayList<Object> values = Program.symbolTable.getInfoFromSymbol(symbol);
+		ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbol);
 		String hexaddress = Integer.toHexString(Integer.valueOf((String) values
 				.get(2)));
 		linkingrecord.add(hexaddress);
@@ -64,7 +80,7 @@ public class ObjectFile {
 		} else {
 			linkingrecord.add("ENT");
 		}
-		linkingrecord.add(Program.programName);
+		linkingrecord.add(p.programName);
 		return linkingrecord;
 	}
 
