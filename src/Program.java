@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class Program {
 
 	/**
@@ -35,4 +34,5 @@ public class Program {
 		literalTable = l;
 	}
 
+	
 }
