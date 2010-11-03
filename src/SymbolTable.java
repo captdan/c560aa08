@@ -18,7 +18,7 @@ public class SymbolTable
 	 * The label will be the key and the remaining information will be the value.
 	 */
 	static SortedMap<String, ArrayList<Object>> symb = new TreeMap<String, ArrayList<Object>>();
-	static int size = 0;
+	int size = 0;
 
 	/**
 	 * Allows a symbol, along with its information, to be added to the table.
