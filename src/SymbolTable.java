@@ -17,7 +17,7 @@ public class SymbolTable
 	 * A map to hold all of the symbols for the table.
 	 * The label will be the key and the remaining information will be the value.
 	 */
-	private SortedMap<String, ArrayList<Object>> symb = new TreeMap<String, ArrayList<Object>>();
+	static SortedMap<String, ArrayList<Object>> symb = new TreeMap<String, ArrayList<Object>>();
 
 	/**
 	 * Allows a symbol, along with its information, to be added to the table.
@@ -28,7 +28,7 @@ public class SymbolTable
 	 */
 	public static enum Uses
 	{
-		DATA_LABEL,PROGRAM_NAME,EXTERNAL,EQU
+		DATA_LABEL,PROGRAM_NAME,EXTERNAL,EQU,ENT
 	}
 	
 	/**
@@ -58,6 +58,29 @@ public class SymbolTable
 		value.add(use);
 		symb.put(label, value);
 		//}
+	}
+	
+	/**
+	 * 
+	 * Module Name: changeToENT
+	 * Description: used when a label is associated with an ENT directive in a .text section.
+	 * Input Params: String with the name of the label.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns,Rakaan Kayali
+	 * Date of Installation: 11/3/2010
+	 * Modifications: 
+	 * @param labelName Name of the label whose usage is changed.
+	 */
+	public static void changeToENT(String labelName)
+	{
+		ArrayList<Object> temp = symb.get(labelName);
+		symb.remove(labelName);
+		temp.remove(2);
+		temp.add(2,Uses.ENT);
+		symb.put(labelName, temp);
+		
 	}
 
 	/**
