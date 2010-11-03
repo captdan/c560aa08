@@ -15,13 +15,13 @@ public class Program {
 	 * @param args
 	 */
 	
-	public static String programName = "";
-	public static int startLocation;
-	public static int executionStart;
-	public static int programLength;
-	public static ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
-	public static SymbolTable symbolTable;
-	public static LiteralTable literalTable;
+	public String programName = "";
+	public int startLocation;
+	public int executionStart;
+	public int programLength;
+	public ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
+	public SymbolTable symbolTable;
+	public LiteralTable literalTable;
 	
 	public Program (String p, int start, int execstart,int length, ArrayList<CodeLine> a, SymbolTable s, LiteralTable l)
 	{
