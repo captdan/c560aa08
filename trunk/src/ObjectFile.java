@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ public class ObjectFile {
 	private Program p;
 	ArrayList<String> headerRecord = new ArrayList<String>();
 	ArrayList<ArrayList<String>> linkingRecord = new ArrayList<ArrayList<String>>();
-	ArrayList<String> textRecord = new ArrayList<String>();
+	ArrayList<ArrayList<String>> textRecord = new ArrayList<ArrayList<String>>();
 	ArrayList<String> endRecord = new ArrayList<String>();
 	
 	
@@ -100,10 +102,41 @@ public class ObjectFile {
 		return linkingrecord;
 	}
 
-	private String joinStringArray(ArrayList<String> stringArray,
-			String delimiter) {
+	public void prettyFerret2 ()
+	{
+		try
+		{
+			FileWriter fileStream = new FileWriter("ObjectFile.txt");
+			BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
+			
+			bufferedWriter.write(joinStringArray(headerRecord,"|") + "\n");
+			
+			for(ArrayList<String> a : linkingRecord)
+			{
+				bufferedWriter.write(joinStringArray(a,"|") + "\n");
+			}	
+			
+			for(ArrayList<String> a : textRecord)
+			{
+				bufferedWriter.write(joinStringArray(a,"|") + "\n");
+			}
+			
+			bufferedWriter.write(joinStringArray(endRecord,"|") + "\n");
+			
+			bufferedWriter.close();
+		}
+		catch (Exception e)
+		{
+			System.err.println("Unable to write object file!");
+		}
+	}
+	
+	private String joinStringArray(ArrayList<String> stringArray, String delimiter) 
+	{
 		String totalString = stringArray.get(0);
-		for (int x = 1; x < stringArray.size(); x++) {
+		
+		for (int x = 1; x < stringArray.size(); x++) 
+		{
 			totalString += (delimiter + stringArray.get(x));
 		}
 		return totalString;
