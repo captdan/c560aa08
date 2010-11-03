@@ -312,154 +312,7 @@ public class Parser
 			}
 		}
 	}
-	/**
-	 * @author Kermit Stearns added 10/17/2010.
-	 * 
-	 * Adds the value of the parameter to the value of PC if within acceptable range
-	 * of values of PC. If not then returns an error.
-	 * @param cl The CodeLine object with the .EXP directive.
-	 * @return The integer value of the evaluated expression.
-	 */
-	public static int evaluateExpression (CodeLine cl)
-	{
-		int result = 0;
-		StringTokenizer expressionTokenizer = new StringTokenizer(String.valueOf(cl.directive.operandArray.get(0)),"+-",true);
-		String op1 = expressionTokenizer.nextToken();
-		
-		//Check 1st operand
-		if (SymbTable.isInTable(op1))
-		{
-			result += (Integer)SymbTable.getInfoFromSymbol(op1).get(2);
-		}
-		else if (op1 == "*")
-		{
-			result += PC;
-		}
-		else
-		{
-			result += Integer.valueOf(op1);
-		}
-		
-		//Check for 2nd symbol, if its there, then we have another operand as well
-		if(expressionTokenizer.hasMoreTokens())
-		{
-			String symb1 = expressionTokenizer.nextToken();
-			String op2 = expressionTokenizer.nextToken();
-			
-			if (symb1 == "+")
-			{
-				if (SymbTable.isInTable(op2))
-				{
-					result += (Integer)SymbTable.getInfoFromSymbol(op2).get(2);
-				}
-				else if (op2 == "*")
-				{
-					result += PC;
-				}
-				else
-				{
-					result += Integer.valueOf(op2);
-				}
-			}
-			else
-			{
-				if (SymbTable.isInTable(op2))
-				{
-					result -= (Integer)SymbTable.getInfoFromSymbol(op2).get(2);
-				}
-				else if (op2 == "*")
-				{
-					result -= PC;
-				}
-				else
-				{
-					result -= Integer.valueOf(op2);
-				}
-			}
-			
-			
-		}
-		
-		//Check for 3rd symbol, if its there, then we have another operand as well
-		if(expressionTokenizer.hasMoreTokens())
-		{
-			String symb2 = expressionTokenizer.nextToken();
-			String op3 = expressionTokenizer.nextToken();
-			
-			if (symb2 == "+")
-			{
-				if (SymbTable.isInTable(op3))
-				{
-					result += (Integer)SymbTable.getInfoFromSymbol(op3).get(2);
-				}
-				else if (op3 == "*")
-				{
-					result += PC;
-				}
-				else
-				{
-					result += Integer.valueOf(op3);
-				}
-			}
-			else
-			{
-				if (SymbTable.isInTable(op3))
-				{
-					result -= (Integer)SymbTable.getInfoFromSymbol(op3).get(2);
-				}
-				else if (op3 == "*")
-				{
-					result -= PC;
-				}
-				else
-				{
-					result -= Integer.valueOf(op3);
-				}
-			}
-		
-		}
-		
-		//Check for 5th symbol, if its there, then we have another operand as well
-		if(expressionTokenizer.hasMoreTokens())
-		{
-			String symb3 = expressionTokenizer.nextToken();
-			String op4 = expressionTokenizer.nextToken();
-			
-			if (symb3 == "+")
-			{
-				if (SymbTable.isInTable(op4))
-				{
-					result += (Integer)SymbTable.getInfoFromSymbol(op4).get(2);
-				}
-				else if (op4 == "*")
-				{
-					result += PC;
-				}
-				else
-				{
-					result += Integer.valueOf(op4);
-				}
-			}
-			else
-			{
-				if (SymbTable.isInTable(op4))
-				{
-					result -= (Integer)SymbTable.getInfoFromSymbol(op4).get(2);
-				}
-				else if (op4 == "*")
-				{
-					result -= PC;
-				}
-				else
-				{
-					result -= Integer.valueOf(op4);
-				}
-			}
-		
-		}
-		
-		return result;
-	}
+	
 	/**
 	 * @author Robert Schmidt added 10/17/2010
 	 * 
@@ -526,7 +379,14 @@ public class Parser
 				//System.out.println(Arrays.toString(operands));
 				if (directive.operands.size() == operands.length || directive.directiveName.equals("EXT") || directive.directiveName.equals("ENT"))
 				{
-				
+					//Checks to see if directive is ENT and necessitates changing previously declared data_label to ENT usage
+					if(directive.directiveName.equals("ENT"))
+					{
+						for(int i = operands.length-1; i >= 0; i--)
+						{
+							SymbolTable.changeToENT(operands[i]);
+						}
+					}
 					directiveObj.directiveName = directive.directiveName;
 					directiveObj.labelType = directive.labelType;
 					directiveObj.codeLocation = directive.codeLocation;
