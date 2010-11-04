@@ -83,8 +83,42 @@ public class Operand
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//has to be greater than starting LC, less than 65536
-		int addr = Integer.parseInt(address);
-		return ((addr > Parser.startingLocation) && (addr < 65536));
+		boolean result = false;
+		int possibleAddress = 0;
+		try
+		{
+			possibleAddress = Integer.parseInt(address);
+			result = true;
+		}
+		catch(NumberFormatException e)
+		{
+			result = false;
+		}
+		
+		//if it's not an integer, it could still be a label that is a valid integer, so check SymbTable
+		if(result == false)
+		{
+			if(Parser.SymbTable.isInTable(address))
+			{
+				ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(address);
+				try
+				{
+					//Checks the "sub" value of the label to see if the label is a substitute for a valid integer
+					Integer.parseInt(String.valueOf(values.get(1)));
+					result = true;
+				}
+				catch(NumberFormatException e)
+				{
+					result = false;
+				}
+			
+			}
+		}
+		if(result == true)
+		{
+			result = ((possibleAddress > Parser.startingLocation) && (possibleAddress < 65536));
+		}
+		return result;
 	}
 	static boolean isValidInstructionBit (String bit) 
 	{
