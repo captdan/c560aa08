@@ -45,21 +45,21 @@ public class SymbolTable
 	 */
 	public final void addSymbol(String label, String addr, String sub, Uses use) 
 	{	
-		/**if(this.symb.containsKey(label))
+		if(symb.containsKey(label))
 		{
 			Error duplicatelabel = Parser.returnError(2);
 			duplicatelabel.printError();
-			//System.exit(1);
+			System.exit(1);
 		}
 		else{
-		*/
+		
 		ArrayList<Object> value = new ArrayList<Object>();
 		value.add(addr);
 		value.add(sub);
 		value.add(use);
 		symb.put(label, value);
 		size++;
-		//}
+		}
 	}
 	
 	/**
