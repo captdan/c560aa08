@@ -63,6 +63,118 @@ public class ObjectFile {
 		return linkingrecord;
 	}
 	
+	public ArrayList<ArrayList<String>> createTextRecord() {
+		
+		ArrayList<ArrayList<String>> textRecord = new ArrayList<ArrayList<String>>();
+		
+		for (CodeLine codeline : p.CodeLineArray)
+		{
+		ArrayList<String> record = makeOneTextRecord(codeline);
+		
+		textRecord.add(record);
+		}
+		
+		
+		return textRecord;
+	}
+	private ArrayList<String> makeOneTextRecord(CodeLine codeline)
+	{
+		ArrayList<String> textRecord = new ArrayList<String>();
+		
+		textRecord.add("T");
+		
+		textRecord.add(String.valueOf(Integer.toHexString(codeline.PC)));
+		
+		int debugValue = 0;
+		
+		String debugSign;
+		
+		if (codeline.directive.directiveName.equals("DEBUG"))
+		{
+			debugValue = Integer.valueOf(codeline.directive.operandArray.get(0).operand);
+		}
+		
+		if (debugValue == 0)
+		{
+			debugSign = "Y";
+		}
+		else
+		{
+			debugSign = "N";
+		}
+		
+		textRecord.add(debugSign);
+		
+		String dataWord;
+		
+		dataWord = codeline.instruction.instructionExtendedHex;
+		
+		
+		if (codeline.directive.directiveName.equals(""))
+		{
+			if(codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
+					||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("ADR.DATA")||codeline.directive.directiveName.equals("ADR.EXP")
+					||codeline.directive.directiveName.equals("NOP")||codeline.directive.directiveName.equals("MEM.SKIP")||codeline.directive.directiveName.equals("RESET.LC"))
+					{
+						dataWord = Integer.toHexString(Integer.valueOf(codeline.directive.operandArray.get(0).operand));
+					}
+		}
+		
+		textRecord.add(dataWord);
+		
+		//String numberOfAdjustments;
+		
+		//TODO add number of Adjustements to textRecord.
+		
+		String typeOfAction = "R";
+		
+		if (codeline.directive.directiveName.equals("EXT"))
+		{
+			typeOfAction = "E";
+		}
+		else if (codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")
+				||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
+				||codeline.instruction.operands.contains(Instruction.operandTypes.IMMEDIATE))
+		{
+			typeOfAction = "A";
+		}
+		
+		int countOfRegisters = 0;
+		
+		for (int i = 0; i < codeline.instruction.operands.size(); i++)
+		{
+			
+			if (codeline.instruction.operandsArray.get(i).equals(Instruction.operandTypes.REGISTER))
+			{
+				countOfRegisters++;
+			}
+		}
+		if (countOfRegisters == codeline.instruction.operands.size()&&countOfRegisters !=0)
+		{
+			typeOfAction = "A";
+		}
+		
+		textRecord.add(typeOfAction);
+		
+		String labelReference = "";
+		
+		if (codeline.directive.directiveName.equals("ENT")||codeline.directive.directiveName.equals("EXT"))
+		{
+			for (int count = 0; count < codeline.directive.operandArray.size();count++)
+			{
+			labelReference = labelReference + codeline.directive.operandArray.get(count);
+			}
+		}
+		
+		textRecord.add(labelReference);
+		
+		//TODO Up to 4...not sure what that is.
+		
+		textRecord.add(p.programName);
+		
+		
+		return textRecord;
+	}
 	public ArrayList<String> createHeaderRecord()
 	{
 		// Then we create header file
@@ -118,7 +230,8 @@ public class ObjectFile {
 		linkingrecord.add(p.programName);
 		return linkingrecord;
 	}
-
+	
+	
 	public void prettyFerret2 ()
 	{
 		try
