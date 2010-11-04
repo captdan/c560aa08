@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 
+ * @author Kerovesmo
+ *
+ */
 public class ObjectFile {
 	
 	private Program p;
@@ -20,7 +25,19 @@ public class ObjectFile {
 	{
 		p = program;
 	}
-	
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated: 
+	 * Original Author: 
+	 * Date of Installation: 
+	 * Modifications:
+	 * @return
+	 */
 	public ArrayList<ArrayList<String>> createLinkingRecord() {
 		
 		ArrayList<ArrayList<String>> linkingrecord = new ArrayList<ArrayList<String>>();
