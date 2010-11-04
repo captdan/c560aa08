@@ -20,5 +20,7 @@
 19	Operand does not match operand type.	Check operand type.
 20	No Start Found for program to run.	Add a correct start directive.
 21	Immediate is not a number.	Verify  immediate is a number.	
-22	Binary expected.	change operand to correct binary.
+22	Binary expected.	Change operand to correct binary.
+23	Invalid Register number.		Change register number.
+24	invalid Instruction.	Check line for syntax errors.
 99	General Error	Check this line for syntax errors.
