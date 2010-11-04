@@ -784,6 +784,7 @@ public class Parser
 		return instructionObj;
 	}
 
+
 	/*
 	 * cl.instruction = returnInstruction(instruction); String operandString =
 	 * ""; while (st.hasMoreTokens()) { operandString += st.nextToken(); }
@@ -804,16 +805,22 @@ public class Parser
 	 */
 
 	/**
-	 * @author Robert Schmidt added 10/12/2010.
 	 * 
-	 * Function that joins a String array by a delimiter.
-	 * 
+	 * Module Name: joinStringArray.
+	 * Description: Function that joins a String array by a delimiter.
+	 * Input Params: stringArray
+	 *            		Is passed a string array that is to be joined.
+	 *               delimiter
+	 *            		This is what string should be placed the elements joined in the stringArray.
+	 * Output Params: Returns a String that is the joined array plus delimiters.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Robert Schmidt.
+	 * Date of Installation: 10/12/2010.
+	 * Modifications:
 	 * @param stringArray
-	 *            Is passed a string array that is to be joined
 	 * @param delimiter
-	 *            This is what string should be placed the elements joined in
-	 *            the stringArray
-	 * @return Returns a String that is the joined array plus delimiters
+	 * @return
 	 */
 	public static String joinStringArray(String[] stringArray, String delimiter) 
 	{
@@ -826,17 +833,22 @@ public class Parser
 	}
 
 	/**
-	 * @author Robert Schmidt added 10/4/2010.
-	 * readFileToArrayList reads a file and stores its contents in an array with 
+	 * 
+	 * Module Name: readFileToArrayList
+	 * Description: readFileToArrayList reads a file and stores its contents in an array with 
 	 * each line in the file occupying a specific position in the array.
-	 * @param fileName
+	 * Input Params: fileName
 	 *            Is passed the file location of the file to be read and
 	 *            converted into a string array
-	 * @return Returns an ArrayList<String> where each string contains one line
+	 * Output Params: Returns an ArrayList<String> where each string contains one line
 	 *         of code in order.
-	 * 
-	 *         Function that returns an ArrayList of Strings where each line in
-	 *         the the file is a string.
+	 * Error Conditions Tested: Input file Exits.
+	 * Error Messages Generated: "File not found".
+	 * Original Author: Robert Schmidt.
+	 * Date of Installation: 10/4/2010.
+	 * Modifications:
+	 * @param fileName
+	 * @return
 	 */
 	public static ArrayList<String> readFileToArrayList(String fileName)
 	{
@@ -871,14 +883,22 @@ public class Parser
 	}
 
 	/**
-	 * @author Robert Schmidt added 10/4/2010.
-	 * This function reads a specified instruction file we have
+	 * 
+	 * Module Name: fillInstructionsArray.
+	 * Description: This function reads a specified instruction file we have
 	 * formatted and it adds the data from the specified instruction
 	 * file into the public static InstructionArray. This allows us
 	 * to easily check to see if an instruction is in the correct
 	 * format.
+	 * Input Params: fileName
+	 *            This is the file location of the instruction table.
+	 * Output Params: None.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/4/2010.
+	 * Modifications:
 	 * @param fileName
-	 *            This is the file location of the instruction table
 	 */
 	public static void fillInstructionsArray(String fileName) 
 	{
@@ -949,16 +969,24 @@ public class Parser
 	}
 
 	/**
-	 * @author Robert Schmidt added 10/4/2010.
-	 * fillErrorArray is a function that reads a specified error file we have formatted
+	 * 
+	 * Module Name: fillErrorArray.
+	 * Description: fillErrorArray is a function that reads a specified error file we have formatted
 	 * and it adds the data from the specified instruction file into
 	 * the public static ErrorArray. This allows us to easily check
 	 * to see if an error is in the correct format.
-	 * @param fileName
+	 * Input Params: fileName
 	 *          Is a String that represents the name of the Error file that is to be read
 	 *          into the ErrorArray.
+	 * Output Params: None.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Robert Schmidt.
+	 * Date of Installation: 10/4/2010.
+	 * Modifications:
+	 * @param fileName
 	 */
-public static void fillErrorArray(String fileName)
+	public static void fillErrorArray(String fileName)
 {
 	ArrayList<String> linesOfError = readFileToArrayList(fileName);
 	for(String lineOfError : linesOfError)
@@ -976,17 +1004,23 @@ public static void fillErrorArray(String fileName)
 	}
 }
 
-/**
- * @author Oscar Flores added 10/4/2010.
- * The function returnError returns an error whose position in the ErrorArray
- * corresponds to the number that we pass in as a parameter.
- * @param ErrorId
- *            The error id number associated with the error.
- *            
- * @return returnError
- * 			Returns an instance of the Error class object for the specified
- *         	error.
- */
+	/**
+	 * 
+	 * Module Name: returnError.
+	 * Description: The function returnError returns an error whose position in the ErrorArray
+	 * corresponds to the number that we pass in as a parameter.
+	 * Input Params: ErrorId
+	 *     		       The error id number associated with the error.
+	 * Output Params: returnError
+	 *		       	   Returns an instance of the Error class object for the specified error.    			
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 10/4/2010.
+	 * Modifications: 
+	 * @param ErrorId
+	 * @return
+	 */
 	public static Error returnError(int ErrorId) 
 	{
 		Error returnError = new Error();
@@ -1001,14 +1035,20 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Daniel Burnett add 10/6/2010.
-	 * the function instructionExists checks the String parameter we pass in to 
+	 * Module Name: InstructionExists.
+	 * Description: The function instructionExists checks the String parameter we pass in to 
 	 * see if it holds an instruction and returns a boolean accordingly.
-	 * @param instructionString
+	 * Input Params: instructionString
 	 *            The text instruction name that is to be looked up.
-	 * @return instructionExists
-	 * 		   Returns a boolean value depending on the existence of the
-	 *         instruction.
+	 * Output Params: instructionExists
+	 * 		   Returns a boolean value depending on the existence of the instruction.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Daniel Burnett.
+	 * Date of Installation: 10/6/2010.
+	 * Modifications:
+	 * @param instructionString
+	 * @return
 	 */
 	public static boolean instructionExists(String instructionString) 
 	{
@@ -1024,15 +1064,20 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Rakaan Kayali added 10/11/2010.
-	 * 
-	 * The function returnInstructionViaOpcode returns the instruction extracted 
+	 * Module Name: returnInstructionViaOpcode
+	 * Description: The function returnInstructionViaOpcode returns the instruction extracted 
 	 * from the String parameter instructionString.
-	 * @param instructionString
+	 * Input Params: InstructionString
 	 *            The text instruction name that is to be returned.
-	 * @return returnInstruction
-	 * 			Returns an instance of the instruction class for the specified
-	 *         instruction.
+	 * Output Params: returnInstruction
+	 * 			Returns an instance of the instruction class for the specified instruction. 
+	 * Error Conditions Tested: String is a valid instruction.
+	 * Error Messages Generated: Error 24
+	 * Original Author: Rakaan Kayali.
+	 * Date of Installation: 10/11/2010.
+	 * Modifications:
+	 * @param instructionString
+	 * @return
 	 */
 	public static Instruction returnInstructionViaOpcode(String instructionString) 
 	{
@@ -1046,15 +1091,22 @@ public static void fillErrorArray(String fileName)
 		}
 		return returnInstruction;
 	}
-
 	/**
-	 * @author Kermit Stearns added 10/11/2010.
-	 * The function isRegister checks to see if the parameter String represents a valid register
+	 * 
+	 * Module Name: isRegister.
+	 * Description: The function isRegister checks to see if the parameter String represents a valid register
 	 * and returns a boolean accordingly.
-	 * @param operandString
+	 * Input Params: operandString
 	 *            The string of the operand of an instruction.
-	 * @return isRegister
-	 * 			 Returns is the operand is a valid register or not.
+	 * Output Params: sRegister
+	 * 			 Returns is the operand is a valid register or not. 
+	 * Error Conditions Tested: Correct Syntax for registers and valid register number.
+	 * Error Messages Generated: Errors 19,23
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 10/11/2010.
+	 * Modifications:
+	 * @param operandString
+	 * @return
 	 */
 	public static Boolean isRegister(String operandString) 
 	{
@@ -1072,13 +1124,20 @@ public static void fillErrorArray(String fileName)
 	}
 	
 	/**
-	 * @author Daniel Burnett 10/11/2010.
-	 * Checks to see if an operand is a valid literal. If so, it is added to the literal table.
 	 * 
-	 * @param operandString
-	 * 			The string containing the operand to be checked.
-	 * @return Returns isLiteral
+	 * Module Name: isLiteral.
+	 * Description: Checks to see if an operand is a valid literal. If so, it is added to the literal table.
+	 * Input Params: String operandString.
+	 * 					A string containing a possible Literal
+	 * Output Params: isLiteral
 	 * 			true if the operand is a valid literal, otherwise returns false.
+	 * Error Conditions Tested: Check that literals are within the valid range.
+	 * Error Messages Generated: Incorrect operands.
+	 * Original Author: Daniel Burnett
+	 * Date of Installation: 10/11/2010.
+	 * Modifications: 
+	 * @param operandString
+	 * @return
 	 */
 	public static boolean isLiteral(String operandString) 
 	{
