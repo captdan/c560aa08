@@ -1106,12 +1106,20 @@ public static void fillErrorArray(String fileName)
 	}
 
 	/**
-	 * @author Robert Schmidt add 10/5/2010.
-	 * This function reads a specified directives file we have
+	 * Module Name: fillDirectivesArray.
+	 * Description:	This function reads a specified directives file we have
 	 * formatted and it adds the data from the specified directives
 	 * file into the public static DirectivesArray. This allows us to
 	 * easily check to see if an directive is in the correct format.
-	 * @param fileName
+	 * Input Params: fileName
+	 *            This is the file location of the directives table.
+	 * Output Params: Array of Directives.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/5/2010.	
+	 * Modifications: None.
+	 * @param fileName: fileName
 	 *            This is the file location of the directives table.
 	 */
 	public static void fillDirectivesArray(String fileName) 

@@ -1,0 +1,10 @@
+------------------------------------------
+CodeLine 0
+PC: 0
+Original Line Of Code: .start:altest01,0
+Line Comment: 
+Line Length: 0
+Error Count: 2
+Errors:
+	20	No Start Found for program to run.	Add a correct start directive.
+	99	General Error	Check this line for syntax errors.
