@@ -141,7 +141,8 @@ public class Parser
 				System.out.println(codeLine.instruction.instruction + "  :  " + codeLine.instruction.returnHexCodeLine());
 			}
 		}
-			
+		System.out.println(SymbTable.size);
+		SymbTable.prettyFerret();	
 	}
 
 	public static void printIntermediateFile(String fileName)
@@ -379,7 +380,8 @@ public class Parser
 				//System.out.println(Arrays.toString(operands));
 				if (directive.operands.size() == operands.length || directive.directiveName.equals("EXT") || directive.directiveName.equals("ENT"))
 				{
-					//Checks to see if directive is ENT and necessitates changing previously declared data_label to ENT usage
+					/**
+					 * //Checks to see if directive is ENT and necessitates changing previously declared data_label to ENT usage
 					if(directive.directiveName.equals("ENT"))
 					{
 						for(int i = operands.length-1; i >= 0; i--)
@@ -387,6 +389,8 @@ public class Parser
 							SymbolTable.changeToENT(operands[i]);
 						}
 					}
+					 */
+					
 					directiveObj.directiveName = directive.directiveName;
 					directiveObj.labelType = directive.labelType;
 					directiveObj.codeLocation = directive.codeLocation;
