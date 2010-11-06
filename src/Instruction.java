@@ -1,26 +1,86 @@
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-
+	/**
+	 * 
+	 * @author Team c560aa08 collaboration.
+	 * this class creates an Instruction object that allow us to easily iterate through an instruction line of code, and parse its Hex and Binary values.
+	 * 
+	 */
 public class Instruction 
-{
+{	
+	/**
+	 * Stores the Number of registers in an instruction.
+	 */
 	public int numberOfRegisters = 0;
+	/**
+	 * Stores the instruction name.
+	 */
 	public String instruction = "";
+	/**
+	 * Stores the binary representation of the instruction.
+	 */
 	public String instructionBinary = "";
+	/**
+	 * Stores the hexadecimal representation of the instruction.
+	 */
+	
 	public String instructionHex = "";
+	/**
+	 * Stores the Extended representation of the instruction.
+	 */
 	public String instructionExtended = "";
+	/**
+	 * Stores the extended hexadecimal representation of the instruction.
+	 */
 	public String instructionExtendedHex = "";
+	/**
+	 * Stores the extended binary representation of the instruction.
+	 */
 	public String instructionExtendedBinary = "";
+	/**
+	 * Stores individual operands in the directive.
+	 */
 	public ArrayList<Operand> operandsArray = new ArrayList<Operand>();
+	/**
+	 * Stores the Operands of the current directive if it has any.
+	 */
 	public ArrayList<operandTypes> operands = new ArrayList<operandTypes>();
+	/**
+	 * keeps track of the current instruction types.
+	 */
 	public instructionTypes instructionType = Instruction.instructionTypes.R;
+	/**
+	 * 
+	 * @author Kermit Stearns.
+	 * Enumeration for operand types.
+	 */
 	public static enum operandTypes 
 	{
 		 REGISTER, SIGNEDIMMEDIATE, UNSIGNEDIMMEDIATE, ADDRESS, BIT, BITS, NUMBER, COMPLEXADDRESS;
 	}
+	/**
+	 * 
+	 * @author Kermit Stearns.
+	 * Enumeration for instruction types.
+	 */
 	public static enum instructionTypes 
 	{
 		 I, S, R, J,IO;
 	}
+	/**
+	 * 
+	 * Module Name: returnPrintString.
+	 * Description: Creates a String with all the information linked to the current Instruction being parsed,
+	 * such as Directive name, type, binary and hex (including extended) representation, and operands.
+	 * Input Params: None.
+	 * Output Params: 
+	 * Error Conditions Tested:
+	 * Error Messages Generated:
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 09/03/2010
+	 * Modifications: added returnBinaryCodeLine, toBinary, returnHexCodeLine,padZeros,returnRegisterBinary and returnOperand
+	 * @return
+	 */
 	public String returnPrintString()
 	{
 		String returnString = "";
@@ -47,6 +107,19 @@ public class Instruction
 		
 		return returnString;
 	}
+	/**
+	 * Constructor for Instruction object.
+	 * @param instructionValue
+	 * 				Original line of code without comments containing an instruction.
+	 * @param instructionHexValue
+	 * 				Stores the hex representation of the instruction.
+	 * @param instructionExtendedHexValue
+	 * 				Stores the extended hex representation of the instruction.
+	 * @param operandsValue
+	 * 				Contains operands in the instruction.
+	 * @param instructionTypeValue
+	 * 				Contains the type of instruction.
+	 */
 	public Instruction(String instructionValue, String  instructionHexValue, String instructionExtendedHexValue, ArrayList<operandTypes> operandsValue, instructionTypes instructionTypeValue)
 	{
 		this.instruction = instructionValue;
