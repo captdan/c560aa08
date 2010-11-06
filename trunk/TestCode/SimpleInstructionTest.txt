@@ -5,7 +5,8 @@ B Str.data 'ABC'
 C hex.data 8
 D bin.data 0110
 E Adr.data A
-F adr.exp '1+2'
+F adr.exp 1+2
+F2 adr.exp 1+2-A
 G int.data 8
 A1 int.data 15
 A2 int.data 6
@@ -13,8 +14,10 @@ A3 int.data 3
 	mem.skip 60
 R3	EQU  50
 .text
+	EXT TTT,RRR,QQQ,BBB
 	dump 1,0,0
-	LW $1,A
+	LW $1,A($1)
+	LW $1,($1)
 	LW $2,G
 	LW $3,A1
 	LW $4,A2
@@ -44,7 +47,7 @@ O	SRV $1,$2,10
 N	SW $5,0($2)	
 P	LnW $3, 0($2)
 Q	LWi	$1, 0($2)
-	jal	$5,$1,0($1)
+	jal	$5,$1,$1
 R	Lui $2, 50
 	|compare values of regs
 S	or $1,$1,2
@@ -56,6 +59,7 @@ W	ori $2,$5,6
 X	xori $5,$6,9
 Y	nori $5, $1,56
 Z	jal $1,$2, halt2
+kk	jal $1,$2, halt2
 	muls $1,$2, R3
 	adds $5,$6, R3
 	subs $3,$4,R3

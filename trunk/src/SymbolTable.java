@@ -47,18 +47,16 @@ public class SymbolTable
 	{	
 		if(symb.containsKey(label))
 		{
-			Error duplicatelabel = Parser.returnError(2);
-			duplicatelabel.printError();
-			System.exit(1);
+			Parser.currentErrorArray.add(Parser.returnError(2));
 		}
-		else{
-		
-		ArrayList<Object> value = new ArrayList<Object>();
-		value.add(addr);
-		value.add(sub);
-		value.add(use);
-		symb.put(label, value);
-		size++;
+		else
+		{
+			ArrayList<Object> value = new ArrayList<Object>();
+			value.add(addr);
+			value.add(sub);
+			value.add(use);
+			symb.put(label, value);
+			size++;
 		}
 	}
 	

@@ -19,7 +19,7 @@ public class Directive
 	}
 	public static enum operandTypes
 	{
-		NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN, EXP
+		NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN, EXP,CHARSTR
 	}
 	public Directive(String directiveNameValue,labelTypes labelTypeValue, codeLocations codeLocationValue, ArrayList<operandTypes> operandsValue)
 	{

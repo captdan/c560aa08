@@ -3,7 +3,7 @@
 .DATA		NL	.data
 .TEXT		NL	.text
 INT.DATA	NUM	OL	.data
-STR.DATA	STR	OL	.data
+STR.DATA	CHARSTR	OL	.data
 HEX.DATA	HEX	OL	.data
 BIN.DATA	BIN	OL	.data
 ADR.DATA	LABEL	OL	.data

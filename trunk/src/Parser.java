@@ -107,36 +107,37 @@ public class Parser
 			linesOfCode = readFileToArrayList("TestCode/altest01.txt");
 		}
 		
+		/** This fills all the start ArrayLists with their corresponding values **/
 		fillDirectivesArray("Directives.txt");
 		fillErrorArray("ErrorCodes.txt");
 		fillInstructionsArray("MOT_TABBED.txt");
 
-		//Check to see if there is a valid start operation else end program.
-		if (linesOfCode.size() > 0 && (parseCodeLine(linesOfCode.get(0)).directive == null || parseCodeLine(linesOfCode.get(0)).directive.directiveName.toUpperCase().equals(".START") == false))
-		{
-			currentErrorArray.clear();
-			currentErrorArray.add(returnError(20));
-			CodeLineArray.add(parseCodeLine(linesOfCode.get(0)));
-			endProgram = true;
-		}
+		/** This parses the .START directive and verifies that the program is started correctly **/
+		parseStartDirective(linesOfCode);
 		
+		/** This code processes each line of the code from the source assembly file **/
 		for (String lineOfCode : linesOfCode) 
 		{
-			// System.out.println(lineOfCode);
-				
+			System.out.println(lineOfCode);	
 			if (endProgram == false) 
 			{
 				CodeLineArray.add(parseCodeLine(lineOfCode));
 			}
-			
 			currentErrorArray.clear();
 		}
-		//System.out.println(CodeLineArray.get(8).instruction.returnPrintString());
+		
+		/** This finds all errors in the operands and verifies all the input **/
+		checkOperands(CodeLineArray);
+		
+		/** This adds an A/R/E scope variable to the codeline **/
+		selectCodeLineScope(CodeLineArray);
+		
+		/** This print out the intermediate file which we use for debugging and for SP1 **/
 		printIntermediateFile("IntermediateFile.txt");
 		
 		for (CodeLine codeLine : CodeLineArray) 
 		{
-			if(codeLine.instruction != null && codeLine.instruction.instructionType == Instruction.instructionTypes.REGISTER)
+			if(codeLine.instruction != null && codeLine.instruction.instructionType == Instruction.instructionTypes.R && codeLine.instruction.instructionType == Instruction.instructionTypes.J)
 			{
 				System.out.println(codeLine.instruction.instruction + "  :  " + codeLine.instruction.returnHexCodeLine());
 			}
@@ -144,7 +145,325 @@ public class Parser
 		System.out.println(SymbTable.size);
 		SymbTable.prettyFerret();	
 	}
+	/**
+	 * 
+	 * Module Name: selectCodeLineScope
+	 * Description: This sets the A/R/E types on each codeline
+	 * Input Params: CodeLineArrayValue ArrayList<CodeLine>
+	 * Output Params: 
+	 * Error Conditions Tested: 
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010 2:00AM
+	 * Modifications:
+	 * @param CodeLineArrayValue The array of the CodeLine objects who's scope is to be selected.
+	 */
+	public static void selectCodeLineScope(ArrayList<CodeLine> CodeLineArrayValue)
+	{
+		for (CodeLine codeLine : CodeLineArrayValue) 
+		{
+			if(codeLine.errors.size() == 0)
+			{
+				if (codeLine.instruction != null)
+				{
+					checkOperandScope(codeLine.instruction.operandsArray,codeLine);
+				}
+				if (codeLine.directive != null)
+				{
+					checkOperandScope(codeLine.directive.operandArray,codeLine);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * Module Name: checkOperandScope
+	 * Description: This checks the operands scope for an array list of operands.
+	 * Input Params: ArrayList<Operand> operandsArray, CodeLine codeLine
+	 * Output Params: None
+	 * Error Conditions Tested:
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010 2:40 AM
+	 * Modifications: Added ability to search complex addresses for external or relative operands
+	 * @param operandsArray This is the ArrayList of the operands that is to be parsed.
+	 * @param codeLine This is the current codeLine being parsed. This is needed to added the scope to the current CodeLine.
+	 */
+	public static void checkOperandScope(ArrayList<Operand> operandsArray, CodeLine codeLine)
+	{
+		for(Operand operandValue: operandsArray)
+		{
+			String tempOperandValue = operandValue.operand;
+			try
+			{
+				if(operandValue.operandType == Instruction.operandTypes.COMPLEXADDRESS)
+				{
+					if(tempOperandValue.contains("("))
+					{
+						tempOperandValue = tempOperandValue.substring(0, tempOperandValue.indexOf('('));
+					}
+					if(tempOperandValue.equals("*"))
+					{
+						codeLine.scope = CodeLine.scopeOptions.R;
+					}
+					
+				}
+			}
+			catch(Exception e){}
+			try
+			{
+				if(operandValue.operandType == Directive.operandTypes.EXP)
+				{
+					for(String equOperand : returnEquOperands(tempOperandValue))
+					{
+						if(SymbTable.isInTable(equOperand))
+						{
+							if((SymbolTable.Uses)SymbTable.getInfoFromSymbol(equOperand).get(2) == SymbolTable.Uses.EXTERNAL)
+							{
+								codeLine.scope = CodeLine.scopeOptions.E;
+							}
+							else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(equOperand).get(2) == SymbolTable.Uses.DATA_LABEL)
+							{
+								if(codeLine.scope != CodeLine.scopeOptions.E)
+								{
+									codeLine.scope = CodeLine.scopeOptions.R;
+								}
+							}
+							else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(equOperand).get(2) == SymbolTable.Uses.ENT)
+							{
+								codeLine.scope = CodeLine.scopeOptions.E;
+							}
+						}
+					}
+				}
+			}
+			catch(Exception e){}
 
+			if(SymbTable.isInTable(tempOperandValue))
+			{
+				if((SymbolTable.Uses)SymbTable.getInfoFromSymbol(tempOperandValue).get(2) == SymbolTable.Uses.EXTERNAL)
+				{
+					codeLine.scope = CodeLine.scopeOptions.E;
+				}
+				else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(tempOperandValue).get(2) == SymbolTable.Uses.DATA_LABEL)
+				{
+					if(codeLine.scope != CodeLine.scopeOptions.E)
+					{
+						codeLine.scope = CodeLine.scopeOptions.R;
+					}
+				}
+				else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(tempOperandValue).get(2) == SymbolTable.Uses.ENT)
+				{
+					codeLine.scope = CodeLine.scopeOptions.E;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * Module Name: returnEquOperands
+	 * Description: This function returns the operands of an EQU statment in an ArrayList<String>.
+	 * Input Params: String equString
+	 * Output Params: ArrayList<String>
+	 * Error Conditions Tested:
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010 2:20 AM
+	 * Modifications: 
+	 * @param equString This is the input EQU String.
+	 * @return This function returns the operands of the EQU input string in an ArrayList<String>
+	 */
+	public static ArrayList<String> returnEquOperands (String equString)
+	{
+		ArrayList<String> equOperands = new ArrayList<String>();
+		StringTokenizer expressionTokenizer = new StringTokenizer(equString,"+-",false);
+		
+		while(expressionTokenizer.hasMoreTokens())
+		{
+			equOperands.add(expressionTokenizer.nextToken());
+		}
+		
+		return equOperands;
+	}
+	
+	/**
+	 * 
+	 * Module Name: checkOperands
+	 * Description: This checks every codeLine object in a CodeLineArray for syntax errors in the operand fields
+	 * Input Params: ArrayList<CodeLine> CodeLineArrayValue
+	 * Output Params: None
+	 * Error Conditions Tested: 
+	 * Error Messages Generated: 
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010 12:30 AM
+	 * Modifications: Added support for both directives and instructions
+	 * @param CodeLineArrayValue The array of the codeLine objects who's operands are to be tested.
+	 */
+	public static void checkOperands (ArrayList<CodeLine> CodeLineArrayValue)
+	{
+		for (CodeLine codeLine : CodeLineArrayValue) 
+		{
+			if (codeLine.instruction != null)
+			{
+				for (int x = 0; x < codeLine.instruction.operands.size(); x++) 
+				{
+					Instruction.operandTypes operand = codeLine.instruction.operands.get(x);
+					Boolean validOperands = false;
+
+					switch (operand)
+					{
+					case ADDRESS:  validOperands = Operand.isValidInstructionSimpleAddress(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case COMPLEXADDRESS:  validOperands = Operand.isValidInstructionComplexAddress(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case BIT:  validOperands = Operand.isValidInstructionBit(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case BITS: validOperands = Operand.isValidInstructionBits(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case SIGNEDIMMEDIATE: validOperands = Operand.isValidInstructionSignedImmediate(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case UNSIGNEDIMMEDIATE: validOperands = Operand.isValidInstructionUnSignedImmediate(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case NUMBER: validOperands = Operand.isValidInstructionNumber(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					case REGISTER: validOperands = Operand.isValidInstructionRegister(codeLine.instruction.operandsArray.get(x).operand);
+						break;
+					default: validOperands = false;
+						break;
+					}
+					
+					if(validOperands == false)
+					{
+						codeLine.errors.add(new Error(19,"Operand [" + x + "]: " + codeLine.instruction.operandsArray.get(x).operand + " is not a valid "+operand.toString()+".","Change Operand"));
+					}
+				}
+			}
+			else if(codeLine.directive != null)
+			{
+				for (int x = 0; x < codeLine.directive.operands.size(); x++) 
+				{
+					Directive.operandTypes operand = codeLine.directive.operands.get(x);
+					Boolean validOperands = false;
+
+					switch (operand)
+					{
+					case BINARY:  validOperands = Operand.isValidDirectiveBinary(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case BOOLEAN:  validOperands = Operand.isValidDirectiveBoolean(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case EXP: validOperands = Operand.isValidDirectiveExp(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case HEX: validOperands = Operand.isValidDirectiveHex(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case NUMBER: validOperands = Operand.isValidDirectiveNumber(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case LABEL: validOperands = Operand.isValidDirectiveLabel(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case LABELREF: validOperands = Operand.isValidDirectiveLabel(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case STRING: validOperands = Operand.isValidDirectiveString(codeLine.directive.operandArray.get(x).operand);
+						break;
+					case CHARSTR: validOperands = Operand.isValidDirectiveCharacterString(codeLine.directive.operandArray.get(x).operand);
+						break;
+					default: validOperands = false;
+						break;
+					}
+					
+					if(validOperands == false)
+					{
+						codeLine.errors.add(new Error(19,"The operand " + x + ": " + codeLine.directive.operandArray.get(x).operand + " did not match the operand type "+operand.toString()+".","Change Operand"));
+					}
+				}
+			}
+
+		}
+	}
+	
+	/**
+	 * 
+	 * Module Name: copyStringArray
+	 * Description: This copies a ArrayList of type String to an output ArrayList of type String.
+	 * Input Params: ArrayList<String> stringArray
+	 * Output Params: ArrayList<String> Copy of the input ArrayList
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010 3:23 AM
+	 * Modifications:
+	 * @param stringArray An ArrayList of String to be copied.
+	 * @return A copy of the input ArrayList of String.
+	 */
+	public static ArrayList<String> copyStringArray(ArrayList<String> stringArray)
+	{
+		ArrayList<String> newStringArray = new ArrayList<String>();
+		for(String stringValue : stringArray)
+		{
+			newStringArray.add(stringValue);
+		}
+		return newStringArray;
+	}
+	/**
+	 * 
+	 * Module Name: parseStartDirective
+	 * Description: This code reads the first line of an ArrayList of CodeLine and it verifies that the .START directive is properly formatted.
+	 * Input Params: ArrayList<String> linesOfCode The ArrayList that is to be parsed.
+	 * Output Params: NONE
+	 * Error Conditions Tested: NONE
+	 * Error Messages Generated: NONE
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010
+	 * Modifications:
+	 * @param linesOfCode This is the CodeLine that is to be read and checked for a valid start directive.
+	 */
+	public static void parseStartDirective(ArrayList<String> linesOfCode)
+	{
+		//Check to see if there is a valid start operation else end program.
+		if(linesOfCode.size() > 1)
+		{
+			Directive tempDirective = returnDirective(linesOfCode.get(0),false);
+			if(tempDirective != null && currentErrorArray.size() == 0 && tempDirective.directiveName.equals(".START"))
+			{
+				StringTokenizer st = new StringTokenizer(linesOfCode.get(0), " \t", false);
+				String possibleDirective = "";
+				if (st.hasMoreTokens())
+				{
+					possibleDirective = st.nextToken();
+				}
+				
+				String[] specialDirectives = possibleDirective.split(",");
+				
+				programName = specialDirectives[1];
+				startingLocation = Integer.valueOf(specialDirectives[2]);
+				PC = startingLocation;
+				SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
+				endProgram = false;
+			}
+			else
+			{
+				currentErrorArray.clear();
+				currentErrorArray.add(returnError(20));
+				endProgram = true;
+			}
+			CodeLineArray.add(parseCodeLine(linesOfCode.get(0)));
+			linesOfCode.remove(0);
+		}
+	}
+
+	/**
+	 * 
+	 * Module Name: printIntermediateFile
+	 * Description: Outputs an Intermediate file for use in debugging and for SP1.
+	 * Input Params: String fileName
+	 * Output Params: NONE
+	 * Error Conditions Tested: NONE
+	 * Error Messages Generated: NONE
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10-15-2010
+	 * Modifications: Added A\R\E output 11-6-2010 Robert Schmidt
+	 * @param fileName This is the file name of the file you want to output.
+	 */
 	public static void printIntermediateFile(String fileName)
 	{		
 		try
@@ -158,6 +477,7 @@ public class Parser
 				bufferedWriter.write("------------------------------------------\n");
 				bufferedWriter.write("CodeLine " + x + "\n");
 				bufferedWriter.write("PC: " + codeline.PC + "\n");
+				bufferedWriter.write("A\\R\\E: " + codeline.scope.toString() + "\n");
 				bufferedWriter.write(codeline.returnPrintString());
 				x++;
 			}
@@ -194,7 +514,6 @@ public class Parser
 		// Grab anything that is before the comment and set it aside to be
 		// parsed.
 		String lineOfCodeMinusComment = "";
-		// System.out.println(Arrays.toString(result));
 
 		// Check to see if a comment exists.
 		if (result.length > 0) 
@@ -212,7 +531,7 @@ public class Parser
 		{
 			if (returnInstruction(lineOfCodeMinusComment,true) != null) 
 			{
-				System.out.println("Instruction: " + lineOfCodeMinusComment);
+				//System.out.println("Instruction: " + lineOfCodeMinusComment);
 				cl.instruction = returnInstruction(lineOfCodeMinusComment,false);
 				// Extract Valid Features
 			} 
@@ -220,36 +539,42 @@ public class Parser
 			{
 				cl.directive = returnDirective(lineOfCodeMinusComment,false);
 				// Extract Valid Features
-				System.out.println("Directive: " + lineOfCodeMinusComment);
+				//System.out.println("Directive: " + lineOfCodeMinusComment);
 			} 
 			else if (returnSymbolInstruction(lineOfCodeMinusComment,true) != null) 
 			{
 				StringTokenizer st2 = new StringTokenizer(lineOfCodeMinusComment, " \t",false);
 				String symbol = st2.nextToken();
-				System.out.println("Symbol: " + lineOfCodeMinusComment);
-				SymbTable.addSymbol(symbol,PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
-				if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Directive.class) 
+
+				if (returnSymbolInstruction(lineOfCodeMinusComment,true) != null) 
 				{
-					cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment, false);	
-				} 
-				else if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Instruction.class)
-				{
-					cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment, false);
-					
+					if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Directive.class) 
+					{
+						cl.directive = (Directive) returnSymbolInstruction(lineOfCodeMinusComment, false);	
+					} 
+					else if (returnSymbolInstruction(lineOfCodeMinusComment, false).getClass() == Instruction.class)
+					{
+						cl.instruction = (Instruction) returnSymbolInstruction(lineOfCodeMinusComment, false);		
+					}
 				}
-				// Extract Valid Features
+				if (cl.directive != null)
+				{
+					if(cl.directive.directiveName.equals("EQU") || cl.directive.directiveName.equals("EQU.EXP"))
+					{
+						SymbTable.addSymbol(symbol,PC.toString(), cl.directive.operandArray.get(0).operand, SymbolTable.Uses.EQU);
+						symbol = "";
+					}
+				}
+				if(symbol != "")
+				{
+					SymbTable.addSymbol(symbol,PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
+					symbol = "";
+				}
 			} 
 			else 
 			{
-				
 				currentErrorArray.add(returnError(99));
-				System.out.println("ERROR: " + lineOfCodeMinusComment);
-				//cl.errors.add(returnError(99));
-				//System.out.println(cl.errors.size());
-				// ERROR, must fall within the three categories
 			}
-
-			// else if instruction is in symbol table
 		}
 		/**
 		 * After each codeLine object is processed, we grab its length and add
@@ -264,7 +589,7 @@ public class Parser
 			cl.errors.add(error);
 		}
 		
-		System.out.println(currentErrorArray.size());
+		//System.out.println(currentErrorArray.size());
 		return cl;
 
 	}
@@ -292,12 +617,6 @@ public class Parser
 					//Error
 				}
 			}
-			else if (cl.directive.directiveName.equals("EQU.EXP") || cl.directive.directiveName.equals("ADR.EXP"))
-			{
-					//Adds the integer value of an expression to the operand array of these special directives.
-				//cl.directive.operandArray.add(new Operand(String.valueOf(cl.directive.operandArray.get(0).operand)));	
-				//cl.directive.operandArray.add(new Operand(String.valueOf(evaluateExpression(cl))));	
-			}
 			else if (cl.directive.directiveName.equals("EXT"))
 			{
 				int x = 0;
@@ -309,7 +628,6 @@ public class Parser
 					}
 					x++;
 				}
-				
 			}
 		}
 	}
@@ -380,32 +698,16 @@ public class Parser
 				//System.out.println(Arrays.toString(operands));
 				if (directive.operands.size() == operands.length || directive.directiveName.equals("EXT") || directive.directiveName.equals("ENT"))
 				{
-					/**
-					 * //Checks to see if directive is ENT and necessitates changing previously declared data_label to ENT usage
-					if(directive.directiveName.equals("ENT"))
-					{
-						for(int i = operands.length-1; i >= 0; i--)
-						{
-							SymbolTable.changeToENT(operands[i]);
-						}
-					}
-					 */
-					
+
 					directiveObj.directiveName = directive.directiveName;
 					directiveObj.labelType = directive.labelType;
 					directiveObj.codeLocation = directive.codeLocation;
-					directiveObj.operands.clear();
+					//directiveObj.operands.clear();
 				
 					for (int x = 0; x < operands.length; x++) 
 					{
-						/*
-						if(directiveObj.operands.get(x) == Directive.operandTypes.STRING)
-						{
-							
-						}
-						*/
-						directiveObj.operands.add(Directive.operandTypes.LABELREF);
-						directiveObj.operandArray.add(new Operand(operands[x]));
+						directiveObj.operands.add(directive.operands.get(x));
+						directiveObj.operandArray.add(new Operand(operands[x],directive.operands.get(x)));
 					}
 				}
 			}
@@ -455,10 +757,10 @@ public class Parser
 					directiveObj.codeLocation = Directive.codeLocations.START;
 					directiveObj.labelType = Directive.labelTypes.NOLABEL;
 					directiveObj.directiveName = ".START";
-					programName = specialDirectives[1];
-					startingLocation = Integer.valueOf(specialDirectives[2]);
-					PC = startingLocation;
-					SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
+					//programName = specialDirectives[1];
+					//startingLocation = Integer.valueOf(specialDirectives[2]);
+					//PC = startingLocation;
+					//SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
 				}
 				catch(Exception e)
 				{
@@ -560,7 +862,7 @@ public class Parser
 			if(tempString.length < 4)
 			{
 				directiveObj.operandArray.clear();
-				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'"));
+				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'",Directive.operandTypes.STRING));
 				//System.out.println("QWER+: " + tempString[1]);
 			}
 		}
@@ -574,32 +876,11 @@ public class Parser
 			{
 				directiveObj.operandArray.clear();
 				tempString[1] = tempString[1].replaceAll("*", Integer.toString(PC));
-				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'"));
+				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'",Directive.operandTypes.EXP));
 				//System.out.println("QWER+: " + tempString[1]);
 			}
 		}
 		
-		//TODO test this get it working
-		/*
-		if(symb.hasMoreTokens())
-		{
-			String directive = symb.nextToken().toUpperCase();
-			if(directive.equals("EQU") || directive.equals("EQU.EXP"))
-			{
-				String EQU = "";
-			
-				while(symb.hasMoreTokens())
-				{
-					EQU += symb.nextToken();
-				}
-				SymbTable.addSymbol(symbol, PC.toString(), EQU, SymbolTable.Uses.EQU);
-			}
-			else
-			{
-				SymbTable.addSymbol(symbol, PC.toString(), "NONE", SymbolTable.Uses.DATA_LABEL);
-			}
-		}
-		*/
 		if (directiveObj.directiveName == "") 
 		{
 			directiveObj = null;
@@ -649,6 +930,7 @@ public class Parser
 			commandMinusSymbol += " " + st.nextToken();
 		}
 		
+
 		if(returnInstruction(commandMinusSymbol, false) != null)
 		{
 			// if the rest of the line is an Instruction, then the symbol must be a label
@@ -713,7 +995,6 @@ public class Parser
 			//System.out.println(returnInstructionViaOpcode(instruction).numberOfRegisters);
 			if (operands.length == returnInstructionViaOpcode(instruction).numberOfRegisters) 
 			{
-				//System.out.println("WORKS");
 				instructionObj.instruction = returnInstructionViaOpcode(instruction).instruction;
 				instructionObj.instructionBinary = returnInstructionViaOpcode(instruction).instructionBinary;
 				instructionObj.instructionExtended = returnInstructionViaOpcode(instruction).instructionExtended;
@@ -728,39 +1009,7 @@ public class Parser
 				for (int x = 0; x < returnInstructionViaOpcode(instruction).operands.size(); x++) 
 				{
 						Instruction.operandTypes operand = returnInstructionViaOpcode(instruction).operands.get(x);
-						Boolean validOperands = false;
-						//REGISTER, IMMEDIATE, ADDRESS, BIT, BITS, NUMBER, IO;
-						switch (operand)
-						{
-						case ADDRESS:  validOperands = Operand.isValidInstructionAddress(operands[x]);
-							break;
-						case BIT:  validOperands = Operand.isValidInstructionBit(operands[x]);
-							break;
-						case BITS: validOperands = Operand.isValidInstructionBits(operands[x]);
-							break;
-						case IMMEDIATE: validOperands = true;
-							break;
-						case NUMBER: validOperands = Operand.isValidInstructionNumber(operands[x]);
-							break;
-						case IO: validOperands = Operand.isValidInstructionImmediate(operands[x]);
-							break;
-						case REGISTER: validOperands = isRegister(operands[x]);
-							break;
-						default: validOperands = false;
-							break;
-						}
-						
-						if(validOperands == true)
-						{
-							instructionObj.operandsArray.add(new Operand(operands[x]));
-						}
-						else
-						{
-							if(addErrors == true)
-							{
-								currentErrorArray.add(new Error(19,"The operand " + x + ": " + operands[x].toString() + " did not match the operand type "+operand.toString()+".","Change Operand"));
-							}
-						}
+						instructionObj.operandsArray.add(new Operand(operands[x],operand));
 				}
 	
 			}
@@ -784,29 +1033,10 @@ public class Parser
 		{
 			instructionObj = null;
 		}
+		
 
 		return instructionObj;
 	}
-
-
-	/*
-	 * cl.instruction = returnInstruction(instruction); String operandString =
-	 * ""; while (st.hasMoreTokens()) { operandString += st.nextToken(); }
-	 * String[] operands = operandString.split(","); if(operands.length ==
-	 * cl.instruction.numberOfRegisters) { //If valid number of operands //Check
-	 * if Register or if symbol or number
-	 * System.out.println(cl.originalLineOfCode); //checks each operand against
-	 * the symbol table. //if in table, adds the relevant value for the operand
-	 * to the codeline. for(int j = 0; j < operands.length; j++) {
-	 * if(SymbTable.isInTable(operands[j])) { String[] symbolInfo =
-	 * SymbTable.getInfoFromSymbol(operands[j]); if(symbolInfo[2].equals("equ"))
-	 * { cl.operands.add(new Operand(symbolInfo[1])); } else
-	 * if(symbolInfo[2].equals("data")) {  } else { cl.operands.add(new
-	 * Operand(symbolInfo[0])); } } } } else {
-	 * //System.out.println(cl.originalLineOfCode + "  :  " +
-	 * returnError(0).message ); cl.errors.add(returnError(0)); //Adds error to
-	 * line of code }
-	 */
 
 	/**
 	 * 
@@ -913,22 +1143,26 @@ public class Parser
 			//System.out.println(Arrays.toString(variables) + "\n");
 			if (variables.length > 1) 
 			{
-				Instruction.instructionTypes instructionType = Instruction.instructionTypes.IMMEDIATE;
+				Instruction.instructionTypes instructionType = Instruction.instructionTypes.I;
 				if (variables[5].equals("I")) 
 				{
-					instructionType = Instruction.instructionTypes.IMMEDIATE;
+					instructionType = Instruction.instructionTypes.I;
 				} 
 				else if (variables[5].equals("R")) 
 				{
-					instructionType = Instruction.instructionTypes.REGISTER;
+					instructionType = Instruction.instructionTypes.R;
 				} 
 				else if (variables[5].equals("S")) 
 				{
-					instructionType = Instruction.instructionTypes.SIGNED;
+					instructionType = Instruction.instructionTypes.S;
 				}
 				else if (variables[5].equals("J"))
 				{
 					instructionType = Instruction.instructionTypes.J;
+				}
+				else if (variables[5].equals("IO"))
+				{
+					instructionType = Instruction.instructionTypes.IO;
 				}
 
 				variables[4] = variables[4].replaceAll("\"", "");
@@ -944,10 +1178,14 @@ public class Parser
 					{
 						operandArray.add(Instruction.operandTypes.REGISTER);
 					} 
-					else if (operand.equals("IMM")) 
+					else if (operand.equals("SIMM")) 
 					{
-						operandArray.add(Instruction.operandTypes.IMMEDIATE);
-					} 
+						operandArray.add(Instruction.operandTypes.SIGNEDIMMEDIATE);
+					}
+					else if (operand.equals("UIMM"))
+					{
+						operandArray.add(Instruction.operandTypes.UNSIGNEDIMMEDIATE);
+					}
 					else if (operand.equals("BIT")) 
 					{
 						operandArray.add(Instruction.operandTypes.BIT);
@@ -959,6 +1197,10 @@ public class Parser
 					else if (operand.equals("ADDR"))
 					{
 						operandArray.add(Instruction.operandTypes.ADDRESS);
+					}
+					else if (operand.equals("COMPLEXADDR"))
+					{
+						operandArray.add(Instruction.operandTypes.COMPLEXADDRESS);
 					}
 					else if (operand.equals("NUM"))
 					{
@@ -1095,37 +1337,7 @@ public class Parser
 		}
 		return returnInstruction;
 	}
-	/**
-	 * 
-	 * Module Name: isRegister.
-	 * Description: The function isRegister checks to see if the parameter String represents a valid register
-	 * and returns a boolean accordingly.
-	 * Input Params: operandString
-	 *            The string of the operand of an instruction.
-	 * Output Params: sRegister
-	 * 			 Returns is the operand is a valid register or not. 
-	 * Error Conditions Tested: Correct Syntax for registers and valid register number.
-	 * Error Messages Generated: Errors 19,23
-	 * Original Author: Kermit Stearns
-	 * Date of Installation: 10/11/2010.
-	 * Modifications:
-	 * @param operandString
-	 * @return
-	 */
-	public static Boolean isRegister(String operandString) 
-	{
-		Boolean isRegister = false;
-		if (operandString.length() == 2) 
-		{
-			int registerNumber = Integer.parseInt(Character.toString(operandString.charAt(1)));
-			if (operandString.charAt(0) == '$' && registerNumber >= 0 && registerNumber < 8) 
-			{
-				isRegister = true;
-			}
-		}
 
-		return isRegister;
-	}
 	
 	/**
 	 * 
@@ -1216,6 +1428,7 @@ public class Parser
 					codeLocation = Directive.codeLocations.END;
 				}
 				
+				
 				Directive.labelTypes labelType = Directive.labelTypes.OPTIONALLABEL;
 				if (variables[2].toUpperCase().equals("NL")) 
 				{
@@ -1265,6 +1478,10 @@ public class Parser
 					else if (operand.equals("EXP")) 
 					{
 						operandArray.add(Directive.operandTypes.EXP);
+					}
+					else if (operand.equals("CHARSTR")) 
+					{
+						operandArray.add(Directive.operandTypes.CHARSTR);
 					}
 				}
 				Directive directive = new Directive(variables[0].toUpperCase(), labelType,codeLocation, operandArray);
