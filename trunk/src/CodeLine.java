@@ -46,14 +46,22 @@ class CodeLine
 	{
 		this.originalLineOfCode = lineOfCode;
 	}
-	 /**
-	 * This function returns the length in terms of increments to the PC counter caused by the line of code
+	/**
+	 * 
+	 * Module Name: lineLength
+	 * Description: This function returns the length in terms of increments to the PC counter caused by the line of code
 	 * the function is called on. 
-	 * @author Rakaan Kayali and Kermit Stearns.
-	 * Modified: changed global variable length by removing its 'static' label. 
+	 * Input Params: None.
+	 * Output Params: None.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Rakaan Kayali and Kermit Stearns.
+	 * Date of Installation: 10/10/2010.
+	 * Modifications: Modified: changed global variable length by removing its 'static' label. 
 	 * Now an instance must be created before it is used. Additionally, 
 	 * STR.DATA and EQU are now handled separately.
-	 * Date Modified: 10/10/2010, by Kermit Stearns and Rakaan Kayali.
+	 * @return returns the length in terms of increments to the PC counter caused by the line of code
+	 * the function is called on.  
 	 */
 	public int lineLength()
 	{
@@ -91,8 +99,18 @@ class CodeLine
 		return length;
 	}
 	/**
-	 * This method prints out the original line of code along with the line comment the line length and 
+	 * 
+	 * Module Name:	returnPrintString.
+	 * Description: This method prints out the original line of code along with the line comment the line length and 
 	 * all applicable errors.
+	 * Input Params: None.
+	 * Output Params: A String containing the original line plus any applicable errors and line length in the PC 
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt.
+	 * Date of Installation: 10/12/2010.
+	 * Modifications: None.
+	 * @return
 	 */
 	public String returnPrintString()
 	{
