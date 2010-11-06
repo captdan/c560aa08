@@ -28,6 +28,11 @@ class CodeLine
 	 * Holds the errors found in the codeline.
 	 */
 	public ArrayList<Error> errors = new ArrayList<Error>();
+	public scopeOptions scope = CodeLine.scopeOptions.A;
+	public enum scopeOptions
+	{
+		A,R,E
+	}
 	
 	public int PC = 0;
 	
@@ -59,7 +64,6 @@ class CodeLine
 		}
 		else if (this.directive != null)
 		{
-			
 			if (this.directive.directiveName.equals("INT.DATA")||this.directive.directiveName.equals("HEX.DATA")||
 					this.directive.directiveName.equals("BIN.DATA")|| this.directive.directiveName.equals("NOP")||
 					this.directive.directiveName.equals("EQU.EXP") || this.directive.directiveName.equals("ADR.DATA"))
@@ -67,42 +71,23 @@ class CodeLine
 				length = 1;
 			}
 			else if (this.directive.directiveName.equals("STR.DATA"))
-			{
-				 
+			{	 
 				String stringLine = this.directive.operandArray.get(0).operand;
-				
 				if(this.directive.operandArray.get(0).operand.startsWith("'") && this.directive.operandArray.get(0).operand.endsWith("'"))
 				{
 					stringLine = stringLine.substring(1, stringLine.length()-1);
-					//System.out.println("TREWQ: " + stringLine);
-					//System.out.println(stringLine);
 					length = (int) Math.ceil(stringLine.length()/4.0);
-					
-					if (length>4)
-					{
-					//System.out.println("Error too many characters");	
-					}
 				}
-				else
-				{
-					//System.out.println("TREWQ: " + stringLine);
-					//Error
-				}
-				//System.out.println(this.directive.operandArray.get(0).operand);
-				
 			}
 			else if (this.directive.directiveName.equals("MEM.SKIP"))
 			{
 				length = Integer.valueOf(this.directive.operandArray.get(0).operand);
-				//System.out.println("QWER: " + Integer.valueOf(this.directive.operandArray.get(0).operand));
 			}
 			else
 			{
 				length = 0;
 			}
-
 		}
-		//length = (int)Math.ceil(intermediate);
 		return length;
 	}
 	/**
@@ -119,7 +104,6 @@ class CodeLine
 		returnString += "Errors:\n";
 		for(Error error : this.errors)
 		{
-			//System.out.println("QWER");
 			returnString += "\t" + error.number + "\t" + error.message + "\t" + error.correction + "\n";
 		}
 		if (this.instruction != null)

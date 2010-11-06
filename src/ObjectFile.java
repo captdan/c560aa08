@@ -134,7 +134,7 @@ public class ObjectFile {
 		}
 		else if (codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")
 				||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
-				||codeline.instruction.operands.contains(Instruction.operandTypes.IMMEDIATE))
+				||codeline.instruction.operands.contains(Instruction.operandTypes.SIGNEDIMMEDIATE)||codeline.instruction.operands.contains(Instruction.operandTypes.UNSIGNEDIMMEDIATE))
 		{
 			typeOfAction = "A";
 		}

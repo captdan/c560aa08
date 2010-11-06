@@ -1,152 +1,334 @@
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 
 public class Operand
 {
 	public String operand;
+	public Object operandType;
 	
-	public Operand(String operandValue)
+	public Operand(String operandValue, Object operandTypeValue)
 	{
 		operand = operandValue;
+		operandType = operandTypeValue;
 	}
 	public Operand() 
 	{
-
+		
+	}
+	public String returnValue()
+	{
+		if (operandType.getClass() == Instruction.class)
+		{
+			Instruction.operandTypes operandTypeValue = (Instruction.operandTypes) operandType;
+			switch (operandTypeValue)
+			{
+			case ADDRESS:
+				break;
+			
+			default:
+				break;
+			}
+		}
+		else if(operandType.getClass() == Directive.class)
+		{
+			
+		}
+		
+		//Parser.SymbTable.isInTable('')
+		return "";
 	}
 	
-	/**Instruction Operand Checking:
-	 * 	REGISTER, IMMEDIATE, ADDRESS, BIT, BITS, NUMBER, IO
+	/**
 	 * 
-	 * @param label
-	 * @return
+	 * Module Name: isValidInstructionRegister
+	 * Description: This function returns a Boolean value dependent on if the Input String is a valid Register or Not.
+	 * Input Params: String register Input String to be validated
+	 * Output Params: Boolean This value is true or false based on if the Input String was valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10-27-2010
+	 * Modifications:
+	 * @param register Input String that is to be validated as a register or not.
+	 * @return Boolean value that is determined by if the input String is valid or not.
 	 */
 	static boolean isValidInstructionRegister (String register) 
 	{
-		//need to flesh this out, but each method to check operands should just return a boolean 
-		//Valid register 0-7
-		return false;
+		Boolean isRegister = false;
+		if (register.length() == 2) 
+		{
+			int registerNumber = Integer.parseInt(Character.toString(register.charAt(1)));
+			if (register.charAt(0) == '$' && registerNumber >= 0 && registerNumber < 8) 
+			{
+				isRegister = true;
+			}
+		}
+
+		return isRegister;
 	}
-	static boolean isValidInstructionImmediate (String immediate) 
+	/**
+	 * 
+	 * Module Name: isValidInstructionSignedImmediate
+	 * Description: Function returns a Boolean value that is dependent if the input String is a valid SAL 560 SignedImmediate.
+	 * Input Params: String immediate Input String that is being validated as a SignedImmediate.
+	 * Output Params: Boolean value that is returned based if the input string was valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Dan
+	 * Date of Installation: 10-24-2010
+	 * Modifications:
+	 * @param immediate Input String that is to be tested for being valid or not.
+	 * @return Boolean value that is returned based if the input string was valid or not.
+	 */
+	static boolean isValidInstructionSignedImmediate (String immediate) 
 	{
-		String unsigned = "";
-		boolean isImmediate = false;
-		char startsign = immediate.charAt(0);
-		if(startsign != '+' || startsign != '-' || Character.isDigit(startsign)){
-			// if it contains something else, it must be an error
-			Parser.currentErrorArray.add(Parser.returnError(21));
-			return false;
-		}
-		else{
-			if(startsign == '+' || startsign == '-'){
-				for(int i =1; i <immediate.length();i++){
-					unsigned = unsigned + immediate.charAt(i);
-				}
-			}
-			else{
-				unsigned = new String (immediate);
-			}
-			// check that the unsigned immediate has only digits
-			
-			for(int i =0; i < unsigned.length() ; i++){
-				if(!Character.isDigit(unsigned.charAt(i))){
-					// if the immediate contains anything other that digits, throw an error
-					Parser.currentErrorArray.add(Parser.returnError(21));
-					return false;
-				}
-			}
-			// at this point we know the immediate is a valid integer, so we check the bounds
-			int valueOfUnsigned = Integer.parseInt(unsigned);
-			if(startsign == '-'){
-				isImmediate =  (valueOfUnsigned <= 231);
-				if(isImmediate == false){
-					Parser.currentErrorArray.add(Parser.returnError(5));
-				}
-			}
-			else{
-				isImmediate = (valueOfUnsigned<= 230);
-				if(isImmediate == false){
-					Parser.currentErrorArray.add(Parser.returnError(5));
-				}
-			}
-			
-			
-		}
+		Boolean isImmediate = false;
+		int value = 99999;
 		
-		//need to flesh this out, but each method to check operands should just return a boolean 
-		//can have a single '+' or '-' preceeding it, must fit signed value in 16 bits (-231<=x<=230)
+		if(immediate.startsWith("'") && immediate.endsWith("'"))
+		{
+			String[] stringArray = immediate.split("'");
 		
+			if(stringArray[1].length() <= 4) 
+			{
+				if(Pattern.matches("[a-zA-Z_0-9_]*",stringArray[1]))
+				{
+					isImmediate = true;
+				}
+			}
+		}
+		else
+		{
+			if(immediate.length() > 0)
+			{
+				if(immediate.charAt(0) == '-')
+				{
+					try
+					{
+						value = Integer.parseInt(String.valueOf(immediate.substring(1)));
+						value = (value * -1);
+					}
+					catch(NumberFormatException e){}
+				}
+				else
+				{
+					try
+					{
+						value = Integer.parseInt(String.valueOf(immediate));
+					}
+					catch(NumberFormatException e){}
+				}
+			}
+			
+			if(value >= -23768 && value < 23768)
+			{
+				isImmediate = true;
+			}
+		}
 		
 		return isImmediate;
 	}
-	static boolean isValidInstructionAddress (String address) 
+	/**
+	 * 
+	 * Module Name: isValidInstructionUnSignedImmediate
+	 * Description: Function returns a Boolean value dependent on if the input String is a valid SAL560 UnsignedImmediate.
+	 * Input Params: String immediate Input String to be validated as an UnsignedImmediate.
+	 * Output Params: Boolean Value that is determined by if the String is deemed valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Dan
+	 * Date of Installation: 10-27-2010
+	 * Modifications: None
+	 * @param immediate Input String to be tested if it is a valid UnsignedImmediate.
+	 * @return Boolean value that is determined by if the String is deemed valid or not.
+	 */
+	static boolean isValidInstructionUnSignedImmediate (String immediate) 
+	{
+		Boolean isImmediate = false;
+		int value = 99999;
+		
+		if(immediate.startsWith("'") && immediate.endsWith("'"))
+		{
+			String[] stringArray = immediate.split("'");
+		
+			if(stringArray[1].length() <= 4) 
+			{
+				if(Pattern.matches("[a-zA-Z_0-9_]*",stringArray[1]))
+				{
+					isImmediate = true;
+				}
+			}
+		}
+		else
+		{
+			if(immediate.length() > 1)
+			{
+				try
+				{
+					value = Integer.parseInt(String.valueOf(immediate));
+				}
+				catch(NumberFormatException e){}
+			}
+			
+			if(value >= 0 && value <= 65536)
+			{
+				isImmediate = true;
+			}
+		}
+
+		return isImmediate;
+	}
+	/**
+	 * 
+	 * Module Name: isValidInstructionSimpleAddress
+	 * Description: Returns a Boolean value dependent on if the Input String is a valid SAL560 SimpleAddress.
+	 * Input Params: String address Input String to be tested as a valid SAL560 SimpleAddress
+	 * Output Params: Boolean Value dependent on if the Input String is a valid SAL560 SimpleAddress.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Dan
+	 * Date of Installation: 10-25-2010
+	 * Modifications: 11-6-2010 (Robert Schmidt) Fixed Minor Errors
+	 * @param address Input string that is to be tested for being a valid SimpleAddress.
+	 * @return Boolean Value dependent on if the Input String is a valid SAL560 SimpleAddress.
+	 */
+	static boolean isValidInstructionSimpleAddress (String address) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//has to be greater than starting LC, less than 65536
-		boolean result = false;
-		int possibleAddress = 0;
-		try
+		Boolean validAddress = false;
+		int Value = -1;
+
+		if(Parser.SymbTable.isInTable(address))
 		{
-			possibleAddress = Integer.parseInt(address);
-			result = true;
+			ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(address);
+			try
+			{
+				Value = Integer.parseInt(String.valueOf(values.get(0)));
+			}
+			catch(NumberFormatException e){}
 		}
-		catch(NumberFormatException e)
+		else
 		{
-			result = false;
+			try
+			{
+				Value = Integer.parseInt(address);
+			}
+			catch(NumberFormatException e){}
+		}
+
+		if(Value >= 0 && Value <= 65536)
+		{
+			validAddress = true;
 		}
 		
-		//if it's not an integer, it could still be a label that is a valid integer, so check SymbTable
-		if(result == false)
+		return validAddress;
+	}
+	
+	/**
+	 * 
+	 * Module Name: isValidInstructionComplexAddress
+	 * Description: Returns a Boolean value dependent upon is the input String is a valid SAL560 Address.
+	 * Input Params: String address
+	 * Output Params: Boolean value dependent upon if the output value is a valid SAL560 Address.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Oscar
+	 * Date of Installation: 20-25-2010
+	 * Modifications: 11-6-2010 (Robert Schmidt) Fixed a few errors.
+	 * @param address: Input String to be validated a SAL560 address.
+	 * @return Boolean value dependent upon if the output value is a valid SAL560 Address.
+	 */
+	static boolean isValidInstructionComplexAddress (String address) 
+	{
+		//need to flesh this out, but each method to check operands should just return a boolean 
+		//has to be greater than starting LC, less than 65536
+		Boolean validAddress = false;
+		Boolean validLabel = false;
+		Boolean validRegister = false;
+		
+		if(address.contains("(") && address.contains(")"))
 		{
-			if(Parser.SymbTable.isInTable(address))
+			StringTokenizer addressTokenizer = new StringTokenizer(address,"()",false);
+
+			if(addressTokenizer.countTokens() == 2)
 			{
-				ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(address);
-				try
+				String label = addressTokenizer.nextToken();
+				String register = addressTokenizer.nextToken();
+				if(Parser.SymbTable.isInTable(label))
 				{
-					//Checks the "sub" value of the label to see if the label is a substitute for a valid integer
-					Integer.parseInt(String.valueOf(values.get(1)));
-					result = true;
+					ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(label);
+					try
+					{
+						Integer.parseInt(String.valueOf(values.get(0)));
+						validLabel = true;
+					}
+					catch(NumberFormatException e){}
 				}
-				catch(NumberFormatException e)
+				else
 				{
-					result = false;
+					validLabel = isValidInstructionSimpleAddress(label);
 				}
-			
+				
+				validRegister = isValidInstructionRegister(register);
+			}
+			else if(addressTokenizer.countTokens() == 1)
+			{
+				String register = addressTokenizer.nextToken();
+				validLabel = true;
+				validRegister = isValidInstructionRegister(register);
 			}
 		}
-		if(result == true)
+		else
 		{
-			result = ((possibleAddress > Parser.startingLocation) && (possibleAddress < 65536));
+			validLabel = isValidInstructionSimpleAddress(address);
+			validRegister = true;
 		}
-		return result;
+
+		if(validLabel == true && validRegister == true)
+		{
+			validAddress = true;
+		}
+		
+		return validAddress;
 	}
+	/**
+	 * 
+	 * Module Name: isValidInstructionBit
+	 * Description: This function returns a Boolean value dependent upon if the input String is a valid SAL560 Bit.
+	 * Input Params: String bit Input string to be validated as a SAL560 Bit.
+	 * Output Params: Boolean value that is dependent upon if the Bit is valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Oscar
+	 * Date of Installation: 10-25-2010
+	 * Modifications: None
+	 * @param bit Input String to be tested as a valid Bit or not.
+	 * @return Boolean value that is dependent upon if the Bit is valid or not.
+	 */
 	static boolean isValidInstructionBit (String bit) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//operand should have 3 fields, each containing 1 or 0
-		boolean result = true;
-		StringTokenizer st = new StringTokenizer(bit,", 	",false);
-		//it has to have 3 operands
-		if(st.countTokens() == 3){
-			String currentOperand;
-			// check each operand contains only 0s and 1s
-			while(st.hasMoreTokens()){
-				currentOperand  = st.nextToken();
-				for(int i = 0; i < currentOperand.length();i++){
-					if(currentOperand.charAt(i) != '0' || currentOperand.charAt(i) != '1'){
-						result = false;
-						Parser.currentErrorArray.add(Parser.returnError(22));
-						break;
-					}
-				}
-			}
-		}
-		else{
-			Parser.currentErrorArray.add(Parser.returnError(0));
-		}
 		
-		return result;
+		return bit.equals("1") || bit.equals("0");
 	}
+	/**
+	 * 
+	 * Module Name: isValidInstructionBits
+	 * Description: This function returns a Boolean value dependent on if the input string is deemed a valid SAL560 Bits.
+	 * Input Params: String bits a string of Bits
+	 * Output Params: Boolean based on weather the input string is deemed valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Oscar
+	 * Date of Installation: 10-25-2010
+	 * Modifications: 
+	 * @param bits Input string to be validated as a SAL 560 Bits or not.
+	 * @return Boolean that returns if the input string is valid or not.
+	 */
 	static boolean isValidInstructionBits (String bits) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
@@ -194,6 +376,7 @@ public class Operand
 		
 		return answer;
 	}
+	
 	static boolean isValidInstructionNumber (String number) 
 	{
 		//This is a superfluous function since it will always return true, unless we decide to set a limit
@@ -206,11 +389,21 @@ public class Operand
 	}
 	
 	
-	/**
-	 * Directive Operand checking:
-	 * 	NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN, EXP
-	 */
 	
+	/**
+	 * 
+	 * Module Name: isValidDirectiveNumber
+	 * Description: Returns a Boolean based on if the String passed is deemed to be a valid SAL560 Number.
+	 * Input Params: String number
+	 * Output Params: Boolean value dependent upon if the input string is valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Oscar
+	 * Date of Installation: 10-25-2010
+	 * Modifications:
+	 * @param number Input string that is being tested to see if it is a valid number.
+	 * @return Boolean value that is true or false dependent if the input string is deemed valid or not.
+	 */
 	static boolean isValidDirectiveNumber (String number) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
@@ -256,21 +449,46 @@ public class Operand
 		
 		return answer;
 	}
+	/**
+	 * 
+	 * Module Name: isValidDirectiveBinary
+	 * Description: Determines if the string passed to the function is a valid binary number in the sal560
+	 * Input Params: String binary
+	 * Output Params: Boolean value dependent upon if the string passed is deemed valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Rakaan
+	 * Date of Installation: 10-26-2010
+	 * Modifications: Fixed Pattern Match 11-6-2010 (Robert Schmidt)
+	 * @param binary This is a string value that is a potential binary number that is being validated.
+	 * @return A Boolean value that returns true or false dependent upon the instruction being true or false.
+	 */
 	static boolean isValidDirectiveBinary (String binary) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//32 binary digits
-		boolean answer = true;
+		boolean answer = false;
+		if(binary.length() <= 32)
+		{
+			answer = Pattern.matches("[01]*", binary);
+		}
 		
-		for(int i=0; i<binary.length();i++){
-				if(Character.getNumericValue(binary.charAt(i))!=0||Character.getNumericValue(binary.charAt(i))!=1)
-						{
-							answer = false;
-						}
-			}
-		
-		return (binary.length()<= 32 && answer);
+		return answer;
 	}
+	/**
+	 * 
+	 * Module Name: isValidDirectiveHex
+	 * Description: Returns a boolean value if the String value is a valid Hex string in the sal560 assembly language.
+	 * Input Params: String hex
+	 * Output Params: Boolean value depending on if the hex string is considered valid or not.
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author: Rakaan
+	 * Date of Installation: 20-25-2010
+	 * Modifications: None
+	 * @param hex A string of hex to be determined valid or invalid.
+	 * @return A boolean value that returns if the hex is valid or invalid.
+	 */
 	static boolean isValidDirectiveHex (String hex) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
@@ -287,19 +505,76 @@ public class Operand
 	
 	/**
 	 * 
+	 * Module Name: isValidDirectiveCharacterString
+	 * Description: Returns a boolean value if the stringValue passed to it is a valid CharacterString in the sal560 assembler.
+	 * Input Params: String stringValue
+	 * Output Params: Boolean value dependent upon if the input StringValue is valid or not.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Rakaan
+	 * Date of Installation: 20-26-2010
+	 * Modifications: Fixed the Match Pattern 11-6-2010 Robert Schmidt
 	 * @param string A possibly valid STR.DATA value in the SAL560.
 	 * @return True iff the length of "string" is <= 16 and contains only the characters A-Z,a-z,_,0-9.
 	 */
-	static boolean isValidDirectiveString (String string) 
+	static boolean isValidDirectiveCharacterString (String stringValue) 
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//length is limited to 16 characters (this was our choice) and contains only A-Z,a-z,_,0-9
-		return ((string.length() <= 16) && (string.matches("\\w")));
+		Boolean properString = false;
+		//System.out.println("QWER : " + stringValue.charAt(0) + " : " + stringValue.charAt(stringValue.length()-1));
+		
+		if(stringValue.charAt(0) == '\'' && stringValue.charAt(stringValue.length()-1) == '\'')
+		{
+			String[] stringArray = stringValue.split("'");
+			if(stringArray.length == 2)
+			{
+				if((stringArray[1].length() <= 16) && (Pattern.matches("[a-zA-Z_0-9_]*",stringArray[1])))
+				{
+					properString = true;
+				}
+			}
+		}
+
+		return properString;
 	}
 	
 	/**
+	 * 
+	 * Module Name: isValidDirectiveString
+	 * Description: Determines if the String passed to it is a valid string in the sal560 assembly language.
+	 * Input Params: String stringValue
+	 * Output Params: Boolean dependent upon what if the String value if valid or not.S
+	 * Error Conditions Tested:  None
+	 * Error Messages Generated: None
+	 * Original Author: Rakaan
+	 * Date of Installation: 10-27-2010
+	 * Modifications: Fixed the match pattern 11-6-2010 (Robert Schmidt)
+	 * @param stringValue Sal560 String value for a directive.
+	 * @return returns a boolean based on if the String is considered valid or not.
+	 */
+	static boolean isValidDirectiveString (String stringValue) 
+	{
+		//need to flesh this out, but each method to check operands should just return a boolean 
+		//length is limited to 16 characters (this was our choice) and contains only A-Z,a-z,_,0-9
+
+
+		return (stringValue.length() <= 16) && (Pattern.matches("[a-zA-Z_0-9_]*",stringValue));
+	}
+	
+	/**
+	 * 
+	 * Module Name: isValidDirectiveLabel
+	 * Description: Determines if the string passed is a valid Label.
+	 * Input Params: String label
+	 * Output Params: Boolean dependent upon weather or not the label is valid.
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None 
+	 * Original Author: Kermit
+	 * Date of Installation: 10-27-2010
+	 * Modifications: None
 	 * @param label The possibly valid label for the ENT and ADR.DATAa directives.
-	 * @return True iff the String "label" is a previously declared label that already exists in the SymbolTable.
+	 * @return True if the String "label" is a previously declared label that already exists in the SymbolTable.
 	 */
 	static boolean isValidDirectiveLabel (String label) 
 	{
@@ -310,8 +585,17 @@ public class Operand
 	
 	/**
 	 * 
+	 * Module Name: isValidDirectiveBoolean
+	 * Description: Determines if the string is a valid boolean value or not.
+	 * Input Params: String bool
+	 * Output Params: boolean dependent on if the input string is a valid boolean value or not.
+	 * Error Conditions Tested:
+	 * Error Messages Generated:  None
+	 * Original Author: Kermit
+	 * Date of Installation: 10-27-2010
+	 * Modifications: None
 	 * @param bool The possiblly valid Boolean flag for the debug function.
-	 * @return True iff the String "bool" is a valid Boolean flag.
+	 * @return True if the String "bool" is a valid Boolean flag.
 	 */
 	static boolean isValidDirectiveBoolean (String bool) 
 	{
@@ -326,16 +610,20 @@ public class Operand
 	}
 	/**
 	 * 
+	 * Module Name: isValidDirectiveExp
+	 * Description: Determines if exp string passed to it is valid or not.
+	 * Input Params: String exp
+	 * Output Params: Boolean depending on if the string is a valid expression or not.
+	 * Error Conditions Tested: 
+	 * Error Messages Generated: None
+	 * Original Author: Kermit
+	 * Date of Installation: 10-28-2010
+	 * Modifications: Fixed the SymbolTable index off by 1 error. 11-6-2010 (Robert Schmidt)
 	 * @param exp The String value of the potentially valid expression.
-	 * @return True iff the String is a valid SAL560 expression (max of 3 operands separated my '+' or '-')
+	 * @return True if the String is a valid SAL560 expression (max of 3 operands separated my '+' or '-')
 	 */
 	static boolean isValidDirectiveExp (String exp) 
-	{
-
-		//valid expression(include handling * notation)
-		
-		//boolean value to return
-		
+	{		
 		boolean result = false;
 		
 		//Tokenizing machine ensures only valid operators are '+' and '-' so a valid expression will have a max of 3 tokens in the machine
@@ -349,8 +637,7 @@ public class Operand
 			while(expressionTokenizer.hasMoreTokens())
 			{
 				String operand = expressionTokenizer.nextToken();
-				
-				//first check to see if it's a valide integer value
+				//first check to see if it's a valid integer value
 				try
 				{
 					Integer.parseInt(operand);
@@ -370,7 +657,7 @@ public class Operand
 						try
 						{
 							//Checks the "sub" value of the label to see if the label is a substitute for a valid integer
-							Integer.parseInt(String.valueOf(values.get(1)));
+							Integer.parseInt(String.valueOf(values.get(0)));
 							result = true;
 						}
 						catch(NumberFormatException e)
@@ -384,7 +671,10 @@ public class Operand
 				//failing that, it could be a "*" so we check for that
 				if(result == false)
 				{
-					result = ((operand.length() == 1) && (operand.charAt(0) == '*'));
+					if ((operand.length() == 1) && (operand.charAt(0) == '*'))
+					{
+						result = true;
+					}
 				}
 			}
 		}
