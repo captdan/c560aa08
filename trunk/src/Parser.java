@@ -180,14 +180,27 @@ public class Parser
 			if(codeLine.directive != null && codeLine.directive.directiveName.equals("EXEC.START"))
 			{
 				foundDirective = true;
-				if(SymbTable.isInTable(codeLine.directive.operandArray.get(0).operand))
+				try
 				{
-					execStart = Integer.valueOf(SymbTable.getInfoFromSymbol(codeLine.directive.operandArray.get(0).operand).get(0).toString());
+					execStart = Integer.valueOf(codeLine.directive.operandArray.get(0).operand);
 				}
-				else
+				catch(Exception e)
 				{
-					System.out.println("No valid EXEC.START Location");
+					if(SymbTable.isInTable(codeLine.directive.operandArray.get(0).operand))
+					{
+						execStart = Integer.valueOf(SymbTable.getInfoFromSymbol(codeLine.directive.operandArray.get(0).operand).get(0).toString());
+					}
+					else if(codeLine.directive.operandArray.get(0).operand.equals("*"))
+					{
+						execStart = codeLine.PC;
+					}
+					else
+					{
+						execStart = startingLocation;
+						System.out.println("No valid EXEC.START Location");
+					}
 				}
+
 			}
 		}
 		if (foundDirective == false)
