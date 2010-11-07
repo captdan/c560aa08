@@ -198,6 +198,10 @@ public class ObjectFile {
 				{
 					textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
 				}
+				else
+				{
+					textRecord.add(codeline.instruction.operandsArray.get(count).operand);
+				}
 				
 			}
 			}
