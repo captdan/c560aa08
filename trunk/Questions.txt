@@ -4,4 +4,5 @@ Questions:
 
 - For relocation type R do we put label in object file?
 
-- 
+- For expression how do we handle the absolute fields like "1+D+mars" 1 being absolute, D being local and mars being external?
+
