@@ -171,7 +171,7 @@ public class ObjectFile {
 		//textRecord.add(codeline.scope.toString());
 		
 		//String labelReference = "";
-		
+
 		if (codeline.directive != null)
 		{
 			textRecord.add(String.valueOf(codeline.directive.operandArray.size()));
@@ -221,6 +221,20 @@ public class ObjectFile {
 		
 		return textRecord;
 	}
+	
+	public int countNonAbsoluteOperands(ArrayList<Operand> operandsArray)
+	{
+		int count = 0;
+		for(Operand operand : operandsArray)
+		{
+			if(operand.relocationType != Operand.relocationTypes.A)
+			{
+				count = count + 1;
+			}
+		}
+		return count;
+	}
+	
 	public ArrayList<String> createHeaderRecord()
 	{
 		// Then we create header file
