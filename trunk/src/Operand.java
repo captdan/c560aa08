@@ -8,6 +8,11 @@ public class Operand
 	public String operand;
 	public Object operandType;
 	
+	public relocationTypes relocationType = relocationTypes.A;
+	public enum relocationTypes
+	{
+		A,R,E
+	}
 	public Operand(String operandValue, Object operandTypeValue)
 	{
 		operand = operandValue;
@@ -38,6 +43,19 @@ public class Operand
 		
 		//Parser.SymbTable.isInTable('')
 		return "";
+	}
+	
+	public String returnComplexAddressLabel()
+	{
+		String label = "";
+		if(this.operandType == Instruction.operandTypes.COMPLEXADDRESS)
+		{
+			if(this.operand.contains("("))
+			{
+				label = this.operand.substring(0, this.operand.indexOf('('));
+			}
+		}
+		return label;
 	}
 	
 	/**
