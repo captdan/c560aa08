@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 /**
  * 
@@ -145,15 +146,86 @@ public class ObjectFile {
 		if (codeline.directive != null)
 		{
 			textRecord.add(String.valueOf(codeline.directive.operandArray.size()));
-			for (int count = 0; count < codeline.directive.operandArray.size();count++)
+			
+			if(codeline.directive.operands.get(0).equals(Directive.operandTypes.EXP))
 			{
-			textRecord.add(codeline.directive.operandArray.get(count).relocationType.toString());
-			if(codeline.directive.operandArray.get(count).relocationType != Operand.relocationTypes.A )
+				StringTokenizer expressionTokenizer = new StringTokenizer(codeline.directive.operandArray.get(0).operand,"+-",true);
+				ArrayList<String> exp = new ArrayList<String>();
+				while(expressionTokenizer.hasMoreTokens())
+				{
+					exp.add(expressionTokenizer.nextToken());
+				}
+				
+				
+					boolean result = false;
+					//first check to see if it's a valid integer value
+					try
+					{
+						Integer.parseInt(exp.get(0));
+						textRecord.add("A");
+						if(exp.size() > 1)
+						{
+							textRecord.add(exp.get(1));
+							textRecord.add(String.valueOf(p.startLocation));
+						}
+						result = true;
+					}
+					catch(NumberFormatException e)
+					{
+						//do nothing
+					}
+					
+					if((result == false) && (exp.get(0).equals("*")))
+					{
+						textRecord.add("A");
+						if(exp.size() > 1)
+						{
+							textRecord.add(exp.get(1));
+							textRecord.add(String.valueOf(p.startLocation));
+						}
+						result = true;
+					}
+					
+					
+					if(result == false)
+					{
+							ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(exp.get(0));
+							if(values.get(2).equals(SymbolTable.Uses.EXTERNAL))
+							{
+								textRecord.add("E");
+								textRecord.add("");
+							}
+							else
+							{
+								textRecord.add("R");
+							}	
+					}
+					
+					//Done with 1st operand, now check if there's an operator
+					if(expressionTokenizer.hasMoreTokens())
+					{
+						textRecord.add(expressionTokenizer.nextToken());
+					}
+								
+			}
+			else
 			{
-				textRecord.add(codeline.directive.operandArray.get(count).operand);
+				for (int count = 0; count < codeline.directive.operandArray.size();count++)
+				{
+					textRecord.add(codeline.directive.operandArray.get(count).relocationType.toString());
+					if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.E )
+					{
+						textRecord.add(codeline.directive.operandArray.get(count).operand);
+					}
+					else if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.R )
+					{
+						textRecord.add(codeline.directive.operandArray.get(count).operand);
+						textRecord.add("+");
+						textRecord.add(String.valueOf(p.startLocation));
+					}
+				}
 			}
 			
-			}
 		}
 		
 		if (codeline.instruction != null)
@@ -170,7 +242,16 @@ public class ObjectFile {
 				}
 				else
 				{
-					textRecord.add(codeline.instruction.operandsArray.get(count).operand);
+					if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.E )
+					{
+						textRecord.add(codeline.directive.operandArray.get(count).operand);
+					}
+					else if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.R )
+					{
+						textRecord.add(codeline.directive.operandArray.get(count).operand);
+						textRecord.add("+");
+						textRecord.add(String.valueOf(p.startLocation));
+					}
 				}
 				
 			}
