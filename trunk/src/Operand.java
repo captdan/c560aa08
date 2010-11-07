@@ -9,19 +9,50 @@ public class Operand
 	public Object operandType;
 	
 	public relocationTypes relocationType = relocationTypes.A;
+	/**
+	 * Enumeration of possible relocation types.
+	 * @author Robert Schmidt
+	 *
+	 */
 	public enum relocationTypes
 	{
 		A,R,E
 	}
+	
+	/**
+	 * Constructor to create an operand object from a value and a type.
+	 * @param operandValue
+	 * 			The value of the operand.
+	 * @param operandTypeValue
+	 * 			The relocation type of the operand.
+	 */
 	public Operand(String operandValue, Object operandTypeValue)
 	{
 		operand = operandValue;
 		operandType = operandTypeValue;
 	}
+	
+	/**
+	 * Default constructor.
+	 */
 	public Operand() 
 	{
 		
 	}
+	
+	/**
+	 * 
+	 * Module Name: returnValue
+	 * Description: Returns the value for the operand object.
+	 * Input Params: N/A
+	 * Output Params: String
+	 * 					The value of the operand.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/27/2010
+	 * Modifications: 
+	 */
 	public String returnValue()
 	{
 		if (operandType.getClass() == Instruction.class)
@@ -45,6 +76,19 @@ public class Operand
 		return "";
 	}
 	
+	/**
+	 * 
+	 * Module Name: returnComplexAddressLabel
+	 * Description: Returns the label part of an operand with an index register.
+	 * Input Params: N/A
+	 * Output Params: String
+	 * 					The label to be returned.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/27/2010
+	 * Modifications: 
+	 */
 	public String returnComplexAddressLabel()
 	{
 		String label = "";
@@ -399,6 +443,20 @@ public class Operand
 		return answer;
 	}
 	
+	/**
+	 * 
+	 * Module Name: isValidInstructionNumber
+	 * Description: 
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: 
+	 * Error Messages Generated: 
+	 * Original Author: 
+	 * Date of Installation: 
+	 * Modifications: 
+	 * @param number
+	 * @return
+	 */
 	static boolean isValidInstructionNumber (String number) 
 	{
 		//This is a superfluous function since it will always return true, unless we decide to set a limit
