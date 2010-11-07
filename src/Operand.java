@@ -91,7 +91,7 @@ public class Operand
 		{
 			String[] stringArray = immediate.split("'");
 		
-			if(stringArray[1].length() <= 4) 
+			if(stringArray[1].length() <= 2) 
 			{
 				if(Pattern.matches("[a-zA-Z_0-9_]*",stringArray[1]))
 				{
@@ -153,7 +153,7 @@ public class Operand
 		{
 			String[] stringArray = immediate.split("'");
 		
-			if(stringArray[1].length() <= 4) 
+			if(stringArray[1].length() <= 2) 
 			{
 				if(Pattern.matches("[a-zA-Z_0-9_]*",stringArray[1]))
 				{
@@ -339,8 +339,8 @@ public class Operand
 		//occurrence and disregard it if its present.
 		boolean answer = true;
 		String absoluteValue = "";
-		//check first character to see if +,- or digit
-		if (bits.charAt(0)=='+'||bits.charAt(0)=='-'||Character.isDigit(bits.charAt(0)))
+		//check first character to see if - or digit
+		if (bits.charAt(0)=='-'||Character.isDigit(bits.charAt(0)))
 		{
 			if (Character.isDigit(bits.charAt(0))){
 				
