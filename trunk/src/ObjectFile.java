@@ -20,7 +20,10 @@ public class ObjectFile {
 	ArrayList<String> endRecord = new ArrayList<String>();
 	
 	
-	
+	/**
+	 * Constructor from a program object.
+	 * @param program
+	 */
 	public ObjectFile (Program program)
 	{
 		p = program;
@@ -29,18 +32,19 @@ public class ObjectFile {
 		textRecord = this.createTextRecord();
 		endRecord = this.createEndRecord();
 	}
+	
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated: 
-	 * Original Author: 
-	 * Date of Installation: 
-	 * Modifications:
-	 * @return
+	 * Module Name: createLinkingRecord
+	 * Description: Creates a record for the linker.
+	 * Input Params: N/A
+	 * Output Params: ArrayList<ArrayList<String>>
+	 * 					An arraylist containing the linking record.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Rakaan Kayali
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
 	 */
 	public ArrayList<ArrayList<String>> createLinkingRecord() 
 	{
@@ -68,6 +72,19 @@ public class ObjectFile {
 		return linkingrecord;
 	}
 	
+	/**
+	 * 
+	 * Module Name: createTextRecord
+	 * Description: Creates the text record 
+	 * Input Params: N/A
+	 * Output Params: ArrayList<ArrayList<String>>
+	 * 					The text record
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	public ArrayList<ArrayList<String>> createTextRecord() {
 		
 		ArrayList<ArrayList<String>> textRecord = new ArrayList<ArrayList<String>>();
@@ -82,6 +99,21 @@ public class ObjectFile {
 		
 		return textRecord;
 	}
+	
+	/**
+	 * 
+	 * Module Name: makeOneTextRecord
+	 * Description: Takes a single line and makes its text record.
+	 * Input Params: codeline
+	 * 					The line of code to generated a record for.
+	 * Output Params: ArrayList<String>
+	 * 					A list of containing the text record for the line.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Rakaan Kayali
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	private ArrayList<String> makeOneTextRecord(CodeLine codeline)
 	{
 		ArrayList<String> textRecord = new ArrayList<String>();
@@ -151,6 +183,20 @@ public class ObjectFile {
 		return textRecord;
 	}
 	
+	/**
+	 * 
+	 * Module Name: countNonAbsoluteOperands
+	 * Description: If operands aren't absolute, count them.
+	 * Input Params: operandsArray
+	 * 					The operands to be counted.
+	 * Output Params: int
+	 * 					The number of operands.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	public int countNonAbsoluteOperands(ArrayList<Operand> operandsArray)
 	{
 		int count = 0;
@@ -164,6 +210,19 @@ public class ObjectFile {
 		return count;
 	}
 	
+	/**
+	 * 
+	 * Module Name: createHeaderRecord
+	 * Description: Creates the header record.
+	 * Input Params: N/A
+	 * Output Params: ArrayList<String>
+	 * 					The header record.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	public ArrayList<String> createHeaderRecord()
 	{
 		// Then we create header file
@@ -190,6 +249,18 @@ public class ObjectFile {
 		return header;
 	}
 
+	/**
+	 * 
+	 * Module Name: createEndRecord
+	 * Description: Creates the end of the record.
+	 * Input Params: N/A
+	 * Output Params: ArrayList<String>
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Rakaan Kayali
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	public ArrayList<String> createEndRecord ()
 	{
 		ArrayList<String> endRecord = new ArrayList<String>();
@@ -201,6 +272,22 @@ public class ObjectFile {
 		return endRecord;
 	}
 	
+	/**
+	 * 
+	 * Module Name: makeOneLinkingRecord
+	 * Description: Make a linking record for one line.
+	 * Input Params: symbol
+	 * 					The symbol to make a record of.
+	 * 				 start
+	 * 					Whether it's a start symbol or not.
+	 * Output Params: ArrayList<String>
+	 * 					The record.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Bobby Schmidt
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	private ArrayList<String> makeOneLinkingRecord(String symbol,boolean start)
 	{
 		ArrayList<String> linkingrecord = new ArrayList<String>();
@@ -218,7 +305,18 @@ public class ObjectFile {
 		return linkingrecord;
 	}
 	
-	
+	/**
+	 * 
+	 * Module Name: prettyFerret2
+	 * Description: Outputs the object file.
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Daniel Burnett
+	 * Date of Installation: 11/5/2010
+	 * Modifications:
+	 */
 	public void prettyFerret2 ()
 	{
 		try
@@ -248,6 +346,22 @@ public class ObjectFile {
 		}
 	}
 	
+	/**
+	 * 
+	 * Module Name: joinStringArray
+	 * Description: Joins a string array into a single string.
+	 * Input Params: stringArray
+	 * 					The array to be joined.
+	 * 				 delimiter
+	 * 					The delimiter character.
+	 * Output Params: String
+	 * 					The joined array.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/5/2010
+	 * Modifications: 
+	 */
 	private String joinStringArray(ArrayList<String> stringArray, String delimiter) 
 	{
 		String totalString = stringArray.get(0);
