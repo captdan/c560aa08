@@ -6,3 +6,6 @@ Questions:
 
 - For expression how do we handle the absolute fields like "1+D+mars" 1 being absolute, D being local and mars being external?
 
+- NOP's NEEDED?
+
+- Immediate String two characters with quote?? 'th'
