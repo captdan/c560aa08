@@ -157,6 +157,7 @@ public class Parser
 		
 		newObjectFile.prettyFerret2();
 	}
+	
 	public static void setExecStart(ArrayList<CodeLine> CodeLineArrayValue)
 	{
 		boolean foundDirective = false;
@@ -180,6 +181,7 @@ public class Parser
 			execStart = startingLocation;
 		}
 	}
+	
 	/**
 	 * 
 	 * Module Name: selectCodeLineScope
@@ -524,19 +526,27 @@ public class Parser
 		}
 	}
 	
+	
+	
 	/**
-	 * @author Robert Schmidt add 10/2/2010.
-	 * This is where we will parse each line of code. All directive
-	 * testing / checking will be in this function.
-	 * Modified to include extra functionality to check for instructions and directives.
-	 * Also Modified module to print out instructions , directives, symbols or errors found.
-	 * Added test to see if line of code was neither an instruction, directive or symbol we printed an error.
-	 * Date Modified: 10/10/2010
-	 * Modified Fixed Mem.skip code added various error checks.
-	 * Date Modified 10/17/2010 by Robert Schmidt
 	 * 
+	 * Module Name: parseCodeLine
+	 * Description: This is where we will parse each line of code. 
+	 * All directive testing / checking will be in this function.
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: General syntax checked
+	 * Error Messages Generated: Error 99, General Error check line syntax
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/2/2010
+	 * Modifications: 10/10/2010: Modified to include extra functionality to check for instructions and directives.
+	 * 					Also modified module to print out instructions, directives, symbols or errors found.
+	 * 					Added test to see if line of code was neither an instruction, directive or symbol we printed an error.
+	 * 				  10/17/2010: Fixed Mem.skip code to add various error checks.
 	 * @param lineOfCode
-	 *            Takes a string line of code to be parsed.
+	 * 				a string of code to be parsed.
+	 * @return CodeLine 
+	 * 				the parsed code line.
 	 */
 	public static CodeLine parseCodeLine(String lineOfCode) 
 	{
@@ -628,14 +638,21 @@ public class Parser
 		return cl;
 
 	}
+	
 	/**
-	 * @author Robert Schmidt added 10/2/2010
-	 * Checks code line for special directives MEM.SKIP and RESET.LC and EQU.EXP updates the program
-	 * counter accordingly.
-	 * Modified to include checking and dealing with directives (MEM.SKIP and RESET.LC)
-	 * Date modified: 10/11/2010 by Robert Schmidt.
-	 * @param cl CodeLine
-	 * 			holds the codeline object that is to be checked for MEM.SKIP and RESET.LC.
+	 * 
+	 * Module Name: checkSymbolsAndSpecialDirectives
+	 * Description: Checks code line for special directives mem.skip and reset.lc and equ.exp and 
+	 * updates the program counter accordingly.
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/2/2010
+	 * Modifications: 10/11/2010: Modified to include checking and dealing with directives (mem.skip and reset.lc)
+	 * @param cl
+	 * 			holds the codeline object that is to be checked for mem.skip or reset.lc or equ.exp
 	 */
 	public static void checkSymbolsAndSpecialDirectives(CodeLine cl)
 	{
@@ -668,11 +685,18 @@ public class Parser
 	}
 	
 	/**
-	 * @author Robert Schmidt added 10/17/2010
 	 * 
-	 * addToPC is a method used to update the PC counter. 
-	 * @param addValue 
-	 * 			Is the integer that is to be added to the PC.
+	 * Module Name: addToPC
+	 * Description: Used to update PC counter.
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: Maximum PC value.
+	 * Error Messages Generated: Error 6, memory out of bounds.
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/17/2010
+	 * Modifications: N/A
+	 * @param addValue
+	 * 			Integer that is to be added to PC.
 	 */
 	public static void addToPC(int addValue)
 	{
@@ -685,19 +709,26 @@ public class Parser
 			currentErrorArray.add(returnError(6));
 		}
 	}
+	
 	/**
-	 * @author Robert Schmidt.
-	 * Examines the String parameter that is passed in the function and returns a directive if present.
-	 * Modified to accept a boolean parameter weather or not we
-	 * want to added errors.
-	 * Date Modified: 10/17/2010 by Robert Schmidt.
+	 * 
+	 * Module Name: returnDirective
+	 * Description: Checks the string passed in for a directive.
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: TODO
+	 * Error Messages Generated: TODO
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/12/2010
+	 * Modifications: 10/17/2010: Modified to accept a boolean parameter to denote
+	 * 							whether or not we want to add errors.
 	 * @param codeString
-	 * 			Holds the codeString that we check for directives.
+	 * 				Holds the codeString to be checked for directives
 	 * @param addErrors
-	 * 			Used to indicate when we want to add errors to the currentErrorArray in order 
-	 * 			to only add a specific error once. 
-	 * @return Directive directiveObj
-	 * 			Holds the Directive object extracted from the codeString. 
+	 * 				Indicates whether or not we ant to add errors so that an error will
+	 * 				only be added once.
+	 * @return
+	 * 				Holds the directive object extracted from the codeString.
 	 */
 	public static Directive returnDirective(String codeString, Boolean addErrors) 
 	{
@@ -923,13 +954,22 @@ public class Parser
 		// Code to check special directives e.g. .end and .start
 		return directiveObj;
 	}
+	
 	/**
-	 * @author Robert Schmidt
-	 * Strips the parameter string from whitespace and tab characters.
+	 * 
+	 * Module Name: removeWhiteSpace
+	 * Description: Removes whitespace and tab characters from the parameter string.
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/2/2010
+	 * Modifications: N/A
 	 * @param InputString
-	 * 			Contains the String that is to have whitespace and tabs removed.
-	 * @return InputString 
-	 * 			Contains parameter string void of whitespace and tab characters.
+	 * 				Contains the String that is to have whitespace and tabs removed.
+	 * @return
+	 * 				Contains parameter string void of whitespace and tab characters.
 	 */
 	public static String removeWhiteSpace(String InputString) 
 	{
@@ -937,21 +977,28 @@ public class Parser
 		InputString = InputString.replaceAll("\t", "");
 		return InputString;
 	}
+	
 	/**
-	 * @author Robert Schmidt
-	 * returnSymbolInstruction extracts and returns the symbol found in the string parameter.
+	 * 
+	 * Module Name: returnSymbolInstruction
+	 * Description: Extracts and returns the symbol found in the string parameter.
 	 * Additionally, if an error is encountered it adds the error to the currentErrorArray if the 
 	 * addErrors parameter is set to true.
-	 * Modified to include adding symbols found to the symbol table.
-	 * Date Modified: 10/11/2010 by Oscar Flores.
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: TODO
+	 * Error Messages Generated: TODO
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/4/2010
+	 * Modifications: 10/11/2010: Can now add symbols to the symbol table.
 	 * @param instruction
-	 * 			Carries string to have symbol instruction extracted from.
-	 * @param addErrors 
-	 * 			Indicates if we should add errors to the currentArrayList.
-	 * 			This helps avoid repeating errors for a single line.		
-	 * @return Object symbolObj
-	 * 			Holds the symbol (directive or instruction or null) found in the instructions String and 
-	 * 			updates the currentErrorArray when needed and the addError boolean is set to true.
+	 * 				Carries the string to extract the symbol instruction from.
+	 * @param addErrors
+	 * 				Indicates whether or not we ant to add errors so that an error will
+	 * 				only be added once.
+	 * @return
+	 * 				Holds the symbol (directive or instruction or null) found in the instruction parameter.
+	 * 				Updates the currentErrorArray when needed and the addError boolean is set to true.
 	 */
 	public static Object returnSymbolInstruction(String instruction, Boolean addErrors)
 	{
@@ -989,22 +1036,28 @@ public class Parser
 		
 		return symbolObj;
 	}
+	
 	/**
-	 * @author Robert Schmidt
-	 * returnInstruction takes a String parameter extracts any instruction if present.
-	 * Modified to accept a boolean parameter to determine if we
-	 * want to added errors or not.
+	 * 
+	 * Module Name: returnInstruction
+	 * Description: Returns an instruction from the parameter string, if present.
+	 * Input Params: 
+	 * Output Params: 
+	 * Error Conditions Tested: TODO
+	 * Error Messages Generated: TODO
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 10/12/2010
+	 * Modifications: 10/17/2010: Accepts a boolean parameter to determine if we wand to add errors.
 	 * @param instructionWithOperands
-	 * 			Holds a string with a possible instruction and its operands to be checked and returned to caller
-	 * 			if present.
+	 * 				Holds a string with a possible instruction and its operands to be checked and returned
+	 * 				the caller if present.
 	 * @param addErrors
-	 * 			Boolean that contains permission to add to currentErrorArray.
-	 * @return instructionObj
-	 * 			Holds an instruction object that is constructed from information gathered from incoming parameters
-	 * 			or null if instruction were not present in parameters.
-	 * 			
-	 */	
-
+	 * 				Indicates whether or not we ant to add errors so that an error will
+	 * 				only be added once.
+	 * @return
+	 * 				Holds an instruction object that is constructed from information gathered from
+	 * 				incoming parameters, or null if there is no instruction present.
+	 */
 	public static Instruction returnInstruction(String instructionWithOperands, Boolean addErrors) 
 	{
 		Instruction instructionObj = new Instruction();
