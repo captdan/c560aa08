@@ -118,7 +118,7 @@ public class Parser
 		/** This code processes each line of the code from the source assembly file **/
 		for (String lineOfCode : linesOfCode) 
 		{
-			System.out.println(lineOfCode);	
+			//System.out.println(lineOfCode);	
 			if (endProgram == false) 
 			{
 				CodeLineArray.add(parseCodeLine(lineOfCode));
@@ -138,6 +138,8 @@ public class Parser
 		/** This print out the intermediate file which we use for debugging and for SP1 **/
 		printIntermediateFile("IntermediateFile.txt");
 		
+		/**
+		 //This is to test that all the instructions are converted properly to the correct hex / binary.
 		for (CodeLine codeLine : CodeLineArray) 
 		{
 			if(codeLine.instruction != null)
@@ -145,7 +147,9 @@ public class Parser
 				System.out.println(codeLine.instruction.instruction + ":  \t\t" + codeLine.instruction.returnHexCodeLine());
 			}
 		}
-		System.out.println(SymbTable.size);
+		**/
+		
+		//System.out.println(SymbTable.size);
 		SymbTable.prettyFerret();	
 		
 		Program newProgram = new Program(programName, startingLocation, execStart,PC, CodeLineArray, SymbTable, litTable);
