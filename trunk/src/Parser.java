@@ -158,6 +158,20 @@ public class Parser
 		newObjectFile.prettyFerret2();
 	}
 	
+	/**
+	 * 
+	 * Module Name: setExecStart
+	 * Description: Sets the address for starting execution. Determines
+	 * 				if there is a valid EXEC.START directive, otherwise starts at the beginning of the program.
+	 * Input Params: CodeLineArrayValue
+	 * 					The array of all the lines of code. To be checked for valid EXEC.START directive.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11/6/2010
+	 * Modifications: 
+	 */
 	public static void setExecStart(ArrayList<CodeLine> CodeLineArrayValue)
 	{
 		boolean foundDirective = false;
@@ -186,14 +200,14 @@ public class Parser
 	 * 
 	 * Module Name: selectCodeLineScope
 	 * Description: This sets the A/R/E types on each codeline
-	 * Input Params: CodeLineArrayValue ArrayList<CodeLine>
-	 * Output Params: 
-	 * Error Conditions Tested: 
-	 * Error Messages Generated: None
+	 * Input Params: CodeLineArrayValue 
+	 * 						The array of the CodeLine objects who's scope is to be selected.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 11-6-2010 2:00AM
 	 * Modifications:
-	 * @param CodeLineArrayValue The array of the CodeLine objects who's scope is to be selected.
 	 */
 	public static void selectCodeLineScope(ArrayList<CodeLine> CodeLineArrayValue)
 	{
@@ -217,14 +231,14 @@ public class Parser
 	 * 
 	 * Module Name: checkOperandScope
 	 * Description: This checks the operands scope for an array list of operands.
-	 * Input Params: ArrayList<Operand> operandsArray, CodeLine codeLine
-	 * Output Params: None
-	 * Error Conditions Tested:
-	 * Error Messages Generated: None
+	 * Input Params: operandsArray 
+	 * 						This is the ArrayList of the operands that is to be parsed.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 11-6-2010 2:40 AM
 	 * Modifications: Added ability to search complex addresses for external or relative operands
-	 * @param operandsArray This is the ArrayList of the operands that is to be parsed.
 	 */
 	public static void checkOperandScope(ArrayList<Operand> operandsArray)
 	{
@@ -302,15 +316,15 @@ public class Parser
 	 * 
 	 * Module Name: returnEquOperands
 	 * Description: This function returns the operands of an EQU statment in an ArrayList<String>.
-	 * Input Params: String equString
+	 * Input Params: equString 
+	 * 					This is the input EQU String.
 	 * Output Params: ArrayList<String>
-	 * Error Conditions Tested:
-	 * Error Messages Generated: None
+	 * 					This function returns the operands of the EQU input string in an ArrayList<String>
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 11-6-2010 2:20 AM
 	 * Modifications: 
-	 * @param equString This is the input EQU String.
-	 * @return This function returns the operands of the EQU input string in an ArrayList<String>
 	 */
 	public static ArrayList<String> returnEquOperands (String equString)
 	{
@@ -329,14 +343,14 @@ public class Parser
 	 * 
 	 * Module Name: checkOperands
 	 * Description: This checks every codeLine object in a CodeLineArray for syntax errors in the operand fields
-	 * Input Params: ArrayList<CodeLine> CodeLineArrayValue
-	 * Output Params: None
-	 * Error Conditions Tested: 
-	 * Error Messages Generated: 
+	 * Input Params: CodeLineArrayValue
+	 * 					The array of the codeLine objects who's operands are to be tested.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 11-6-2010 12:30 AM
 	 * Modifications: Added support for both directives and instructions
-	 * @param CodeLineArrayValue The array of the codeLine objects who's operands are to be tested.
 	 */
 	public static void checkOperands (ArrayList<CodeLine> CodeLineArrayValue)
 	{
@@ -422,15 +436,15 @@ public class Parser
 	 * 
 	 * Module Name: copyStringArray
 	 * Description: This copies a ArrayList of type String to an output ArrayList of type String.
-	 * Input Params: ArrayList<String> stringArray
-	 * Output Params: ArrayList<String> Copy of the input ArrayList
-	 * Error Conditions Tested: None
-	 * Error Messages Generated: None
+	 * Input Params: stringArray
+	 * 					An ArrayList of String to be copied.
+	 * Output Params: ArrayList<String> 
+	 * 					Copy of the input ArrayList
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 11-6-2010 3:23 AM
 	 * Modifications:
-	 * @param stringArray An ArrayList of String to be copied.
-	 * @return A copy of the input ArrayList of String.
 	 */
 	public static ArrayList<String> copyStringArray(ArrayList<String> stringArray)
 	{
@@ -441,18 +455,19 @@ public class Parser
 		}
 		return newStringArray;
 	}
+	
 	/**
 	 * 
 	 * Module Name: parseStartDirective
 	 * Description: This code reads the first line of an ArrayList of CodeLine and it verifies that the .START directive is properly formatted.
-	 * Input Params: ArrayList<String> linesOfCode The ArrayList that is to be parsed.
-	 * Output Params: NONE
-	 * Error Conditions Tested: NONE
-	 * Error Messages Generated: NONE
+	 * Input Params: ArrayList<String> linesOfCode 
+	 * 					The ArrayList that is to be parsed.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 11-6-2010
 	 * Modifications:
-	 * @param linesOfCode This is the CodeLine that is to be read and checked for a valid start directive.
 	 */
 	public static void parseStartDirective(ArrayList<String> linesOfCode)
 	{
@@ -493,13 +508,13 @@ public class Parser
 	 * Module Name: printIntermediateFile
 	 * Description: Outputs an Intermediate file for use in debugging and for SP1.
 	 * Input Params: String fileName
-	 * Output Params: NONE
-	 * Error Conditions Tested: NONE
-	 * Error Messages Generated: NONE
+	 * 					This is the file name of the file you want to output.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10-15-2010
 	 * Modifications: Added A\R\E output 11-6-2010 Robert Schmidt
-	 * @param fileName This is the file name of the file you want to output.
 	 */
 	public static void printIntermediateFile(String fileName)
 	{		
@@ -525,16 +540,16 @@ public class Parser
 			//ERROR
 		}
 	}
-	
-	
-	
+			
 	/**
 	 * 
 	 * Module Name: parseCodeLine
 	 * Description: This is where we will parse each line of code. 
 	 * All directive testing / checking will be in this function.
-	 * Input Params: 
-	 * Output Params: 
+	 * Input Params: lineOfCode
+	 * 				a string of code to be parsed.
+	 * Output Params: CodeLine 
+	 * 				the parsed code line.
 	 * Error Conditions Tested: General syntax checked
 	 * Error Messages Generated: Error 99, General Error check line syntax
 	 * Original Author: Robert Schmidt
@@ -543,10 +558,6 @@ public class Parser
 	 * 					Also modified module to print out instructions, directives, symbols or errors found.
 	 * 					Added test to see if line of code was neither an instruction, directive or symbol we printed an error.
 	 * 				  10/17/2010: Fixed Mem.skip code to add various error checks.
-	 * @param lineOfCode
-	 * 				a string of code to be parsed.
-	 * @return CodeLine 
-	 * 				the parsed code line.
 	 */
 	public static CodeLine parseCodeLine(String lineOfCode) 
 	{
@@ -644,15 +655,14 @@ public class Parser
 	 * Module Name: checkSymbolsAndSpecialDirectives
 	 * Description: Checks code line for special directives mem.skip and reset.lc and equ.exp and 
 	 * updates the program counter accordingly.
-	 * Input Params: N/A
+	 * Input Params: cl
+	 * 			holds the codeline object that is to be checked for mem.skip or reset.lc or equ.exp
 	 * Output Params: N/A
 	 * Error Conditions Tested: N/A
 	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/2/2010
 	 * Modifications: 10/11/2010: Modified to include checking and dealing with directives (mem.skip and reset.lc)
-	 * @param cl
-	 * 			holds the codeline object that is to be checked for mem.skip or reset.lc or equ.exp
 	 */
 	public static void checkSymbolsAndSpecialDirectives(CodeLine cl)
 	{
@@ -688,15 +698,14 @@ public class Parser
 	 * 
 	 * Module Name: addToPC
 	 * Description: Used to update PC counter.
-	 * Input Params: 
-	 * Output Params: 
+	 * Input Params: addValue
+	 * 			Integer that is to be added to PC.
+	 * Output Params: N/A
 	 * Error Conditions Tested: Maximum PC value.
 	 * Error Messages Generated: Error 6, memory out of bounds.
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/17/2010
 	 * Modifications: N/A
-	 * @param addValue
-	 * 			Integer that is to be added to PC.
 	 */
 	public static void addToPC(int addValue)
 	{
@@ -714,21 +723,33 @@ public class Parser
 	 * 
 	 * Module Name: returnDirective
 	 * Description: Checks the string passed in for a directive.
-	 * Input Params: 
-	 * Output Params: 
-	 * Error Conditions Tested: TODO
-	 * Error Messages Generated: TODO
+	 * Input Params: codeString
+	 * 					Holds the codeString to be checked for directives
+	 * 				 addErrors
+	 * 					Indicates whether or not we ant to add errors so that an error will
+	 * 					only be added once.
+	 * Output Params: Directive
+	 * 					Holds the directive object extracted from the codeString.
+	 * Error Conditions Tested: 	Mismatch name between start and end.
+	 * 								No program name at end.
+	 * 								Missing parameters at start.
+	 * 								Improper start directive.
+	 * 								Error with reset directive.
+	 * 								Error with mem.skip directive.
+	 * 								Error with exec.start.
+	 * 								Too many parameters on mem.skip.
+	 * Error Messages Generated: 	Error 1,  End name not same as the start name.
+	 * 								Error 7,  .END code missing program name.
+	 * 								Error 8,  .START missing parameters.
+	 * 								Error 9,  Error Processing .START.
+	 * 								Error 11, Error Processing Reset.
+	 * 								Error 12, Error Processing Mem.skip.
+	 * 								Error 13, Error Processing Exec.start.
+	 * 								Error 14, Mem.skip has too many parameters.
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/12/2010
 	 * Modifications: 10/17/2010: Modified to accept a boolean parameter to denote
-	 * 							whether or not we want to add errors.
-	 * @param codeString
-	 * 				Holds the codeString to be checked for directives
-	 * @param addErrors
-	 * 				Indicates whether or not we ant to add errors so that an error will
-	 * 				only be added once.
-	 * @return
-	 * 				Holds the directive object extracted from the codeString.
+	 * 							whether or not we want to add errors.		
 	 */
 	public static Directive returnDirective(String codeString, Boolean addErrors) 
 	{
@@ -959,17 +980,15 @@ public class Parser
 	 * 
 	 * Module Name: removeWhiteSpace
 	 * Description: Removes whitespace and tab characters from the parameter string.
-	 * Input Params: 
-	 * Output Params: 
+	 * Input Params: InputString
+	 * 					Contains the String that is to have whitespace and tabs removed.
+	 * Output Params: String
+	 * 					Contains parameter string void of whitespace and tab characters.
 	 * Error Conditions Tested: N/A
 	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/2/2010
-	 * Modifications: N/A
-	 * @param InputString
-	 * 				Contains the String that is to have whitespace and tabs removed.
-	 * @return
-	 * 				Contains parameter string void of whitespace and tab characters.
+	 * Modifications: N/A		
 	 */
 	public static String removeWhiteSpace(String InputString) 
 	{
@@ -984,21 +1003,19 @@ public class Parser
 	 * Description: Extracts and returns the symbol found in the string parameter.
 	 * Additionally, if an error is encountered it adds the error to the currentErrorArray if the 
 	 * addErrors parameter is set to true.
-	 * Input Params: 
-	 * Output Params: 
-	 * Error Conditions Tested: TODO
-	 * Error Messages Generated: TODO
+	 * Input Params: instruction
+	 * 					Carries the string to extract the symbol instruction from.
+	 * 				 addErrors
+	 * 					Indicates whether or not we ant to add errors so that an error will
+	 * 					only be added once.
+	 * Output Params: Object
+	 * 					Holds the symbol (directive or instruction or null) found in the instruction parameter.
+	 * 				Updates the currentErrorArray when needed and the addError boolean is set to true.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/4/2010
-	 * Modifications: 10/11/2010: Can now add symbols to the symbol table.
-	 * @param instruction
-	 * 				Carries the string to extract the symbol instruction from.
-	 * @param addErrors
-	 * 				Indicates whether or not we ant to add errors so that an error will
-	 * 				only be added once.
-	 * @return
-	 * 				Holds the symbol (directive or instruction or null) found in the instruction parameter.
-	 * 				Updates the currentErrorArray when needed and the addError boolean is set to true.
+	 * Modifications: 10/11/2010: Can now add symbols to the symbol table.		
 	 */
 	public static Object returnSymbolInstruction(String instruction, Boolean addErrors)
 	{
@@ -1041,22 +1058,20 @@ public class Parser
 	 * 
 	 * Module Name: returnInstruction
 	 * Description: Returns an instruction from the parameter string, if present.
-	 * Input Params: 
-	 * Output Params: 
-	 * Error Conditions Tested: TODO
-	 * Error Messages Generated: TODO
+	 * Input Params: instructionWithOperands
+	 * 					Holds a string with a possible instruction and its operands to be checked and returned
+	 * 					the caller if present.
+	 * 				 addErrors
+	 * 					Indicates whether or not we ant to add errors so that an error will
+	 * 					only be added once.
+	 * Output Params: Instruction
+	 * 					Holds an instruction object that is constructed from information gathered from
+	 * 				incoming parameters, or null if there is no instruction present.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/12/2010
 	 * Modifications: 10/17/2010: Accepts a boolean parameter to determine if we wand to add errors.
-	 * @param instructionWithOperands
-	 * 				Holds a string with a possible instruction and its operands to be checked and returned
-	 * 				the caller if present.
-	 * @param addErrors
-	 * 				Indicates whether or not we ant to add errors so that an error will
-	 * 				only be added once.
-	 * @return
-	 * 				Holds an instruction object that is constructed from information gathered from
-	 * 				incoming parameters, or null if there is no instruction present.
 	 */
 	public static Instruction returnInstruction(String instructionWithOperands, Boolean addErrors) 
 	{
@@ -1135,14 +1150,11 @@ public class Parser
 	 *               delimiter
 	 *            		This is what string should be placed the elements joined in the stringArray.
 	 * Output Params: Returns a String that is the joined array plus delimiters.
-	 * Error Conditions Tested: None.
-	 * Error Messages Generated: None.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt.
 	 * Date of Installation: 10/12/2010.
 	 * Modifications:
-	 * @param stringArray
-	 * @param delimiter
-	 * @return
 	 */
 	public static String joinStringArray(String[] stringArray, String delimiter) 
 	{
@@ -1169,8 +1181,6 @@ public class Parser
 	 * Original Author: Robert Schmidt.
 	 * Date of Installation: 10/4/2010.
 	 * Modifications:
-	 * @param fileName
-	 * @return
 	 */
 	public static ArrayList<String> readFileToArrayList(String fileName)
 	{
@@ -1214,13 +1224,12 @@ public class Parser
 	 * format.
 	 * Input Params: fileName
 	 *            This is the file location of the instruction table.
-	 * Output Params: None.
-	 * Error Conditions Tested: None.
-	 * Error Messages Generated: None.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/4/2010.
 	 * Modifications:
-	 * @param fileName
 	 */
 	public static void fillInstructionsArray(String fileName) 
 	{
@@ -1312,13 +1321,12 @@ public class Parser
 	 * Input Params: fileName
 	 *          Is a String that represents the name of the Error file that is to be read
 	 *          into the ErrorArray.
-	 * Output Params: None.
-	 * Error Conditions Tested: None.
-	 * Error Messages Generated: None.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt.
 	 * Date of Installation: 10/4/2010.
 	 * Modifications:
-	 * @param fileName
 	 */
 	public static void fillErrorArray(String fileName)
 {
@@ -1347,13 +1355,11 @@ public class Parser
 	 *     		       The error id number associated with the error.
 	 * Output Params: returnError
 	 *		       	   Returns an instance of the Error class object for the specified error.    			
-	 * Error Conditions Tested: None.
-	 * Error Messages Generated: None.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Oscar Flores.
 	 * Date of Installation: 10/4/2010.
 	 * Modifications: 
-	 * @param ErrorId
-	 * @return
 	 */
 	public static Error returnError(int ErrorId) 
 	{
@@ -1376,13 +1382,11 @@ public class Parser
 	 *            The text instruction name that is to be looked up.
 	 * Output Params: instructionExists
 	 * 		   Returns a boolean value depending on the existence of the instruction.
-	 * Error Conditions Tested: None
-	 * Error Messages Generated: None
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Daniel Burnett.
 	 * Date of Installation: 10/6/2010.
 	 * Modifications:
-	 * @param instructionString
-	 * @return
 	 */
 	public static boolean instructionExists(String instructionString) 
 	{
@@ -1410,8 +1414,6 @@ public class Parser
 	 * Original Author: Rakaan Kayali.
 	 * Date of Installation: 10/11/2010.
 	 * Modifications:
-	 * @param instructionString
-	 * @return
 	 */
 	public static Instruction returnInstructionViaOpcode(String instructionString) 
 	{
@@ -1440,8 +1442,6 @@ public class Parser
 	 * Original Author: Daniel Burnett
 	 * Date of Installation: 10/11/2010.
 	 * Modifications: 
-	 * @param operandString
-	 * @return
 	 */
 	public static boolean isLiteral(String operandString) 
 	{
@@ -1476,14 +1476,12 @@ public class Parser
 	 * easily check to see if an directive is in the correct format.
 	 * Input Params: fileName
 	 *            This is the file location of the directives table.
-	 * Output Params: Array of Directives.
-	 * Error Conditions Tested: None.
-	 * Error Messages Generated: None.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
 	 * Original Author: Robert Schmidt
 	 * Date of Installation: 10/5/2010.	
 	 * Modifications: None.
-	 * @param fileName: fileName
-	 *            This is the file location of the directives table.
 	 */
 	public static void fillDirectivesArray(String fileName) 
 	{
