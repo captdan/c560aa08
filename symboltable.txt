@@ -74,5 +74,3 @@ Y	[109, NONE, DATA_LABEL]
 Z	[110, NONE, DATA_LABEL]
 ------------------------------------------
 halt2	[126, NONE, DATA_LABEL]
-------------------------------------------
-kk	[111, NONE, DATA_LABEL]
