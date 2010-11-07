@@ -107,4 +107,43 @@ public class Directive
 		
 		return returnString;
 	}
+	
+	/*
+	 if(inputOperand.operandType == Directive.operandTypes.BINARY)
+		{
+			binaryOperands.add(new Operand(inputOperand.operand,Directive.operandTypes.BINARY));
+		}
+		else if(inputOperand.operandType == Directive.operandTypes.BOOLEAN)
+		{
+			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.BOOLEAN));
+		}
+		else if(inputOperand.operandType == Directive.operandTypes.CHARSTR)
+		{
+			String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+			String tempString2 = ""; 
+			for(int x=0;x<tempString.length();x++)
+			{
+				int asciiCode = (int)tempString.charAt(x);
+				tempString2 = tempString2 + String.valueOf(Integer.toBinaryString(asciiCode));
+			}
+			//Fill end of string with blank spaces 
+			for(int x=0; x<(tempString2.length() - (4 * Math.floor(tempString2.length() / 4)));x++)
+			{
+				tempString2 = tempString2 + "00100000"; 
+			}
+			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.CHARSTR));
+		}
+		else if(inputOperand.operandType == Directive.operandTypes.EXP)
+		{
+			//TODO this needs to be done, not sure exactly how
+		}
+		else if(inputOperand.operandType == Directive.operandTypes.HEX)
+		{
+			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.parseInt(inputOperand.operand, 16))),Directive.operandTypes.HEX));
+		}
+		else if(inputOperand.operandType == Directive.operandTypes.LABEL)
+		{
+			
+		}
+	 */
 }
