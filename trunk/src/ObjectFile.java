@@ -109,68 +109,6 @@ public class ObjectFile {
 		}
 		
 		textRecord.add(debugSign);
-		
-		String dataWord = "";
-		
-		if(codeline.instruction != null)
-		{
-			dataWord = codeline.instruction.instructionExtendedHex;
-		}
-
-		if(codeline.instruction != null)
-		{
-			dataWord = codeline.instruction.instructionExtendedHex;
-		}
-		if (codeline.directive != null && codeline.directive.directiveName.equals(""))
-		{
-			if(codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
-					||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("ADR.DATA")||codeline.directive.directiveName.equals("ADR.EXP")
-					||codeline.directive.directiveName.equals("NOP")||codeline.directive.directiveName.equals("MEM.SKIP")||codeline.directive.directiveName.equals("RESET.LC"))
-					{
-						dataWord = Integer.toHexString(Integer.valueOf(codeline.directive.operandArray.get(0).operand));
-					}
-		}
-		
-		textRecord.add(dataWord);
-		
-		//String numberOfAdjustments;
-		
-		//TODO add number of Adjustements to textRecord.
-		
-		/*
-		String typeOfAction = "R";
-		
-		if (codeline.directive.directiveName.equals("EXT"))
-		{
-			typeOfAction = "E";
-		}
-		else if (codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")
-				||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
-				||codeline.instruction.operands.contains(Instruction.operandTypes.SIGNEDIMMEDIATE)))
-		{
-			typeOfAction = "A";
-		}
-		
-		int countOfRegisters = 0;
-		
-		for (int i = 0; i < codeline.instruction.operands.size(); i++)
-		{
-			
-			if (codeline.instruction.operandsArray.get(i).equals(Instruction.operandTypes.REGISTER))
-			{
-				countOfRegisters++;
-			}
-		}
-		if (countOfRegisters == codeline.instruction.operands.size()&&countOfRegisters !=0)
-		{
-			typeOfAction = "A";
-		}
-		*/
-		
-
-		//textRecord.add(codeline.scope.toString());
-		
-		//String labelReference = "";
 
 		if (codeline.directive != null)
 		{
@@ -206,19 +144,6 @@ public class ObjectFile {
 			}
 			}
 		}
-		
-		/*
-		if (codeline.directive != null && (codeline.directive.directiveName.equals("ENT")||codeline.directive.directiveName.equals("EXT")))
-		{
-			for (int count = 0; count < codeline.directive.operandArray.size();count++)
-			{
-			labelReference = labelReference + codeline.directive.operandArray.get(count).operand;
-			}
-		}
-		*/
-		
-		
-		//TODO Up to 4...not sure what that is.
 		
 		textRecord.add(p.programName);
 		
