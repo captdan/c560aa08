@@ -7,10 +7,15 @@ import java.util.ArrayList;
  * @author daniel burnett
  *
  */
-public class LiteralTable {
+public class LiteralTable 
+{
 	/**
 	 * Holds all of the literals and their addresses.
 	 */
+	public LiteralTable()
+	{
+		
+	}
 	private ArrayList<String[]> tableOfLiterals = new ArrayList<String[]>();
 
 	/**
@@ -28,7 +33,8 @@ public class LiteralTable {
 	 * Date of Installation: 10/07/2010.
 	 * Modifications: None.
 	 */
-	public final void addLiteral(String literal, String addr) {
+	public final void addLiteral(String literal, String addr)
+	{
 		String[] temp = new String[2];
 		temp[0] = literal;
 		temp[1] = addr;
