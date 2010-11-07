@@ -137,9 +137,9 @@ public class Parser
 		
 		for (CodeLine codeLine : CodeLineArray) 
 		{
-			if(codeLine.instruction != null && codeLine.instruction.instructionType == Instruction.instructionTypes.R && codeLine.instruction.instructionType == Instruction.instructionTypes.J)
+			if(codeLine.instruction != null)
 			{
-				System.out.println(codeLine.instruction.instruction + "  :  " + codeLine.instruction.returnHexCodeLine());
+				System.out.println(codeLine.instruction.instruction + ":  \t\t" + codeLine.instruction.returnHexCodeLine());
 			}
 		}
 		System.out.println(SymbTable.size);
