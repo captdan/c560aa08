@@ -1143,11 +1143,12 @@ Operand Types:
 ------------------------------------------
 CodeLine 61
 PC: 112
-Original Line Of Code: kk	jal $1,$2, halt2
+Original Line Of Code: Z	jal $1,$2, halt2
 Line Comment: 
 Line Length: 1
-Error Count: 0
+Error Count: 1
 Errors:
+	2	Duplicate Labels.	Change label name
 Instruction: JAL
 Instruction Type: S
 Instruction Binary: 111

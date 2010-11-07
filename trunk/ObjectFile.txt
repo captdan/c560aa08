@@ -1,4 +1,4 @@
-H|SimpleInstructionTest|7f|0|1:6|13:21:28|0|0|0|SAL|1|2|SimpleInstructionTest
+H|SimpleInstructionTest|7f|0|1:6|17:10:24|0|0|0|SAL|1|2|SimpleInstructionTest
 L|SimpleInstructionTest|0|START|SimpleInstructionTest
 T|0|N||0|SimpleInstructionTest
 T|0|N||0|SimpleInstructionTest
@@ -61,7 +61,7 @@ T|6c|N||3|A|A|A|SimpleInstructionTest
 T|6d|N||3|A|A|A|SimpleInstructionTest
 T|6e|N||3|A|A|A|SimpleInstructionTest
 T|6f|N||3|A|A|R|halt2|SimpleInstructionTest
-T|70|N||3|A|A|R|halt2|SimpleInstructionTest
+T|70|N||3|A|A|A|SimpleInstructionTest
 T|71|N||3|A|A|A|SimpleInstructionTest
 T|72|N||3|A|A|A|SimpleInstructionTest
 T|73|N||3|A|A|A|SimpleInstructionTest

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * @author Kermit Stearns.
@@ -107,43 +108,209 @@ public class Directive
 		
 		return returnString;
 	}
-	
-	/*
-	 if(inputOperand.operandType == Directive.operandTypes.BINARY)
+	public String returnBinaryCodeLine(CodeLine cl)
+	{
+		String binaryCodeLine = "";
+		binaryCodeLine += padZeros(toBinary(this.operandArray.get(0),cl).get(0).operand,32);		
+		return binaryCodeLine;
+	}
+	public String returnHexCodeLine(CodeLine cl)
+	{
+		String binaryString = returnBinaryCodeLine(cl);
+		String hexString = "";
+		for(int x = 0;x<(binaryString.length() / 4);x++)
 		{
-			binaryOperands.add(new Operand(inputOperand.operand,Directive.operandTypes.BINARY));
+			//System.out.println(binaryString.substring((4*x), (4*x)+4));
+			hexString += Integer.toHexString(Integer.valueOf(binaryString.substring((4*x), (4*x)+4), 2));
 		}
-		else if(inputOperand.operandType == Directive.operandTypes.BOOLEAN)
+		return hexString;
+
+	}
+	public static String padZeros(String stringValue,int StringLength)
+	{
+		String newString = "";
+		for(int x=0;x<(StringLength-stringValue.length());x++)
 		{
-			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.BOOLEAN));
+			newString += "0";
 		}
-		else if(inputOperand.operandType == Directive.operandTypes.CHARSTR)
-		{
-			String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
-			String tempString2 = ""; 
-			for(int x=0;x<tempString.length();x++)
+		newString += stringValue;
+		return newString;
+	}
+	public ArrayList<Operand> toBinary(Operand inputOperand, CodeLine cl)
+	{
+		ArrayList<Operand> binaryOperands = new ArrayList<Operand>();
+		
+		int value = 0;
+		
+		 if(inputOperand.operandType == Directive.operandTypes.BINARY)
 			{
-				int asciiCode = (int)tempString.charAt(x);
-				tempString2 = tempString2 + String.valueOf(Integer.toBinaryString(asciiCode));
+				binaryOperands.add(new Operand(inputOperand.operand,Directive.operandTypes.BINARY));
 			}
-			//Fill end of string with blank spaces 
-			for(int x=0; x<(tempString2.length() - (4 * Math.floor(tempString2.length() / 4)));x++)
+			else if(inputOperand.operandType == Directive.operandTypes.BOOLEAN)
 			{
-				tempString2 = tempString2 + "00100000"; 
+				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.BOOLEAN));
 			}
-			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.CHARSTR));
-		}
-		else if(inputOperand.operandType == Directive.operandTypes.EXP)
-		{
-			//TODO this needs to be done, not sure exactly how
-		}
-		else if(inputOperand.operandType == Directive.operandTypes.HEX)
-		{
-			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.parseInt(inputOperand.operand, 16))),Directive.operandTypes.HEX));
-		}
-		else if(inputOperand.operandType == Directive.operandTypes.LABEL)
-		{
-			
-		}
-	 */
+			else if(inputOperand.operandType == Directive.operandTypes.CHARSTR)
+			{
+				String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+				String tempString2 = ""; 
+				for(int x=0;x<tempString.length();x++)
+				{
+					int asciiCode = (int)tempString.charAt(x);
+					tempString2 = tempString2 + String.valueOf(Integer.toBinaryString(asciiCode));
+				}
+				//Fill end of string with blank spaces 
+				for(int x=0; x<(tempString2.length() - (4 * Math.floor(tempString2.length() / 4)));x++)
+				{
+					tempString2 = tempString2 + "00100000"; 
+				}
+				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.CHARSTR));
+			}
+			else if(inputOperand.operandType == Directive.operandTypes.EXP)
+			{
+
+				int stringLength = 0;
+				StringTokenizer expressionTokenizer = new StringTokenizer(inputOperand.operand,"+-",false);
+				
+					
+					while(expressionTokenizer.hasMoreTokens())
+					{
+						String operand = expressionTokenizer.nextToken();
+						stringLength = stringLength + operand.length();
+						if((stringLength - 1 - operand.length()) >= 0)
+						{
+							String operator = String.valueOf(inputOperand.operand.charAt((stringLength - 1 - operand.length())));
+							if(operator.equals("-"))
+							{
+								try
+								{
+									value = value - Integer.parseInt(operand);
+								}
+								catch(NumberFormatException e){}
+								if(Parser.SymbTable.isInTable(operand))
+								{
+									ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(operand);
+									try
+									{
+										value = value - Integer.parseInt(String.valueOf(values.get(0)));
+									}
+									catch(Exception e){}
+								}
+								if(operand.equals("*"))
+								{
+									value = value - cl.PC;
+								}
+							}
+							else
+							{
+								try
+								{
+									value = value + Integer.parseInt(operand);
+								}
+								catch(NumberFormatException e){}
+								if(Parser.SymbTable.isInTable(operand))
+								{
+									ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(operand);
+									try
+									{
+										value = value + Integer.parseInt(String.valueOf(values.get(0)));
+									}
+									catch(Exception e){}
+								}
+								if(operand.equals("*"))
+								{
+									value = value + cl.PC;
+								}
+							}
+						}
+						else
+						{
+							try
+							{
+								value = value + Integer.parseInt(operand);
+							}
+							catch(NumberFormatException e){}
+							if(Parser.SymbTable.isInTable(operand))
+							{
+								ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(operand);
+								try
+								{
+									value = value + Integer.parseInt(String.valueOf(values.get(0)));
+								}
+								catch(Exception e){}
+							}
+							if(operand.equals("*"))
+							{
+								value = value + cl.PC;
+							}
+						}
+						binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(value)),Directive.operandTypes.EXP));
+				}
+			}
+			else if(inputOperand.operandType == Directive.operandTypes.HEX)
+			{
+				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.parseInt(inputOperand.operand, 16))),Directive.operandTypes.HEX));
+			}
+			else if(inputOperand.operandType == Directive.operandTypes.LABEL)
+			{
+				if(Parser.SymbTable.isInTable(inputOperand.operand))
+				{
+					ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(inputOperand.operand);
+					if (values.get(2) == SymbolTable.Uses.EXTERNAL)
+					{
+						value = 0;
+					}
+					else
+					{
+						try
+						{
+							value = value + Integer.parseInt(String.valueOf(values.get(0)));
+						}
+						catch(Exception e){}
+					}
+				}
+				binaryOperands.add(new Operand(Integer.toBinaryString(value),Directive.operandTypes.LABEL));
+			}
+			else if(inputOperand.operandType == Directive.operandTypes.LABELREF)
+			{
+				if(Parser.SymbTable.isInTable(inputOperand.operand))
+				{
+					ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(inputOperand.operand);
+					if (values.get(2) == SymbolTable.Uses.EXTERNAL)
+					{
+						value = 0;
+					}
+					else
+					{
+						try
+						{
+							value = value + Integer.parseInt(String.valueOf(values.get(0)));
+						}
+						catch(Exception e){}
+					}
+				}
+				binaryOperands.add(new Operand(Integer.toBinaryString(value),Directive.operandTypes.LABELREF));
+			}
+			else if(inputOperand.operandType == Directive.operandTypes.NUMBER)
+			{
+				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.parseInt(inputOperand.operand))),Directive.operandTypes.NUMBER));
+			}
+			else if(inputOperand.operandType == Directive.operandTypes.STRING)
+			{
+				String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+				String tempString2 = ""; 
+				for(int x=0;x<tempString.length();x++)
+				{
+					int asciiCode = (int)tempString.charAt(x);
+					tempString2 = tempString2 + String.valueOf(Integer.toBinaryString(asciiCode));
+				}
+				//Fill end of string with blank spaces 
+				for(int x=0; x<(tempString2.length() - (4 * Math.floor(tempString2.length() / 4)));x++)
+				{
+					tempString2 = tempString2 + "00100000"; 
+				}
+				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.STRING));
+			}
+		 return binaryOperands;
+	}
 }
