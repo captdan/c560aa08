@@ -101,11 +101,11 @@ public class ObjectFile {
 		
 		if (debugValue == 0)
 		{
-			debugSign = "Y";
+			debugSign = "N";
 		}
 		else
 		{
-			debugSign = "N";
+			debugSign = "Y";
 		}
 		
 		textRecord.add(debugSign);
@@ -116,9 +116,11 @@ public class ObjectFile {
 		{
 			dataWord = codeline.instruction.instructionExtendedHex;
 		}
-		
-		
-		
+
+		if(codeline.instruction != null)
+		{
+			dataWord = codeline.instruction.instructionExtendedHex;
+		}
 		if (codeline.directive != null && codeline.directive.directiveName.equals(""))
 		{
 			if(codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
@@ -165,19 +167,52 @@ public class ObjectFile {
 		}
 		*/
 		
-		textRecord.add(codeline.scope.toString());
+
+		//textRecord.add(codeline.scope.toString());
 		
-		String labelReference = "";
+		//String labelReference = "";
 		
+		if (codeline.directive != null)
+		{
+			textRecord.add(String.valueOf(codeline.directive.operandArray.size()));
+			for (int count = 0; count < codeline.directive.operandArray.size();count++)
+			{
+			textRecord.add(codeline.directive.operandArray.get(count).relocationType.toString());
+			if(codeline.directive.operandArray.get(count).relocationType != Operand.relocationTypes.A )
+			{
+				textRecord.add(codeline.directive.operandArray.get(count).operand);
+			}
+			
+			}
+		}
+		
+		if (codeline.instruction != null)
+		{
+			textRecord.add(String.valueOf(codeline.instruction.operandsArray.size()));
+			for (int count = 0; count < codeline.instruction.operandsArray.size();count++)
+			{
+			textRecord.add(codeline.instruction.operandsArray.get(count).relocationType.toString());
+			if(codeline.instruction.operandsArray.get(count).relocationType != Operand.relocationTypes.A )
+			{
+				if(codeline.instruction.operandsArray.get(count).operandType == Instruction.operandTypes.COMPLEXADDRESS)
+				{
+					textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
+				}
+				
+			}
+			}
+		}
+		
+		/*
 		if (codeline.directive != null && (codeline.directive.directiveName.equals("ENT")||codeline.directive.directiveName.equals("EXT")))
 		{
 			for (int count = 0; count < codeline.directive.operandArray.size();count++)
 			{
-			labelReference = labelReference + codeline.directive.operandArray.get(count);
+			labelReference = labelReference + codeline.directive.operandArray.get(count).operand;
 			}
 		}
+		*/
 		
-		textRecord.add(labelReference);
 		
 		//TODO Up to 4...not sure what that is.
 		

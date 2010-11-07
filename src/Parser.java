@@ -129,7 +129,7 @@ public class Parser
 		/** This finds all errors in the operands and verifies all the input **/
 		checkOperands(CodeLineArray);
 		
-		/** This adds an A/R/E scope variable to the codeline **/
+		/** This adds an A/R/E scope variable to each operand **/
 		selectCodeLineScope(CodeLineArray);
 		
 		/** This gets the EXEC.START location  **/
@@ -197,11 +197,11 @@ public class Parser
 			{
 				if (codeLine.instruction != null)
 				{
-					checkOperandScope(codeLine.instruction.operandsArray,codeLine);
+					checkOperandScope(codeLine.instruction.operandsArray);
 				}
 				if (codeLine.directive != null)
 				{
-					checkOperandScope(codeLine.directive.operandArray,codeLine);
+					checkOperandScope(codeLine.directive.operandArray);
 				}
 			}
 		}
@@ -219,9 +219,8 @@ public class Parser
 	 * Date of Installation: 11-6-2010 2:40 AM
 	 * Modifications: Added ability to search complex addresses for external or relative operands
 	 * @param operandsArray This is the ArrayList of the operands that is to be parsed.
-	 * @param codeLine This is the current codeLine being parsed. This is needed to added the scope to the current CodeLine.
 	 */
-	public static void checkOperandScope(ArrayList<Operand> operandsArray, CodeLine codeLine)
+	public static void checkOperandScope(ArrayList<Operand> operandsArray)
 	{
 		for(Operand operandValue: operandsArray)
 		{
@@ -236,7 +235,7 @@ public class Parser
 					}
 					if(tempOperandValue.equals("*"))
 					{
-						codeLine.scope = CodeLine.scopeOptions.R;
+						operandValue.relocationType = Operand.relocationTypes.R;
 					}
 					
 				}
@@ -252,18 +251,18 @@ public class Parser
 						{
 							if((SymbolTable.Uses)SymbTable.getInfoFromSymbol(equOperand).get(2) == SymbolTable.Uses.EXTERNAL)
 							{
-								codeLine.scope = CodeLine.scopeOptions.E;
+								operandValue.relocationType = Operand.relocationTypes.E;
 							}
 							else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(equOperand).get(2) == SymbolTable.Uses.DATA_LABEL)
 							{
-								if(codeLine.scope != CodeLine.scopeOptions.E)
+								if(operandValue.relocationType !=operandValue.relocationType.E)
 								{
-									codeLine.scope = CodeLine.scopeOptions.R;
+									operandValue.relocationType = Operand.relocationTypes.R;
 								}
 							}
 							else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(equOperand).get(2) == SymbolTable.Uses.ENT)
 							{
-								codeLine.scope = CodeLine.scopeOptions.E;
+								operandValue.relocationType = Operand.relocationTypes.E;
 							}
 						}
 					}
@@ -275,18 +274,19 @@ public class Parser
 			{
 				if((SymbolTable.Uses)SymbTable.getInfoFromSymbol(tempOperandValue).get(2) == SymbolTable.Uses.EXTERNAL)
 				{
-					codeLine.scope = CodeLine.scopeOptions.E;
+					
+					operandValue.relocationType = Operand.relocationTypes.E;
 				}
 				else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(tempOperandValue).get(2) == SymbolTable.Uses.DATA_LABEL)
 				{
-					if(codeLine.scope != CodeLine.scopeOptions.E)
+					if(operandValue.relocationType !=operandValue.relocationType.E)
 					{
-						codeLine.scope = CodeLine.scopeOptions.R;
+						operandValue.relocationType = Operand.relocationTypes.R;
 					}
 				}
 				else if ((SymbolTable.Uses)SymbTable.getInfoFromSymbol(tempOperandValue).get(2) == SymbolTable.Uses.ENT)
 				{
-					codeLine.scope = CodeLine.scopeOptions.E;
+					operandValue.relocationType = Operand.relocationTypes.E;
 				}
 			}
 		}
@@ -508,7 +508,7 @@ public class Parser
 				bufferedWriter.write("------------------------------------------\n");
 				bufferedWriter.write("CodeLine " + x + "\n");
 				bufferedWriter.write("PC: " + codeline.PC + "\n");
-				bufferedWriter.write("A\\R\\E: " + codeline.scope.toString() + "\n");
+				//bufferedWriter.write("A\\R\\E: " + codeline.scope.toString() + "\n");
 				bufferedWriter.write(codeline.returnPrintString());
 				x++;
 			}
@@ -1504,7 +1504,7 @@ public class Parser
 					} 
 					else if (operand.equals("LABELREF")) 
 					{
-						operandArray.add(Directive.operandTypes.NUMBER);
+						operandArray.add(Directive.operandTypes.LABELREF);
 					}
 					else if (operand.equals("EXP")) 
 					{

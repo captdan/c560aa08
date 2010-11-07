@@ -28,11 +28,7 @@ class CodeLine
 	 * Holds the errors found in the codeline.
 	 */
 	public ArrayList<Error> errors = new ArrayList<Error>();
-	public scopeOptions scope = CodeLine.scopeOptions.A;
-	public enum scopeOptions
-	{
-		A,R,E
-	}
+
 	
 	public int PC = 0;
 	
