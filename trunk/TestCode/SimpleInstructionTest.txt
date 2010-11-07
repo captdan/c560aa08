@@ -67,8 +67,11 @@ kk	jal $1,$2, halt2
 	LA $1, 0($3)
 	SA $1, 0($3)
 	outni	5, 5
-	outci 3,'the'
-	outci 3,'end'
+	outci 3,'th'
+	outci 3,'en'
+	Inn 2,A($1)
+	InC 3,($0)
+	Inn 1,B
 	J HALT($0)
 HALT	Halt 0
 halt2 	halt 2
