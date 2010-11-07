@@ -21,11 +21,9 @@ public class SymbolTable
 	int size = 0;
 
 	/**
-	 * Allows a symbol, along with its information, to be added to the table.
-	 * @param label Name of the symbol to be added
-	 * @param addr Address of the symbol in hex
-	 * @param sub What the symbol is a substitute for, if at all.
-	 * @param use The way the symbol is being used.
+	 * Enmeration for the different possible types of usage for symbols.
+	 * @author danielburnett
+	 *
 	 */
 	public static enum Uses
 	{
@@ -33,15 +31,23 @@ public class SymbolTable
 	}
 	
 	/**
-	 * Allows a symbol, along with its information, to be added to the table.
-	 * @param label
-	 * 			Name of the symbol to be added
-	 * @param addr
-	 * 			Address of the symbol in hex
-	 * @param sub
-	 * 			What the symbol is a substitute for, if at all.
-	 * @param use
-	 * 			The way the symbol is being used.
+	 * 
+	 * Module Name: addSymbol
+	 * Description: Allows a symbol, along with its information, to be added to the table.
+	 * Input Params: label
+	 * 					Name of the symbol to be added
+	 *		 		 addr
+	 * 					Address of the symbol in hex
+	 * 		 		 sub
+	 * 					What the symbol is a substitute for, if at all.
+	 * 		 		 use
+	 * 					The way the symbol is being used.
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Daniel Burnett
+	 * Date of Installation: 10/3/2010
+	 * Modifications: N/A
 	 */
 	public final void addSymbol(String label, String addr, String sub, Uses use) 
 	{	
@@ -64,14 +70,14 @@ public class SymbolTable
 	 * 
 	 * Module Name: changeToENT
 	 * Description: used when a label is associated with an ENT directive in a .text section.
-	 * Input Params: String with the name of the label.
+	 * Input Params: labelName
+	 * 					Name of the label whose usage is changed.
 	 * Output Params: N/A
 	 * Error Conditions Tested: N/A
 	 * Error Messages Generated: N/A
 	 * Original Author: Kermit Stearns,Rakaan Kayali
 	 * Date of Installation: 11/3/2010
-	 * Modifications: 
-	 * @param labelName Name of the label whose usage is changed.
+	 * Modifications:
 	 */
 	public static void changeToENT(String labelName)
 	{
@@ -84,9 +90,18 @@ public class SymbolTable
 	}
 
 	/**
-	 * Given a certain symbol, receive the information associated with it.
-	 * @param label The symbol to get info about.
-	 * @return Returns a string array with address, substitution and use, in that order.
+	 * 
+	 * Module Name: getInfoFromSymbol
+	 * Description: Given a certain symbol, receive the information associated with it.
+	 * Input Params: label
+	 * 					The symbol to get info about.
+	 * Output Params: ArrayList<Object>
+	 * 					Returns a string array with address, substitution and use, in that order.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: 
+	 * Date of Installation: 10/3/2010
+	 * Modifications: 
 	 */
 	public final ArrayList<Object> getInfoFromSymbol(String label) 
 	{
@@ -94,10 +109,18 @@ public class SymbolTable
 	}
 
 	/**
-	 * Checks the table to see if the desired label is present.
-	 * @param label
-	 * 			The label to be checked in the table.
-	 * @return True if the label exists in the table, otherwise false.
+	 * 
+	 * Module Name: isInTable
+	 * Description: Checks the table to see if the desired label is present.
+	 * Input Params: label
+	 * 					The label to be checked in the table.
+	 * Output Params: Boolean
+	 * 					True if the label exists in the table, otherwise false.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Daniel Burnett
+	 * Date of Installation: 10/3/2010
+	 * Modifications: 
 	 */
 	public final boolean isInTable(String label) 
 	{
@@ -105,8 +128,17 @@ public class SymbolTable
 	}
 
 	/**
-	 * Returns a sorted list containing all of the symbols in the table.
-	 * @return An array list, containing the symbols sorted alphabetically.
+	 * 
+	 * Module Name: getSortedListOfSymbols
+	 * Description:  Returns a sorted list containing all of the symbols in the table.
+	 * Input Params: N/A
+	 * Output Params: ArrayList<String>
+	 * 					An array list, containing the symbols sorted alphabetically.
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Daniel Burnett
+	 * Date of Installation: 10/3/2010
+	 * Modifications: 
 	 */
 	public final ArrayList<String> getSortedListOfSymbols() 
 	{
@@ -114,7 +146,16 @@ public class SymbolTable
 	}
 	
 	/**
-	 * Prints a "formatted" version of the symbol table.
+	 * 
+	 * Module Name: prettyFerret
+	 * Description: Prints a "formatted" version of the symbol table.
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Daniel Burnett
+	 * Date of Installation: 10/11/2010
+	 * Modifications:
 	 */
 	public final void prettyFerret() 
 	{
