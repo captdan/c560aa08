@@ -54,6 +54,10 @@ public class Operand
 			{
 				label = this.operand.substring(0, this.operand.indexOf('('));
 			}
+			else
+			{
+				label = this.operand;
+			}
 		}
 		return label;
 	}
