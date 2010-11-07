@@ -132,6 +132,9 @@ public class Parser
 		/** This adds an A/R/E scope variable to the codeline **/
 		selectCodeLineScope(CodeLineArray);
 		
+		/** This gets the EXEC.START location  **/
+		setExecStart(CodeLineArray);
+		
 		/** This print out the intermediate file which we use for debugging and for SP1 **/
 		printIntermediateFile("IntermediateFile.txt");
 		
@@ -144,6 +147,34 @@ public class Parser
 		}
 		System.out.println(SymbTable.size);
 		SymbTable.prettyFerret();	
+		
+		Program newProgram = new Program(programName, startingLocation, execStart,PC, CodeLineArray, SymbTable, litTable);
+		ObjectFile newObjectFile = new ObjectFile(newProgram);
+		
+		newObjectFile.prettyFerret2();
+	}
+	public static void setExecStart(ArrayList<CodeLine> CodeLineArrayValue)
+	{
+		boolean foundDirective = false;
+		for (CodeLine codeLine : CodeLineArrayValue) 
+		{
+			if(codeLine.directive != null && codeLine.directive.directiveName.equals("EXEC.START"))
+			{
+				foundDirective = true;
+				if(SymbTable.isInTable(codeLine.directive.operandArray.get(0).operand))
+				{
+					execStart = Integer.valueOf(SymbTable.getInfoFromSymbol(codeLine.directive.operandArray.get(0).operand).get(0).toString());
+				}
+				else
+				{
+					System.out.println("No valid EXEC.START Location");
+				}
+			}
+		}
+		if (foundDirective == false)
+		{
+			execStart = startingLocation;
+		}
 	}
 	/**
 	 * 

@@ -24,6 +24,10 @@ public class ObjectFile {
 	public ObjectFile (Program program)
 	{
 		p = program;
+		headerRecord = this.createHeaderRecord();
+		linkingRecord = this.createLinkingRecord();
+		textRecord = this.createTextRecord();
+		endRecord = this.createEndRecord();
 	}
 	/**
 	 * 
@@ -38,7 +42,8 @@ public class ObjectFile {
 	 * Modifications:
 	 * @return
 	 */
-	public ArrayList<ArrayList<String>> createLinkingRecord() {
+	public ArrayList<ArrayList<String>> createLinkingRecord() 
+	{
 		
 		ArrayList<ArrayList<String>> linkingrecord = new ArrayList<ArrayList<String>>();
 
@@ -50,9 +55,9 @@ public class ObjectFile {
 		ArrayList<String> symbols = p.symbolTable.getSortedListOfSymbols();
 
 		// Iterate through all the symbols checking for ENT symbols
-		for (int i = 0; i <= symbols.size(); i++) {
-			ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbols
-					.get(i));
+		for (int i = 0; i < symbols.size(); i++) 
+		{
+			ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbols.get(i));
 
 			if (values.get(2) == SymbolTable.Uses.ENT) {
 				record = makeOneLinkingRecord(symbols.get(i), false);
@@ -89,7 +94,7 @@ public class ObjectFile {
 		
 		String debugSign;
 		
-		if (codeline.directive.directiveName.equals("DEBUG"))
+		if (codeline.directive != null && codeline.directive.directiveName.equals("DEBUG"))
 		{
 			debugValue = Integer.valueOf(codeline.directive.operandArray.get(0).operand);
 		}
@@ -105,12 +110,16 @@ public class ObjectFile {
 		
 		textRecord.add(debugSign);
 		
-		String dataWord;
+		String dataWord = "";
 		
-		dataWord = codeline.instruction.instructionExtendedHex;
+		if(codeline.instruction != null)
+		{
+			dataWord = codeline.instruction.instructionExtendedHex;
+		}
 		
 		
-		if (codeline.directive.directiveName.equals(""))
+		
+		if (codeline.directive != null && codeline.directive.directiveName.equals(""))
 		{
 			if(codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
 					||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("ADR.DATA")||codeline.directive.directiveName.equals("ADR.EXP")
@@ -126,6 +135,7 @@ public class ObjectFile {
 		
 		//TODO add number of Adjustements to textRecord.
 		
+		/*
 		String typeOfAction = "R";
 		
 		if (codeline.directive.directiveName.equals("EXT"))
@@ -134,7 +144,7 @@ public class ObjectFile {
 		}
 		else if (codeline.directive.directiveName.equals("INT.DATA")||codeline.directive.directiveName.equals("STR.DATA")
 				||codeline.directive.directiveName.equals("BIN.DATA")||codeline.directive.directiveName.equals("HEX.DATA")
-				||codeline.instruction.operands.contains(Instruction.operandTypes.SIGNEDIMMEDIATE)||codeline.instruction.operands.contains(Instruction.operandTypes.UNSIGNEDIMMEDIATE))
+				||codeline.instruction.operands.contains(Instruction.operandTypes.SIGNEDIMMEDIATE)))
 		{
 			typeOfAction = "A";
 		}
@@ -153,12 +163,13 @@ public class ObjectFile {
 		{
 			typeOfAction = "A";
 		}
+		*/
 		
-		textRecord.add(typeOfAction);
+		textRecord.add(codeline.scope.toString());
 		
 		String labelReference = "";
 		
-		if (codeline.directive.directiveName.equals("ENT")||codeline.directive.directiveName.equals("EXT"))
+		if (codeline.directive != null && (codeline.directive.directiveName.equals("ENT")||codeline.directive.directiveName.equals("EXT")))
 		{
 			for (int count = 0; count < codeline.directive.operandArray.size();count++)
 			{
@@ -212,15 +223,13 @@ public class ObjectFile {
 		return endRecord;
 	}
 	
-	private ArrayList<String> makeOneLinkingRecord(String symbol,
-			boolean start) {
-
+	private ArrayList<String> makeOneLinkingRecord(String symbol,boolean start)
+	{
 		ArrayList<String> linkingrecord = new ArrayList<String>();
 		linkingrecord.add("L");
 		linkingrecord.add(symbol);
 		ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbol);
-		String hexaddress = Integer.toHexString(Integer.valueOf((String) values
-				.get(2)));
+		String hexaddress = Integer.toHexString(Integer.valueOf((String) values.get(0)));
 		linkingrecord.add(hexaddress);
 		if (start) {
 			linkingrecord.add("START");
