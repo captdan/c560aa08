@@ -141,33 +141,76 @@ public class ObjectFile {
 			debugSign = "Y";
 		}
 		
+		
 		textRecord.add(debugSign);
 
 		if (codeline.directive != null)
 		{
+			//textRecord.add(codeline.directive.returnHexCodeLine(codeline));
+		}
+		
+		if (codeline.directive != null)
+		{
+			//adds number of adjustments
 			textRecord.add(String.valueOf(codeline.directive.operandArray.size()));
-			
-			if(codeline.directive.operands.get(0).equals(Directive.operandTypes.EXP))
+
+			if((codeline.directive.operands.size() > 0) && (codeline.directive.operands.get(0).equals(Directive.operandTypes.EXP)))
 			{
 				StringTokenizer expressionTokenizer = new StringTokenizer(codeline.directive.operandArray.get(0).operand,"+-",true);
-				ArrayList<String> exp = new ArrayList<String>();
-				while(expressionTokenizer.hasMoreTokens())
+				
+				boolean result = false;
+				
+				//first check to see if it's a valid integer value
+				String operand = expressionTokenizer.nextToken();
+				try
 				{
-					exp.add(expressionTokenizer.nextToken());
+					Integer.parseInt(operand);
+					textRecord.add("A");
+					result = true;
+				}
+				catch(NumberFormatException e)
+				{
+					//do nothing
 				}
 				
+				if((result == false) && (operand.equals("*")))
+				{
+					textRecord.add("A");
+					result = true;
+				}
 				
-					boolean result = false;
+				//If it's not an integer or a "*" then it must be a label
+				if(result == false)
+				{
+						ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(operand);
+						if(values.get(2).equals(SymbolTable.Uses.EXTERNAL))
+						{
+							textRecord.add("E");
+							textRecord.add("+");
+							textRecord.add(operand);
+						}
+						else
+						{
+							textRecord.add("R");
+							textRecord.add("+");
+							textRecord.add(String.valueOf(p.startLocation));
+						}	
+				}
+				
+				//Done with 1st operand, now check if there's more to the expression. If so then we have at least 2 more tokens (+/- and operand)
+				while(expressionTokenizer.hasMoreTokens())
+				{
+					String symb = expressionTokenizer.nextToken();
+					String op = expressionTokenizer.nextToken();
+					
+					result = false;
+					
 					//first check to see if it's a valid integer value
 					try
 					{
-						Integer.parseInt(exp.get(0));
+						Integer.parseInt(op);
 						textRecord.add("A");
-						if(exp.size() > 1)
-						{
-							textRecord.add(exp.get(1));
-							textRecord.add(String.valueOf(p.startLocation));
-						}
+						textRecord.add(symb);
 						result = true;
 					}
 					catch(NumberFormatException e)
@@ -175,39 +218,35 @@ public class ObjectFile {
 						//do nothing
 					}
 					
-					if((result == false) && (exp.get(0).equals("*")))
+					if((result == false) && (op.equals("*")))
 					{
 						textRecord.add("A");
-						if(exp.size() > 1)
-						{
-							textRecord.add(exp.get(1));
-							textRecord.add(String.valueOf(p.startLocation));
-						}
+						textRecord.add(symb);
 						result = true;
 					}
 					
-					
+					//If it's not an integer or a "*" then it must be a label
 					if(result == false)
 					{
-							ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(exp.get(0));
+							ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(op);
 							if(values.get(2).equals(SymbolTable.Uses.EXTERNAL))
 							{
 								textRecord.add("E");
-								textRecord.add("");
+								textRecord.add(symb);
+								textRecord.add(op);
 							}
 							else
 							{
 								textRecord.add("R");
+								textRecord.add(symb);
+								textRecord.add(String.valueOf(p.startLocation));
 							}	
 					}
+				}
 					
-					//Done with 1st operand, now check if there's an operator
-					if(expressionTokenizer.hasMoreTokens())
-					{
-						textRecord.add(expressionTokenizer.nextToken());
-					}
 								
 			}
+			
 			else
 			{
 				for (int count = 0; count < codeline.directive.operandArray.size();count++)
@@ -242,13 +281,13 @@ public class ObjectFile {
 				}
 				else
 				{
-					if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.E )
+					if(codeline.instruction.operandsArray.get(count).relocationType == Operand.relocationTypes.E )
 					{
-						textRecord.add(codeline.directive.operandArray.get(count).operand);
+						textRecord.add(codeline.instruction.operandsArray.get(count).operand);
 					}
-					else if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.R )
+					else if(codeline.instruction.operandsArray.get(count).relocationType == Operand.relocationTypes.R )
 					{
-						textRecord.add(codeline.directive.operandArray.get(count).operand);
+						textRecord.add(codeline.instruction.operandsArray.get(count).operand);
 						textRecord.add("+");
 						textRecord.add(String.valueOf(p.startLocation));
 					}
