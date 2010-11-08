@@ -28,9 +28,9 @@ public class ObjectFile {
 	public ObjectFile (Program program)
 	{
 		p = program;
-		headerRecord = this.createHeaderRecord();
 		linkingRecord = this.createLinkingRecord();
 		textRecord = this.createTextRecord();
+		headerRecord = this.createHeaderRecord();
 		endRecord = this.createEndRecord();
 	}
 	
@@ -92,9 +92,9 @@ public class ObjectFile {
 		
 		for (CodeLine codeline : p.CodeLineArray)
 		{
-		ArrayList<String> record = makeOneTextRecord(codeline);
+			ArrayList<String> record = makeOneTextRecord(codeline);
 		
-		textRecord.add(record);
+			textRecord.add(record);
 		}
 		
 		
@@ -125,13 +125,12 @@ public class ObjectFile {
 		
 		int debugValue = 0;
 		
-		String debugSign;
+		String debugSign = "";
 		
 		if (codeline.directive != null && codeline.directive.directiveName.equals("DEBUG"))
 		{
 			debugValue = Integer.valueOf(codeline.directive.operandArray.get(0).operand);
 		}
-		
 		if (debugValue == 0)
 		{
 			debugSign = "N";
@@ -140,13 +139,20 @@ public class ObjectFile {
 		{
 			debugSign = "Y";
 		}
-		
-		
 		textRecord.add(debugSign);
-
+		
+		//Still need data_word checking for directives
 		if (codeline.directive != null)
 		{
-			//textRecord.add(codeline.directive.returnHexCodeLine(codeline));
+			textRecord.add("data_word");
+			
+		}
+		
+		//Still need data_word checking for instructions
+		if (codeline.instruction != null)
+		{
+			textRecord.add("data_word");
+			
 		}
 		
 		if (codeline.directive != null)
@@ -258,7 +264,7 @@ public class ObjectFile {
 					}
 					else if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.R )
 					{
-						textRecord.add(codeline.directive.operandArray.get(count).operand);
+						//textRecord.add(codeline.directive.operandArray.get(count).operand);
 						textRecord.add("+");
 						textRecord.add(String.valueOf(p.startLocation));
 					}
