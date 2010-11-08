@@ -111,7 +111,14 @@ public class Directive
 	public String returnBinaryCodeLine(CodeLine cl)
 	{
 		String binaryCodeLine = "";
-		binaryCodeLine += padZeros(toBinary(this.operandArray.get(0),cl).get(0).operand,32);		
+		if(this.operandArray.size() > 0)
+		{
+			binaryCodeLine += padZeros(toBinary(this.operandArray.get(0),cl).get(0).operand,32);
+		}
+		else
+		{
+			binaryCodeLine += padZeros("",32);
+		}
 		return binaryCodeLine;
 	}
 	public String returnHexCodeLine(CodeLine cl)
