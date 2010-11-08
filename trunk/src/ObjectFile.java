@@ -165,9 +165,16 @@ public class ObjectFile {
 				StringTokenizer expressionTokenizer = new StringTokenizer(codeline.directive.operandArray.get(0).operand,"+-",true);
 				
 				boolean result = false;
+				boolean negative = false;
+				
 				
 				//first check to see if it's a valid integer value
 				String operand = expressionTokenizer.nextToken();
+				if(operand == "-")	
+				{
+					negative = true;
+					
+				}
 				try
 				{
 					Integer.parseInt(operand);
@@ -192,13 +199,29 @@ public class ObjectFile {
 						if(values.get(2).equals(SymbolTable.Uses.EXTERNAL))
 						{
 							textRecord.add("E");
-							textRecord.add("+");
+							if(negative)
+							{
+								textRecord.add("-");
+							}
+							else
+							{
+								textRecord.add("+");
+							}
+							
 							textRecord.add(operand);
 						}
 						else
 						{
 							textRecord.add("R");
-							textRecord.add("+");
+							if(negative)
+							{
+								textRecord.add("-");
+							}
+							else
+							{
+								textRecord.add("+");
+							}
+							
 							textRecord.add(String.valueOf(p.startLocation));
 						}	
 				}
