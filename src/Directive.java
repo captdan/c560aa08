@@ -316,7 +316,7 @@ public class Directive
 				{
 					tempString2 = tempString2 + "00100000"; 
 				}
-				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.STRING));
+				binaryOperands.add(new Operand(String.valueOf(tempString2),Directive.operandTypes.STRING));
 			}
 		 return binaryOperands;
 	}
