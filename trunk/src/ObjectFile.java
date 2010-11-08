@@ -144,14 +144,14 @@ public class ObjectFile {
 		//Still need data_word checking for directives
 		if (codeline.directive != null)
 		{
-			textRecord.add("data_word");
+			textRecord.add(codeline.directive.returnHexCodeLine(codeline));
 			
 		}
 		
 		//Still need data_word checking for instructions
 		if (codeline.instruction != null)
 		{
-			textRecord.add("data_word");
+			textRecord.add(codeline.instruction.returnHexCodeLine());
 			
 		}
 		
