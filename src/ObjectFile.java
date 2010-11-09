@@ -386,13 +386,14 @@ public class ObjectFile {
 	{
 		// Then we create header file
 		ArrayList<String> header = new ArrayList<String>();
-
+		Calendar now = Calendar.getInstance();
+		
 		header.add("H");
 		header.add(p.programName);
 		header.add(Integer.toHexString(Integer.valueOf(p.programLength)));
 		header.add(String.valueOf(p.startLocation));
-		header.add(String.valueOf(Calendar.YEAR) + ":"
-				+ String.valueOf(Calendar.DAY_OF_YEAR));
+		header.add(String.valueOf(now.get(Calendar.YEAR)) + ":"
+				+ String.valueOf(now.get(Calendar.DAY_OF_YEAR)));
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date time = new Date();
 		header.add(String.valueOf(dateFormat.format(time)));
