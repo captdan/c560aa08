@@ -268,9 +268,16 @@ public class Operand
 		Boolean validAddress = false;
 		int value = -1;
 
-		if(Parser.SymbTable.isInTable(address))
+		String tempString = address;
+		if(tempString.startsWith("%"))
 		{
-			ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(address);
+			tempString = tempString.substring(1, tempString.length());
+		}
+		
+		
+		if(Parser.SymbTable.isInTable(tempString))
+		{
+			ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(tempString);
 			if(values.get(2) == SymbolTable.Uses.EXTERNAL)
 			{
 				value = 0;
@@ -287,9 +294,14 @@ public class Operand
 		}
 		else
 		{
+			tempString = address;
+			if(tempString.startsWith("#"))
+			{
+				tempString = tempString.substring(1, tempString.length());
+			}
 			try
 			{
-				value = Integer.parseInt(address);
+				value = Integer.parseInt(tempString);
 			}
 			catch(NumberFormatException e){}
 		}

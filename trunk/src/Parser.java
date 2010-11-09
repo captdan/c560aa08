@@ -220,6 +220,24 @@ public class Parser
 					debugMode = false;
 				}
 			}
+			if(codeLine.instruction != null)
+			{
+				for(Operand operand : codeLine.instruction.operandsArray)
+				{
+					if(operand.operandType == Instruction.operandTypes.ADDRESS)
+					{
+						if(operand.operand.startsWith("#"))
+						{
+							codeLine.instruction.addressCode = "10";
+						}
+						if(operand.operand.startsWith("%"))
+						{
+							codeLine.instruction.addressCode = "01";
+						}
+					}
+				}
+
+			}
 		}
 		if (foundDirective == false)
 		{
