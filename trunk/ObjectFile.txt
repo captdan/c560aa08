@@ -1,4 +1,4 @@
-H|SimpleInstructionTest|80|0|1:6|19:37:07|1|78|0|SAL|1|2|SimpleInstructionTest
+H|SimpleInstructionTest|80|0|1:6|19:40:31|1|78|0|SAL|1|2|SimpleInstructionTest
 L|SimpleInstructionTest|0|START|SimpleInstructionTest
 T|0|N|00000000|0|SimpleInstructionTest|.Start,SimpleInstructionTest,00
 T|0|N|00000000|0|SimpleInstructionTest|.data

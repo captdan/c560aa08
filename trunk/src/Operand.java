@@ -717,6 +717,11 @@ public class Operand
 			while(expressionTokenizer.hasMoreTokens())
 			{
 				String operand = expressionTokenizer.nextToken();
+				if(operand.equals(""))
+				{
+					result = false;
+					break;
+				}
 				//first check to see if it's a valid integer value
 				try
 				{
