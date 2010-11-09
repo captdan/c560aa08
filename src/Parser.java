@@ -87,6 +87,8 @@ public class Parser
 	 * report after pass 2
 	 */
 	public static int execStart = 0;
+	
+	public static boolean debugMode = false;
 	/**
 	 * @authors Robert Schmidt, Daniel Burnett, Kermit Stearns, Oscar Flores and Rakaan Kayali.
 	 * 
@@ -104,7 +106,7 @@ public class Parser
 		}
 		else
 		{
-			linesOfCode = readFileToArrayList("TestCode/altest01.txt");
+			linesOfCode = readFileToArrayList("TestCode/SimpleInstructionTest.txt");
 		}
 		
 		/** This fills all the start ArrayLists with their corresponding values **/
@@ -152,12 +154,12 @@ public class Parser
 		//System.out.println(SymbTable.size);
 		SymbTable.prettyFerret();	
 		
-		Program newProgram = new Program(programName, startingLocation, execStart,PC, CodeLineArray, SymbTable, litTable);
+		Program newProgram = new Program(programName, startingLocation, execStart, debugMode,PC, CodeLineArray, SymbTable, litTable);
 		ObjectFile newObjectFile = new ObjectFile(newProgram);
 		
 		newObjectFile.prettyFerret2();
 		
-		Program newProgram2 = new Program(programName, startingLocation, execStart,PC, CodeLineArray, SymbTable, litTable);
+		Program newProgram2 = new Program(programName, startingLocation, execStart,debugMode,PC, CodeLineArray, SymbTable, litTable);
 		AssemblyListing newAssemblyListing = new AssemblyListing(newProgram2);
 		newAssemblyListing.prettyFerret3();
 	}
@@ -205,6 +207,10 @@ public class Parser
 					}
 				}
 
+			}
+			if(codeLine.directive != null && codeLine.directive.directiveName.equals("DEBUG"))
+			{
+				debugMode = Boolean.valueOf(codeLine.directive.operandArray.get(0).operand);
 			}
 		}
 		if (foundDirective == false)
@@ -789,7 +795,10 @@ public class Parser
 				{
 					operandString += st.nextToken();
 				}
+				
+				
 				operandString = removeWhiteSpace(operandString);
+				
 				String[] operands = operandString.split(",");
 				
 
@@ -798,11 +807,12 @@ public class Parser
 					operands = new String[0];
 				}
 				
+				
+				
 				//System.out.println("QWER:"+operands.length + "  " + directive.operands.size());
 				//System.out.println(Arrays.toString(operands));
 				if (directive.operands.size() == operands.length || directive.directiveName.equals("EXT") || directive.directiveName.equals("ENT"))
 				{
-
 					directiveObj.directiveName = directive.directiveName;
 					directiveObj.labelType = directive.labelType;
 					directiveObj.codeLocation = directive.codeLocation;
@@ -816,7 +826,7 @@ public class Parser
 				}
 			}
 		}
-
+		
 		st = new StringTokenizer(codeString, " \t", false);
 		if (st.hasMoreTokens())
 		{
@@ -1585,6 +1595,10 @@ public class Parser
 					else if (operand.equals("CHARSTR")) 
 					{
 						operandArray.add(Directive.operandTypes.CHARSTR);
+					}
+					else if (operand.equals("BOOL")) 
+					{
+						operandArray.add(Directive.operandTypes.BOOLEAN);
 					}
 				}
 				Directive directive = new Directive(variables[0].toUpperCase(), labelType,codeLocation, operandArray);
