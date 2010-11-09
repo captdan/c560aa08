@@ -224,7 +224,6 @@ public class Instruction
 		}
 		
 		
-		
 		return binaryCodeLine;
 	}
 	
