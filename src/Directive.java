@@ -258,7 +258,7 @@ public class Directive
 			{
 				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.parseInt(inputOperand.operand, 16))),Directive.operandTypes.HEX));
 			}
-			else if(inputOperand.operandType == Directive.operandTypes.LABEL)
+			else if(inputOperand.operandType == Directive.operandTypes.LABEL || inputOperand.operandType == Directive.operandTypes.LABELREF)
 			{
 				if(Parser.SymbTable.isInTable(inputOperand.operand))
 				{
@@ -275,28 +275,12 @@ public class Directive
 						}
 						catch(Exception e){}
 					}
+				}
+				else if(inputOperand.operand.equals("*"))
+				{
+					value = cl.PC;
 				}
 				binaryOperands.add(new Operand(Integer.toBinaryString(value),Directive.operandTypes.LABEL));
-			}
-			else if(inputOperand.operandType == Directive.operandTypes.LABELREF)
-			{
-				if(Parser.SymbTable.isInTable(inputOperand.operand))
-				{
-					ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(inputOperand.operand);
-					if (values.get(2) == SymbolTable.Uses.EXTERNAL)
-					{
-						value = 0;
-					}
-					else
-					{
-						try
-						{
-							value = value + Integer.parseInt(String.valueOf(values.get(0)));
-						}
-						catch(Exception e){}
-					}
-				}
-				binaryOperands.add(new Operand(Integer.toBinaryString(value),Directive.operandTypes.LABELREF));
 			}
 			else if(inputOperand.operandType == Directive.operandTypes.NUMBER)
 			{
@@ -315,7 +299,10 @@ public class Directive
 				//Fill end of string with blank spaces 
 				for(int x=0; x<(4-(tempString.length() % 4));x++)
 				{
+					if((4-(tempString.length() % 4) != 4))
+					{
 					tempString2 = tempString2 + "00100000"; 
+					}
 				}
 				binaryOperands.add(new Operand(String.valueOf(tempString2),Directive.operandTypes.STRING));
 			}

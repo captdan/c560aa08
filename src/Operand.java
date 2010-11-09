@@ -265,27 +265,35 @@ public class Operand
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//has to be greater than starting LC, less than 65536
 		Boolean validAddress = false;
-		int Value = -1;
+		int value = -1;
 
 		if(Parser.SymbTable.isInTable(address))
 		{
 			ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(address);
-			try
+			if(values.get(2) == SymbolTable.Uses.EXTERNAL)
 			{
-				Value = Integer.parseInt(String.valueOf(values.get(0)));
+				value = 0;
 			}
-			catch(NumberFormatException e){}
+			else
+			{
+				try
+				{
+					value = Integer.parseInt(String.valueOf(values.get(0)));
+				}
+				catch(NumberFormatException e){}
+			}
+
 		}
 		else
 		{
 			try
 			{
-				Value = Integer.parseInt(address);
+				value = Integer.parseInt(address);
 			}
 			catch(NumberFormatException e){}
 		}
 
-		if(Value >= 0 && Value <= 65536)
+		if(value >= 0 && value <= 65536)
 		{
 			validAddress = true;
 		}
@@ -618,7 +626,7 @@ public class Operand
 			if(stringArray.length == 3)
 			{
 				String tempString = stringArray[1].replaceAll(" ", "");
-				if((stringArray[1].length() <= 16) && ((Pattern.matches("[a-zA-Z_0-9_]*",tempString) || tempString.equals(""))))
+				if((stringArray[1].length() <= 16) && ((Pattern.matches("[=a-zA-Z_0-9_]*",tempString) || tempString.equals(""))))
 				{
 					properString = true;
 				}
@@ -669,7 +677,16 @@ public class Operand
 	{
 		//need to flesh this out, but each method to check operands should just return a boolean 
 		//Must be an internal or external label already defined in the symbol table
-		return Parser.SymbTable.isInTable(label);
+		boolean validDirective = false;
+		if(Parser.SymbTable.isInTable(label))
+		{
+			validDirective = true;
+		}
+		else if(label.equals("*"))
+		{
+			validDirective = true;
+		}
+		return validDirective;
 	}
 	
 	/**
