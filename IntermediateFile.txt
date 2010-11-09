@@ -1,10 +1,535 @@
 ------------------------------------------
 CodeLine 0
 PC: 0
-Original Line Of Code: .start:Altest_01,0
+Original Line Of Code: .start,altest_02,0
 Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 0
+Original Line Of Code: .data
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 4
+Original Line Of Code:    mem.skip 4         |00
+Line Comment: |00
+Line Length: 4
+Error Count: 0
+Errors:
+Directive Name: MEM.SKIP
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	4
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 3
+PC: 5
+Original Line Of Code:    int.data 17        |04   00000011
+Line Comment: |04   00000011
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	17
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 4
+PC: 6
+Original Line Of Code:    int.data  9        |05 00000005
+Line Comment: |05 00000005
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	9
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 5
+PC: 6
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 6
+PC: 16
+Original Line Of Code:    RESET.LC 16
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: RESET.LC
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	16
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 7
+PC: 16
+Original Line Of Code:    Exec.start *       |10
+Line Comment: |10
+Line Length: 0
+Error Count: 1
+Errors:
+	19	The operand 0: * did not match the operand type LABELREF.	Change Operand
+Directive Name: EXEC.START
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	*
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 8
+PC: 17
+Original Line Of Code:    lw   $5,4          |10   78000004
+Line Comment: |10   78000004
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$5
+	4
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 9
+PC: 18
+Original Line Of Code:    muls $5,$5,5       |11   70000005
+Line Comment: |11   70000005
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: MULS
+Instruction Type: S
+Instruction Binary: 11100
+Instruction Hex: 1C
+Operands: 
+	$5
+	$5
+	5
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 10
+PC: 19
+Original Line Of Code:    sw   $5,10         |12   9C00000A
+Line Comment: |12   9C00000A
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$5
+	10
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 11
+PC: 20
+Original Line Of Code:    lw   $1,4          |13   78200004
+Line Comment: |13   78200004
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$1
+	4
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 12
+PC: 21
+Original Line Of Code:    DIVs $1,$1,5       |14   74200005
+Line Comment: |14   74200005
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: DIVS
+Instruction Type: S
+Instruction Binary: 11101
+Instruction Hex: 1D
+Operands: 
+	$1
+	$1
+	5
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 13
+PC: 22
+Original Line Of Code:    sw   $1,11         |15   9C20000B
+Line Comment: |15   9C20000B
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$1
+	11
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 14
+PC: 23
+Original Line Of Code:    lw   $2,4          |16   78400004
+Line Comment: |16   78400004
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$2
+	4
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 15
+PC: 24
+Original Line Of Code:    ands $3,5($2)      |17   E8240005
+Line Comment: |17   E8240005
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: ANDS
+Instruction Type: S
+Instruction Binary: 111010
+Instruction Hex: 3A
+Operands: 
+	$3
+	5($2)
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 16
+PC: 25
+Original Line Of Code:    sw   $2,12         |18   9C40000C
+Line Comment: |18   9C40000C
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$2
+	12
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 17
+PC: 26
+Original Line Of Code:    lw   $3,4          |19   78600004
+Line Comment: |19   78600004
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$3
+	4
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 18
+PC: 27
+Original Line Of Code:    ORs  $3,5($2)      |1A   EC600005
+Line Comment: |1A   EC600005
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: ORS
+Instruction Type: S
+Instruction Binary: 111011
+Instruction Hex: 3B
+Operands: 
+	$3
+	5($2)
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 19
+PC: 28
+Original Line Of Code:    sw   $3,13         |1B   9C60000D
+Line Comment: |1B   9C60000D
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$3
+	13
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 20
+PC: 29
+Original Line Of Code:    lw   $4,4          |1C   78800004
+Line Comment: |1C   78800004
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$4
+	4
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 21
+PC: 30
+Original Line Of Code:    subs $4,$4,5       |1D   6C800005
+Line Comment: |1D   6C800005
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SUBS
+Instruction Type: S
+Instruction Binary: 11011
+Instruction Hex: 1B
+Operands: 
+	$4
+	$4
+	5
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 22
+PC: 31
+Original Line Of Code:    sw   $4,14         |1E   9C80000D
+Line Comment: |1E   9C80000D
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$4
+	14
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 23
+PC: 32
+Original Line Of Code:    lw   $0,4          |1F   78200004
+Line Comment: |1F   78200004
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$0
+	4
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 24
+PC: 33
+Original Line Of Code:    SlL  $0,$0,2       |20   02000402
+Line Comment: |20   02000402
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SLL
+Instruction Type: R
+Instruction Binary: 10
+Instruction Hex: 02
+Operands: 
+	$0
+	$0
+	2
+Operand Types: 
+	REGISTER
+	REGISTER
+	BITS
+
+------------------------------------------
+CodeLine 25
+PC: 34
+Original Line Of Code:    sw   $0,15         |21   9C00000F
+Line Comment: |21   9C00000F
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$0
+	15
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 26
+PC: 34
+Original Line Of Code:    JAL  36            |22   1C00000F 
+Line Comment: |22   1C00000F 
 Line Length: 0
 Error Count: 2
 Errors:
-	20	No Start Found for program to run.	Add a correct start directive.
+	0	Expected 3 operands and received 1 operands.	Add or Remove Operands accordingly.
 	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 27
+PC: 35
+Original Line Of Code:    adds $6,$6,5       |23   68040005
+Line Comment: |23   68040005
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: ADDS
+Instruction Type: S
+Instruction Binary: 11010
+Instruction Hex: 1A
+Operands: 
+	$6
+	$6
+	5
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 28
+PC: 36
+Original Line Of Code:    halt 200           |24   200000C8
+Line Comment: |24   200000C8
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: HALT
+Instruction Type: J
+Instruction Binary: 1000
+Instruction Hex: 08
+Operands: 
+	200
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 29
+PC: 36
+Original Line Of Code: .end,altest_02
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
