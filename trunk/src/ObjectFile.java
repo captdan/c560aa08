@@ -329,7 +329,7 @@ public class ObjectFile {
 		
 		textRecord.add(p.programName);
 		
-		textRecord.add(codeline.originalLineOfCode);
+		//textRecord.add(codeline.originalLineOfCode);
 		
 	
 		}
