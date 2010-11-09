@@ -448,6 +448,8 @@ public class Parser
 						break;
 					case CHARSTR: validOperands = Operand.isValidDirectiveCharacterString(codeLine.directive.operandArray.get(x).operand);
 						break;
+					case IMMEDIATE: validOperands = Operand.isValidInstructionUnSignedImmediate(codeLine.directive.operandArray.get(x).operand);
+						break;
 					default: validOperands = false;
 						break;
 					}
@@ -1621,6 +1623,10 @@ public class Parser
 					else if (operand.equals("BOOL")) 
 					{
 						operandArray.add(Directive.operandTypes.BOOLEAN);
+					}
+					else if (operand.equals("IMM"))
+					{
+						operandArray.add(Directive.operandTypes.IMMEDIATE);
 					}
 				}
 				Directive directive = new Directive(variables[0].toUpperCase(), labelType,codeLocation, operandArray);

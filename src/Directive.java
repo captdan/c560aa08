@@ -55,7 +55,7 @@ public class Directive
 	 */
 	public static enum operandTypes
 	{
-		NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN, EXP,CHARSTR
+		NUMBER, BINARY, HEX, STRING, LABEL, LABELREF, BOOLEAN, EXP,CHARSTR,IMMEDIATE
 	}
 	/**
 	 * Constructor for an operand type object.
@@ -157,22 +157,26 @@ public class Directive
 			{
 				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.BOOLEAN));
 			}
-			else if(inputOperand.operandType == Directive.operandTypes.CHARSTR)
+			else if(inputOperand.operandType == Directive.operandTypes.CHARSTR || inputOperand.operandType == Directive.operandTypes.STRING)
 			{
 				String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
 
-				//System.out.println("OK : " + tempString);
+				//System.out.println("OK : " + inputOperand.operand);
 
 				String tempString2 = ""; 
+
 				for(int x=0;x<tempString.length();x++)
 				{
 					int asciiCode = (int)tempString.charAt(x);
 					tempString2 = tempString2 + String.valueOf(Integer.toBinaryString(asciiCode));
 				}
 				//Fill end of string with blank spaces 
-				for(int x=0; x<(tempString2.length() - (4 * Math.floor(tempString2.length() / 4)));x++)
+				for(int x=0; x<(4-(tempString.length() % 4));x++)
 				{
+					if((4-(tempString.length() % 4) != 4))
+					{
 					tempString2 = tempString2 + "00100000"; 
+					}
 				}
 				if(tempString2.equals(""))
 				{
@@ -293,26 +297,28 @@ public class Directive
 			{
 				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.parseInt(inputOperand.operand))),Directive.operandTypes.NUMBER));
 			}
-			else if(inputOperand.operandType == Directive.operandTypes.STRING)
+			else if(inputOperand.operandType == Directive.operandTypes.IMMEDIATE)
 			{
-				String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
-				String tempString2 = ""; 
-				for(int x=0;x<tempString.length();x++)
+				Operand tempOperand = null;
+				if(inputOperand.operand.startsWith("'"))
 				{
-					
-					int asciiCode = (int)tempString.charAt(x);
-					tempString2 = tempString2 + padZeros(String.valueOf(Integer.toBinaryString(asciiCode)),8);
-				}
-				//Fill end of string with blank spaces 
-				for(int x=0; x<(4-(tempString.length() % 4));x++)
-				{
-					if((4-(tempString.length() % 4) != 4))
+					String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+					String tempString2 = ""; 
+					for(int x=0;x<tempString.length();x++)
 					{
-					tempString2 = tempString2 + "00100000"; 
+						int asciiCode = (int)tempString.charAt(x);
+						tempString2 = tempString2 + padZeros(String.valueOf(Integer.toBinaryString(asciiCode)),8);
 					}
+					tempOperand = new Operand(tempString2,Directive.operandTypes.IMMEDIATE);
 				}
-				binaryOperands.add(new Operand(String.valueOf(tempString2),Directive.operandTypes.STRING));
+				else
+				{
+					tempOperand = new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.IMMEDIATE);
+				}
+				binaryOperands.add(tempOperand);
 			}
+
+
 		 return binaryOperands;
 	}
 }
