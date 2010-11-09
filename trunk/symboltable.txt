@@ -1,76 +1,76 @@
 ------------------------------------------
 A	[0, NONE, DATA_LABEL]
 ------------------------------------------
-A1	[6, NONE, DATA_LABEL]
+A1	[7, NONE, DATA_LABEL]
 ------------------------------------------
-A2	[7, NONE, DATA_LABEL]
+A2	[8, NONE, DATA_LABEL]
 ------------------------------------------
-A3	[8, NONE, DATA_LABEL]
+A3	[9, NONE, DATA_LABEL]
 ------------------------------------------
 B	[1, NONE, DATA_LABEL]
 ------------------------------------------
 BBB	[99999, NONE, EXTERNAL]
 ------------------------------------------
-C	[2, NONE, DATA_LABEL]
+C	[3, NONE, DATA_LABEL]
 ------------------------------------------
-D	[3, NONE, DATA_LABEL]
+D	[4, NONE, DATA_LABEL]
 ------------------------------------------
-E	[4, NONE, DATA_LABEL]
+E	[5, NONE, DATA_LABEL]
 ------------------------------------------
-F	[5, NONE, DATA_LABEL]
+F	[6, NONE, DATA_LABEL]
 ------------------------------------------
-F2	[5, NONE, DATA_LABEL]
+F2	[6, NONE, DATA_LABEL]
 ------------------------------------------
-G	[5, NONE, DATA_LABEL]
+G	[6, NONE, DATA_LABEL]
 ------------------------------------------
-H	[76, NONE, DATA_LABEL]
+H	[77, NONE, DATA_LABEL]
 ------------------------------------------
-HALT	[125, NONE, DATA_LABEL]
+HALT	[126, NONE, DATA_LABEL]
 ------------------------------------------
-I	[78, NONE, DATA_LABEL]
+I	[79, NONE, DATA_LABEL]
 ------------------------------------------
-J	[81, NONE, DATA_LABEL]
+J	[82, NONE, DATA_LABEL]
 ------------------------------------------
-K	[83, NONE, DATA_LABEL]
+K	[84, NONE, DATA_LABEL]
 ------------------------------------------
-L	[88, NONE, DATA_LABEL]
+L	[89, NONE, DATA_LABEL]
 ------------------------------------------
-M	[93, NONE, DATA_LABEL]
+M	[94, NONE, DATA_LABEL]
 ------------------------------------------
-N	[97, NONE, DATA_LABEL]
+N	[98, NONE, DATA_LABEL]
 ------------------------------------------
-O	[94, NONE, DATA_LABEL]
+O	[95, NONE, DATA_LABEL]
 ------------------------------------------
-P	[98, NONE, DATA_LABEL]
+P	[99, NONE, DATA_LABEL]
 ------------------------------------------
-Q	[99, NONE, DATA_LABEL]
+Q	[100, NONE, DATA_LABEL]
 ------------------------------------------
 QQQ	[99999, NONE, EXTERNAL]
 ------------------------------------------
-R	[101, NONE, DATA_LABEL]
+R	[102, NONE, DATA_LABEL]
 ------------------------------------------
-R3	[69, 50, EQU]
+R3	[70, 50, EQU]
 ------------------------------------------
 RRR	[99999, NONE, EXTERNAL]
 ------------------------------------------
-S	[102, NONE, DATA_LABEL]
+S	[103, NONE, DATA_LABEL]
 ------------------------------------------
 SimpleInstructionTest	[0, NONE, PROGRAM_NAME]
 ------------------------------------------
-T	[103, NONE, DATA_LABEL]
+T	[104, NONE, DATA_LABEL]
 ------------------------------------------
 TTT	[99999, NONE, EXTERNAL]
 ------------------------------------------
-U	[105, NONE, DATA_LABEL]
+U	[106, NONE, DATA_LABEL]
 ------------------------------------------
-V	[106, NONE, DATA_LABEL]
+V	[107, NONE, DATA_LABEL]
 ------------------------------------------
-W	[107, NONE, DATA_LABEL]
+W	[108, NONE, DATA_LABEL]
 ------------------------------------------
-X	[108, NONE, DATA_LABEL]
+X	[109, NONE, DATA_LABEL]
 ------------------------------------------
-Y	[109, NONE, DATA_LABEL]
+Y	[110, NONE, DATA_LABEL]
 ------------------------------------------
-Z	[110, NONE, DATA_LABEL]
+Z	[111, NONE, DATA_LABEL]
 ------------------------------------------
-halt2	[126, NONE, DATA_LABEL]
+halt2	[127, NONE, DATA_LABEL]

@@ -308,11 +308,12 @@ public class Directive
 				String tempString2 = ""; 
 				for(int x=0;x<tempString.length();x++)
 				{
+					
 					int asciiCode = (int)tempString.charAt(x);
-					tempString2 = tempString2 + String.valueOf(Integer.toBinaryString(asciiCode));
+					tempString2 = tempString2 + padZeros(String.valueOf(Integer.toBinaryString(asciiCode)),8);
 				}
 				//Fill end of string with blank spaces 
-				for(int x=0; x<(tempString2.length() - (4 * Math.floor(tempString2.length() / 4)));x++)
+				for(int x=0; x<(4-(tempString.length() % 4));x++)
 				{
 					tempString2 = tempString2 + "00100000"; 
 				}
