@@ -706,60 +706,26 @@ public class Operand
 	{		
 		boolean result = false;
 		
-		//Tokenizing machine ensures only valid operators are '+' and '-' so a valid expression will have a max of 3 tokens in the machine
-		
-		StringTokenizer expressionTokenizer = new StringTokenizer(exp,"+-",false);
-		
-		//Should only have 3 operands
-		
-		if(expressionTokenizer.countTokens() <= 3)
+		String[] plusSplit = exp.split("[+]");
+		for(String plusString : plusSplit)
 		{
-			while(expressionTokenizer.hasMoreTokens())
+			String[] minusSplit = plusString.split("[-]");
+			for(String minusString : minusSplit)
 			{
-				String operand = expressionTokenizer.nextToken();
-				if(operand.equals(""))
+				//System.out.println(minusString);
+				if(minusString.equals("[*]"))
 				{
-					result = false;
-					break;
-				}
-				//first check to see if it's a valid integer value
-				try
-				{
-					Integer.parseInt(operand);
 					result = true;
 				}
-				catch(NumberFormatException e)
+				try
 				{
-					result = false;
+					Integer.parseInt(minusString);
+					result = true;
 				}
-				
-				//if it's not an integer, it could still be a label that is a valid integer, so check SymbTable
-				if(result == false)
+				catch(NumberFormatException e){}
+				if(Parser.SymbTable.isInTable(minusString))
 				{
-					if(Parser.SymbTable.isInTable(operand))
-					{
-						ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(operand);
-						try
-						{
-							//Checks the "sub" value of the label to see if the label is a substitute for a valid integer
-							Integer.parseInt(String.valueOf(values.get(0)));
-							result = true;
-						}
-						catch(NumberFormatException e)
-						{
-							result = false;
-						}
-					
-					}
-				}
-			
-				//failing that, it could be a "*" so we check for that
-				if(result == false)
-				{
-					if ((operand.length() == 1) && (operand.charAt(0) == '*'))
-					{
-						result = true;
-					}
+					result = true;
 				}
 			}
 		}
