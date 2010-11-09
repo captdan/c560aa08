@@ -1,4 +1,4 @@
-H|SimpleInstructionTest|80|0|1:6|19:20:23|1|78|0|SAL|1|2|SimpleInstructionTest
+H|SimpleInstructionTest|80|0|1:6|19:37:07|1|78|0|SAL|1|2|SimpleInstructionTest
 L|SimpleInstructionTest|0|START|SimpleInstructionTest
 T|0|N|00000000|0|SimpleInstructionTest|.Start,SimpleInstructionTest,00
 T|0|N|00000000|0|SimpleInstructionTest|.data
@@ -24,7 +24,6 @@ T|4a|N|c0400000|2|A|G|SimpleInstructionTest|	LW $2,G
 T|4b|N|c0600000|2|A|A1|SimpleInstructionTest|	LW $3,A1
 T|4c|N|c0800000|2|A|A2|SimpleInstructionTest|	LW $4,A2
 T|4d|N|c0a00000|2|A|A3|SimpleInstructionTest|	LW $5,A3
-T|4d|N|SimpleInstructionTest|	|already tested add sun mul and div
 T|4e|N|8028004f|3|A|A|R|+|0|SimpleInstructionTest|H	JEQ	$1,$2,I		|jump to I if $1 == $2
 T|4f|N|04ce001a|3|A|A|A|SimpleInstructionTest|	div $6, $3,$4
 T|50|N|84280052|3|A|A|R|+|0|SimpleInstructionTest|I	JNE	$1,$2,J		|jump to J if $1 != $2
@@ -51,7 +50,6 @@ T|64|N|c4600000|2|A|0|SimpleInstructionTest|P	LnW $3, 0($2)
 T|65|N|c8200000|2|A|A|SimpleInstructionTest|Q	LWi	$1, 0($2)
 T|66|N|1ca40000|3|A|A|A|SimpleInstructionTest|	jal	$5,$1,$1
 T|67|N|cc400032|2|A|A|SimpleInstructionTest|R	Lui $2, 50
-T|67|N|SimpleInstructionTest|	|compare values of regs
 T|68|N|08240025|3|A|A|A|SimpleInstructionTest|S	or $1,$1,2
 T|69|N|08240024|3|A|A|A|SimpleInstructionTest|T	and $1,$1,3
 T|6a|N|f4a80002|3|A|A|A|SimpleInstructionTest|	SRV $5,$2,2

@@ -1,5 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -118,6 +119,8 @@ public class ObjectFile {
 	private ArrayList<String> makeOneTextRecord(CodeLine codeline)
 	{
 		ArrayList<String> textRecord = new ArrayList<String>();
+		if(codeline.directive != null || codeline.instruction != null)
+		{
 		
 		textRecord.add("T");
 		
@@ -333,6 +336,9 @@ public class ObjectFile {
 		textRecord.add(p.programName);
 		
 		textRecord.add(codeline.originalLineOfCode);
+		
+	
+		}
 		return textRecord;
 	}
 	
@@ -472,30 +478,36 @@ public class ObjectFile {
 	 */
 	public void prettyFerret2 ()
 	{
-		try
+		FileWriter fileStream;
+		try 
 		{
-			FileWriter fileStream = new FileWriter("ObjectFile.txt");
-			BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
-			
-			bufferedWriter.write(joinStringArray(headerRecord,"|") + "\n");
-			
-			for(ArrayList<String> a : linkingRecord)
-			{
-				bufferedWriter.write(joinStringArray(a,"|") + "\n");
-			}	
-			
-			for(ArrayList<String> a : textRecord)
+			fileStream = new FileWriter("ObjectFile.txt");
+
+		BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
+		
+		bufferedWriter.write(joinStringArray(headerRecord,"|") + "\n");
+		
+		for(ArrayList<String> a : linkingRecord)
+		{
+			bufferedWriter.write(joinStringArray(a,"|") + "\n");
+		}	
+		
+		for(ArrayList<String> a : textRecord)
+		{
+			if(a.size() > 0)
 			{
 				bufferedWriter.write(joinStringArray(a,"|") + "\n");
 			}
-			
-			bufferedWriter.write(joinStringArray(endRecord,"|") + "\n");
-			
-			bufferedWriter.close();
 		}
-		catch (Exception e)
+		
+		bufferedWriter.write(joinStringArray(endRecord,"|") + "\n");
+		
+		bufferedWriter.close();
+		} 
+		catch (IOException e) 
 		{
-			System.err.println("Unable to write object file!");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -517,11 +529,15 @@ public class ObjectFile {
 	 */
 	private String joinStringArray(ArrayList<String> stringArray, String delimiter) 
 	{
-		String totalString = stringArray.get(0);
-		
-		for (int x = 1; x < stringArray.size(); x++) 
+		String totalString = "";
+		if(stringArray.size() > 0)
 		{
-			totalString += (delimiter + stringArray.get(x));
+			totalString = stringArray.get(0);
+		
+			for (int x = 1; x < stringArray.size(); x++) 
+			{
+				totalString += (delimiter + stringArray.get(x));
+			}
 		}
 		return totalString;
 	}
