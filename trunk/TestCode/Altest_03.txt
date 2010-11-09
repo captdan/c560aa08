@@ -1,4 +1,3 @@
-
 .start,Altest_03,14    |E  midterm program
 .data
 Jupiter int.data 128   |E  00000080     A

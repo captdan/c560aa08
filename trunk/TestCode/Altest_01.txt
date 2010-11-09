@@ -1,4 +1,4 @@
-.start:Altest_01,0
+.start,Altest_01,0
 .text
 EXT          DQ
 Reset.lc    8
