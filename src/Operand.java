@@ -614,10 +614,11 @@ public class Operand
 		
 		if(stringValue.charAt(0) == '\'' && stringValue.charAt(stringValue.length()-1) == '\'')
 		{
-			String[] stringArray = stringValue.split("'");
-			if(stringArray.length == 2)
+			String[] stringArray = Operand.splitByCharacter(stringValue, '\'');
+			if(stringArray.length == 3)
 			{
-				if((stringArray[1].length() <= 16) && (Pattern.matches("[a-zA-Z_0-9_]*",stringArray[1])))
+				String tempString = stringArray[1].replaceAll(" ", "");
+				if((stringArray[1].length() <= 16) && ((Pattern.matches("[a-zA-Z_0-9_]*",tempString) || tempString.equals(""))))
 				{
 					properString = true;
 				}

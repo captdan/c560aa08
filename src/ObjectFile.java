@@ -447,15 +447,21 @@ public class ObjectFile {
 		ArrayList<String> linkingrecord = new ArrayList<String>();
 		linkingrecord.add("L");
 		linkingrecord.add(symbol);
-		ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbol);
-		String hexaddress = Integer.toHexString(Integer.valueOf((String) values.get(0)));
-		linkingrecord.add(hexaddress);
-		if (start) {
-			linkingrecord.add("START");
-		} else {
-			linkingrecord.add("ENT");
+		try
+		{
+			ArrayList<Object> values = p.symbolTable.getInfoFromSymbol(symbol);
+			String hexaddress = Integer.toHexString(Integer.valueOf((String) values.get(0)));
+			linkingrecord.add(hexaddress);
+			if (start) {
+				linkingrecord.add("START");
+			} else {
+				linkingrecord.add("ENT");
+			}
+			linkingrecord.add(p.programName);
 		}
-		linkingrecord.add(p.programName);
+		catch(Exception e){}
+		
+
 		return linkingrecord;
 	}
 	

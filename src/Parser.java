@@ -504,9 +504,11 @@ public class Parser
 		//Check to see if there is a valid start operation else end program.
 		if(linesOfCode.size() > 1)
 		{
+			
 			Directive tempDirective = returnDirective(linesOfCode.get(0),false);
 			if(tempDirective != null && currentErrorArray.size() == 0 && tempDirective.directiveName.equals(".START"))
 			{
+				//System.out.println("TEST");
 				StringTokenizer st = new StringTokenizer(linesOfCode.get(0), " \t", false);
 				String possibleDirective = "";
 				if (st.hasMoreTokens())
@@ -839,6 +841,7 @@ public class Parser
 		{
 			possibleDirective = st.nextToken();
 		}
+		//System.out.println(possibleDirective);
 		possibleDirective = possibleDirective.toUpperCase();
 		
 		String[] specialDirectives = possibleDirective.split(",");
@@ -870,6 +873,7 @@ public class Parser
 		}
 		else if (specialDirectives[0].equals(".START")) 
 		{
+			
 			specialDirectives = removeWhiteSpace(codeString).split(",");
 			if (specialDirectives.length == 3) 
 			{
