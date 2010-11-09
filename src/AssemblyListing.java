@@ -61,7 +61,10 @@ public class AssemblyListing {
 		
 		if(c.instruction != null)
 		{
-			record.add(c.instruction.returnHexCodeLine());
+			if(c.errors.size() == 0)
+			{
+				record.add(c.instruction.returnHexCodeLine());
+			}
 			record.add(String.valueOf(c.instruction.operandsArray.get(0).relocationType));
 			record.add(String.valueOf(statementNumber));
 			record.add(c.originalLineOfCode);

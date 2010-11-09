@@ -44,7 +44,7 @@ L	JLE	$1,$2,M		|jump to M if $1 <= $2
 	SW $1,0($2)
 	JR $1
 	PWR $1,$2,$3
-M	muli $5,$1,-2
+M	muli $5,$1,$5
 O	SRV $1,$2,10
 	SLL $2,$1,5
 	SRL $5,$5,2
