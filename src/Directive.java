@@ -160,6 +160,9 @@ public class Directive
 			else if(inputOperand.operandType == Directive.operandTypes.CHARSTR)
 			{
 				String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+
+				//System.out.println("OK : " + tempString);
+
 				String tempString2 = ""; 
 				for(int x=0;x<tempString.length();x++)
 				{
@@ -171,7 +174,11 @@ public class Directive
 				{
 					tempString2 = tempString2 + "00100000"; 
 				}
-				binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Directive.operandTypes.CHARSTR));
+				if(tempString2.equals(""))
+				{
+					tempString2 = "00100000001000000010000000100000";
+				}
+				binaryOperands.add(new Operand(tempString2,Directive.operandTypes.CHARSTR));
 			}
 			else if(inputOperand.operandType == Directive.operandTypes.EXP)
 			{
