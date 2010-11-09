@@ -7,13 +7,17 @@ D bin.data 0110
 E Adr.data A
 F adr.exp 1+2+
 F2 adr.exp 1+2+A
+kkk str.data ''
 G int.data 8
+G2 int.data 999999999999
+test bin.data 50
 A1 int.data 15
 A2 int.data 6
 A3 int.data 3
 	mem.skip 60
 R3	EQU  50
 .text
+Debug 1
 	EXT TTT,RRR,QQQ,BBB
 	dump 1,0,0
 	LW $1,A($1)

@@ -126,15 +126,9 @@ public class ObjectFile {
 		
 		textRecord.add(String.valueOf(Integer.toHexString(codeline.PC)));
 		
-		int debugValue = 0;
-		
 		String debugSign = "";
 		
-		if (codeline.directive != null && codeline.directive.directiveName.equals("DEBUG"))
-		{
-			debugValue = Integer.valueOf(codeline.directive.operandArray.get(0).operand);
-		}
-		if (debugValue == 0)
+		if (p.debugMode == false)
 		{
 			debugSign = "N";
 		}

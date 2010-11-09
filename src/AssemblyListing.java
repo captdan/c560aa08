@@ -36,12 +36,16 @@ public class AssemblyListing {
 	 */
 	public ArrayList<String> makeRecord(CodeLine c)
 	{
+		
 		ArrayList<String> record = new ArrayList<String>();
 		record.add(String.valueOf(Integer.toHexString(c.PC)));
 		
 		if(c.directive != null)
 		{
-			record.add(c.directive.returnHexCodeLine(c));
+			if(c.errors.size() == 0)
+			{
+				record.add(c.directive.returnHexCodeLine(c));
+			}
 			if(c.directive.operandArray.size() > 0)
 			{
 				record.add(String.valueOf(c.directive.operandArray.get(0).relocationType));
@@ -90,6 +94,7 @@ public class AssemblyListing {
 	
 			for(CodeLine c : p.CodeLineArray)
 			{
+				
 				ArrayList<String> record = makeRecord(c);
 				
 				bufferedWriter.write(joinStringArray(record,"\t") + "\n");

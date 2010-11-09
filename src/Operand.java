@@ -511,22 +511,30 @@ public class Operand
 						answer = false;
 					}
 				}
-				
-			int comparisonValue = Integer.valueOf(absoluteValue);
 			
-			if (number.charAt(0)=='-')
+				
+			int comparisonValue = 9999999;
+			try
 			{
-				comparisonValue = comparisonValue*(-1);
+				comparisonValue = Integer.valueOf(absoluteValue);
+				if(-32768<=comparisonValue && comparisonValue <=32767)
+				{
+					answer = true;
+				}
 			}
-			//check to see if our number falls within the required range of acceptable values.
-			answer = (-231<=comparisonValue && comparisonValue <=230);
+			catch (Exception e)
+			{
+				
+				answer = false;
+			}
+			
 		}
 		else
 		{
 			//if first character isn't +,- or digit than the directive number is invalid.
 			answer = false;
 		}
-		
+	
 		return answer;
 	}
 	/**
@@ -719,8 +727,11 @@ public class Operand
 				}
 				try
 				{
-					Integer.parseInt(minusString);
-					isCorrect = true;
+					int value = Integer.parseInt(minusString);
+					if(value < 65536 || value > -65536)
+					{
+						isCorrect = true;
+					}
 				}
 				catch(NumberFormatException e){}
 				if(Parser.SymbTable.isInTable(minusString))
