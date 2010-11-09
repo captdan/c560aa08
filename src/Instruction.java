@@ -39,6 +39,10 @@ public class Instruction
 	 */
 	public String instructionExtendedBinary = "";
 	/**
+	 * Address code for instructions
+	 */
+	public String addressCode = "00";
+	/**
 	 * Stores individual operands in the directive.
 	 */
 	public ArrayList<Operand> operandsArray = new ArrayList<Operand>();
@@ -216,7 +220,7 @@ public class Instruction
 				addr = padZeros(toBinary(returnOperand(2,operandTypes.ADDRESS)).get(0).operand,16);
 			}
 			binaryCodeLine += padZeros(this.instructionBinary,6);	//Opcode	6 bits
-			binaryCodeLine += padZeros("",2);						//Unused	2 bits
+			binaryCodeLine += padZeros(this.addressCode,2);			//Address	2 bits
 			binaryCodeLine += padZeros(reg1,3);						//Reg 1 	3 bits
 			binaryCodeLine += padZeros(reg2,3);						//Reg 2 	3 bits
 			binaryCodeLine += padZeros("",2);						//Unused	2 Bits

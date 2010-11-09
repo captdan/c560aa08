@@ -58,7 +58,7 @@ Y	nori $5, $1,56
 Z	jal $1,$2, halt2
 	ors $1,halt2($5)
 	muls $1,$2, R3
-	adds $5,$6, R3
+	adds $5,$6, %4
 	subs $3,$4,R3
 	LW $3, 0($2)
 	LA $1, 0($3)
