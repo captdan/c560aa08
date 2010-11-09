@@ -829,8 +829,18 @@ public class Parser
 				
 					for (int x = 0; x < operands.length; x++) 
 					{
-						directiveObj.operands.add(directive.operands.get(x));
-						directiveObj.operandArray.add(new Operand(operands[x],directive.operands.get(x)));
+						if(x<4)
+						{
+							directiveObj.operands.add(directive.operands.get(x));
+							directiveObj.operandArray.add(new Operand(operands[x],directive.operands.get(x)));
+						}
+						else
+						{
+							if(addErrors == true)
+							{
+								currentErrorArray.add(returnError(25));
+							}
+						}
 					}
 				}
 			}
@@ -983,6 +993,7 @@ public class Parser
 		}
 		else if (possibleDirective.equals("STR.DATA")) 
 		{
+			
 			String[] tempString = Operand.splitByCharacter(codeString, '\'');
 			if(tempString.length < 4)
 			{
