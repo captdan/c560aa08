@@ -319,8 +319,35 @@ public class ObjectFile {
 			}
 			else
 			{
+				if(Operand.splitByCharacter(codeline.instruction.operandsArray.get(count).operand, '(').length > 1)
+				{
+					String[] operandsArray = Operand.splitByCharacter(codeline.instruction.operandsArray.get(count).operand, '(');
+					if(operandsArray.length > 1)
+					{
+						if(Parser.SymbTable.isInTable(operandsArray[0]))
+						{
+							textRecord.add(Operand.relocationTypes.R.toString());
+							textRecord.add("+");
+						}
+						else
+						{
+							try
+							{
+								int value = Integer.valueOf(operandsArray[0]);
+								textRecord.add(Operand.relocationTypes.A.toString());
+							}
+							catch(Exception e){}
+						}
+						textRecord.add(Operand.relocationTypes.A.toString());
+					}
+
+				}
+				else
+				{
+					
+				}
+				//textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
 				
-				textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
 			}
 			
 
@@ -329,7 +356,7 @@ public class ObjectFile {
 		
 		textRecord.add(p.programName);
 		
-		//textRecord.add(codeline.originalLineOfCode);
+		textRecord.add(codeline.originalLineOfCode);
 		
 	
 		}
