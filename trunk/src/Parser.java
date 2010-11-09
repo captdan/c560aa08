@@ -210,7 +210,14 @@ public class Parser
 			}
 			if(codeLine.directive != null && codeLine.directive.directiveName.equals("DEBUG"))
 			{
-				debugMode = Boolean.valueOf(codeLine.directive.operandArray.get(0).operand);
+				if(codeLine.directive.operandArray.get(0).operand.equals("1"))
+				{
+					debugMode = true;
+				}
+				else
+				{
+					debugMode = false;
+				}
 			}
 		}
 		if (foundDirective == false)

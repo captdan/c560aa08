@@ -1,72 +1,73 @@
-H|SimpleInstructionTest|80|0|1:6|20:48:37|1|78|0|SAL|1|2|SimpleInstructionTest
+H|SimpleInstructionTest|82|0|2010:312|21:35:50|1|82|0|SAL|1|2|SimpleInstructionTest
 L|SimpleInstructionTest|0|START|SimpleInstructionTest
-T|0|N|00000000|0|SimpleInstructionTest|.Start,SimpleInstructionTest,00
-T|0|N|00000000|0|SimpleInstructionTest|.data
-T|1|N|0000000a|1|A|SimpleInstructionTest|A int.data 10
-T|3|N|4142434445464720|1|A|SimpleInstructionTest|B Str.data 'ABCDEFG'
-T|4|N|00000008|1|A|SimpleInstructionTest|C hex.data 8
-T|5|N|00000006|1|A|SimpleInstructionTest|D bin.data 0110
-T|6|N|00000000|1|R|+|0|SimpleInstructionTest|E Adr.data A
-T|7|N|00000008|1|A|SimpleInstructionTest|G int.data 8
-T|8|N|0000000f|1|A|SimpleInstructionTest|A1 int.data 15
-T|9|N|00000006|1|A|SimpleInstructionTest|A2 int.data 6
-T|a|N|00000003|1|A|SimpleInstructionTest|A3 int.data 3
-T|46|N|0000003c|1|A|SimpleInstructionTest|	mem.skip 60
-T|46|N|20202020|1|A|SimpleInstructionTest|R3	EQU  50
-T|46|N|00000000|0|SimpleInstructionTest|.text
-T|46|N|00000000|4|E|TTT|E|RRR|E|QQQ|E|BBB|SimpleInstructionTest|	EXT TTT,RRR,QQQ,BBB
-T|47|N|fc000000|3|A|A|A|SimpleInstructionTest|	dump 1,0,0
-T|48|N|c0200000|2|A|A|SimpleInstructionTest|	LW $1,A($1)
-T|49|N|c0200000|2|A||SimpleInstructionTest|	LW $1,($1)
-T|4a|N|c0400000|2|A|G|SimpleInstructionTest|	LW $2,G
-T|4b|N|c0600000|2|A|A1|SimpleInstructionTest|	LW $3,A1
-T|4c|N|c0800000|2|A|A2|SimpleInstructionTest|	LW $4,A2
-T|4d|N|c0a00000|2|A|A3|SimpleInstructionTest|	LW $5,A3
-T|4e|N|8028004f|3|A|A|R|+|0|SimpleInstructionTest|H	JEQ	$1,$2,I		|jump to I if $1 == $2
-T|4f|N|04ce001a|3|A|A|A|SimpleInstructionTest|	div $6, $3,$4
-T|50|N|84280052|3|A|A|R|+|0|SimpleInstructionTest|I	JNE	$1,$2,J		|jump to J if $1 != $2
-T|51|N|04258018|3|A|A|A|SimpleInstructionTest|	mul $1,$1,$3
-T|52|N|dc340032|3|A|A|A|SimpleInstructionTest|	andi $1,$5,50
-T|53|N|88280054|3|A|A|R|+|0|SimpleInstructionTest|J	JGT	$1,$2,K		|jump to K if $1 > $2
-T|54|N|04488020|3|A|A|A|SimpleInstructionTest|	add $2,$2,$1
-T|55|N|8c280059|3|A|A|R|+|0|SimpleInstructionTest|K	JLT	$1,$2,L		|jump to L if $1 < $2
-T|56|N|042e0022|3|A|A|A|SimpleInstructionTest|	sub $1, $3,$4
-T|57|N|c0a00000|2|A|A3|SimpleInstructionTest|	LW $5,A3
-T|58|N|e8200000|2|A|0|SimpleInstructionTest|	ands $1,0($5)
-T|59|N|ec200000|2|A|2|SimpleInstructionTest|	ors $1,2($5)
-T|5a|N|9028005e|3|A|A|R|+|0|SimpleInstructionTest|L	JLE	$1,$2,M		|jump to M if $1 <= $2
-T|5b|N|04288020|3|A|A|A|SimpleInstructionTest|	add $1,$2,$1	
-T|5c|N|9c200000|2|A|0|SimpleInstructionTest|	SW $1,0($2)
-T|5d|N|0c200008|1|A|SimpleInstructionTest|	JR $1
-T|5e|N|0429801c|3|A|A|A|SimpleInstructionTest|	PWR $1,$2,$3
-T|5f|N|50a4fffe|3|A|A|A|SimpleInstructionTest|M	muli $5,$1,-2
-T|60|N|f428000a|3|A|A|A|SimpleInstructionTest|O	SRV $1,$2,10
-T|61|N|08440a00|3|A|A|A|SimpleInstructionTest|	SLL $2,$1,5
-T|62|N|08b40402|3|A|A|A|SimpleInstructionTest|	SRL $5,$5,2
-T|63|N|9ca00000|2|A|0|SimpleInstructionTest|N	SW $5,0($2)	
-T|64|N|c4600000|2|A|0|SimpleInstructionTest|P	LnW $3, 0($2)
-T|67|N|cc400032|2|A|A|SimpleInstructionTest|R	Lui $2, 50
-T|6a|N|f4a80002|3|A|A|A|SimpleInstructionTest|	SRV $5,$2,2
-T|6b|N|08da8026|3|A|A|A|SimpleInstructionTest|U	xor $6,$6,$5
-T|6c|N|08518027|3|A|A|A|SimpleInstructionTest|V	nor $2,$4,$3
-T|6d|N|d0540006|3|A|A|A|SimpleInstructionTest|W	ori $2,$5,6
-T|6e|N|d4b80009|3|A|A|A|SimpleInstructionTest|X	xori $5,$6,9
-T|6f|N|d8a40038|3|A|A|A|SimpleInstructionTest|Y	nori $5, $1,56
-T|70|N|1c28007f|3|A|A|R|+|0|SimpleInstructionTest|Z	jal $1,$2, halt2
-T|71|N|ec200000|2|A|halt2|SimpleInstructionTest|	ors $1,halt2($5)
-T|72|N|70280046|3|A|A|A|SimpleInstructionTest|	muls $1,$2, R3
-T|73|N|68b80046|3|A|A|A|SimpleInstructionTest|	adds $5,$6, R3
-T|74|N|6c700046|3|A|A|A|SimpleInstructionTest|	subs $3,$4,R3
-T|76|N|e0200000|2|A|0|SimpleInstructionTest|	LA $1, 0($3)
-T|77|N|e4200000|2|A|0|SimpleInstructionTest|	SA $1, 0($3)
-T|78|N|78000005|2|A|A|SimpleInstructionTest|	outni	5, 5
-T|79|N|7c007468|2|A|A|SimpleInstructionTest|	outci 3,'th'
-T|7a|N|7c00656e|2|A|A|SimpleInstructionTest|	outci 3,'en'
-T|7b|N|10220000|2|A|A|SimpleInstructionTest|	Inn 2,A($1)
-T|7c|N|10030000|2|A||SimpleInstructionTest|	InC 3,($0)
-T|7d|N|10010001|2|A|B|SimpleInstructionTest|	Inn 1,B
-T|7e|N|18000000|1|HALT|SimpleInstructionTest|	J HALT($0)
-T|7f|N|20000000|1|A|SimpleInstructionTest|HALT	Halt 0
-T|80|N|20000002|1|A|SimpleInstructionTest|halt2 	halt 2
-T|80|N|00000000|0|SimpleInstructionTest|.END,SimpleInstructionTest
-E|51|SimpleInstructionTest
+T|0|Y|00000000|0|SimpleInstructionTest|.Start,SimpleInstructionTest,00
+T|0|Y|00000000|0|SimpleInstructionTest|.data
+T|1|Y|0000000a|1|A|SimpleInstructionTest|A int.data 10
+T|3|Y|4142434445464720|1|A|SimpleInstructionTest|B Str.data 'ABCDEFG'
+T|4|Y|00000008|1|A|SimpleInstructionTest|C hex.data 8
+T|5|Y|00000006|1|A|SimpleInstructionTest|D bin.data 0110
+T|6|Y|00000000|1|R|+|0|SimpleInstructionTest|E Adr.data A
+T|7|Y|00000008|1|A|SimpleInstructionTest|G int.data 8
+T|a|Y|0000000f|1|A|SimpleInstructionTest|A1 int.data 15
+T|b|Y|00000006|1|A|SimpleInstructionTest|A2 int.data 6
+T|c|Y|00000003|1|A|SimpleInstructionTest|A3 int.data 3
+T|48|Y|0000003c|1|A|SimpleInstructionTest|	mem.skip 60
+T|48|Y|20202020|1|A|SimpleInstructionTest|R3	EQU  50
+T|48|Y|00000000|0|SimpleInstructionTest|.text
+T|48|Y|00000001|1|A|SimpleInstructionTest|Debug 1
+T|48|Y|00000000|4|E|TTT|E|RRR|E|QQQ|E|BBB|SimpleInstructionTest|	EXT TTT,RRR,QQQ,BBB
+T|49|Y|fc000000|3|A|A|A|SimpleInstructionTest|	dump 1,0,0
+T|4a|Y|c0200000|2|A|A|SimpleInstructionTest|	LW $1,A($1)
+T|4b|Y|c0200000|2|A||SimpleInstructionTest|	LW $1,($1)
+T|4c|Y|c0400000|2|A|G|SimpleInstructionTest|	LW $2,G
+T|4d|Y|c0600000|2|A|A1|SimpleInstructionTest|	LW $3,A1
+T|4e|Y|c0800000|2|A|A2|SimpleInstructionTest|	LW $4,A2
+T|4f|Y|c0a00000|2|A|A3|SimpleInstructionTest|	LW $5,A3
+T|50|Y|80280051|3|A|A|R|+|0|SimpleInstructionTest|H	JEQ	$1,$2,I		|jump to I if $1 == $2
+T|51|Y|04ce001a|3|A|A|A|SimpleInstructionTest|	div $6, $3,$4
+T|52|Y|84280054|3|A|A|R|+|0|SimpleInstructionTest|I	JNE	$1,$2,J		|jump to J if $1 != $2
+T|53|Y|04258018|3|A|A|A|SimpleInstructionTest|	mul $1,$1,$3
+T|54|Y|dc340032|3|A|A|A|SimpleInstructionTest|	andi $1,$5,50
+T|55|Y|88280056|3|A|A|R|+|0|SimpleInstructionTest|J	JGT	$1,$2,K		|jump to K if $1 > $2
+T|56|Y|04488020|3|A|A|A|SimpleInstructionTest|	add $2,$2,$1
+T|57|Y|8c28005b|3|A|A|R|+|0|SimpleInstructionTest|K	JLT	$1,$2,L		|jump to L if $1 < $2
+T|58|Y|042e0022|3|A|A|A|SimpleInstructionTest|	sub $1, $3,$4
+T|59|Y|c0a00000|2|A|A3|SimpleInstructionTest|	LW $5,A3
+T|5a|Y|e8200000|2|A|0|SimpleInstructionTest|	ands $1,0($5)
+T|5b|Y|ec200000|2|A|2|SimpleInstructionTest|	ors $1,2($5)
+T|5c|Y|90280060|3|A|A|R|+|0|SimpleInstructionTest|L	JLE	$1,$2,M		|jump to M if $1 <= $2
+T|5d|Y|04288020|3|A|A|A|SimpleInstructionTest|	add $1,$2,$1	
+T|5e|Y|9c200000|2|A|0|SimpleInstructionTest|	SW $1,0($2)
+T|5f|Y|0c200008|1|A|SimpleInstructionTest|	JR $1
+T|60|Y|0429801c|3|A|A|A|SimpleInstructionTest|	PWR $1,$2,$3
+T|61|Y|50a4fffe|3|A|A|A|SimpleInstructionTest|M	muli $5,$1,-2
+T|62|Y|f428000a|3|A|A|A|SimpleInstructionTest|O	SRV $1,$2,10
+T|63|Y|08440a00|3|A|A|A|SimpleInstructionTest|	SLL $2,$1,5
+T|64|Y|08b40402|3|A|A|A|SimpleInstructionTest|	SRL $5,$5,2
+T|65|Y|9ca00000|2|A|0|SimpleInstructionTest|N	SW $5,0($2)	
+T|66|Y|c4600000|2|A|0|SimpleInstructionTest|P	LnW $3, 0($2)
+T|69|Y|cc400032|2|A|A|SimpleInstructionTest|R	Lui $2, 50
+T|6c|Y|f4a80002|3|A|A|A|SimpleInstructionTest|	SRV $5,$2,2
+T|6d|Y|08da8026|3|A|A|A|SimpleInstructionTest|U	xor $6,$6,$5
+T|6e|Y|08518027|3|A|A|A|SimpleInstructionTest|V	nor $2,$4,$3
+T|6f|Y|d0540006|3|A|A|A|SimpleInstructionTest|W	ori $2,$5,6
+T|70|Y|d4b80009|3|A|A|A|SimpleInstructionTest|X	xori $5,$6,9
+T|71|Y|d8a40038|3|A|A|A|SimpleInstructionTest|Y	nori $5, $1,56
+T|72|Y|1c280081|3|A|A|R|+|0|SimpleInstructionTest|Z	jal $1,$2, halt2
+T|73|Y|ec200000|2|A|halt2|SimpleInstructionTest|	ors $1,halt2($5)
+T|74|Y|70280048|3|A|A|A|SimpleInstructionTest|	muls $1,$2, R3
+T|75|Y|68b80048|3|A|A|A|SimpleInstructionTest|	adds $5,$6, R3
+T|76|Y|6c700048|3|A|A|A|SimpleInstructionTest|	subs $3,$4,R3
+T|78|Y|e0200000|2|A|0|SimpleInstructionTest|	LA $1, 0($3)
+T|79|Y|e4200000|2|A|0|SimpleInstructionTest|	SA $1, 0($3)
+T|7a|Y|78000005|2|A|A|SimpleInstructionTest|	outni	5, 5
+T|7b|Y|7c007468|2|A|A|SimpleInstructionTest|	outci 3,'th'
+T|7c|Y|7c00656e|2|A|A|SimpleInstructionTest|	outci 3,'en'
+T|7d|Y|10220000|2|A|A|SimpleInstructionTest|	Inn 2,A($1)
+T|7e|Y|10030000|2|A||SimpleInstructionTest|	InC 3,($0)
+T|7f|Y|10010001|2|A|B|SimpleInstructionTest|	Inn 1,B
+T|80|Y|18000000|1|HALT|SimpleInstructionTest|	J HALT($0)
+T|81|Y|20000000|1|A|SimpleInstructionTest|HALT	Halt 0
+T|82|Y|20000002|1|A|SimpleInstructionTest|halt2 	halt 2
+T|82|Y|00000000|0|SimpleInstructionTest|.END,SimpleInstructionTest
+E|55|SimpleInstructionTest

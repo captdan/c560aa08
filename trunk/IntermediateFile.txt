@@ -142,6 +142,23 @@ Operand Types:
 
 ------------------------------------------
 CodeLine 9
+PC: 6
+Original Line Of Code: kkk str.data ''
+Line Comment: 
+Line Length: 0
+Error Count: 1
+Errors:
+	19	The operand 0: '' did not match the operand type CHARSTR.	Change Operand
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	''
+Operand Types: 
+	CHARSTR
+
+------------------------------------------
+CodeLine 10
 PC: 7
 Original Line Of Code: G int.data 8
 Line Comment: 
@@ -157,8 +174,42 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 10
+CodeLine 11
 PC: 8
+Original Line Of Code: G2 int.data 999999999999
+Line Comment: 
+Line Length: 1
+Error Count: 1
+Errors:
+	19	The operand 0: 999999999999 did not match the operand type NUMBER.	Change Operand
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	999999999999
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 12
+PC: 9
+Original Line Of Code: test bin.data 50
+Line Comment: 
+Line Length: 1
+Error Count: 1
+Errors:
+	19	The operand 0: 50 did not match the operand type BINARY.	Change Operand
+Directive Name: BIN.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	50
+Operand Types: 
+	BINARY
+
+------------------------------------------
+CodeLine 13
+PC: 10
 Original Line Of Code: A1 int.data 15
 Line Comment: 
 Line Length: 1
@@ -173,8 +224,8 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 11
-PC: 9
+CodeLine 14
+PC: 11
 Original Line Of Code: A2 int.data 6
 Line Comment: 
 Line Length: 1
@@ -189,8 +240,8 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 12
-PC: 10
+CodeLine 15
+PC: 12
 Original Line Of Code: A3 int.data 3
 Line Comment: 
 Line Length: 1
@@ -205,8 +256,8 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 13
-PC: 70
+CodeLine 16
+PC: 72
 Original Line Of Code: 	mem.skip 60
 Line Comment: 
 Line Length: 60
@@ -221,8 +272,8 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 14
-PC: 70
+CodeLine 17
+PC: 72
 Original Line Of Code: R3	EQU  50
 Line Comment: 
 Line Length: 0
@@ -237,8 +288,8 @@ Operand Types:
 	STRING
 
 ------------------------------------------
-CodeLine 15
-PC: 70
+CodeLine 18
+PC: 72
 Original Line Of Code: .text
 Line Comment: 
 Line Length: 0
@@ -251,8 +302,24 @@ Operands:
 Operand Types: 
 
 ------------------------------------------
-CodeLine 16
-PC: 70
+CodeLine 19
+PC: 72
+Original Line Of Code: Debug 1
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: DEBUG
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	1
+Operand Types: 
+	BOOLEAN
+
+------------------------------------------
+CodeLine 20
+PC: 72
 Original Line Of Code: 	EXT TTT,RRR,QQQ,BBB
 Line Comment: 
 Line Length: 0
@@ -273,8 +340,8 @@ Operand Types:
 	LABELREF
 
 ------------------------------------------
-CodeLine 17
-PC: 71
+CodeLine 21
+PC: 73
 Original Line Of Code: 	dump 1,0,0
 Line Comment: 
 Line Length: 1
@@ -294,8 +361,8 @@ Operand Types:
 	BIT
 
 ------------------------------------------
-CodeLine 18
-PC: 72
+CodeLine 22
+PC: 74
 Original Line Of Code: 	LW $1,A($1)
 Line Comment: 
 Line Length: 1
@@ -313,8 +380,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 19
-PC: 73
+CodeLine 23
+PC: 75
 Original Line Of Code: 	LW $1,($1)
 Line Comment: 
 Line Length: 1
@@ -332,8 +399,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 20
-PC: 74
+CodeLine 24
+PC: 76
 Original Line Of Code: 	LW $2,G
 Line Comment: 
 Line Length: 1
@@ -351,8 +418,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 21
-PC: 75
+CodeLine 25
+PC: 77
 Original Line Of Code: 	LW $3,A1
 Line Comment: 
 Line Length: 1
@@ -370,8 +437,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 22
-PC: 76
+CodeLine 26
+PC: 78
 Original Line Of Code: 	LW $4,A2
 Line Comment: 
 Line Length: 1
@@ -389,8 +456,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 23
-PC: 77
+CodeLine 27
+PC: 79
 Original Line Of Code: 	LW $5,A3
 Line Comment: 
 Line Length: 1
@@ -408,16 +475,16 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 24
-PC: 77
+CodeLine 28
+PC: 79
 Original Line Of Code: 	|already tested add sun mul and div
 Line Comment: |already tested add sun mul and div
 Line Length: 0
 Error Count: 0
 Errors:
 ------------------------------------------
-CodeLine 25
-PC: 78
+CodeLine 29
+PC: 80
 Original Line Of Code: H	JEQ	$1,$2,I		|jump to I if $1 == $2
 Line Comment: |jump to I if $1 == $2
 Line Length: 1
@@ -437,8 +504,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 26
-PC: 79
+CodeLine 30
+PC: 81
 Original Line Of Code: 	div $6, $3,$4
 Line Comment: 
 Line Length: 1
@@ -458,8 +525,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 27
-PC: 80
+CodeLine 31
+PC: 82
 Original Line Of Code: I	JNE	$1,$2,J		|jump to J if $1 != $2
 Line Comment: |jump to J if $1 != $2
 Line Length: 1
@@ -479,8 +546,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 28
-PC: 81
+CodeLine 32
+PC: 83
 Original Line Of Code: 	mul $1,$1,$3
 Line Comment: 
 Line Length: 1
@@ -500,8 +567,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 29
-PC: 82
+CodeLine 33
+PC: 84
 Original Line Of Code: 	andi $1,$5,50
 Line Comment: 
 Line Length: 1
@@ -521,8 +588,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 30
-PC: 83
+CodeLine 34
+PC: 85
 Original Line Of Code: J	JGT	$1,$2,K		|jump to K if $1 > $2
 Line Comment: |jump to K if $1 > $2
 Line Length: 1
@@ -542,8 +609,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 31
-PC: 84
+CodeLine 35
+PC: 86
 Original Line Of Code: 	add $2,$2,$1
 Line Comment: 
 Line Length: 1
@@ -563,8 +630,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 32
-PC: 85
+CodeLine 36
+PC: 87
 Original Line Of Code: K	JLT	$1,$2,L		|jump to L if $1 < $2
 Line Comment: |jump to L if $1 < $2
 Line Length: 1
@@ -584,8 +651,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 33
-PC: 86
+CodeLine 37
+PC: 88
 Original Line Of Code: 	sub $1, $3,$4
 Line Comment: 
 Line Length: 1
@@ -605,8 +672,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 34
-PC: 87
+CodeLine 38
+PC: 89
 Original Line Of Code: 	LW $5,A3
 Line Comment: 
 Line Length: 1
@@ -624,8 +691,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 35
-PC: 88
+CodeLine 39
+PC: 90
 Original Line Of Code: 	ands $1,0($5)
 Line Comment: 
 Line Length: 1
@@ -643,8 +710,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 36
-PC: 89
+CodeLine 40
+PC: 91
 Original Line Of Code: 	ors $1,2($5)
 Line Comment: 
 Line Length: 1
@@ -662,8 +729,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 37
-PC: 90
+CodeLine 41
+PC: 92
 Original Line Of Code: L	JLE	$1,$2,M		|jump to M if $1 <= $2
 Line Comment: |jump to M if $1 <= $2
 Line Length: 1
@@ -683,8 +750,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 38
-PC: 91
+CodeLine 42
+PC: 93
 Original Line Of Code: 	add $1,$2,$1	
 Line Comment: 
 Line Length: 1
@@ -704,8 +771,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 39
-PC: 92
+CodeLine 43
+PC: 94
 Original Line Of Code: 	SW $1,0($2)
 Line Comment: 
 Line Length: 1
@@ -723,8 +790,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 40
-PC: 93
+CodeLine 44
+PC: 95
 Original Line Of Code: 	JR $1
 Line Comment: 
 Line Length: 1
@@ -740,8 +807,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 41
-PC: 94
+CodeLine 45
+PC: 96
 Original Line Of Code: 	PWR $1,$2,$3
 Line Comment: 
 Line Length: 1
@@ -761,8 +828,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 42
-PC: 95
+CodeLine 46
+PC: 97
 Original Line Of Code: M	muli $5,$1,-2
 Line Comment: 
 Line Length: 1
@@ -782,8 +849,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 43
-PC: 96
+CodeLine 47
+PC: 98
 Original Line Of Code: O	SRV $1,$2,10
 Line Comment: 
 Line Length: 1
@@ -803,8 +870,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 44
-PC: 97
+CodeLine 48
+PC: 99
 Original Line Of Code: 	SLL $2,$1,5
 Line Comment: 
 Line Length: 1
@@ -824,8 +891,8 @@ Operand Types:
 	BITS
 
 ------------------------------------------
-CodeLine 45
-PC: 98
+CodeLine 49
+PC: 100
 Original Line Of Code: 	SRL $5,$5,2
 Line Comment: 
 Line Length: 1
@@ -845,8 +912,8 @@ Operand Types:
 	BITS
 
 ------------------------------------------
-CodeLine 46
-PC: 99
+CodeLine 50
+PC: 101
 Original Line Of Code: N	SW $5,0($2)	
 Line Comment: 
 Line Length: 1
@@ -864,8 +931,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 47
-PC: 100
+CodeLine 51
+PC: 102
 Original Line Of Code: P	LnW $3, 0($2)
 Line Comment: 
 Line Length: 1
@@ -883,8 +950,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 48
-PC: 101
+CodeLine 52
+PC: 103
 Original Line Of Code: Q	LWi	$1, 0($2)
 Line Comment: 
 Line Length: 1
@@ -903,8 +970,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 49
-PC: 102
+CodeLine 53
+PC: 104
 Original Line Of Code: 	jal	$5,$1,$1
 Line Comment: 
 Line Length: 1
@@ -925,8 +992,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 50
-PC: 103
+CodeLine 54
+PC: 105
 Original Line Of Code: R	Lui $2, 50
 Line Comment: 
 Line Length: 1
@@ -944,16 +1011,16 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 51
-PC: 103
+CodeLine 55
+PC: 105
 Original Line Of Code: 	|compare values of regs
 Line Comment: |compare values of regs
 Line Length: 0
 Error Count: 0
 Errors:
 ------------------------------------------
-CodeLine 52
-PC: 104
+CodeLine 56
+PC: 106
 Original Line Of Code: S	or $1,$1,2
 Line Comment: 
 Line Length: 1
@@ -974,8 +1041,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 53
-PC: 105
+CodeLine 57
+PC: 107
 Original Line Of Code: T	and $1,$1,3
 Line Comment: 
 Line Length: 1
@@ -996,8 +1063,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 54
-PC: 106
+CodeLine 58
+PC: 108
 Original Line Of Code: 	SRV $5,$2,2
 Line Comment: 
 Line Length: 1
@@ -1017,8 +1084,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 55
-PC: 107
+CodeLine 59
+PC: 109
 Original Line Of Code: U	xor $6,$6,$5
 Line Comment: 
 Line Length: 1
@@ -1038,8 +1105,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 56
-PC: 108
+CodeLine 60
+PC: 110
 Original Line Of Code: V	nor $2,$4,$3
 Line Comment: 
 Line Length: 1
@@ -1059,8 +1126,8 @@ Operand Types:
 	REGISTER
 
 ------------------------------------------
-CodeLine 57
-PC: 109
+CodeLine 61
+PC: 111
 Original Line Of Code: W	ori $2,$5,6
 Line Comment: 
 Line Length: 1
@@ -1080,8 +1147,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 58
-PC: 110
+CodeLine 62
+PC: 112
 Original Line Of Code: X	xori $5,$6,9
 Line Comment: 
 Line Length: 1
@@ -1101,8 +1168,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 59
-PC: 111
+CodeLine 63
+PC: 113
 Original Line Of Code: Y	nori $5, $1,56
 Line Comment: 
 Line Length: 1
@@ -1122,8 +1189,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 60
-PC: 112
+CodeLine 64
+PC: 114
 Original Line Of Code: Z	jal $1,$2, halt2
 Line Comment: 
 Line Length: 1
@@ -1143,8 +1210,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 61
-PC: 113
+CodeLine 65
+PC: 115
 Original Line Of Code: 	ors $1,halt2($5)
 Line Comment: 
 Line Length: 1
@@ -1162,8 +1229,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 62
-PC: 114
+CodeLine 66
+PC: 116
 Original Line Of Code: 	muls $1,$2, R3
 Line Comment: 
 Line Length: 1
@@ -1183,8 +1250,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 63
-PC: 115
+CodeLine 67
+PC: 117
 Original Line Of Code: 	adds $5,$6, R3
 Line Comment: 
 Line Length: 1
@@ -1204,8 +1271,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 64
-PC: 116
+CodeLine 68
+PC: 118
 Original Line Of Code: 	subs $3,$4,R3
 Line Comment: 
 Line Length: 1
@@ -1225,8 +1292,8 @@ Operand Types:
 	ADDRESS
 
 ------------------------------------------
-CodeLine 65
-PC: 117
+CodeLine 69
+PC: 119
 Original Line Of Code: 	LW $r3, A3
 Line Comment: 
 Line Length: 1
@@ -1245,8 +1312,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 66
-PC: 118
+CodeLine 70
+PC: 120
 Original Line Of Code: 	LA $1, 0($3)
 Line Comment: 
 Line Length: 1
@@ -1264,8 +1331,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 67
-PC: 119
+CodeLine 71
+PC: 121
 Original Line Of Code: 	SA $1, 0($3)
 Line Comment: 
 Line Length: 1
@@ -1283,8 +1350,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 68
-PC: 120
+CodeLine 72
+PC: 122
 Original Line Of Code: 	outni	5, 5
 Line Comment: 
 Line Length: 1
@@ -1302,8 +1369,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 69
-PC: 121
+CodeLine 73
+PC: 123
 Original Line Of Code: 	outci 3,'th'
 Line Comment: 
 Line Length: 1
@@ -1321,8 +1388,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 70
-PC: 122
+CodeLine 74
+PC: 124
 Original Line Of Code: 	outci 3,'en'
 Line Comment: 
 Line Length: 1
@@ -1340,8 +1407,8 @@ Operand Types:
 	SIGNEDIMMEDIATE
 
 ------------------------------------------
-CodeLine 71
-PC: 123
+CodeLine 75
+PC: 125
 Original Line Of Code: 	Inn 2,A($1)
 Line Comment: 
 Line Length: 1
@@ -1359,8 +1426,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 72
-PC: 124
+CodeLine 76
+PC: 126
 Original Line Of Code: 	InC 3,($0)
 Line Comment: 
 Line Length: 1
@@ -1378,8 +1445,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 73
-PC: 125
+CodeLine 77
+PC: 127
 Original Line Of Code: 	Inn 1,B
 Line Comment: 
 Line Length: 1
@@ -1397,8 +1464,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 74
-PC: 126
+CodeLine 78
+PC: 128
 Original Line Of Code: 	J HALT($0)
 Line Comment: 
 Line Length: 1
@@ -1414,8 +1481,8 @@ Operand Types:
 	COMPLEXADDRESS
 
 ------------------------------------------
-CodeLine 75
-PC: 127
+CodeLine 79
+PC: 129
 Original Line Of Code: HALT	Halt 0
 Line Comment: 
 Line Length: 1
@@ -1431,8 +1498,8 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 76
-PC: 128
+CodeLine 80
+PC: 130
 Original Line Of Code: halt2 	halt 2
 Line Comment: 
 Line Length: 1
@@ -1448,8 +1515,8 @@ Operand Types:
 	NUMBER
 
 ------------------------------------------
-CodeLine 77
-PC: 128
+CodeLine 81
+PC: 130
 Original Line Of Code: .END,SimpleInstructionTest
 Line Comment: 
 Line Length: 0

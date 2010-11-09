@@ -2,84 +2,92 @@ LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
 0	00000000		1	.Start,SimpleInstructionTest,00
 0	00000000		2	.data
 1	0000000a	A	3	A int.data 10
-2	10614320	A	4	B Str.data 'ABC'
-3	00000008	A	5	C hex.data 8
-4	00000006	A	6	D bin.data 0110
-5	00000000	R	7	E Adr.data A
-5	00000001	A	8	F adr.exp 1+2
-5	00000001	R	9	F2 adr.exp 1+2-A
-6	00000008	A	10	G int.data 8
-7	0000000f	A	11	A1 int.data 15
-8	00000006	A	12	A2 int.data 6
-9	00000003	A	13	A3 int.data 3
-45	0000003c	A	14		mem.skip 60
-45	00000000	A	15	R3	EQU  50
-45	00000000		16	.text
-45	00000000	E	17		EXT TTT,RRR,QQQ,BBB
-46	fc000000	A	18		dump 1,0,0
-47	c0200000	A	19		LW $1,A($1)
-48	c0200000	A	20		LW $1,($1)
-49	c0400000	A	21		LW $2,G
-4a	c0600000	A	22		LW $3,A1
-4b	c0800000	A	23		LW $4,A2
-4c	c0a00000	A	24		LW $5,A3
-4c
-4d	8028004e	A	26	H	JEQ	$1,$2,I		|jump to I if $1 == $2
-4e	04ce001a	A	27		div $6, $3,$4
-4f	84280051	A	28	I	JNE	$1,$2,J		|jump to J if $1 != $2
-50	04258018	A	29		mul $1,$1,$3
-51	dc340032	A	30		andi $1,$5,50
-52	88280053	A	31	J	JGT	$1,$2,K		|jump to K if $1 > $2
-53	04488020	A	32		add $2,$2,$1
-54	8c280058	A	33	K	JLT	$1,$2,L		|jump to L if $1 < $2
-55	042e0022	A	34		sub $1, $3,$4
-56	c0a00000	A	35		LW $5,A3
-57	e8200000	A	36		ands $1,0($5)
-58	ec200000	A	37		ors $1,2($5)
-59	9028005d	A	38	L	JLE	$1,$2,M		|jump to M if $1 <= $2
-5a	04288020	A	39		add $1,$2,$1	
-5b	9c200000	A	40		SW $1,0($2)
-5c	0c200008	A	41		JR $1
-5d	0429801c	A	42		PWR $1,$2,$3
-5e	50a4fffe	A	43	M	muli $5,$1,-2
-5f	f428000a	A	44	O	SRV $1,$2,10
-60	08440a00	A	45		SLL $2,$1,5
-61	08b40402	A	46		SRL $5,$5,2
-62	9ca00000	A	47	N	SW $5,0($2)	
-63	c4600000	A	48	P	LnW $3, 0($2)
-64	c8200000	A	49	Q	LWi	$1, 0($2)
+3	4142434445464720	A	4	B Str.data 'ABCDEFG'
+4	00000008	A	5	C hex.data 8
+5	00000006	A	6	D bin.data 0110
+6	00000000	R	7	E Adr.data A
+6	A	8	F adr.exp 1+2+
+	19	The operand 0: 1+2+ did not match the operand type EXP.	Change Operand
+6	A	9	F2 adr.exp 1+2+A
+	19	The operand 0: 1+2+A did not match the operand type EXP.	Change Operand
+6	A	10	kkk str.data ''
+	19	The operand 0: '' did not match the operand type CHARSTR.	Change Operand
+7	00000008	A	11	G int.data 8
+8	A	12	G2 int.data 999999999999
+	19	The operand 0: 999999999999 did not match the operand type NUMBER.	Change Operand
+9	A	13	test bin.data 50
+	19	The operand 0: 50 did not match the operand type BINARY.	Change Operand
+a	0000000f	A	14	A1 int.data 15
+b	00000006	A	15	A2 int.data 6
+c	00000003	A	16	A3 int.data 3
+48	0000003c	A	17		mem.skip 60
+48	20202020	A	18	R3	EQU  50
+48	00000000		19	.text
+48	00000001	A	20	Debug 1
+48	00000000	E	21		EXT TTT,RRR,QQQ,BBB
+49	fc000000	A	22		dump 1,0,0
+4a	c0200000	A	23		LW $1,A($1)
+4b	c0200000	A	24		LW $1,($1)
+4c	c0400000	A	25		LW $2,G
+4d	c0600000	A	26		LW $3,A1
+4e	c0800000	A	27		LW $4,A2
+4f	c0a00000	A	28		LW $5,A3
+4f
+50	80280051	A	30	H	JEQ	$1,$2,I		|jump to I if $1 == $2
+51	04ce001a	A	31		div $6, $3,$4
+52	84280054	A	32	I	JNE	$1,$2,J		|jump to J if $1 != $2
+53	04258018	A	33		mul $1,$1,$3
+54	dc340032	A	34		andi $1,$5,50
+55	88280056	A	35	J	JGT	$1,$2,K		|jump to K if $1 > $2
+56	04488020	A	36		add $2,$2,$1
+57	8c28005b	A	37	K	JLT	$1,$2,L		|jump to L if $1 < $2
+58	042e0022	A	38		sub $1, $3,$4
+59	c0a00000	A	39		LW $5,A3
+5a	e8200000	A	40		ands $1,0($5)
+5b	ec200000	A	41		ors $1,2($5)
+5c	90280060	A	42	L	JLE	$1,$2,M		|jump to M if $1 <= $2
+5d	04288020	A	43		add $1,$2,$1	
+5e	9c200000	A	44		SW $1,0($2)
+5f	0c200008	A	45		JR $1
+60	0429801c	A	46		PWR $1,$2,$3
+61	50a4fffe	A	47	M	muli $5,$1,-2
+62	f428000a	A	48	O	SRV $1,$2,10
+63	08440a00	A	49		SLL $2,$1,5
+64	08b40402	A	50		SRL $5,$5,2
+65	9ca00000	A	51	N	SW $5,0($2)	
+66	c4600000	A	52	P	LnW $3, 0($2)
+67	c8200000	A	53	Q	LWi	$1, 0($2)
 	19	Operand [1]: 0($2) is not a valid SIGNEDIMMEDIATE.	Change Operand
-65	1ca40000	A	50		jal	$5,$1,$1
+68	1ca40000	A	54		jal	$5,$1,$1
 	19	Operand [2]: $1 is not a valid ADDRESS.	Change Operand
-66	cc400032	A	51	R	Lui $2, 50
-66
-67	08240025	A	53	S	or $1,$1,2
+69	cc400032	A	55	R	Lui $2, 50
+69
+6a	08240025	A	57	S	or $1,$1,2
 	19	Operand [2]: 2 is not a valid REGISTER.	Change Operand
-68	08240024	A	54	T	and $1,$1,3
+6b	08240024	A	58	T	and $1,$1,3
 	19	Operand [2]: 3 is not a valid REGISTER.	Change Operand
-69	f4a80002	A	55		SRV $5,$2,2
-6a	08da8026	A	56	U	xor $6,$6,$5
-6b	08518027	A	57	V	nor $2,$4,$3
-6c	d0540006	A	58	W	ori $2,$5,6
-6d	d4b80009	A	59	X	xori $5,$6,9
-6e	d8a40038	A	60	Y	nori $5, $1,56
-6f	1c28007e	A	61	Z	jal $1,$2, halt2
-70	1c28007e	A	62	Z	jal $1,$2, halt2
-	2	Duplicate Labels.	Change label name
-71	70280045	A	63		muls $1,$2, R3
-72	68b80045	A	64		adds $5,$6, R3
-73	6c700045	A	65		subs $3,$4,R3
-74	c0000000	A	66		LW $r3, A3
+6c	f4a80002	A	59		SRV $5,$2,2
+6d	08da8026	A	60	U	xor $6,$6,$5
+6e	08518027	A	61	V	nor $2,$4,$3
+6f	d0540006	A	62	W	ori $2,$5,6
+70	d4b80009	A	63	X	xori $5,$6,9
+71	d8a40038	A	64	Y	nori $5, $1,56
+72	1c280081	A	65	Z	jal $1,$2, halt2
+73	ec200000	A	66		ors $1,halt2($5)
+74	70280048	A	67		muls $1,$2, R3
+75	68b80048	A	68		adds $5,$6, R3
+76	6c700048	A	69		subs $3,$4,R3
+77	c0000000	A	70		LW $r3, A3
 	19	Operand [0]: $r3 is not a valid REGISTER.	Change Operand
-75	e0200000	A	67		LA $1, 0($3)
-76	e4200000	A	68		SA $1, 0($3)
-77	78000005	A	69		outni	5, 5
-78	7c007468	A	70		outci 3,'th'
-79	7c00656e	A	71		outci 3,'en'
-7a	10220000	A	72		Inn 2,A($1)
-7b	10030000	A	73		InC 3,($0)
-7c	10010001	A	74		Inn 1,B
-7d	18000000	R	75		J HALT($0)
-7e	20000000	A	76	HALT	Halt 0
-7f	20000002	A	77	halt2 	halt 2
-7f	00000000		78	.END,SimpleInstructionTest
+78	e0200000	A	71		LA $1, 0($3)
+79	e4200000	A	72		SA $1, 0($3)
+7a	78000005	A	73		outni	5, 5
+7b	7c007468	A	74		outci 3,'th'
+7c	7c00656e	A	75		outci 3,'en'
+7d	10220000	A	76		Inn 2,A($1)
+7e	10030000	A	77		InC 3,($0)
+7f	10010001	A	78		Inn 1,B
+80	18000000	R	79		J HALT($0)
+81	20000000	A	80	HALT	Halt 0
+82	20000002	A	81	halt2 	halt 2
+82	00000000		82	.END,SimpleInstructionTest
