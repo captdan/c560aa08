@@ -301,14 +301,12 @@ public class ObjectFile {
 			textRecord.add(String.valueOf(codeline.instruction.operandsArray.size()));
 			for (int count = 0; count < codeline.instruction.operandsArray.size();count++)
 			{
-			textRecord.add(codeline.instruction.operandsArray.get(count).relocationType.toString());
-			if(codeline.instruction.operandsArray.get(count).relocationType != Operand.relocationTypes.A )
+				//TODO Fix complex address relocation type output
+			
+			if(codeline.instruction.operandsArray.get(count).operandType != Instruction.operandTypes.COMPLEXADDRESS)
 			{
-				if(codeline.instruction.operandsArray.get(count).operandType == Instruction.operandTypes.COMPLEXADDRESS)
-				{
-					textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
-				}
-				else
+				textRecord.add(codeline.instruction.operandsArray.get(count).relocationType.toString());
+				if(codeline.instruction.operandsArray.get(count).relocationType != Operand.relocationTypes.A )
 				{
 					if(codeline.instruction.operandsArray.get(count).relocationType == Operand.relocationTypes.E )
 					{
@@ -316,19 +314,25 @@ public class ObjectFile {
 					}
 					else if(codeline.instruction.operandsArray.get(count).relocationType == Operand.relocationTypes.R )
 					{
-						textRecord.add(codeline.instruction.operandsArray.get(count).operand);
+						//textRecord.add(codeline.instruction.operandsArray.get(count).operand);
 						textRecord.add("+");
 						textRecord.add(String.valueOf(p.startLocation));
 					}
 				}
-				
 			}
+			else
+			{
+				
+				textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
+			}
+			
+
 			}
 		}
 		
 		textRecord.add(p.programName);
 		
-		
+		textRecord.add(codeline.originalLineOfCode);
 		return textRecord;
 	}
 	
