@@ -1,11 +1,11 @@
-H|SimpleInstructionTest|7c|0|2010:312|23:36:41|1|74|0|SAL|1|2|SimpleInstructionTest
+H|SimpleInstructionTest|7c|0|2010:313|00:17:10|1|75|0|SAL|1|2|SimpleInstructionTest
 L|SimpleInstructionTest|0|START|SimpleInstructionTest
 T|0|N|00000000|0|SimpleInstructionTest|.Start,SimpleInstructionTest,00
 T|0|N|00000000|0|SimpleInstructionTest|.data
 T|1|N|0000000a|1|A|SimpleInstructionTest|A int.data 10
 T|3|N|4142434445464720|1|A|SimpleInstructionTest|B Str.data 'ABCDEFG'
 T|4|N|20202020|1|A|SimpleInstructionTest|BB Str.data ' '
-T|4|N|20202020|1|A|SimpleInstructionTest|BBB1 Str.data ''
+T|4|N|00000000|1|A|SimpleInstructionTest|BBB1 Str.data ''
 T|5|N|00000008|1|A|SimpleInstructionTest|C hex.data 8
 T|6|N|00000006|1|A|SimpleInstructionTest|D bin.data 0110
 T|7|N|00000000|1|R|+|0|SimpleInstructionTest|E Adr.data A
@@ -13,10 +13,9 @@ T|8|N|0000000f|1|A|SimpleInstructionTest|A1 int.data 15
 T|9|N|00000006|1|A|SimpleInstructionTest|A2 int.data 6
 T|a|N|00000003|1|A|SimpleInstructionTest|A3 int.data 3
 T|46|N|0000003c|1|A|SimpleInstructionTest|	mem.skip 60
-T|46|N|20202020|1|A|SimpleInstructionTest|R3	EQU  50
+T|46|N|00000000|1|A|SimpleInstructionTest|R3	EQU  50
 T|46|N|00000000|0|SimpleInstructionTest|.text
 T|46|N|00000000|1|A|SimpleInstructionTest|Debug 0
-T|46|N|00000000|4|E|TTT|E|RRR|E|QQQ|E|BBB|SimpleInstructionTest|	EXT TTT,RRR,QQQ,BBB
 T|47|N|fc000000|3|A|A|A|SimpleInstructionTest|	dump 1,0,0
 T|48|N|c0200000|2|A|A|SimpleInstructionTest|	LW $1,A($1)
 T|49|N|c0200000|2|A||SimpleInstructionTest|	LW $1,($1)
@@ -72,4 +71,4 @@ T|7a|N|18000000|1|HALT|SimpleInstructionTest|	J HALT($0)
 T|7b|N|20000000|1|A|SimpleInstructionTest|HALT	Halt 0
 T|7c|N|20000002|1|A|SimpleInstructionTest|halt2 	halt 2
 T|7c|N|00000000|0|SimpleInstructionTest|.END,SimpleInstructionTest
-E|4d|SimpleInstructionTest
+E|4e|SimpleInstructionTest

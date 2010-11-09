@@ -993,9 +993,9 @@ public class Parser
 		}
 		else if (possibleDirective.equals("STR.DATA")) 
 		{
-			
+			//System.out.println(possibleDirective);
 			String[] tempString = Operand.splitByCharacter(codeString, '\'');
-			if(tempString.length < 4)
+			if(tempString.length == 3)
 			{
 				directiveObj.operandArray.clear();
 				directiveObj.operandArray.add(new Operand("'"+tempString[1]+"'",Directive.operandTypes.STRING));

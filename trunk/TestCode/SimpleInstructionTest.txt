@@ -1,6 +1,7 @@
 .Start,SimpleInstructionTest,00
 .data
 A int.data 10
+peace int.data 
 B Str.data 'ABCDEFG'
 BB Str.data ' '
 BBB1 Str.data ''
@@ -14,7 +15,7 @@ A3 int.data 3
 R3	EQU  50
 .text
 Debug 0
-	EXT TTT,RRR,QQQ,BBB
+	EXT TTT,RRR,QQQ,BBB,PPQ
 	dump 1,0,0
 	LW $1,A($1)
 	LW $1,($1)

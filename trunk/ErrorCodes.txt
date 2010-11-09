@@ -23,4 +23,5 @@
 22	Binary expected.	Change operand to correct binary.
 23	Invalid Register number.		Change register number.
 24	invalid Instruction.	Check line for syntax errors.
+25	Too many operands.	Change number of operands.
 99	General Error	Check this line for syntax errors.

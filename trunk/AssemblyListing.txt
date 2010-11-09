@@ -2,74 +2,77 @@ LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
 0	00000000		1	.Start,SimpleInstructionTest,00
 0	00000000		2	.data
 1	0000000a	A	3	A int.data 10
-3	4142434445464720	A	4	B Str.data 'ABCDEFG'
-4	20202020	A	5	BB Str.data ' '
-4	20202020	A	6	BBB1 Str.data ''
-5	00000008	A	7	C hex.data 8
-6	00000006	A	8	D bin.data 0110
-7	00000000	R	9	E Adr.data A
-8	0000000f	A	10	A1 int.data 15
-9	00000006	A	11	A2 int.data 6
-a	00000003	A	12	A3 int.data 3
-46	0000003c	A	13		mem.skip 60
-46	20202020	A	14	R3	EQU  50
-46	00000000		15	.text
-46	00000000	A	16	Debug 0
-46	00000000	E	17		EXT TTT,RRR,QQQ,BBB
-47	fc000000	A	18		dump 1,0,0
-48	c0200000	A	19		LW $1,A($1)
-49	c0200000	A	20		LW $1,($1)
+1
+	99	General Error	Check this line for syntax errors.
+3	4142434445464720	A	5	B Str.data 'ABCDEFG'
+4	20202020	A	6	BB Str.data ' '
+4	00000000	A	7	BBB1 Str.data ''
+5	00000008	A	8	C hex.data 8
+6	00000006	A	9	D bin.data 0110
+7	00000000	R	10	E Adr.data A
+8	0000000f	A	11	A1 int.data 15
+9	00000006	A	12	A2 int.data 6
+a	00000003	A	13	A3 int.data 3
+46	0000003c	A	14		mem.skip 60
+46	00000000	A	15	R3	EQU  50
+46	00000000		16	.text
+46	00000000	A	17	Debug 0
+46	A	18		EXT TTT,RRR,QQQ,BBB,PPQ
+	25	Too many operands.	Change number of operands.
+47	fc000000	A	19		dump 1,0,0
+48	c0200000	A	20		LW $1,A($1)
+49	c0200000	A	21		LW $1,($1)
 49
-4a	8028004b	A	22	H	JEQ	$1,$2,I		|jump to I if $1 == $2
-4b	04ce001a	A	23		div $6, $3,$4
-4c	8428004e	A	24	I	JNE	$1,$2,J		|jump to J if $1 != $2
-4d	04258018	A	25		mul $1,$1,$3
-4e	dc340032	A	26		andi $1,$5,50
-4f	88280050	A	27	J	JGT	$1,$2,K		|jump to K if $1 > $2
-50	04488020	A	28		add $2,$2,$1
-51	8c280055	A	29	K	JLT	$1,$2,L		|jump to L if $1 < $2
-52	042e0022	A	30		sub $1, $3,$4
-53	c0a00000	A	31		LW $5,A3
-54	e8200000	A	32		ands $1,0($5)
-55	ec200000	A	33		ors $1,2($5)
-56	9028005a	A	34	L	JLE	$1,$2,M		|jump to M if $1 <= $2
-57	04288020	A	35		add $1,$2,$1	
-58	9c200000	A	36		SW $1,0($2)
-59	0c200008	A	37		JR $1
-5a	0429801c	A	38		PWR $1,$2,$3
-5b	50a40004	A	39	M	muli $5,$1,4
-5c	f428000a	A	40	O	SRV $1,$2,10
-5d	08440a00	A	41		SLL $2,$1,5
-5e	08b40402	A	42		SRL $5,$5,2
-5f	9ca00000	A	43	N	SW $5,0($2)	
-60	c4600000	A	44	P	LnW $3, 0($2)
-61	c8200000	A	45	Q	LWi	$1, 4
-62	1ca4005f	A	46		jal	$5,$1,P
-63	cc400032	A	47	R	Lui $2, 50
+4a	8028004b	A	23	H	JEQ	$1,$2,I		|jump to I if $1 == $2
+4b	04ce001a	A	24		div $6, $3,$4
+4c	8428004e	A	25	I	JNE	$1,$2,J		|jump to J if $1 != $2
+4d	04258018	A	26		mul $1,$1,$3
+4e	dc340032	A	27		andi $1,$5,50
+4f	88280050	A	28	J	JGT	$1,$2,K		|jump to K if $1 > $2
+50	04488020	A	29		add $2,$2,$1
+51	8c280055	A	30	K	JLT	$1,$2,L		|jump to L if $1 < $2
+52	042e0022	A	31		sub $1, $3,$4
+53	c0a00000	A	32		LW $5,A3
+54	e8200000	A	33		ands $1,0($5)
+55	ec200000	A	34		ors $1,2($5)
+56	9028005a	A	35	L	JLE	$1,$2,M		|jump to M if $1 <= $2
+57	04288020	A	36		add $1,$2,$1	
+58	9c200000	A	37		SW $1,0($2)
+59	0c200008	A	38		JR $1
+5a	0429801c	A	39		PWR $1,$2,$3
+5b	50a40004	A	40	M	muli $5,$1,4
+5c	f428000a	A	41	O	SRV $1,$2,10
+5d	08440a00	A	42		SLL $2,$1,5
+5e	08b40402	A	43		SRL $5,$5,2
+5f	9ca00000	A	44	N	SW $5,0($2)	
+60	c4600000	A	45	P	LnW $3, 0($2)
+61	c8200000	A	46	Q	LWi	$1, 4
+62	1ca4005f	A	47		jal	$5,$1,P
+63	cc400032	A	48	R	Lui $2, 50
 63
-64	08250025	A	49	S	or $1,$1,$2
-65	08258024	A	50	T	and $1,$1,$3
-66	f4a80002	A	51		SRV $5,$2,2
-67	08da8026	A	52	U	xor $6,$6,$5
-68	08518027	A	53	V	nor $2,$4,$3
-69	d0540006	A	54	W	ori $2,$5,6
-6a	d4b80009	A	55	X	xori $5,$6,9
-6b	d8a40038	A	56	Y	nori $5, $1,56
-6c	1c28007b	A	57	Z	jal $1,$2, halt2
-6d	ec200000	A	58		ors $1,halt2($5)
-6e	70280046	A	59		muls $1,$2, R3
-6f	68b80046	A	60		adds $5,$6, R3
-70	6c700046	A	61		subs $3,$4,R3
-71	c0600000	A	62		LW $3, 0($2)
-72	e0200000	A	63		LA $1, 0($3)
-73	e4200000	A	64		SA $1, 0($3)
-74	78000005	A	65		outni	5, 5
-75	7c007468	A	66		outci 3,'th'
-76	7c00656e	A	67		outci 3,'en'
-77	10220000	A	68		Inn 2,A($1)
-78	10030000	A	69		InC 3,($0)
-79	10010001	A	70		Inn 1,B
-7a	18000000	R	71		J HALT($0)
-7b	20000000	A	72	HALT	Halt 0
-7c	20000002	A	73	halt2 	halt 2
-7c	00000000		74	.END,SimpleInstructionTest
+64	08250025	A	50	S	or $1,$1,$2
+65	08258024	A	51	T	and $1,$1,$3
+66	f4a80002	A	52		SRV $5,$2,2
+67	08da8026	A	53	U	xor $6,$6,$5
+68	08518027	A	54	V	nor $2,$4,$3
+69	d0540006	A	55	W	ori $2,$5,6
+6a	d4b80009	A	56	X	xori $5,$6,9
+6b	d8a40038	A	57	Y	nori $5, $1,56
+6c	1c28007b	A	58	Z	jal $1,$2, halt2
+6d	ec200000	A	59		ors $1,halt2($5)
+6e	70280046	A	60		muls $1,$2, R3
+6f	68b80046	A	61		adds $5,$6, R3
+70	6c700046	A	62		subs $3,$4,R3
+71	c0600000	A	63		LW $3, 0($2)
+72	e0200000	A	64		LA $1, 0($3)
+73	e4200000	A	65		SA $1, 0($3)
+74	78000005	A	66		outni	5, 5
+75	7c007468	A	67		outci 3,'th'
+76	7c00656e	A	68		outci 3,'en'
+77	10220000	A	69		Inn 2,A($1)
+78	10030000	A	70		InC 3,($0)
+79	10010001	A	71		Inn 1,B
+7a	18000000	R	72		J HALT($0)
+7b	20000000	A	73	HALT	Halt 0
+7c	20000002	A	74	halt2 	halt 2
+7c	00000000		75	.END,SimpleInstructionTest
