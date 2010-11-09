@@ -156,6 +156,10 @@ public class Parser
 		ObjectFile newObjectFile = new ObjectFile(newProgram);
 		
 		newObjectFile.prettyFerret2();
+		
+		Program newProgram2 = new Program(programName, startingLocation, execStart,PC, CodeLineArray, SymbTable, litTable);
+		AssemblyListing newAssemblyListing = new AssemblyListing(newProgram2);
+		newAssemblyListing.prettyFerret3();
 	}
 	
 	/**
