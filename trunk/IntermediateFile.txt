@@ -1,7 +1,7 @@
 ------------------------------------------
 CodeLine 0
 PC: 0
-Original Line Of Code: .Start,SimpleInstructionTest,00
+Original Line Of Code: .Start,ComprehensiveTest,00
 Line Comment: 
 Line Length: 0
 Error Count: 0
@@ -1377,7 +1377,7 @@ Operand Types:
 ------------------------------------------
 CodeLine 74
 PC: 124
-Original Line Of Code: .END,SimpleInstructionTest
+Original Line Of Code: .END,ComprehensiveTest
 Line Comment: 
 Line Length: 0
 Error Count: 0
