@@ -75,7 +75,6 @@ public class Directive
 		
 	}
 	/**
-	 * 
 	 * Module Name: returnPrintString.
 	 * Description:	Creates a String with all the information linked to the current directive being parsed,
 	 * such as Directive name, label, code location, and operands.
@@ -86,7 +85,7 @@ public class Directive
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 10/10/2010.
 	 * Modifications: None.
-	 * @return
+	 * @return returnString holds the String to be printed.
 	 */
 	public String returnPrintString()
 	{
@@ -108,6 +107,19 @@ public class Directive
 		
 		return returnString;
 	}
+	/**
+	 * 
+	 * Module Name: returnBinaryCodeLine
+	 * Description: This function returns the Binary Code for the whole CodeLine
+	 * Input Params: None
+	 * Output Params: String formatted in Binary that is the encoding of the CodeLine in Binary
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010
+	 * Modifications:
+	 * @return String formatted in Binary that is the encoding of the CodeLine in Binary
+	 */
 	public String returnBinaryCodeLine(CodeLine cl)
 	{
 		String binaryCodeLine = "";
@@ -121,6 +133,18 @@ public class Directive
 		}
 		return binaryCodeLine;
 	}
+	/**
+	 * Module Name: returnHexCodeLine
+	 * Description: This function returns the Hex Code for the whole CodeLine
+	 * Input Params: None
+	 * Output Params: String formatted in Hex that is the encoding of the CodeLine in Hex
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010
+	 * Modifications:
+	 * @return String formatted in Hex that is the encoding of the CodeLine in Hex
+	 */
 	public String returnHexCodeLine(CodeLine cl)
 	{
 		String binaryString = returnBinaryCodeLine(cl);
@@ -133,7 +157,20 @@ public class Directive
 		return hexString;
 
 	}
-	
+	/**
+	 * Module Name: padZeros
+	 * Description: This function adds a specified number of zeros to the input String.
+	 * Input Params: String stringValue,int StringLength These are the specified max number of Zeros and the Input String to be padded.
+	 * Output Params: A string value with the padded Zeros
+	 * Error Conditions Tested: None
+	 * Error Messages Generated: None
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11-6-2010
+	 * Modifications:
+	 * @param stringValue Input String Value to be padded by Zeros
+	 * @param StringLength Max number of zeros to pad.
+	 * @return String with padded Zeros on it.
+	 */
 	public static String padZeros(String stringValue,int StringLength)
 	{
 		String newString = "";
@@ -144,7 +181,22 @@ public class Directive
 		newString += stringValue;
 		return newString;
 	}
-	
+	/**
+	 * 
+	 * Module Name:toBinary
+	 * Description:converts codeline into binary equivalent
+	 * Input Params:inputOperand holds the operand for the codeline to be converted.
+	 * Input Params: cl holds the codeline to be converted to binary.		
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author: Robert Schmidt
+	 * Date of Installation:11/09/2010
+	 * Modifications:none.
+	 * @param inputOperand holds the operand for the codeline to be converted.
+	 * @param cl holds the codeline to be converted to binary.
+	 * @return binaryOperands
+	 * 				holds the codeline translated into binary.
+	 */
 	public ArrayList<Operand> toBinary(Operand inputOperand, CodeLine cl)
 	{
 		ArrayList<Operand> binaryOperands = new ArrayList<Operand>();
