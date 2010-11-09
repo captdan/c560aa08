@@ -494,7 +494,22 @@ public class Instruction
 		
 		return operandString;
 	}
-	
+	/**
+	 * 
+	 * Module Name: returnOperand
+	 * Description: returns the operand.
+	 * Input Params:operandIndex holds the index of the operand that needs to be returned
+	 * Input Params: operandType holds to type of the operand
+	 * Output Params: operandValue holds the value of the operand 
+	 * Error Conditions Tested: none.
+	 * Error Messages Generated: none.
+	 * Original Author: Robert Schmidt
+	 * Date of Installation: 11/9/2010
+	 * Modifications:none.
+	 * @param operandIndex holds the index of the operand that needs to be returned
+	 * @param operandType holds to type of the operand
+	 * @return operandValue holds the value of the operand   
+	 */
 	public Operand returnOperand(int operandIndex, Instruction.operandTypes operandType)
 	{
 		Operand operandValue = null;
