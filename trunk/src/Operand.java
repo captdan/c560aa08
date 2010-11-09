@@ -706,29 +706,67 @@ public class Operand
 	{		
 		boolean result = false;
 		
-		String[] plusSplit = exp.split("[+]");
+		String[] plusSplit = splitByCharacter(exp,'+');
 		for(String plusString : plusSplit)
 		{
-			String[] minusSplit = plusString.split("[-]");
+			String[] minusSplit = splitByCharacter(plusString,'-');
 			for(String minusString : minusSplit)
 			{
-				//System.out.println(minusString);
-				if(minusString.equals("[*]"))
+				boolean isCorrect = false;
+				if(minusString.equals("*"))
 				{
-					result = true;
+					isCorrect = true;
 				}
 				try
 				{
 					Integer.parseInt(minusString);
-					result = true;
+					isCorrect = true;
 				}
 				catch(NumberFormatException e){}
 				if(Parser.SymbTable.isInTable(minusString))
 				{
-					result = true;
+					isCorrect = true;
+				}
+				if(isCorrect == false)
+				{
+					result = false;
 				}
 			}
 		}
 		return result;
+	}
+	public static String[] splitByCharacter(String tempString, char delim)
+	{
+		int count = 0;
+		for(int x=0;x<tempString.length();x++)
+		{
+			if(tempString.charAt(x) == delim)
+			{
+				count++;
+			}
+		}
+		String[] returnString = new String[count+1];
+		int[] countLocations = new int[count];
+		count = 0;
+		for(int x=0;x<tempString.length();x++)
+		{
+			if(tempString.charAt(x) == delim)
+			{
+				countLocations[count] = x;
+				count++;
+			}
+		}
+		
+		int startloc=0;
+		
+		for(int x=0;x<countLocations.length;x++)
+		{
+			returnString[x] = tempString.substring(startloc, countLocations[x]);
+			startloc = countLocations[x]+1;
+		}
+		
+		returnString[returnString.length-1] = tempString.substring(startloc, tempString.length());
+		
+		return returnString;
 	}
 }

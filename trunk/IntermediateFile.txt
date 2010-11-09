@@ -109,32 +109,34 @@ Operand Types:
 ------------------------------------------
 CodeLine 7
 PC: 6
-Original Line Of Code: F adr.exp 1+2
+Original Line Of Code: F adr.exp 1+2+
 Line Comment: 
 Line Length: 0
-Error Count: 0
+Error Count: 1
 Errors:
+	19	The operand 0: 1+2+ did not match the operand type EXP.	Change Operand
 Directive Name: ADR.EXP
 Directive Label: OPTIONALLABEL
 Directive Code Location: DATA
 Operands: 
-	1+2
+	1+2+
 Operand Types: 
 	EXP
 
 ------------------------------------------
 CodeLine 8
 PC: 6
-Original Line Of Code: F2 adr.exp 1+2-A
+Original Line Of Code: F2 adr.exp 1+2+A
 Line Comment: 
 Line Length: 0
-Error Count: 0
+Error Count: 1
 Errors:
+	19	The operand 0: 1+2+A did not match the operand type EXP.	Change Operand
 Directive Name: ADR.EXP
 Directive Label: OPTIONALLABEL
 Directive Code Location: DATA
 Operands: 
-	1+2-A
+	1+2+A
 Operand Types: 
 	EXP
 
