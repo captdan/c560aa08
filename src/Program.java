@@ -19,11 +19,12 @@ public class Program {
 	public int startLocation;
 	public int executionStart;
 	public int programLength;
+	public boolean debugMode;
 	public ArrayList<CodeLine> CodeLineArray = new ArrayList<CodeLine>();
 	public SymbolTable symbolTable;
 	public LiteralTable literalTable;
 	
-	public Program (String p, int start, int execstart,int length, ArrayList<CodeLine> a, SymbolTable s, LiteralTable l)
+	public Program (String p, int start, int execstart, boolean debugModeValue,int length, ArrayList<CodeLine> a, SymbolTable s, LiteralTable l)
 	{
 		programName = p;
 		startLocation = start;
@@ -32,6 +33,7 @@ public class Program {
 		CodeLineArray = a;
 		symbolTable = s;
 		literalTable = l;
+		debugMode = debugModeValue;
 	}
 
 	
