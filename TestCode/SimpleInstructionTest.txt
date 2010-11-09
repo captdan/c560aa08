@@ -5,8 +5,8 @@ B Str.data 'ABCDEFG'
 C hex.data 8
 D bin.data 0110
 E Adr.data A
-F adr.exp 1+2
-F2 adr.exp 1+2-A
+F adr.exp 1+2+
+F2 adr.exp 1+2+A
 G int.data 8
 A1 int.data 15
 A2 int.data 6

@@ -119,7 +119,7 @@ public class ObjectFile {
 	private ArrayList<String> makeOneTextRecord(CodeLine codeline)
 	{
 		ArrayList<String> textRecord = new ArrayList<String>();
-		if(codeline.directive != null || codeline.instruction != null)
+		if((codeline.directive != null || codeline.instruction != null) && codeline.errors.size() == 0)
 		{
 		
 		textRecord.add("T");
