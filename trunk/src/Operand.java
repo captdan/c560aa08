@@ -636,6 +636,7 @@ public class Operand
 		return properString;
 	}
 	
+	
 	/**
 	 * 
 	 * Module Name: isValidDirectiveString
