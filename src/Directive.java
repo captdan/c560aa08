@@ -133,6 +133,7 @@ public class Directive
 		return hexString;
 
 	}
+	
 	public static String padZeros(String stringValue,int StringLength)
 	{
 		String newString = "";
@@ -143,6 +144,7 @@ public class Directive
 		newString += stringValue;
 		return newString;
 	}
+	
 	public ArrayList<Operand> toBinary(Operand inputOperand, CodeLine cl)
 	{
 		ArrayList<Operand> binaryOperands = new ArrayList<Operand>();

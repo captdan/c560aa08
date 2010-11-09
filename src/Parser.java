@@ -180,6 +180,7 @@ public class Parser
 	 */
 	public static void setExecStart(ArrayList<CodeLine> CodeLineArrayValue)
 	{
+		
 		boolean foundDirective = false;
 		for (CodeLine codeLine : CodeLineArrayValue) 
 		{

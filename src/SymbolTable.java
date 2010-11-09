@@ -108,6 +108,7 @@ public class SymbolTable
 		return symb.get(label);
 	}
 
+	
 	/**
 	 * 
 	 * Module Name: isInTable

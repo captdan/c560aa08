@@ -245,6 +245,7 @@ public class Operand
 		}
 
 		return isImmediate;
+		
 	}
 	/**
 	 * 
