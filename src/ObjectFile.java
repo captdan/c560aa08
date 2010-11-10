@@ -446,7 +446,7 @@ public class ObjectFile {
 		ArrayList<String> endRecord = new ArrayList<String>();
 		
 		endRecord.add("E");
-		endRecord.add(String.valueOf(Integer.toHexString(linkingRecord.size() + textRecord.size() + 2)));
+		endRecord.add(String.valueOf(Integer.toHexString(linkingRecord.size() + textRecord.size() + 4)));
 		endRecord.add(p.programName);
 		
 		return endRecord;

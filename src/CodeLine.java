@@ -70,7 +70,7 @@ class CodeLine
 		{
 			if (this.directive.directiveName.equals("INT.DATA")||this.directive.directiveName.equals("HEX.DATA")||
 					this.directive.directiveName.equals("BIN.DATA")|| this.directive.directiveName.equals("NOP")||
-					this.directive.directiveName.equals("EQU.EXP") || this.directive.directiveName.equals("ADR.DATA"))
+					this.directive.directiveName.equals("EQU.EXP") || this.directive.directiveName.equals("ADR.DATA") || this.directive.directiveName.equals(".END"))
 			{
 				length = 1;
 			}

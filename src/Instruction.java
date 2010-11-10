@@ -84,7 +84,7 @@ public class Instruction
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 09/03/2010
 	 * Modifications: added returnBinaryCodeLine, toBinary, returnHexCodeLine,padZeros,returnRegisterBinary and returnOperand
-	 * @return
+	 * @return Returns the information about the Instruction.
 	 */
 	public String returnPrintString()
 	{
@@ -202,19 +202,36 @@ public class Instruction
 			String reg1 = "";
 			String reg2 = "";
 			String addr = "";
-			if(returnOperand(0,operandTypes.REGISTER).operandType == Instruction.operandTypes.COMPLEXADDRESS)
+			if(returnOperand(0,operandTypes.COMPLEXADDRESS).operandType == Instruction.operandTypes.COMPLEXADDRESS)
 			{
+				for(Operand operand : this.operandsArray)
+				{
+					System.out.println(operand.operand + " : " + operand.operandType);
+				}
+				System.out.println("TEST2 : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.COMPLEXADDRESS)).get(1).operand,3);
 				addr = padZeros(toBinary(returnOperand(0,operandTypes.COMPLEXADDRESS)).get(0).operand,16);
 			}
-			else if(returnOperand(1,operandTypes.REGISTER).operandType == Instruction.operandTypes.COMPLEXADDRESS)
+			else if(returnOperand(1,operandTypes.COMPLEXADDRESS).operandType == Instruction.operandTypes.COMPLEXADDRESS)
 			{
+				for(Operand operand : this.operandsArray)
+				{
+					System.out.println(operand.operand + " : " + operand.operandType);
+				}
+				System.out.println("TEST : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.REGISTER)).get(0).operand,3);
 				reg2 = padZeros(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand,3);
+				System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand);
+				System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(0).operand);
 				addr = padZeros(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(0).operand,16);
 			}
 			else
 			{
+				for(Operand operand : this.operandsArray)
+				{
+					System.out.println(operand.operand + " : " + operand.operandType);
+				}
+				System.out.println("TEST4 : " + returnOperand(0,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.REGISTER)).get(0).operand,3);
 				reg2 = padZeros(toBinary(returnOperand(1,operandTypes.REGISTER)).get(0).operand,3);
 				addr = padZeros(toBinary(returnOperand(2,operandTypes.ADDRESS)).get(0).operand,16);
@@ -291,42 +308,35 @@ public class Instruction
 		}
 		else if(inputOperand.operandType == Instruction.operandTypes.COMPLEXADDRESS)
 		{
-			StringTokenizer addressTokenizer = new StringTokenizer(inputOperand.operand,"()",false);
+			String label = inputOperand.operand;
+			value2 = 0;
+			if(inputOperand.operand.contains("("))
+			{
+				String[] tempStr = Operand.splitByCharacter(inputOperand.operand, '(');
+				label = tempStr[0];
+				String[] tempStr2 = Operand.splitByCharacter(tempStr[1], ')');
+				value2 = Integer.parseInt(toBinary(new Operand(tempStr2[0],Instruction.operandTypes.REGISTER)).get(0).operand);
+			}
 
-			if(addressTokenizer.countTokens() == 2)
+			if(Parser.SymbTable.isInTable(inputOperand.operand))
 			{
-				String label = addressTokenizer.nextToken();
-				String register = addressTokenizer.nextToken();
-				if(Parser.SymbTable.isInTable(label))
+				ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(inputOperand.operand);
+				try
 				{
-					ArrayList<Object> values = Parser.SymbTable.getInfoFromSymbol(label);
-					try
-					{
-						
-						value = Integer.parseInt(String.valueOf(values.get(0)));
-					}
-					catch(NumberFormatException e){}
+					value = Integer.parseInt(String.valueOf(values.get(0)));
 				}
-				else
-				{
-					value = Integer.parseInt(toBinary(new Operand(label,Instruction.operandTypes.ADDRESS)).get(0).operand);
-				}
-				value2 = Integer.parseInt(toBinary(new Operand(register,Instruction.operandTypes.REGISTER)).get(0).operand);
+				catch(NumberFormatException e){}
 			}
-			else if(addressTokenizer.countTokens() == 1)
+			else
 			{
-				String register = addressTokenizer.nextToken();
-				if(register.charAt(0) != '$')
+				try
 				{
-					value = Integer.parseInt(toBinary(new Operand(register,Instruction.operandTypes.ADDRESS)).get(0).operand);
-					value2 = 0;
+					value = Integer.parseInt(label);
 				}
-				else
-				{
-					value = 0;
-					value2 = Integer.parseInt(toBinary(new Operand(register,Instruction.operandTypes.REGISTER)).get(0).operand);
-				}
+				catch(NumberFormatException e){}
 			}
+
+			System.out.println("ERROR : " + inputOperand.operand);
 			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(value)),Instruction.operandTypes.ADDRESS));
 			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(value2)),Instruction.operandTypes.REGISTER));
 		}

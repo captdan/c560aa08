@@ -165,12 +165,15 @@ public class SymbolTable
 			FileWriter fileStream = new FileWriter("symboltable.txt");
 			BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
 			
+			//bufferedWriter.write("------------------------------------------\n");
 			Iterator<Map.Entry<String, ArrayList<Object>>> it = symb.entrySet().iterator();
+			bufferedWriter.write("Key\t\tPC\t\tEQU\t\tUse");
 			while (it.hasNext()) 
 			{
 				Map.Entry<String, ArrayList<Object>> entry = it.next();
-				bufferedWriter.write("------------------------------------------\n");
-				bufferedWriter.write(entry.getKey() + "\t" + entry.getValue() + "\n");
+				bufferedWriter.write("\n");
+				bufferedWriter.write(entry.getKey() + "\t" +Integer.toHexString(Integer.valueOf(entry.getValue().get(0).toString()))+ "\t" + entry.getValue().get(1).toString() + "\t" + entry.getValue().get(2).toString());
+				//bufferedWriter.write(entry.getKey() + "\t" + entry.getValue() + "\n");
 				//System.out.println(entry.getKey() + "\t" + entry.getValue());
 			}
 			bufferedWriter.close();
