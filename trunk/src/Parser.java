@@ -98,7 +98,6 @@ public class Parser
 	 */
 	public static void main(String[] args) 
 	{
-	
 		ArrayList<String> linesOfCode = new ArrayList<String>();
 		if(args.length > 0)
 		{
@@ -123,8 +122,11 @@ public class Parser
 			//System.out.println(lineOfCode);	
 			if (endProgram == false) 
 			{
-				CodeLineArray.add(parseCodeLine(lineOfCode));
+				CodeLine cl = parseCodeLine(lineOfCode);
+				CodeLineArray.add(cl);
+				addToPC(cl.lineLength());
 			}
+			
 			currentErrorArray.clear();
 		}
 		
@@ -689,10 +691,10 @@ public class Parser
 		 * After each codeLine object is processed, we grab its length and add
 		 * it to our global Program Counter.
 		 */
-		checkSymbolsAndSpecialDirectives(cl);
-		addToPC(cl.lineLength());
-		cl.PC = PC;
 		
+		//addToPC(cl.lineLength());
+		cl.PC = PC;
+		checkSymbolsAndSpecialDirectives(cl);
 		for(Error error : currentErrorArray)
 		{
 			cl.errors.add(error);
