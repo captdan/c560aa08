@@ -1,0 +1,6 @@
+.start,Altest_06,0   |should overflow memory fatal error
+.text
+E1	EQU  10
+A1	exec.start	E1
+	mem.skip 65535 
+.end,Altest_06  	   
