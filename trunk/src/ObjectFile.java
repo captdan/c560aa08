@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
  */
 public class ObjectFile {
 	
+	private String programLength = "";
 	private Program p;
 	ArrayList<String> headerRecord = new ArrayList<String>();
 	ArrayList<ArrayList<String>> linkingRecord = new ArrayList<ArrayList<String>>();
@@ -95,7 +96,40 @@ public class ObjectFile {
 		{
 			ArrayList<String> record = makeOneTextRecord(codeline);
 		
-			textRecord.add(record);
+			
+			if(codeline.directive != null && codeline.directive.directiveName.equals(".TEXT") == false)
+			{
+				if(codeline.directive.directiveName.equals(".DATA") == false)
+				{
+					if(codeline.directive.directiveName.equals(".START") == false)
+					{
+						if(codeline.directive.directiveName.equals("RESET.LC") == false)
+						{
+							if(codeline.directive.directiveName.equals("EXEC.START") == false)
+							{
+								if(codeline.directive.directiveName.equals("EQU") == false)
+								{
+									if(codeline.directive.directiveName.equals("ENT") == false)
+									{
+										if(codeline.directive.directiveName.equals("DEBUG") == false)
+										{
+											if(codeline.directive.directiveName.equals("END") == false)
+											{
+												textRecord.add(record);
+											}
+											
+										}
+									}
+									
+								}
+							}
+						}
+						
+					}
+				}
+				
+			}
+			
 		}
 		
 		
@@ -410,6 +444,7 @@ public class ObjectFile {
 		
 		header.add("H");
 		header.add(p.programName);
+		programLength = Integer.toHexString(Integer.valueOf(p.programLength));
 		header.add(Integer.toHexString(Integer.valueOf(p.programLength)));
 		header.add(String.valueOf(p.startLocation));
 		header.add(String.valueOf(now.get(Calendar.YEAR)) + ":"
@@ -419,7 +454,7 @@ public class ObjectFile {
 		header.add(String.valueOf(dateFormat.format(time)));
 		header.add(String.valueOf(Integer.toHexString(linkingRecord.size())));
 		header.add(String.valueOf(textRecord.size()));
-		header.add(String.valueOf(p.executionStart));
+		header.add(String.valueOf(Integer.toHexString(p.executionStart)));
 		header.add("SAL");
 		header.add("1");
 		header.add("2");
@@ -446,7 +481,7 @@ public class ObjectFile {
 		ArrayList<String> endRecord = new ArrayList<String>();
 		
 		endRecord.add("E");
-		endRecord.add(String.valueOf(Integer.toHexString(linkingRecord.size() + textRecord.size() + 4)));
+		endRecord.add(programLength);
 		endRecord.add(p.programName);
 		
 		return endRecord;
