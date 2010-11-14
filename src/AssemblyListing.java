@@ -105,10 +105,12 @@ public class AssemblyListing {
 				//Check to see if there are any errors associated with the line of code.
 				if(c.errors.size() > 0)	
 				{
+					//bufferedWriter.write(c.originalLineOfCode);
 					for(Error e : c.errors)
 					{
 						bufferedWriter.write("\t" + String.valueOf(e.number) + "\t" + e.message + "\t" + e.correction + "\n");
 					}
+					
 				}
 			}
 			bufferedWriter.close();
