@@ -105,7 +105,7 @@ public class Parser
 		}
 		else
 		{
-			linesOfCode = readFileToArrayList("TestCode/SimpleInstructionTest.txt");
+			linesOfCode = readFileToArrayList("ComprehensiveTest.txt");
 		}
 		
 		/** This fills all the start ArrayLists with their corresponding values **/
@@ -124,7 +124,13 @@ public class Parser
 			{
 				CodeLine cl = parseCodeLine(lineOfCode);
 				CodeLineArray.add(cl);
+				currentErrorArray.clear();
 				addToPC(cl.lineLength());
+				if(currentErrorArray.size() != 0)
+				{
+					cl.errors.add(currentErrorArray.get(0));
+					endProgram = true;
+				}
 			}
 			
 			currentErrorArray.clear();
@@ -439,6 +445,7 @@ public class Parser
 					if(validOperands == false)
 					{
 						codeLine.errors.add(new Error(19,"Operand [" + x + "]: " + codeLine.instruction.operandsArray.get(x).operand + " is not a valid "+operand.toString()+".","Change Operand"));
+						codeLine.instruction = null;
 					}
 				}
 			}
@@ -478,6 +485,7 @@ public class Parser
 					if(validOperands == false)
 					{
 						codeLine.errors.add(new Error(19,"The operand " + x + ": " + codeLine.directive.operandArray.get(x).operand + " did not match the operand type "+operand.toString()+".","Change Operand"));
+						codeLine.directive = null;
 					}
 				}
 			}
@@ -544,8 +552,18 @@ public class Parser
 				programName = specialDirectives[1];
 				startingLocation = Integer.valueOf(specialDirectives[2]);
 				PC = startingLocation;
-				SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
-				endProgram = false;
+				if(startingLocation > 65535)
+				{
+					currentErrorArray.clear();
+					currentErrorArray.add(returnError(6));
+					endProgram = true;
+				}
+				else
+				{
+					SymbTable.addSymbol(programName, PC.toString(), "NONE", SymbolTable.Uses.PROGRAM_NAME);
+					endProgram = false;
+				}
+
 			}
 			else
 			{
@@ -764,12 +782,15 @@ public class Parser
 	 */
 	public static void addToPC(int addValue)
 	{
-		if((addValue + PC) <= maxPC && (addValue + PC) >= 0)
+		System.out.println(addValue);
+		System.out.println(addValue + " : " + PC);
+		if((addValue + PC) < 65536 && (addValue + PC) >= 0)
 		{
 			PC += addValue;
 		}
 		else
 		{
+
 			currentErrorArray.add(returnError(6));
 		}
 	}
