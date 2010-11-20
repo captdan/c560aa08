@@ -259,7 +259,7 @@ public class HardwareSimulator {
 				}
 			else
 			{
-				// TODO generate Error .... invalid number of arguments in LE
+				// TODO generate Error .... invalid number of arguments in LE 
 			}
 		}
 		
