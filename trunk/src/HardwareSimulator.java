@@ -386,8 +386,8 @@ public class HardwareSimulator {
 			if (!(Character.isDigit(hex.charAt(i))|| hex.charAt(i)== 'A' || hex.charAt(i)== 'B'|| hex.charAt(i)== 'C' || hex.charAt(i)== 'D' || hex.charAt(i)== 'E' || hex.charAt(i)== 'F')){
 				result = false;
 			}
-			
 		}
 		return (result);
 	}
+	
 }
