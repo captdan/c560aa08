@@ -73,14 +73,14 @@ public class HardwareSimulator {
 		
 		// I think that now all the hex instructions are loaded into MEM[]???????
 			
-		for(int i = 0; i < MEM.length - 1; i++)
+		for(int i = initialLoadAddr; i < initialLoadAddr + CompleteModuleLength - 1; i++)
 		{
 			
-			System.out.println(LoadModule.get(i));
+			
 			
 			try
 			{
-				binaryInstruction =	Integer.toBinaryString(Integer.parseInt(MEM[i]));
+				binaryInstruction =	ALU.hexToBin(MEM[i]);
 			}
 			catch(NumberFormatException e)
 			{
@@ -89,6 +89,7 @@ public class HardwareSimulator {
 			
 			try
 			{
+				System.out.println(binaryInstruction);
 				OPCODE = Integer.parseInt(binaryInstruction.substring(0,5),2);
 			}
 			catch(NumberFormatException e)
