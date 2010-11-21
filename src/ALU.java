@@ -4,7 +4,7 @@
 
 /**
  * Author: Oscar Flores.
- * Description: this Simulator takes two 32-bit binary Strings and returns an Integer string as the result of each
+ * Description: this Simulator takes two binary Strings and returns an Integer string as the result of each
  * arthimatic operation. 
  *
  */
