@@ -73,7 +73,7 @@ public class HardwareSimulator {
 		
 		// I think that now all the hex instructions are loaded into MEM[]???????
 			
-		for(int i = initialLoadAddr; i < initialLoadAddr + CompleteModuleLength - 1; i++)
+		for(int i = exectStart; i < initialLoadAddr + CompleteModuleLength - 1; i++)
 		{
 			
 			
@@ -99,19 +99,19 @@ public class HardwareSimulator {
 			 
 			 // At this point, OPCODE is the integer representation of the opcode
 			
-			if((10 <= OPCODE) && (OPCODE <= 31))
+			if(((16 <= OPCODE) && (OPCODE <= 23))||((OPCODE <=50)&&(OPCODE <=55))|| (OPCODE ==61)||(OPCODE==30)||(OPCODE==31))
 			{
 				type = instructionType.I;
 			}
-			else if ((32 <= OPCODE) && (OPCODE <= 35))
+			else if ((10 <= OPCODE) && (OPCODE <= 13))
 			{
 				type = instructionType.IO;
 			}
-			else if (OPCODE == 36)
+			else if (OPCODE == 8)
 			{
 				type = instructionType.J;
 			}
-			else if (((1 <= OPCODE) && (OPCODE <= 3)) || ((37 <= OPCODE) && (OPCODE <= 39)) || ((6 <= OPCODE) && (OPCODE <= 8)) || ((58 <= OPCODE) && (OPCODE <= 59)))
+			else if (((1 <= OPCODE) && (OPCODE <= 3)) ||(OPCODE==63))
 			{
 				type = instructionType.R;
 			}
@@ -126,8 +126,19 @@ public class HardwareSimulator {
 					break;
 				case R:  evaluateRType(String.valueOf(OPCODE));
 					break;
-				case J:  evaluateJType();
+				case J:  
+					DumpInfo();
+					
+					if(debug)
+					{
+						DumpArray();
+					}
+					PC++;
+					
+					System.exit(0);
+					
 					break;
+					
 				case IO: evaluateIOType();
 					break;
 				default: Error();
@@ -333,7 +344,7 @@ public class HardwareSimulator {
 		PC++;
 	}
 
-	private static void evaluateJType() 
+/*	private static void evaluateJType() 
 	{
 		DumpInfo();
 		// TODO Evaluate Instruction RAKAAN
@@ -343,7 +354,7 @@ public class HardwareSimulator {
 			DumpArray();
 		}
 		PC++;
-	}
+	}*/
 
 	private static void evaluateIOType() 
 	{
