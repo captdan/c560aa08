@@ -331,4 +331,58 @@ public class ALU {
 		result += imm;
 		return result;
 	}
+	public static String hexToBin(String hex){
+		String result = "";
+		for(int i = 0; i <hex.length(); i++){
+			if(hex.charAt(i) == '0'){
+				result += "0000";
+			}
+			else if (hex.charAt(i) == '1'){
+				result+="0001";
+			}
+			else if (hex.charAt(i) == '2'){
+				result+="0010";
+			}
+			else if (hex.charAt(i) == '3'){
+				result+="0011";
+			}
+			else if (hex.charAt(i) == '4'){
+				result+="0100";
+			}
+			else if (hex.charAt(i) == '5'){
+				result+="0101";
+			}
+			else if (hex.charAt(i) == '6'){
+				result+="0110";
+			}
+			else if (hex.charAt(i) == '7'){
+				result+="0111";
+			}
+			else if (hex.charAt(i) == '8'){
+				result+="1000";
+			}
+			else if (hex.charAt(i) == '9'){
+				result+="1001";
+			}
+			else if (hex.charAt(i) == 'A' || hex.charAt(i) == 'a'){
+				result+="1010";
+			}
+			else if (hex.charAt(i) == 'B' || hex.charAt(i) == 'b'){
+				result+="1011";
+			}
+			else if (hex.charAt(i) == 'C' || hex.charAt(i) == 'c'){
+				result+="1100";
+			}
+			else if (hex.charAt(i) == 'D' || hex.charAt(i) == 'd'){
+				result+="1101";
+			}
+			else if (hex.charAt(i) == 'E' || hex.charAt(i) == 'e'){
+				result+="1110";
+			}
+			else if (hex.charAt(i) == 'F' || hex.charAt(i) == 'f'){
+				result+="1111";
+			}
+		}
+		return result;
+	}
 }
