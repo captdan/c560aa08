@@ -42,8 +42,8 @@ public class ArithmeticSimulator {
 		
 	}
 	public int ADDU(String a, String b){
-		int aValue = GetIntegerFromTwosComplementSigned(a);
-		int bValue = GetIntegerFromTwosComplementSigned(b);
+		int aValue = GetIntegerFromTwosComplementUnsigned(a);
+		int bValue = GetIntegerFromTwosComplementUnsigned(b);
 		int cValue = aValue + bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
@@ -52,8 +52,8 @@ public class ArithmeticSimulator {
 		
 	}
 	public int SUBU(String a, String b){
-		int aValue = GetIntegerFromTwosComplementSigned(a);
-		int bValue = GetIntegerFromTwosComplementSigned(b);
+		int aValue = GetIntegerFromTwosComplementUnsigned(a);
+		int bValue = GetIntegerFromTwosComplementUnsigned(b);
 		int cValue = aValue - bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
@@ -62,8 +62,8 @@ public class ArithmeticSimulator {
 		
 	}
 	public int MULU(String a, String b){
-		int aValue = GetIntegerFromTwosComplementSigned(a);
-		int bValue = GetIntegerFromTwosComplementSigned(b);
+		int aValue = GetIntegerFromTwosComplementUnsigned(a);
+		int bValue = GetIntegerFromTwosComplementUnsigned(b);
 		int cValue = aValue * bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
@@ -72,8 +72,8 @@ public class ArithmeticSimulator {
 		
 	}
 	public int DIVU(String a, String b){
-		int aValue = GetIntegerFromTwosComplementSigned(a);
-		int bValue = GetIntegerFromTwosComplementSigned(b);
+		int aValue = GetIntegerFromTwosComplementUnsigned(a);
+		int bValue = GetIntegerFromTwosComplementUnsigned(b);
 		int cValue = aValue / bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
