@@ -12,7 +12,7 @@ public class HardwareSimulator {
 	int[] registers = new int[15];
 	static String[] MEM = new String[65536];
 	static ArrayList<String> LoadModule = new ArrayList<String>();
-	String opcode = "";
+	static int OPCODE = 0;
 	ArrayList<Error> Errors = new  ArrayList<Error>();
 	static boolean debug = false;
 	static int PC = 0;
@@ -25,7 +25,7 @@ public class HardwareSimulator {
 	public static String LHfirstModuleName;
 	public static enum instructionType
 	{
-		 R, S, J, IO;
+		 R, S, J, IO, I;
 	}
 	/**
 	 * Holds all symbols encountered while passing through source code.
@@ -37,7 +37,7 @@ public class HardwareSimulator {
 	public static void main(String[] args) {
 		// Input Global Symbol Table from .txt into SymbolTable-type object
 		
-		inisializeMEM();
+		initializeMEM();
 		instructionType type;
 	//	DumpArray();
 	//	if(args.length == 2 )
@@ -56,7 +56,7 @@ public class HardwareSimulator {
 		 * get Symbol table array into GSymbTable 
 		 * 
 		 */
-//		FillGlobalSymbTable();
+		FillGlobalSymbTable();
 	
 		
 		/*
@@ -68,22 +68,62 @@ public class HardwareSimulator {
 		
 		// TODO Handle Linker End Record as last object in LoadModule Array (Everything else is text records) RAKAAN
 		
-		// Load any int.data,bin.data,hex.data.str.data values into memory array
+		// TODO Load any int.data,bin.data,hex.data.str.data values into memory array
 		type = null;
 		
-	/*		
-		for(int i = 0; i < Integer.MAX_VALUE; i++)
+		// I think that now all the hex instructions are loaded into MEM[]???????
+			
+		for(int i = 0; i < MEM.length - 1; i++)
 		{
 			
 			System.out.println(LoadModule.get(i));
 			
-			// TODO Look at OpCode and separate by Instruction Type  KERMIT
-						// returns Enum type of Instruction
+			try
+			{
+				binaryInstruction =	Integer.toBinaryString(Integer.parseInt(MEM[i]));
+			}
+			catch(NumberFormatException e)
+			{
+				// TODO Invalid Hex instruction....do we already catch this?
+			}
+			
+			try
+			{
+				OPCODE = Integer.parseInt(binaryInstruction.substring(0,5),2);
+			}
+			catch(NumberFormatException e)
+			{
+				// TODO Handle Invalid Opcode
+			}
+			 
+			 // At this point, OPCODE is the integer representation of the opcode
+			
+			if((10 <= OPCODE) && (OPCODE <= 31))
+			{
+				type = instructionType.I;
+			}
+			else if ((32 <= OPCODE) && (OPCODE <= 35))
+			{
+				type = instructionType.IO;
+			}
+			else if (OPCODE == 36)
+			{
+				type = instructionType.J;
+			}
+			else if (((1 <= OPCODE) && (OPCODE <= 3)) || ((37 <= OPCODE) && (OPCODE <= 39)) || ((6 <= OPCODE) && (OPCODE <= 8)) || ((58 <= OPCODE) && (OPCODE <= 59)))
+			{
+				type = instructionType.R;
+			}
+			else
+			{
+				type = instructionType.S;
+			}
+			
 			switch (type)
 			{
 				case S: evaluateSType();
 					break;
-				case R:  evaluateRType();
+				case R:  evaluateRType(String.valueOf(OPCODE));
 					break;
 				case J:  evaluateJType();
 					break;
@@ -95,7 +135,7 @@ public class HardwareSimulator {
 			
 			
 		}
-		*/
+		
 		DumpArray();
 	}
 
@@ -110,7 +150,7 @@ public class HardwareSimulator {
 	 * Date of Installation:
 	 * Modifications:
 	 */
-	private static void inisializeMEM() {
+	private static void initializeMEM() {
 		for(int i = 0; i < MEM.length; i++){
 			MEM[i] = "00000000";
 		}
@@ -161,7 +201,7 @@ public class HardwareSimulator {
 	 */
 	private static void putToMEM() {
 		try{
-			// TODO Handle Linker Header Record as first object in LoadModule Array KERMIT
+			
 			// TODO Input our Load Module as .txt and generate memory array OSCAR//
 			String LH = LoadModule.get(0);
 			StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
@@ -280,7 +320,7 @@ public class HardwareSimulator {
 		PC++;
 	}
 
-	private static void evaluateRType() 
+	private static void evaluateRType(String opcode) 
 	{
 		DumpInfo();
 		// TODO Evaluate Instruction KERMIT
