@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 public class HardwareSimulator {
 
-	int[] registers = new int[15];
+	String[] registers = new String[15];
 	static String[] MEM = new String[65536];
 	static ArrayList<String> LoadModule = new ArrayList<String>();
 	static int OPCODE = 0;

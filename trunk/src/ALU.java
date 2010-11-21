@@ -71,6 +71,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
+		overflowFromLastOperation = false;
 		return cValue;
 		
 	}
@@ -81,6 +82,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
+		overflowFromLastOperation = false;
 		return cValue;
 		
 	}
@@ -91,6 +93,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
+		overflowFromLastOperation = false;
 		return cValue;
 		
 	}
@@ -101,6 +104,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
+		overflowFromLastOperation = false;
 		return cValue;
 		
 	}
@@ -115,6 +119,83 @@ public class ALU {
 			overflowFromLastOperation = true;
 		}
 		return c;
+	}
+	public String AND(String a, String b){
+		String result = "";
+		if(a.length() == b.length()){
+			for(int i = 0; i <a.length(); i++){
+				if((a.charAt(i)== b.charAt(i)) && (a.charAt(i) == '1')){
+					result = result + '1';
+				}
+				else
+				{
+					result = result + '0';
+				}
+			}
+			
+		}
+		else{
+			// TODO generate error
+		}
+		return result;
+	}
+	public String OR(String a, String b){
+		String result = "";
+		if(a.length() == b.length()){
+			for(int i = 0; i <a.length(); i++){
+				if((a.charAt(i)!= b.charAt(i) || a.charAt(i)== b.charAt(i)) && (a.charAt(i) == '1' || b.charAt(i) == '1')){
+					result = result + '1';
+				}
+				else
+				{
+					result = result + '0';
+				}
+			}
+			
+		}
+		else{
+			// TODO generate error
+		}
+		return result;
+	}
+	public String ORI(String reg, String imm){
+		String result = padZeros(reg, imm);
+		return OR(reg,result);
+	}
+	public String XOR(String a, String b){
+		String result = "";
+		if(a.length() == b.length()){
+			for(int i = 0; i <a.length(); i++){
+				if((a.charAt(i)!= b.charAt(i))){
+					result = result + '1';
+				}
+				else
+				{
+					result = result + '0';
+				}
+			}
+			
+		}
+		else{
+			// TODO generate error
+		}
+		return result;
+	}	
+	public String NOR(String a, String b){
+		String result = OR(a,b);
+		return invertBits(result);
+	}
+	public String XORI(String reg, String imm){
+		String result = padZeros(reg, imm);
+		return XOR(reg,result);
+	}
+	public String NORI(String reg, String imm){
+		String result = padZeros(reg, imm);
+		return NOR(reg,result);
+	}
+	public String ANDI(String reg, String imm){
+		String result = padZeros(reg, imm);
+		return AND(reg,result);
 	}
 	
 	/**
@@ -167,12 +248,13 @@ public class ALU {
 		for(int i = 0; i < a.length(); i++){
 			bin += bits[i];
 		}
-		System.out.println(bin);
+		//System.out.println(bin);
 		int value = Integer.parseInt(bin,2);
+		
 		if(negative){
 			value = value*-1;
 		}
-		
+		//System.out.println(value);
 		
 		return value;
 		
@@ -223,8 +305,30 @@ public class ALU {
 		for(int i = 0; i < a.length(); i++){
 			bin += bits[i];
 		}
-		System.out.println(bin);
+		//System.out.println(bin);
 		int value = Integer.parseInt(bin,2);
 		return value;
+	}
+	public static String invertBits(String a){
+		String result = "";
+		for(int i = 0; i < a.length();i++){
+			if(a.charAt(i)=='1'){
+				result += '0';
+			}
+			else{
+				result +='1';
+			}
+		}
+		return result;
+	}
+	public static String padZeros(String reg,String imm){
+		String result = "";
+		int zeroes = reg.length() - imm.length();
+		while (zeroes >0){
+			result += '0';
+			zeroes--;
+		}
+		result += imm;
+		return result;
 	}
 }
