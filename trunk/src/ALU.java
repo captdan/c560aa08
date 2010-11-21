@@ -8,36 +8,59 @@
  * arthimatic operation. 
  *
  */
-public class ArithmeticSimulator {
-	
-	public ArithmeticSimulator() {
+public class ALU {
+	public static boolean overflowFromLastOperation = false;
+	public ALU() {
 		
 	}
 	public int ADD(String a, String b){
+		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
-		int cValue = aValue + bValue;
+		try{
+		cValue = aValue + bValue;
+		}
+		catch(Exception overflow){
+			overflowFromLastOperation = true;
+		}
 		return cValue;
 		
 	}
 	public int SUB(String a, String b){
+		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
-		int cValue = aValue - bValue;
+		try{
+		cValue = aValue - bValue;
+		}
+		catch(Exception overflow){
+			overflowFromLastOperation = true;
+		}
 		return cValue;
-		
 	}
 	public int MUL(String a, String b){
+		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
-		int cValue = aValue * bValue;
+		try{
+		cValue = aValue * bValue;
+		}
+		catch(Exception overflow){
+			overflowFromLastOperation = true;
+		}
 		return cValue;
 		
 	}
 	public int DIV(String a, String b){
+		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
-		int cValue = aValue / bValue;
+		try{
+		cValue = aValue/bValue;
+		}
+		catch(Exception overflow){
+			overflowFromLastOperation = true;
+		}
 		return cValue;
 		
 	}
@@ -80,6 +103,18 @@ public class ArithmeticSimulator {
 		}
 		return cValue;
 		
+	}
+	public int PWR(String a, String b){
+		int c = 0;
+		int aValue = GetIntegerFromTwosComplementSigned(a);
+		int bValue = GetIntegerFromTwosComplementSigned(b);
+		try{
+		c = (int) Math.pow(aValue, bValue);
+		}
+		catch(Exception overflow){
+			overflowFromLastOperation = true;
+		}
+		return c;
 	}
 	
 	/**
