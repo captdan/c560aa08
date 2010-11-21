@@ -212,7 +212,6 @@ public class ALU {
 	 */
 	private int GetIntegerFromTwosComplementSigned(String a){
 		char [] bits = new char[a.length()];
-		int firstZero = 0;
 		boolean negative = false;
 		if(a.charAt(0) == '1'){
 			negative = true;
@@ -274,7 +273,6 @@ public class ALU {
 	 */
 	private int GetIntegerFromTwosComplementUnsigned(String a){
 		char [] bits = new char[a.length()];
-		int firstZero = 0;
 		for(int i = a.length()-1; i >0; i--)
 		{
 			if(a.charAt(i) == '1'){

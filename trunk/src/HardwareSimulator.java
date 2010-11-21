@@ -56,7 +56,7 @@ public class HardwareSimulator {
 		 * get Symbol table array into GSymbTable 
 		 * 
 		 */
-		FillGlobalSymbTable();
+		//FillGlobalSymbTable();
 	
 		
 		/*
@@ -203,7 +203,7 @@ public class HardwareSimulator {
 	private static void putToMEM() {
 		try{
 			
-			// TODO Input our Load Module as .txt and generate memory array OSCAR//
+			// TODO Input our Load Module as .txt and generate memory array OSCAR - DONE
 			String LH = LoadModule.get(0);
 			StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
 			
@@ -360,7 +360,7 @@ public class HardwareSimulator {
 	private static void DumpArray()
 	{
 		// TODO Format Array OSCAR
-		System.out.println("Program MEM");
+		System.out.println("DUMP MEM");
 		int last = CompleteModuleLength + initialLoadAddr +34;
 		
 		int printcount = 0;
