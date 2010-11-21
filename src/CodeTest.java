@@ -1,12 +1,9 @@
 
 public class CodeTest {
 public static void main(String[] args){
-	ALU A = new ALU();
-	String a = "1101001";
-	String b = "0001011";
-	String c = A.ANDI(a, b);
-	System.out.println(c);
+	String a = "AF02E4F1";
 	
+	System.out.println(ALU.hexToBin(a));
 
 //	System.out.println(d);
 	
