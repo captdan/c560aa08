@@ -16,7 +16,9 @@ public class ALU {
 	public int ADD(String a, String b){
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
+		System.out.println(aValue);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
+		System.out.println(bValue);
 		try{
 		cValue = aValue + bValue;
 		}
@@ -197,6 +199,11 @@ public class ALU {
 		String result = padZeros(reg, imm);
 		return AND(reg,result);
 	}
+	public int ADDI(String a, String b){
+		String result = extendBits(a, b);
+		int r = (ADD(a,result));
+		return r;
+	}
 	
 	/**
 	 * 
@@ -210,7 +217,7 @@ public class ALU {
 	 * Date of Installation: 11/20/2010.
 	 * Modifications: NONE.
 	 */
-	private int GetIntegerFromTwosComplementSigned(String a){
+	public static int GetIntegerFromTwosComplementSigned(String a){
 		char [] bits = new char[a.length()];
 		boolean negative = false;
 		if(a.charAt(0) == '1'){
@@ -271,7 +278,7 @@ public class ALU {
 	 * Date of Installation: 11/20/2010.
 	 * Modifications: NONE.
 	 */
-	private int GetIntegerFromTwosComplementUnsigned(String a){
+	public static int GetIntegerFromTwosComplementUnsigned(String a){
 		char [] bits = new char[a.length()];
 		for(int i = a.length()-1; i >0; i--)
 		{
@@ -324,6 +331,25 @@ public class ALU {
 		int zeroes = reg.length() - imm.length();
 		while (zeroes >0){
 			result += '0';
+			zeroes--;
+		}
+		result += imm;
+		return result;
+	}
+	public static String extendBits(String reg, String imm){
+		String result = "";
+		int zeroes = reg.length() - imm.length();
+		while (zeroes >0){
+			if(imm.charAt(0) == '1'){
+				while(zeroes >0){
+					result+= '1';
+					zeroes--;
+				}
+				
+			}
+			else{
+				result = padZeros(reg,imm);
+			}
 			zeroes--;
 		}
 		result += imm;
