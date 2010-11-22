@@ -11,12 +11,18 @@ import java.util.StringTokenizer;
 public class HardwareSimulator {
 
 	static String[] registers = new String[15];
+	static String[] status_registers = new String[3];
+	//Status Registers
+	// Overflow
+	// Zero
+	// Negative
 	static String[] MEM = new String[65536];
 	static ArrayList<String> LoadModule = new ArrayList<String>();
 	static int OPCODE = 0;
 	ArrayList<Error> Errors = new  ArrayList<Error>();
 	static boolean debug = false;
 	static int PC = 0;
+	static int NPIC = 0;
 	static String binaryInstruction = "";
 	public static ArrayList<String> GSymbTableArray = new ArrayList<String>();
 	public static GlobalSymbolTable GSymbTable = new GlobalSymbolTable();
@@ -43,44 +49,29 @@ public class HardwareSimulator {
 		initializeMEM();
 		initializeREGS();
 		instructionType type;
-	//	DumpArray();
-	//	if(args.length == 2 )
-	//	{
-		//System.out.println(args[0]);
-		LoadModule = readFileToArrayList(args[0]);
-		//System.out.println(LoadModule.size());
+	
+			if(args.length == 2 )
+		{
 		
-	//	GSymbTableArray = readFileToArrayList(args[1]);
-	//	}
-	//	else{
-	//		System.out.println("Unspecified Load File name");
-	//		System.exit(2);
-	//	}
+				LoadModule = readFileToArrayList(args[0]);
 		
-		/*
-		 * get Symbol table array into GSymbTable 
-		 * 
-		 */
-		//FillGlobalSymbTable();
+		
+		}
+		else{
+			System.out.println("Unspecified Load File name");
+			System.exit(2);
+		}
 	
 		
 		/*
 		 * Fill MEM array
 		 */
 		putToMEM();
-		
-		
-		
-		// TODO Handle Linker End Record as last object in LoadModule Array (Everything else is text records) RAKAAN
-		
-		// TODO Load any int.data,bin.data,hex.data.str.data values into memory array
+	
 		type = null;
-		
-		// I think that now all the hex instructions are loaded into MEM[]???????
 			
 		for(int i = excecStart; i < initialLoadAddr + CompleteModuleLength - 1; i++)
 		{
-			
 			
 			try
 			{
@@ -264,7 +255,7 @@ public class HardwareSimulator {
 	private static void putToMEM() {
 		try{
 			
-			// TODO Input our Load Module as .txt and generate memory array OSCAR - DONE
+		
 			String LH = LoadModule.get(0);
 			StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
 			
@@ -293,7 +284,7 @@ public class HardwareSimulator {
 			else
 				{
 				
-					//TODO Generate Error .. missing arguments in LH
+					System.err.println("Unable to load Load Module:");
 				}
 			
 			String LT = LoadModule.get(1);
@@ -307,7 +298,7 @@ public class HardwareSimulator {
 					String loardAddr = st.nextToken();
 						if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false);
 						{
-								// TODO Generate Error .. invalid hex
+							System.err.println("Unrecoverable problem with Load Module:");
 						}
 					// get Load address for MEM	
 					int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
@@ -395,24 +386,9 @@ public class HardwareSimulator {
 		PC++;
 	}
 
-	/*private static void evaluateJType(String binaryInstruction2) 
-	{
-		
-		DumpInfo();
-		
-		if(debug)
-		{
-			DumpArray();
-		}
-		PC++;
-		
-		DumpInfo();
-	}*/
-
 	private static void evaluateIOType(String opcode) 
 	{
 		DumpInfo();
-		// TODO Evaluate Instruction RAKAAN
 		
 		if(opcode.equals("10"))
 		{
@@ -522,7 +498,7 @@ public class HardwareSimulator {
 	
 	private static void DumpArray()
 	{
-		// TODO Format Array OSCAR
+		
 		System.out.println("DUMP MEM");
 		int last = CompleteModuleLength + initialLoadAddr +34;
 		
@@ -585,8 +561,7 @@ public class HardwareSimulator {
 	}
 	static boolean isValidHex (String hex) 
 	{
-		//need to flesh this out, but each method to check operands should just return a boolean 
-		//max of 8 hex digits, fill in with signed value in front (either 0 or F)
+		
 		boolean result = true;
 		for(int i =0; i <hex.length();i++){
 			if (!(Character.isDigit(hex.charAt(i))|| hex.charAt(i)== 'A' || hex.charAt(i)== 'B'|| hex.charAt(i)== 'C' || hex.charAt(i)== 'D' || hex.charAt(i)== 'E' || hex.charAt(i)== 'F')){
