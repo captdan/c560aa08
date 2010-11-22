@@ -326,7 +326,7 @@ public class ALU {
 		}
 		return result;
 	}
-public String SRL(String Reg, String bits){
+	public String SRL(String Reg, String bits){
 	String result = "";
 	int bits2 = Integer.parseInt(bits, 2);
 	int len = Reg.length();
@@ -543,4 +543,70 @@ public String SRL(String Reg, String bits){
 		return result;
 	}
 	
+	public static String binToHex32bits(String bin){
+		String a = "";
+		for(int i = 0; i <32; i++){
+			a+='0';
+		}
+		String extended32bitbinary = extendBits(a, bin);
+		
+		String hex = "";
+		int b = 4;
+		for(int i = 0; b <= 32 ; i+=4){
+			
+			String singlehexinbin = extended32bitbinary.substring(i, b);
+			//System.out.println(singlehexinbin);
+			if(singlehexinbin.equals("0000")){
+				hex+='0';
+			}
+			else if(singlehexinbin.equals("0001")){
+				hex+='1';
+			}
+			else if(singlehexinbin.equals("0010")){
+				hex+='2';
+			}
+			else if(singlehexinbin.equals("0011")){
+				hex+='3';
+			}
+			else if(singlehexinbin.equals("0100")){
+				hex+='4';
+			}
+			else if(singlehexinbin.equals("0101")){
+				hex+='5';
+			}
+			else if(singlehexinbin.equals("0110")){
+				hex+='6';
+			}
+			else if(singlehexinbin.equals("0111")){
+				hex+='7';
+			}
+			else if(singlehexinbin.equals("1000")){
+				hex+='8';
+			}
+			else if(singlehexinbin.equals("1001")){
+				hex+='9';
+			}
+			else if(singlehexinbin.equals("1010")){
+				hex+='A';
+			}
+			else if(singlehexinbin.equals("1011")){
+				hex+='B';
+			}
+			else if(singlehexinbin.equals("1100")){
+				hex+='C';
+			}
+			else if(singlehexinbin.equals("1101")){
+				hex+='D';
+			}
+			else if(singlehexinbin.equals("1110")){
+				hex+='E';
+			}
+			else if(singlehexinbin.equals("1111")){
+				hex+='F';
+			}
+			b+=4;
+		}
+		//System.out.println(hex);
+		return hex;
+	}
 }

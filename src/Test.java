@@ -23,8 +23,8 @@ public class Test {
 	public static void main(String[] args) {
 		System.out.println("ADD TEST");
 		String binaryInstruction2 = "11111111111111111111111111111111";
-		// 0111011
-		// 69 ^^^^
+		// 1
+		// -1
 		String imm = "10001";
 		// -01111
 		// -15
