@@ -21,7 +21,7 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int o = 24;
+		int o = -24;
 		System.out.println(ALU.intToHex(o));
 		System.out.println("ADD TEST");
 		String binaryInstruction2 = "11111111111111111111111111111111";
