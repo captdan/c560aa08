@@ -380,7 +380,7 @@ public class ALU {
 				result+="0110";
 			}
 			else if (hex.charAt(i) == '7'){
-				result+="0111";
+				result+="0111"; 
 			}
 			else if (hex.charAt(i) == '8'){
 				result+="1000";
@@ -409,4 +409,5 @@ public class ALU {
 		}
 		return result;
 	}
+	
 }
