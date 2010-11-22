@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 public class HardwareSimulator {
 
-	String[] registers = new String[15];
+	static String[] registers = new String[15];
 	static String[] MEM = new String[65536];
 	static ArrayList<String> LoadModule = new ArrayList<String>();
 	static int OPCODE = 0;
@@ -19,13 +19,13 @@ public class HardwareSimulator {
 	static String binaryInstruction = "";
 	public static ArrayList<String> GSymbTableArray = new ArrayList<String>();
 	public static GlobalSymbolTable GSymbTable = new GlobalSymbolTable();
-	public static int exectStart = 0;
+	public static int excecStart = 0;
 	public static int initialLoadAddr = 0;
 	public static int CompleteModuleLength = 0;
 	public static String LHfirstModuleName;
 	public static enum instructionType
 	{
-		 R, S, J, IO, I;
+		 R, S, J, IO, I, NOTINSTRUCTION;
 	}
 	/**
 	 * Holds all symbols encountered while passing through source code.
@@ -38,10 +38,12 @@ public class HardwareSimulator {
 		// Input Global Symbol Table from .txt into SymbolTable-type object
 		
 		initializeMEM();
+		initializeREGS();
 		instructionType type;
 	//	DumpArray();
 	//	if(args.length == 2 )
 	//	{
+		//System.out.println(args[0]);
 		LoadModule = readFileToArrayList(args[0]);
 		//System.out.println(LoadModule.size());
 		
@@ -73,9 +75,8 @@ public class HardwareSimulator {
 		
 		// I think that now all the hex instructions are loaded into MEM[]???????
 			
-		for(int i = initialLoadAddr; i < initialLoadAddr + CompleteModuleLength - 1; i++)
+		for(int i = excecStart; i < initialLoadAddr + CompleteModuleLength - 1; i++)
 		{
-			
 			
 			
 			try
@@ -86,59 +87,19 @@ public class HardwareSimulator {
 			{
 				// TODO Invalid Hex instruction....do we already catch this?
 			}
+			type = SelectInstructionType(binaryInstruction);
 			
-			try
-			{
-				System.out.println(binaryInstruction);
-				OPCODE = Integer.parseInt(binaryInstruction.substring(0,5),2);
-			}
-			catch(NumberFormatException e)
-			{
-				// TODO Handle Invalid Opcode
-			}
-			 
-			 // At this point, OPCODE is the integer representation of the opcode
-
-			if(((16 <= OPCODE) && (OPCODE <= 23))||((OPCODE <=50)&&(OPCODE <=55))|| (OPCODE ==61)||(OPCODE==30)||(OPCODE==31))
-						{
-							type = instructionType.I;
-						}
-						else if ((10 <= OPCODE) && (OPCODE <= 13))
-						{
-							type = instructionType.IO;
-						}
-						else if (OPCODE == 8)
-						{
-							type = instructionType.J;
-						}
-						else if (((1 <= OPCODE) && (OPCODE <= 3)) ||(OPCODE==63))
-						{
-							type = instructionType.R;
-						}
-						else
-						{
-							type = instructionType.S;
-						}
+			
 			
 			switch (type)
 			{
-				case S: evaluateSType();
+				case S: evaluateSType(binaryInstruction);
 					break;
 				case R:  evaluateRType(String.valueOf(OPCODE));
 					break;
-				case J:  
-					DumpInfo();
-
-					if(debug)
-					{
-						DumpArray();
-					}
-					PC++;
-					
-					System.exit(1);
-
+				case J:  evaluateJType(binaryInstruction);
 					break;
-				case IO: evaluateIOType(String.valueOf(OPCODE));
+				case IO: evaluateIOType(binaryInstruction);
 					break;
 				default: Error();
 					break;
@@ -148,6 +109,82 @@ public class HardwareSimulator {
 		}
 		
 		DumpArray();
+	}
+
+	/**
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated:
+	 * Original Author:
+	 * Date of Installation:
+	 * Modifications:
+	 * @param binaryInstruction2
+	 * @return 
+	 */
+	private static instructionType SelectInstructionType(String binaryInstruction2) {
+		instructionType result;
+		try
+		{
+			//System.out.println(binaryInstruction);
+			//011010
+			OPCODE = Integer.parseInt(binaryInstruction2.substring(0,6),2);
+			//System.out.println("OPCODE: " + OPCODE);
+		}
+		catch(NumberFormatException e)
+		{
+			// TODO Handle Invalid Opcode
+		}
+		//011010 
+		// At this point, OPCODE is the integer representation of the opcode
+		// when you do Integer.ParseInt ... it returns an integer not a hex number, so you need to compare to int not Hex
+		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 52) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
+		{
+			result = instructionType.I;
+		}
+		else if ((OPCODE >= 10) && (OPCODE <= 13))
+		{
+			result = instructionType.IO;
+		}
+		else if (OPCODE == 8)
+		{
+			result = instructionType.J;
+		}
+		else if (((OPCODE >= 1) && (OPCODE <= 3)) || ((OPCODE == 63)))
+		{
+			result = instructionType.R;
+		}
+		else if(((OPCODE >= 32) && (OPCODE <= 36)) || (OPCODE == 39)|| (OPCODE == 48) || (OPCODE == 49) || ((OPCODE >= 56) && (OPCODE <= 59)) || (OPCODE == 6) || (OPCODE <= 7) || ((OPCODE >= 26) && (OPCODE <= 29)))
+		{
+			result = instructionType.S;
+		}
+		else{
+			result = instructionType.NOTINSTRUCTION;
+			//System.out.println("Hex Does not contain a valid instruction: Terminating");
+			//System.exit(1);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated:
+	 * Original Author:
+	 * Date of Installation:
+	 * Modifications:
+	 */
+	private static void initializeREGS() {
+		for(int i = 0; i < registers.length; i++){
+			registers[i] = "00000000";
+		}
+		
 	}
 
 	/**
@@ -222,7 +259,7 @@ public class HardwareSimulator {
 				
 					String H = LHTokenizer.nextToken();
 					String exStart = LHTokenizer.nextToken();
-					exectStart = Integer.parseInt(exStart);
+					excecStart = Integer.parseInt(exStart);
 					//System.out.println(exectStart);
 					LHfirstModuleName = LHTokenizer.nextToken();
 					String LengthOfModule = LHTokenizer.nextToken();
@@ -241,6 +278,7 @@ public class HardwareSimulator {
 				}
 			else
 				{
+				
 					//TODO Generate Error .. missing arguments in LH
 				}
 			
@@ -319,7 +357,7 @@ public class HardwareSimulator {
 		}
 	}
 
-	private static void evaluateSType() 
+	private static void evaluateSType(String binaryInstruction2) 
 	{
 		DumpInfo();
 		// Evaluate Instruction
@@ -343,28 +381,24 @@ public class HardwareSimulator {
 		PC++;
 	}
 
-	private static void evaluateJType() 
+	private static void evaluateJType(String binaryInstruction2) 
 	{
+		
 		DumpInfo();
-		// TODO Evaluate Instruction RAKAAN
-		DumpInfo();
+		
 		if(debug)
 		{
 			DumpArray();
 		}
 		PC++;
+		
+		DumpInfo();
 	}
 
-	private static void evaluateIOType(String opcode) 
+	private static void evaluateIOType(String binaryInstruction2) 
 	{
 		DumpInfo();
 		// TODO Evaluate Instruction RAKAAN
-		
-		if(opcode.equals(""))
-		{
-			
-		}
-			
 		DumpInfo();
 		if(debug)
 		{
@@ -380,12 +414,13 @@ public class HardwareSimulator {
 		int last = CompleteModuleLength + initialLoadAddr +34;
 		
 		int printcount = 0;
-		
+		System.out.println("Regs\t" + registers[0] + "  " + registers[1] + "  " + registers[2] + "  " + registers[3] + "  " + registers[4] + "  " + registers[5] + "  " + registers[6] + "  " + registers[7]);
 		for(int i = initialLoadAddr+1 ; i < last-1 ; i++){
 		
 				if(printcount % 8 == 0)
 				{
-					System.out.println();
+					if(printcount != 0){
+					System.out.println();}
 					System.out.print(i  + "\t");
 				}
 				System.out.print(MEM[i] + "  ");
@@ -408,6 +443,7 @@ public class HardwareSimulator {
 		ArrayList<String> linesOfCode = new ArrayList<String>();
 		try 
 		{
+			//System.out.println(fileName);
 			FileInputStream fileInputStream = new FileInputStream(fileName);
 			DataInputStream dataInputStream = new DataInputStream(
 					fileInputStream);
@@ -425,7 +461,7 @@ public class HardwareSimulator {
 		catch (FileNotFoundException e) 
 		{
 			System.out.println("File Not Found");
-			e.printStackTrace();
+			
 		} 
 		catch (IOException e) 
 		{
