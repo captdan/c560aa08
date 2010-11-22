@@ -21,7 +21,12 @@ public class ALU {
 		
 		int bValue = GetIntegerFromTwosComplementSigned(b);
 		
-		
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		try{
 		cValue = aValue + bValue;
 		}
@@ -36,8 +41,15 @@ public class ALU {
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		try{
 		cValue = aValue - bValue;
+		
 		}
 		catch(Exception overflow){
 			overflowFromLastOperation = true;
@@ -49,6 +61,12 @@ public class ALU {
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		try{
 		cValue = aValue * bValue;
 		}
@@ -63,6 +81,12 @@ public class ALU {
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		try{
 		cValue = aValue/bValue;
 		}
@@ -76,6 +100,12 @@ public class ALU {
 	public int ADDU(String a, String b){
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		int cValue = aValue + bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
@@ -88,6 +118,12 @@ public class ALU {
 	public int SUBU(String a, String b){
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		int cValue = aValue - bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
@@ -100,6 +136,12 @@ public class ALU {
 	public int MULU(String a, String b){
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		int cValue = aValue * bValue;
 		if(cValue < 0){
 			cValue = cValue*-1;
@@ -113,6 +155,12 @@ public class ALU {
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		try{
 		cValue = aValue / bValue;
 		}
@@ -132,6 +180,12 @@ public class ALU {
 		int c = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
+		if(a.charAt(0) == '0'){
+			aValue = Integer.parseInt(a, 2);
+		}
+		if(b.charAt(0)== '0'){
+			bValue = Integer.parseInt(b, 2);
+		}
 		try{
 		c = (int) Math.pow(aValue, bValue);
 		}
