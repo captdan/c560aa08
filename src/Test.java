@@ -21,11 +21,14 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		int o = 24;
+		System.out.println(ALU.intToHex(o));
 		System.out.println("ADD TEST");
 		String binaryInstruction2 = "11111111111111111111111111111111";
 		// 1
 		// -1
 		String imm = "10001";
+		
 		// -01111
 		// -15
 		ALU ALU = new ALU();
