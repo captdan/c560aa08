@@ -461,8 +461,8 @@ public class ALU {
 	}
 	public static String padZeros(String reg,String imm){
 		String result = "";
-		int zeroes = reg.length() - imm.length();
-		while (zeroes >3){
+		int zeroes = 32- imm.length();
+		while (zeroes >0){
 			result += '0';
 			zeroes--;
 		}
@@ -482,6 +482,7 @@ public class ALU {
 			}
 			else{
 				result = padZeros(reg,imm);
+				break;
 			}
 			zeroes--;
 		}
@@ -542,20 +543,19 @@ public class ALU {
 		}
 		return result;
 	}
-	
 	public static String binToHex32bits(String bin){
 		String a = "";
-		for(int i = 0; i <32; i++){
+		for(int i = 0; i <=32; i++){
 			a+='0';
 		}
 		String extended32bitbinary = extendBits(a, bin);
-		
+		//System.out.println(extended32bitbinary);
 		String hex = "";
 		int b = 4;
 		for(int i = 0; b <= 32 ; i+=4){
 			
 			String singlehexinbin = extended32bitbinary.substring(i, b);
-			//System.out.println(singlehexinbin);
+			
 			if(singlehexinbin.equals("0000")){
 				hex+='0';
 			}
@@ -608,5 +608,35 @@ public class ALU {
 		}
 		//System.out.println(hex);
 		return hex;
+	}
+	public static String intToBin(int in){
+		String result = "";
+		if(in < 0){
+			result = Integer.toBinaryString(in);
+			
+		}
+		else{
+			result = "0";
+			String reg = "";
+			for(int i = 0; i <32;i++){
+				reg += '0';
+			}
+			result += Integer.toBinaryString(in);
+			result = extendBits(reg,result);
+			
+		}
+		return result;
+	}
+	public static String intToHex(int in){
+		String result = "";
+		if(in <0){
+			result = Integer.toHexString(in);
+		}
+		else{
+			String bin = intToBin(in);
+			//System.out.println(bin);
+			result = binToHex32bits(bin);
+		}
+		return result;
 	}
 }
