@@ -98,27 +98,27 @@ public class HardwareSimulator {
 			}
 			 
 			 // At this point, OPCODE is the integer representation of the opcode
-			
-			if((10 <= OPCODE) && (OPCODE <= 31))
-			{
-				type = instructionType.I;
-			}
-			else if ((32 <= OPCODE) && (OPCODE <= 35))
-			{
-				type = instructionType.IO;
-			}
-			else if (OPCODE == 36)
-			{
-				type = instructionType.J;
-			}
-			else if (((1 <= OPCODE) && (OPCODE <= 3)) || ((37 <= OPCODE) && (OPCODE <= 39)) || ((6 <= OPCODE) && (OPCODE <= 8)) || ((58 <= OPCODE) && (OPCODE <= 59)))
-			{
-				type = instructionType.R;
-			}
-			else
-			{
-				type = instructionType.S;
-			}
+
+			if(((16 <= OPCODE) && (OPCODE <= 23))||((OPCODE <=50)&&(OPCODE <=55))|| (OPCODE ==61)||(OPCODE==30)||(OPCODE==31))
+						{
+							type = instructionType.I;
+						}
+						else if ((10 <= OPCODE) && (OPCODE <= 13))
+						{
+							type = instructionType.IO;
+						}
+						else if (OPCODE == 8)
+						{
+							type = instructionType.J;
+						}
+						else if (((1 <= OPCODE) && (OPCODE <= 3)) ||(OPCODE==63))
+						{
+							type = instructionType.R;
+						}
+						else
+						{
+							type = instructionType.S;
+						}
 			
 			switch (type)
 			{
@@ -126,9 +126,19 @@ public class HardwareSimulator {
 					break;
 				case R:  evaluateRType(String.valueOf(OPCODE));
 					break;
-				case J:  evaluateJType();
+				case J:  
+					DumpInfo();
+
+					if(debug)
+					{
+						DumpArray();
+					}
+					PC++;
+					
+					System.exit(1);
+
 					break;
-				case IO: evaluateIOType();
+				case IO: evaluateIOType(String.valueOf(OPCODE));
 					break;
 				default: Error();
 					break;
@@ -345,10 +355,16 @@ public class HardwareSimulator {
 		PC++;
 	}
 
-	private static void evaluateIOType() 
+	private static void evaluateIOType(String opcode) 
 	{
 		DumpInfo();
 		// TODO Evaluate Instruction RAKAAN
+		
+		if(opcode.equals(""))
+		{
+			
+		}
+			
 		DumpInfo();
 		if(debug)
 		{
