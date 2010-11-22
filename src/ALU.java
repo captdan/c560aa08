@@ -639,4 +639,4 @@ public class ALU {
 		}
 		return result;
 	}
-}
+} 
