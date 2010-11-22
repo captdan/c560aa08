@@ -10,21 +10,24 @@
  */
 public class ALU {
 	public static boolean overflowFromLastOperation = false;
+	public static boolean zerodiv = false; 
 	public ALU() {
 		
 	}
 	public int ADD(String a, String b){
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
-		System.out.println(aValue);
+		
 		int bValue = GetIntegerFromTwosComplementSigned(b);
-		System.out.println(bValue);
+		
+		
 		try{
 		cValue = aValue + bValue;
 		}
 		catch(Exception overflow){
 			overflowFromLastOperation = true;
 		}
+		System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -38,6 +41,7 @@ public class ALU {
 		catch(Exception overflow){
 			overflowFromLastOperation = true;
 		}
+		System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 	}
 	public int MUL(String a, String b){
@@ -50,6 +54,7 @@ public class ALU {
 		catch(Exception overflow){
 			overflowFromLastOperation = true;
 		}
+		System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -63,6 +68,7 @@ public class ALU {
 		catch(Exception overflow){
 			overflowFromLastOperation = true;
 		}
+		System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -74,6 +80,7 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		overflowFromLastOperation = false;
+		System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -85,6 +92,7 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		overflowFromLastOperation = false;
+		System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -96,17 +104,26 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		overflowFromLastOperation = false;
+		System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
 	public int DIVU(String a, String b){
+		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
-		int cValue = aValue / bValue;
+		try{
+		cValue = aValue / bValue;
+		}
+		catch(Exception zerodivision){
+			zerodiv = true;
+		}
+		
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
 		overflowFromLastOperation = false;
+		System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -120,6 +137,7 @@ public class ALU {
 		catch(Exception overflow){
 			overflowFromLastOperation = true;
 		}
+		System.out.println(aValue + " ^ " + bValue +" = " + c);
 		return c;
 	}
 	public String AND(String a, String b){
@@ -201,10 +219,46 @@ public class ALU {
 	}
 	public int ADDI(String a, String b){
 		String result = extendBits(a, b);
+		//System.out.println(result + " x");
+		//System.out.println(a + " a");
 		int r = (ADD(a,result));
 		return r;
 	}
-	
+	public int SUBI(String a, String b){
+		String result = extendBits(a, b);
+		int r = (SUB(a,result));
+		return r;
+	}
+	public int MULI(String a, String b){
+		String result = extendBits(a, b);
+		int r = (MUL(a,result));
+		return r;
+	}
+	public int DIVI(String a, String b){
+		String result = extendBits(a, b);
+		int r = (DIV(a,result));
+		return r;
+	}
+	public int ADDIU(String a, String b){
+		String result = extendBits(a, b);
+		int r = (ADDU(a,result));
+		return r;
+	}
+	public int SUBIU(String a, String b){
+		String result = extendBits(a, b);
+		int r = (SUBU(a,result));
+		return r;
+	}
+	public int MULIU(String a, String b){
+		String result = extendBits(a, b);
+		int r = (MULU(a,result));
+		return r;
+	}
+	public int DIVIU(String a, String b){
+		String result = extendBits(a, b);
+		int r = (DIVU(a,result));
+		return r;
+	}
 	/**
 	 * 
 	 * Module Name: GetIntegerFromTwosComplementSigned.
@@ -251,7 +305,7 @@ public class ALU {
 		
 		
 		String bin = "";
-		for(int i = 0; i < a.length(); i++){
+		for(int i = 1; i < a.length(); i++){
 			bin += bits[i];
 		}
 		//System.out.println(bin);
@@ -307,7 +361,7 @@ public class ALU {
 		
 		
 		String bin = "";
-		for(int i = 0; i < a.length(); i++){
+		for(int i = 1; i < a.length(); i++){
 			bin += bits[i];
 		}
 		//System.out.println(bin);
@@ -329,7 +383,7 @@ public class ALU {
 	public static String padZeros(String reg,String imm){
 		String result = "";
 		int zeroes = reg.length() - imm.length();
-		while (zeroes >0){
+		while (zeroes >3){
 			result += '0';
 			zeroes--;
 		}
@@ -345,14 +399,14 @@ public class ALU {
 					result+= '1';
 					zeroes--;
 				}
-				
+				result += imm;
 			}
 			else{
 				result = padZeros(reg,imm);
 			}
 			zeroes--;
 		}
-		result += imm;
+		
 		return result;
 	}
 	public static String hexToBin(String hex){
