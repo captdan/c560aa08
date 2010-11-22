@@ -22,9 +22,9 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		System.out.println("ADD TEST");
-		String binaryInstruction2 = "01000101";
+		String binaryInstruction2 = "11111111111111111111111111111111";
 		// 0111011
-		// 59 ^^^^
+		// 69 ^^^^
 		String imm = "10001";
 		// -01111
 		// -15
@@ -34,10 +34,9 @@ public class Test {
 		
 		binaryInstruction2 = "01000101";
 		// 0111011
-		// 59 ^^^^
+		// 69 ^^^^
 		imm = "00001";
-		// 01111
-		// 15
+		// 1
 		b = ALU.ADD(binaryInstruction2, imm);
 		
 		binaryInstruction2 = "11000101";
@@ -649,6 +648,9 @@ public class Test {
 		// 000010101110
 		bits = "100";
 		System.out.println(ALU.SRL(reg, bits));
+		bits = "11111111111111111111111111111111";
+		
+		System.out.println(Integer.parseInt(bits, 2));
 		
 	}
 
