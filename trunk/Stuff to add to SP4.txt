@@ -1,0 +1,12 @@
+ERROR:
+-Skip line of code, increase PC/NPIC by 1 and move on
+
+STATUS REGISTERS:
+-Overflow
+-Zero
+-Negative
+
+SP3 STUFF:
+-handling mem.skip as multiple LT records with 0000000000s
+-handling str.data as LTs with multiple values
+-memory addressing modes
