@@ -169,8 +169,8 @@ public class Test {
 		//------------------------------------------------------------------------------------------
 		System.out.println("ADDU TEST");
 		binaryInstruction2 = "01000101";
-		// 0111011
-		// 59 ^^^^
+		// 01000101
+		// 69 ^^^^
 		imm = "10001";
 		// -01111
 		// -15
@@ -188,8 +188,8 @@ public class Test {
 		// -0111011
 		// -59 ^^^^
 		imm = "00001";
-		// 01111
-		// -15
+		// 01
+		// 1
 		b = ALU.ADDU(binaryInstruction2, imm);
 		
 		binaryInstruction2 = "00000";
@@ -650,7 +650,7 @@ public class Test {
 		System.out.println(ALU.SRL(reg, bits));
 		bits = "11111111111111111111111111111111";
 		
-		System.out.println(Integer.parseInt(bits, 2));
+		//System.out.println(Integer.parseInt(bits, 2));
 		
 	}
 

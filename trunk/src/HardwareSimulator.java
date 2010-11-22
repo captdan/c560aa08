@@ -47,7 +47,7 @@ public class HardwareSimulator {
 	//	if(args.length == 2 )
 	//	{
 		//System.out.println(args[0]);
-		//LoadModule = readFileToArrayList(args[0]);
+		LoadModule = readFileToArrayList(args[0]);
 		//System.out.println(LoadModule.size());
 		
 	//	GSymbTableArray = readFileToArrayList(args[1]);
