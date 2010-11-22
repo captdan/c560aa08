@@ -23,7 +23,8 @@ public class HardwareSimulator {
 	public static int initialLoadAddr = 0;
 	public static int CompleteModuleLength = 0;
 	public static String LHfirstModuleName;
-	public static enum instructionType
+	public static ALU ALU = new ALU();
+ 	public static enum instructionType
 	{
 		 R, S, J, IO, I, NOTINSTRUCTION;
 	}
