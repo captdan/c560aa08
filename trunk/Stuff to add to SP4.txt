@@ -10,3 +10,18 @@ SP3 STUFF:
 -handling mem.skip as multiple LT records with 0000000000s
 -handling str.data as LTs with multiple values
 -memory addressing modes
+
+IF DEBUG IS ON:
+BEFORE
+	LC: 8 hex digits
+	R0-R8
+	If memory reference: 
+		-MEM(EFFADDR)
+AFTER	
+	LC: 8 hex digits
+	R0-R8
+	If memory reference: 
+		-MEM(EFFADDR)
+		
+NPIC:
+JLK : Next address on come-back
