@@ -14,7 +14,7 @@ public static void main(String[] args){
 	System.out.println(hex);
 	imm = ALU.hexToBin(hex);
 	System.out.println(imm);
-	System.out.println("WHAT?!?!?!");
+	
 	System.out.println();
 	ALU.ADD(imm, imm);
 	int b = ALU.ADD(binaryInstruction2, imm);

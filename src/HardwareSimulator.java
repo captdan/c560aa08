@@ -154,11 +154,11 @@ public class HardwareSimulator {
 		//011010 
 		// At this point, OPCODE is the integer representation of the opcode
 		// when you do Integer.ParseInt ... it returns an integer not a hex number, so you need to compare to int not Hex
-		if(((16 <= OPCODE) && (OPCODE <= 23))||((OPCODE <=50)&&(OPCODE <=55))|| (OPCODE ==61)||(OPCODE==30)||(OPCODE==31))
+		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 52) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
 		{
 			result = instructionType.I;
 		}
-		else if ((10 <= OPCODE) && (OPCODE <= 13))
+		else if ((OPCODE >= 10) && (OPCODE <= 13))
 		{
 			result = instructionType.IO;
 		}
@@ -166,20 +166,19 @@ public class HardwareSimulator {
 		{
 			result = instructionType.J;
 		}
-		else if (((1 <= OPCODE) && (OPCODE <= 3)) ||(OPCODE==63))
+		else if (((OPCODE >= 1) && (OPCODE <= 3)) || ((OPCODE == 63)))
 		{
 			result = instructionType.R;
 		}
-		else 
+		else if(((OPCODE >= 32) && (OPCODE <= 36)) || (OPCODE == 39)|| (OPCODE == 48) || (OPCODE == 49) || ((OPCODE >= 56) && (OPCODE <= 59)) || (OPCODE == 6) || (OPCODE <= 7) || ((OPCODE >= 26) && (OPCODE <= 29)))
 		{
 			result = instructionType.S;
 		}
-
-		/*else{
+		else{
 			result = instructionType.NOTINSTRUCTION;
 			//System.out.println("Hex Does not contain a valid instruction: Terminating");
 			//System.exit(1);
-		}*/
+		}
 		
 		return result;
 	}
