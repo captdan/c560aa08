@@ -16,6 +16,7 @@ public class ALU {
 	}
 	public int ADD(String a, String b){
 		int cValue = 0;
+		
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		
 		int bValue = GetIntegerFromTwosComplementSigned(b);
@@ -258,6 +259,30 @@ public class ALU {
 		String result = extendBits(a, b);
 		int r = (DIVU(a,result));
 		return r;
+	}
+	public String SLL(String Reg, String bits){
+		
+		int bits2 = Integer.parseInt(bits, 2);
+		int len = Reg.length();
+		
+		String result = Reg.substring(bits2,len);
+		
+		for(int i = bits2; i>0; i--){
+			result += '0';
+		}
+		return result;
+	}
+public String SRL(String Reg, String bits){
+	String result = "";
+	int bits2 = Integer.parseInt(bits, 2);
+	int len = Reg.length();
+	for(int i = bits2; i>0; i--){
+		result += '0';
+	}
+	result += Reg.substring(0,len-bits2);
+	
+	
+	return result;
 	}
 	/**
 	 * 
