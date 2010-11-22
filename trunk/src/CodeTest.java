@@ -1,16 +1,24 @@
 
 public class CodeTest {
 public static void main(String[] args){
-	ALU A = new ALU();
-	String a = "1001010101011101";
-	int t = ALU.GetIntegerFromTwosComplementSigned(a);
+	System.out.println("ADD TEST");
+	String binaryInstruction2 = "11111111111111111111111111111111";
+	// 00000000000000000000000000001
+	// -1
 	
-	String b = "10101";
-	int tt = ALU.GetIntegerFromTwosComplementSigned(b);
-	System.out.println(t);
-	System.out.println(tt);
-	System.out.println(A.ADDI(a,b));
-
+	String imm = "10001";
+	// -01111
+	// -15
+	ALU ALU = new ALU();
+	String hex = ALU.binToHex32bits(imm);
+	System.out.println(hex);
+	imm = ALU.hexToBin(hex);
+	System.out.println(imm);
+	System.out.println("WHAT?!?!?!");
+	System.out.println();
+	ALU.ADD(imm, imm);
+	int b = ALU.ADD(binaryInstruction2, imm);
+	
 //	System.out.println(d);
 	
 }
