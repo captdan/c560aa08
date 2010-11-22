@@ -338,6 +338,16 @@ public class ALU {
 	
 	return result;
 	}
+	public String SRA(String Reg, String bits){
+		int bits2 = Integer.parseInt(bits, 2);
+		
+		int len = Reg.length();
+
+		String result = Reg.substring(0,len-bits2);
+		result = extendBits(Reg, result);
+		
+		return result;
+		}
 	/**
 	 * 
 	 * Module Name: GetIntegerFromTwosComplementSigned.
