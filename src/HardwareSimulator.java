@@ -118,26 +118,25 @@ public class HardwareSimulator {
 	}
 
 	/**
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated:
-	 * Original Author:
-	 * Date of Installation:
+	 * Module Name: SelectInstructionType
+	 * Description: Looks at a Binary Instruction and determines the Instruction Type 
+	 * Input Params: Valid Binary Instruction
+	 * Output Params: instructionType Enum
+	 * Error Conditions Tested: 
+	 * Error Messages Generated: Invalid OPCODE, Invalid Instruction
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/21/2010
 	 * Modifications:
-	 * @param binaryInstruction2
-	 * @return 
+	 * @param binaryInstruction2 Valid Binary Instruction 
+	 * @return An instructionType Enum.
 	 */
 	private static instructionType SelectInstructionType(String binaryInstruction2) {
 		instructionType result;
 		try
 		{
-			//System.out.println(binaryInstruction);
-			//011010
+			
 			OPCODE = Integer.parseInt(binaryInstruction2.substring(0,6),2);
-			//System.out.println("OPCODE: " + OPCODE);
+			
 		}
 		catch(NumberFormatException e)
 		{
@@ -145,9 +144,9 @@ public class HardwareSimulator {
 			System.err.println("Invalid OPCODE....proceeding to next instruction.");
 			return null;
 		}
-		//011010 
+		
 		// At this point, OPCODE is the integer representation of the opcode
-		// when you do Integer.ParseInt ... it returns an integer not a hex number, so you need to compare to int not Hex
+		
 		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 52) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
 		{
 			result = instructionType.I;
@@ -178,14 +177,14 @@ public class HardwareSimulator {
 	}
 
 	/**
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated:
-	 * Original Author:
-	 * Date of Installation:
+	 * Module Name: InitializeREGS
+	 * Description: Sets all registers to 0
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/22/2010
 	 * Modifications:
 	 */
 	private static void initializeREGS() {
@@ -196,15 +195,15 @@ public class HardwareSimulator {
 	}
 
 	/**
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated:
-	 * Original Author:
-	 * Date of Installation:
-	 * Modifications:
+	 * Module Name: initializeMEM
+	 * Description: loads entire MEM array with HALT instruction followed by integer value of the MEM location
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/23
+	 * Modifications: Modified to load with HALTs instead of 0s
 	 */
 	private static void initializeMEM() {
 		for(int i = 0; i < MEM.length; i++){
@@ -218,8 +217,8 @@ public class HardwareSimulator {
 	}
 
 	/**
-	 * Module Name:
-	 * Description:
+	 * Module Name: FillGlobalSmbTable
+	 * Description: Creates our Global Symbol Table
 	 * Input Params:
 	 * Output Params:
 	 * Error Conditions Tested:
@@ -248,14 +247,14 @@ public class HardwareSimulator {
 	}
 
 	/**
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated:
-	 * Original Author:
-	 * Date of Installation:
+	 * Module Name: putToMEM
+	 * Description: Inputs the LoadModule from Linker into our Memory Array (MEM)
+	 * Input Params: The .txt name from the LoadModule specified from the command line
+	 * Output Params: N/A
+	 * Error Conditions Tested: Invalid Load Module (both file specified and interna structure of load module)
+	 * Error Messages Generated: Invalid LoadModule specified, inproperly formatted header,text, or end records in LoadModule
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/21/2010
 	 * Modifications:
 	 * @param loadModule2
 	 */
@@ -369,6 +368,19 @@ public class HardwareSimulator {
 		}
 	}
 
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 * @param binaryInstruction2
+	 */
 	private static void evaluateSType(String binaryInstruction2) 
 	{
 		DumpInfo();
@@ -381,6 +393,19 @@ public class HardwareSimulator {
 		PC++;
 	}
 
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 * @param opcode
+	 */
 	private static void evaluateRType(String opcode) 
 	{
 		DumpInfo();
@@ -393,6 +418,19 @@ public class HardwareSimulator {
 		PC++;
 	}
 
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 * @param opcode
+	 */
 	private static void evaluateIOType(String opcode) 
 	{
 		DumpInfo();
@@ -503,6 +541,18 @@ public class HardwareSimulator {
 		PC++;
 	}
 	
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 */
 	private static void DumpArray()
 	{
 		
@@ -525,14 +575,54 @@ public class HardwareSimulator {
 		}
 	}
 	
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 */
 	private static void DumpInfo()
 	{
 		// TODO Make a method. OSCAR
 	}
+	
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 */
 	private static void Error()
 	{
 		// TODO Make a method. LATER
 	}
+	
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 * @param fileName
+	 * @return
+	 */
 	public static ArrayList<String> readFileToArrayList(String fileName)
 
 	{
@@ -566,6 +656,22 @@ public class HardwareSimulator {
 		}
 		return linesOfCode;
 	}
+	
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 * @param hex
+	 * @return
+	 */
+	
 	static boolean isValidHex (String hex) 
 	{
 		
@@ -602,6 +708,21 @@ public class HardwareSimulator {
 		return result;
 	}
 
+	/**
+	 * 
+	 * Module Name:
+	 * Description:
+	 * Input Params:
+	 * Output Params:
+	 * Error Conditions Tested:
+	 * Error Messages Generated
+	 * Original Author
+	 * Date of Installation
+	 * Modifications:
+	 * @param bin
+	 * @return
+	 */
+	
 	public static String SixteenBitBinaryToFourHexDigits (String bin){
 		
 		String binaryString = padZeros16Bits(bin);
