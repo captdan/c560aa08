@@ -31,7 +31,7 @@ public class HardwareSimulator {
 	public static int CompleteModuleLength = 0;
 	public static String LHfirstModuleName;
 	public static ALU ALU = new ALU();
-	public static int TargetAddress = 0;
+	public static int EFFADDR = 0;
  	public static enum instructionType
 	{
 		 R, S, J, IO, I, NOTINSTRUCTION;
@@ -435,13 +435,21 @@ public class HardwareSimulator {
 	{
 		DumpInfo();
 		
-		if(opcode.equals("10"))
+		EFFADDR = Integer.parseInt(binaryInstruction.substring(16),2)+Integer.parseInt(binaryInstruction.substring(8,11));
+		
+		int displayNumber = Integer.parseInt(binaryInstruction.substring(11,16),2);
+		
+		if (EFFADDR > 65536)
+		{
+			//print error, address is out of bounds.
+		}
+		
+		else if(opcode.equals("10"))
 		{
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
 			
-			System.out.print("Enter the number you want stored in memory:");
 			try{
 				
 				userInput = scan.nextInt();
@@ -451,30 +459,11 @@ public class HardwareSimulator {
 				//error reading user's input
 			}
 			
-			if (Integer.parseInt(binaryInstruction.substring(6,8))== 0)
-			{
-				//determine target address when relative to start
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 1)
-			{
-				//determine target address when indirect relative to start
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 2)
-			{
-				TargetAddress = Integer.parseInt(binaryInstruction.substring(16,32),2);
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 3)
-			{
-				//determine target address when literal value is used.
-			}
-			
-			MEM[TargetAddress] = String.valueOf(userInput);
-			
-			
+			MEM[EFFADDR] = String.valueOf(Integer.toHexString(userInput));	
 		}
 		else if (opcode.equals("11"))
 		{
-			System.out.print("Enter the character string you want stored in memory:");
+			//System.out.print("Enter the character string you want stored in memory:");
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			
@@ -488,51 +477,66 @@ public class HardwareSimulator {
 			
 				//error reading user's input				
 			}
-
-			if (Integer.parseInt(binaryInstruction.substring(6,8))== 0)
+			
+			//convert string value entered by user into ASCII equivalent
+			if (userInput.length()<=4)
 			{
-				//determine target address when relative to start
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 1)
+			String userInputHex = "";
+			
+			for (int i = 0; i<userInput.length(); i++)
 			{
-				//determine target address when indirect relative to start
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 2)
-			{
-				TargetAddress = Integer.parseInt(binaryInstruction.substring(16,32),2);
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 3)
-			{
-				//determine target address when literal value is used.
+				char c = userInput.charAt(i);
+				
+				int j = (int)c;
+				
+				String append = String.valueOf(j);
+				
+				userInputHex = userInputHex + append; 
+				
 			}
 			
-			MEM[TargetAddress] = userInput;
+			MEM[EFFADDR] = userInputHex;
+			}
+			else
+			{
+				//print error, input is too long.
+			}
+		}
+		else if (opcode.equals("12"))
+		{
+			int displayAddress = 0;
 			
+			for (int i = 0; i < displayNumber; i++ )
+			{
+				displayAddress = EFFADDR + i;
+				
+				System.out.println(Integer.parseInt(MEM[displayAddress],16));	
+			}
+						
 		}
 		else
 		{
-			if (Integer.parseInt(binaryInstruction.substring(6,8))== 0)
+			int displayAddress = 0;
+			
+			for (int i = 0; i<displayNumber; i++)
 			{
-				//determine target address when relative to start
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 1)
-			{
-				//determine target address when indirect relative to start
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 2)
-			{
-				TargetAddress = Integer.parseInt(binaryInstruction.substring(16,32),2);
-			}
-			else if (Integer.parseInt(binaryInstruction.substring(6,8))== 3)
-			{
-				//determine target address when literal value is used.
+				displayAddress = EFFADDR + i;
+				
+				String output = "";
+				
+				for (int cutter = 0; cutter < MEM[displayAddress].length(); cutter+=2)
+				{
+					int letter = Integer.parseInt(MEM[displayAddress].substring(cutter, cutter+2),16);
+					
+					char appendment = (char)letter;
+					
+					output = output + appendment;
+				}
+				
+				System.out.println(output);
 			}
 			
-			//need to convert MEM[TargetAddress] to ASCII equivalent.
-			
-			//System.out.println(MEM[TargetAddress]);
 		}
-		
 		DumpInfo();
 		if(debug)
 		{
