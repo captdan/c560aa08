@@ -44,7 +44,6 @@ public class HardwareSimulator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Input Global Symbol Table from .txt into SymbolTable-type object
 		
 		initializeMEM();
 		initializeREGS();
@@ -79,7 +78,9 @@ public class HardwareSimulator {
 			}
 			catch(NumberFormatException e)
 			{
-				// TODO Invalid Hex instruction....do we already catch this?
+				// TODO Invalid Hex instruction....do we already catch this? Oh Well...
+				System.err.println("Invalid Op Code....Proceeding to next instruction.");
+				
 			}
 			type = SelectInstructionType(binaryInstruction);
 			
@@ -141,6 +142,8 @@ public class HardwareSimulator {
 		catch(NumberFormatException e)
 		{
 			// TODO Handle Invalid Opcode
+			System.err.println("Invalid OPCODE....proceeding to next instruction.");
+			return null;
 		}
 		//011010 
 		// At this point, OPCODE is the integer representation of the opcode
@@ -205,7 +208,11 @@ public class HardwareSimulator {
 	 */
 	private static void initializeMEM() {
 		for(int i = 0; i < MEM.length; i++){
-			MEM[i] = "00000000";
+			//These are always the leading 4 hex digits of a Halt instruction
+			MEM[i] = "2000";
+			//This uses the integer value of the MEM location to calculate the last 4 hex digits of the HALT instruction for each MEM
+			MEM[i] += SixteenBitBinaryToFourHexDigits(padZeros16Bits(Integer.toBinaryString(i)));
+			 
 		}
 		
 	}
@@ -571,4 +578,91 @@ public class HardwareSimulator {
 		return (result);
 	}
 	
+	/**
+	 * Module Name: padZeros16Bits
+	 * Description: pads a binary value out to 16 bits (with zeros)
+	 * Input Params: valid binary string
+	 * Output Params: zero padded binary string of 16 bits
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/23/2010
+	 * Modifications: Original function padded to 32 bits....lol
+	 * @param binary Binary String to be padded with zeros in order to form 16 bit binary value
+	 * @return
+	 */
+	public static String padZeros16Bits(String binary){
+		String result = "";
+		int zeroes = 16- binary.length();
+		while (zeroes >0){
+			result += '0';
+			zeroes--;
+		}
+		result += binary;
+		return result;
+	}
+
+	public static String SixteenBitBinaryToFourHexDigits (String bin){
+		
+		String binaryString = padZeros16Bits(bin);
+		
+		String hex = "";
+		int b = 4;
+		for(int i = 0; b <= 16 ; i+=4){
+			
+			String singlehexinbin = binaryString.substring(i, b);
+			
+			if(singlehexinbin.equals("0000")){
+				hex+='0';
+			}
+			else if(singlehexinbin.equals("0001")){
+				hex+='1';
+			}
+			else if(singlehexinbin.equals("0010")){
+				hex+='2';
+			}
+			else if(singlehexinbin.equals("0011")){
+				hex+='3';
+			}
+			else if(singlehexinbin.equals("0100")){
+				hex+='4';
+			}
+			else if(singlehexinbin.equals("0101")){
+				hex+='5';
+			}
+			else if(singlehexinbin.equals("0110")){
+				hex+='6';
+			}
+			else if(singlehexinbin.equals("0111")){
+				hex+='7';
+			}
+			else if(singlehexinbin.equals("1000")){
+				hex+='8';
+			}
+			else if(singlehexinbin.equals("1001")){
+				hex+='9';
+			}
+			else if(singlehexinbin.equals("1010")){
+				hex+='A';
+			}
+			else if(singlehexinbin.equals("1011")){
+				hex+='B';
+			}
+			else if(singlehexinbin.equals("1100")){
+				hex+='C';
+			}
+			else if(singlehexinbin.equals("1101")){
+				hex+='D';
+			}
+			else if(singlehexinbin.equals("1110")){
+				hex+='E';
+			}
+			else if(singlehexinbin.equals("1111")){
+				hex+='F';
+			}
+			b+=4;
+		}
+		//System.out.println(hex);
+		return hex;
+	}
 }
