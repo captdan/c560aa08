@@ -11,11 +11,6 @@ import java.util.StringTokenizer;
 public class HardwareSimulator {
 
 	static String[] registers = new String[15];
-	static String[] status_registers = new String[3];
-	//Status Registers
-	// Overflow
-	// Zero
-	// Negative
 	static String[] MEM = new String[65536];
 	static ArrayList<String> LoadModule = new ArrayList<String>();
 	static int OPCODE = 0;
@@ -47,6 +42,7 @@ public class HardwareSimulator {
 		
 		initializeMEM();
 		initializeREGS();
+		FillGlobalSymbTable();
 		instructionType type;
 	
 			if(args.length == 2 )
@@ -62,35 +58,46 @@ public class HardwareSimulator {
 		}
 	
 		
-		/*
-		 * Fill MEM array
-		 */
+		 // Fill MEM array
+		 
 		putToMEM();
-	
+		NPIC = PC + 1;
+		
 		type = null;
-			
-		for(int i = excecStart; i < initialLoadAddr + CompleteModuleLength - 1; i++)
+		
+		for(PC = excecStart; PC < initialLoadAddr + CompleteModuleLength - 1; PC++)
 		{
 			
 			try
 			{
-				binaryInstruction =	ALU.hexToBin(MEM[i]);
+				binaryInstruction =	hexToBin(MEM[PC]);
+				type = SelectInstructionType(binaryInstruction);
+				try
+				{
+					
+					OPCODE = Integer.parseInt(binaryInstruction.substring(0,6),2);
+					
+				}
+				catch(NumberFormatException e)
+				{
+					// Handle Invalid Opcode
+					System.err.println("Invalid OPCODE....proceeding to next instruction.");
+					return;
+				}
 			}
 			catch(NumberFormatException e)
 			{
-				// TODO Invalid Hex instruction....do we already catch this? Oh Well...
-				System.err.println("Invalid Op Code....Proceeding to next instruction.");
+				
+				System.err.println("Invalid Machine Hex....Proceeding to next instruction.");
+				type = instructionType.NOTINSTRUCTION;
 				
 			}
-			type = SelectInstructionType(binaryInstruction);
-			
-			
 			
 			switch (type)
 			{
-				case S: evaluateSType(binaryInstruction);
+				case S: evaluateSType(String.valueOf(OPCODE),binaryInstruction);
 					break;
-				case R:  evaluateRType(String.valueOf(OPCODE));
+				case R:  evaluateRType(String.valueOf(OPCODE),binaryInstruction);
 					break;
 				case J:  
 				DumpInfo();
@@ -100,17 +107,16 @@ public class HardwareSimulator {
 					DumpArray();
 				}
 				
-				PC++;
-				
 				System.exit(1);
 				
 				break;
-				case IO: evaluateIOType(binaryInstruction);
+				case IO: evaluateIOType(String.valueOf(OPCODE),binaryInstruction);
 					break;
-				default: Error();
+				case NOTINSTRUCTION: ;
 					break;
 			}
 			
+			NPIC++;
 			
 		}
 		
@@ -140,12 +146,12 @@ public class HardwareSimulator {
 		}
 		catch(NumberFormatException e)
 		{
-			// TODO Handle Invalid Opcode
+			// Handle Invalid Opcode
 			System.err.println("Invalid OPCODE....proceeding to next instruction.");
-			return null;
+			return instructionType.NOTINSTRUCTION;
 		}
 		
-		// At this point, OPCODE is the integer representation of the opcode
+		// At this point, OPCODE is the Hex representation of the opcode
 		
 		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 52) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
 		{
@@ -169,8 +175,8 @@ public class HardwareSimulator {
 		}
 		else{
 			result = instructionType.NOTINSTRUCTION;
-			//System.out.println("Hex Does not contain a valid instruction: Terminating");
-			//System.exit(1);
+			System.err.println("Not A Valid Instruction...Proceeding to Next Instruction.");
+			
 		}
 		
 		return result;
@@ -335,8 +341,7 @@ public class HardwareSimulator {
 				{
 					// TODO GEnerate Error .. missing argument in Load File
  				}
-				// Increase PC
-				PC++;
+				
 				LT = LoadModule.get(i);
 				st = new StringTokenizer(LT, "|");
 			}
@@ -370,18 +375,18 @@ public class HardwareSimulator {
 
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Module Name: evaluateSType
+	 * Description: Evaluates SAL560 S Type instructions.
+	 * Input Params: 32 bit binary String
+	 * Output Params: N/A
+	 * Error Conditions Tested: 
+	 * Error Messages Generated: 
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/18/2010
 	 * Modifications:
-	 * @param binaryInstruction2
+	 * @param binaryInstruction Binary string (32bits) presumed to be valid instruction.
 	 */
-	private static void evaluateSType(String binaryInstruction2) 
+	private static void evaluateSType(String opcode, String binaryInstruction) 
 	{
 		DumpInfo();
 		// Evaluate Instruction
@@ -390,48 +395,54 @@ public class HardwareSimulator {
 		{
 			DumpArray();
 		}
-		PC++;
+		
 	}
 
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
+	 * Module Name: evaluateRType	
+	 * Description: Evaluates SAL560 R Type instructions.
+	 * Input Params: 32bit Binary String of Instruction to be evaluated
+	 * Output Params: N/A
 	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Error Messages Generated: 
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 
 	 * Modifications:
-	 * @param opcode
+	 * @param binaryInstruction
 	 */
-	private static void evaluateRType(String opcode) 
+	private static void evaluateRType(String opcode, String binaryInstruction) 
 	{
+		
 		DumpInfo();
 		// TODO Evaluate Instruction KERMIT
+		
+		System.out.println("Error");
 		DumpInfo();
 		if(debug)
 		{
 			DumpArray();
+			return;
 		}
-		PC++;
+		
+		
+		
 	}
 
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
+	 * Module Name: evaluateIOType
+	 * Description: Evaluates SAL560 IO Instruction
+	 * Input Params: 
+	 * Output Params: N/A
 	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Error Messages Generated: 
+	 * Original Author: Rakaan Kayali
+	 * Date of Installation: 11/18/2010
 	 * Modifications:
-	 * @param opcode
+	 * @param binaryInstruction
 	 */
-	private static void evaluateIOType(String opcode) 
+	private static void evaluateIOType(String opcode, String binaryInstruction) 
 	{
 		DumpInfo();
 		
@@ -542,7 +553,7 @@ public class HardwareSimulator {
 		{
 			DumpArray();
 		}
-		PC++;
+		
 	}
 	
 	/**
@@ -593,24 +604,7 @@ public class HardwareSimulator {
 	 */
 	private static void DumpInfo()
 	{
-		// TODO Make a method. OSCAR
-	}
-	
-	/**
-	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
-	 * Modifications:
-	 */
-	private static void Error()
-	{
-		// TODO Make a method. LATER
+		// TODO
 	}
 	
 	/**
@@ -714,15 +708,15 @@ public class HardwareSimulator {
 
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
-	 * Modifications:
+	 * Module Name: SixteenBitBinaryToFourHexDigits
+	 * Description: takes 16 bits of binary to 4 Hex
+	 * Input Params: valid 16 bit binary value
+	 * Output Params: String of 4 hex digits
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/23/2010
+	 * Modifications: Kermit changed this to 4 hex digits from 8 hex digits
 	 * @param bin
 	 * @return
 	 */
@@ -789,5 +783,72 @@ public class HardwareSimulator {
 		}
 		//System.out.println(hex);
 		return hex;
+	}
+
+	/**
+	 * 
+	 * Module Name: hexToBin.
+	 * Description: converts a hex number to a binary string.
+	 * Input Params: hex: a hex String.
+	 * Output Params: a binary string.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated:  None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
+	public static String hexToBin(String hex){
+		String result = "";
+		for(int i = 0; i <hex.length(); i++){
+			if(hex.charAt(i) == '0'){
+				result += "0000";
+			}
+			else if (hex.charAt(i) == '1'){
+				result+="0001";
+			}
+			else if (hex.charAt(i) == '2'){
+				result+="0010";
+			}
+			else if (hex.charAt(i) == '3'){
+				result+="0011";
+			}
+			else if (hex.charAt(i) == '4'){
+				result+="0100";
+			}
+			else if (hex.charAt(i) == '5'){
+				result+="0101";
+			}
+			else if (hex.charAt(i) == '6'){
+				result+="0110";
+			}
+			else if (hex.charAt(i) == '7'){
+				result+="0111"; 
+			}
+			else if (hex.charAt(i) == '8'){
+				result+="1000";
+			}
+			else if (hex.charAt(i) == '9'){
+				result+="1001";
+			}
+			else if (hex.charAt(i) == 'A' || hex.charAt(i) == 'a'){
+				result+="1010";
+			}
+			else if (hex.charAt(i) == 'B' || hex.charAt(i) == 'b'){
+				result+="1011";
+			}
+			else if (hex.charAt(i) == 'C' || hex.charAt(i) == 'c'){
+				result+="1100";
+			}
+			else if (hex.charAt(i) == 'D' || hex.charAt(i) == 'd'){
+				result+="1101";
+			}
+			else if (hex.charAt(i) == 'E' || hex.charAt(i) == 'e'){
+				result+="1110";
+			}
+			else if (hex.charAt(i) == 'F' || hex.charAt(i) == 'f'){
+				result+="1111";
+			}
+		}
+		return result;
 	}
 }
