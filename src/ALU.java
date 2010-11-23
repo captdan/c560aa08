@@ -632,6 +632,19 @@ public class ALU {
 		int r = (DIVU(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: SLL.
+	 * Description: performs a Shift logical left bit n bits.
+	 * Input Params: Reg: binary string to be shifted.
+	 * 				 bits: binary string containing the number of bits to be shifted.
+	 * Output Params: a string of bits that has been shifted to the left by n bits.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String SLL(String Reg, String bits){
 		
 		int bits2 = Integer.parseInt(bits, 2);
@@ -644,6 +657,19 @@ public class ALU {
 		}
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: SRL.
+	 * Description: performs a Shift logical right bit n bits.
+	 * Input Params: Reg: binary string to be shifted.
+	 * 				 bits: binary string containing the number of bits to be shifted.
+	 * Output Params: a string of bits that has been shifted to the right by n bits.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String SRL(String Reg, String bits){
 	String result = "";
 	int bits2 = Integer.parseInt(bits, 2);
@@ -656,6 +682,19 @@ public class ALU {
 	
 	return result;
 	}
+	/**
+	 * 
+	 * Module Name: SRA.
+	 * Description: performs a Shift right arithmetic bit n bits.
+	 * Input Params: Reg: binary string to be shifted.
+	 * 				 bits: binary string containing the number of bits to be shifted.
+	 * Output Params: a string of bits that has been shifted to the right by n bits.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String SRA(String Reg, String bits){
 		int bits2 = Integer.parseInt(bits, 2);
 		
@@ -775,6 +814,18 @@ public class ALU {
 		int value = Integer.parseInt(bin,2);
 		return value;
 	}
+	/**
+	 * 
+	 * Module Name: invertBits.
+	 * Description: Inverts the bits of a given binary string.
+	 * Input Params: a binatry string.
+	 * Output Params: a string with inverted bits.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/21/2010
+	 * Modifications: None.
+	 */
 	public static String invertBits(String a){
 		String result = "";
 		for(int i = 0; i < a.length();i++){
@@ -787,6 +838,18 @@ public class ALU {
 		}
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: padZeros.
+	 * Description: pads with zeroes a binary string smaller than 32-bits.
+	 * Input Params: a binary string to be padded.
+	 * Output Params: s 32-bit binary string padded with leading zeroes.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public static String padZeros(String reg,String imm){
 		String result = "";
 		int zeroes = 32- imm.length();
@@ -797,6 +860,18 @@ public class ALU {
 		result += imm;
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: extendBits.
+	 * Description: extend the bits of s binary string of less than 32-bits to a string of 32-bits.
+	 * Input Params: binary string to be extended.
+	 * Output Params: an 32-bit extended binary string.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public static String extendBits(String reg, String imm){
 		String result = "";
 		int zeroes = reg.length() - imm.length();
@@ -817,6 +892,18 @@ public class ALU {
 		
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: hexToBin.
+	 * Description: converts a hex number to a binary string.
+	 * Input Params: hex: a hex String.
+	 * Output Params: a binary string.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated:  None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public static String hexToBin(String hex){
 		String result = "";
 		for(int i = 0; i <hex.length(); i++){
@@ -871,6 +958,18 @@ public class ALU {
 		}
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: binToHex32bits.
+	 * Description: converts a 32-bits binary string to a hex string.
+	 * Input Params: bin: a binary String.
+	 * Output Params: a hex string.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated:  None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public static String binToHex32bits(String bin){
 		String a = "";
 		for(int i = 0; i <=32; i++){
@@ -937,6 +1036,18 @@ public class ALU {
 		//System.out.println(hex);
 		return hex;
 	}
+	/**
+	 * 
+	 * Module Name: intToBin.
+	 * Description: converts an integer to a 32-bit two's complement binary string.
+	 * Input Params: in: an arbitraty integer.
+	 * Output Params: a 32-bit binary string.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public static String intToBin(int in){
 		String result = "";
 		if(in < 0){
@@ -955,6 +1066,18 @@ public class ALU {
 		}
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: intToHex.
+	 * Description: converts an integer to a 8 digit hex string.
+	 * Input Params: in: an arbitraty integer.
+	 * Output Params: a 8-digit hex string.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public static String intToHex(int in){
 		String result = "";
 		if(in <0){
