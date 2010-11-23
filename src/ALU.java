@@ -14,6 +14,19 @@ public class ALU {
 	public ALU() {
 		
 	}
+	/**
+	 * 
+	 * Module Name: ADD.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the addition of both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the addition of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int ADD(String a, String b){
 		int cValue = 0;
 		
@@ -37,6 +50,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: SUB.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the difference of both strings (a-b).
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the difference of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int SUB(String a, String b){
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
@@ -57,6 +83,19 @@ public class ALU {
 		System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 	}
+	/**
+	 * 
+	 * Module Name: MUL.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the product of both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the product of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int MUL(String a, String b){
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
@@ -77,6 +116,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: DIV.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the division of both strings (a/b).
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the division of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int DIV(String a, String b){
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
@@ -97,6 +149,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: ADDU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the addition of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the addition of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int ADDU(String a, String b){
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
@@ -115,6 +180,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: SUBU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the difference of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the difference of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int SUBU(String a, String b){
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
@@ -133,6 +211,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: MULU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the product of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the product of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int MULU(String a, String b){
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
 		int bValue = GetIntegerFromTwosComplementUnsigned(b);
@@ -151,6 +242,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: DIVU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the division of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: an integer containing the division of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int DIVU(String a, String b){
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementUnsigned(a);
@@ -176,6 +280,19 @@ public class ALU {
 		return cValue;
 		
 	}
+	/**
+	 * 
+	 * Module Name: PWR.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the value of a raised to the power b.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 32 bit string in two's complement.
+	 * Output Params: returns an integer with the value of a raised to the power b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int PWR(String a, String b){
 		int c = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
@@ -195,6 +312,18 @@ public class ALU {
 		System.out.println(aValue + " ^ " + bValue +" = " + c);
 		return c;
 	}
+	/**
+	 * 
+	 * Module Name: AND.
+	 * Description: takes two binary strings of the same length and performs a logic AND on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic AND on strings a and b.
+	 * Error Conditions Tested: Strings have the same length.
+	 * Error Messages Generated: "unable to AND strings with different lengths";
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String AND(String a, String b){
 		String result = "";
 		if(a.length() == b.length()){
@@ -214,6 +343,18 @@ public class ALU {
 		}
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: OR.
+	 * Description: takes two binary strings of the same length and performs a logic OR on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic OR on strings a and b.
+	 * Error Conditions Tested: Strings have the same length.
+	 * Error Messages Generated: "unable to OR strings with different lengths";
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String OR(String a, String b){
 		String result = "";
 		if(a.length() == b.length()){
@@ -233,10 +374,35 @@ public class ALU {
 		}
 		return result;
 	}
+	/**
+	 * 
+	 * Module Name: ORI.
+	 * Description: takes two binary strings of the same length and performs a logic ORI on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic ORI on strings a and b.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String ORI(String reg, String imm){
+		
 		String result = padZeros(reg, imm);
 		return OR(reg,result);
 	}
+	/**
+	 * 
+	 * Module Name: XOR.
+	 * Description: takes two binary strings of the same length and performs a logic XOR on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic XOR on strings a and b.
+	 * Error Conditions Tested: Strings have the same length.
+	 * Error Messages Generated: "unable to XOR strings with different lengths";
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String XOR(String a, String b){
 		String result = "";
 		if(a.length() == b.length()){
@@ -256,22 +422,83 @@ public class ALU {
 		}
 		return result;
 	}	
+	/**
+	 * 
+	 * Module Name: NOR.
+	 * Description: takes two binary strings of the same length and performs a logic NOR on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic NOR on strings a and b.
+	 * Error Conditions Tested: Strings have the same length.
+	 * Error Messages Generated: "unable to NOR strings with different lengths";
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String NOR(String a, String b){
 		String result = OR(a,b);
 		return invertBits(result);
 	}
+	/**
+	 * 
+	 * Module Name: XORI.
+	 * Description: takes two binary strings of the same length and performs a logic XORI on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic XORI on strings a and b.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String XORI(String reg, String imm){
 		String result = padZeros(reg, imm);
 		return XOR(reg,result);
 	}
+	/**
+	 * 
+	 * Module Name: NORI.
+	 * Description: takes two binary strings of the same length and performs a logic NORI on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic NORI on strings a and b.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String NORI(String reg, String imm){
 		String result = padZeros(reg, imm);
 		return NOR(reg,result);
 	}
+	/**
+	 * 
+	 * Module Name: ANDI.
+	 * Description: takes two binary strings of the same length and performs a logic ANDI on their bits.
+	 * Input Params: two binary Strings.
+	 * Output Params: resulting string from performing logic ANDI on strings a and b.
+	 * Error Conditions Tested: None.
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public String ANDI(String reg, String imm){
 		String result = padZeros(reg, imm);
 		return AND(reg,result);
 	}
+	/**
+	 * 
+	 * Module Name: ADDI.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the addition of both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16 bit string in two's complement.
+	 * Output Params: an integer containing the addition of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int ADDI(String a, String b){
 		String result = extendBits(a, b);
 		//System.out.println(result + " x");
@@ -279,36 +506,127 @@ public class ALU {
 		int r = (ADD(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: SUBI.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the difference of both strings (a-b).
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the difference of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int SUBI(String a, String b){
 		String result = extendBits(a, b);
 		int r = (SUB(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: MULI.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the product of both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the product of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int MULI(String a, String b){
 		String result = extendBits(a, b);
 		int r = (MUL(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: DIVI.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the division of both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the division of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int DIVI(String a, String b){
 		String result = extendBits(a, b);
 		int r = (DIV(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: ADDIU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the addition of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the addition of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int ADDIU(String a, String b){
 		String result = extendBits(a, b);
 		int r = (ADDU(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: SUBIU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the difference of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the difference of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int SUBIU(String a, String b){
 		String result = extendBits(a, b);
 		int r = (SUBU(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: MULIU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the product of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the product of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int MULIU(String a, String b){
 		String result = extendBits(a, b);
 		int r = (MULU(a,result));
 		return r;
 	}
+	/**
+	 * 
+	 * Module Name: DIVIU.
+	 * Description:	Takes in two 32 bits binary strings in two's complement and returns an integer with the division of the absolute value both strings.
+	 * Input Params: String a: a 32-bit string in two's complement.
+	 * 				 String b: a 16-bit string in two's complement.
+	 * Output Params: an integer containing the division of the absolute value of strings a and b.
+	 * Error Conditions Tested:  None.	
+	 * Error Messages Generated: None.
+	 * Original Author: Oscar Flores.
+	 * Date of Installation: 11/21/2010.
+	 * Modifications: None.
+	 */
 	public int DIVIU(String a, String b){
 		String result = extendBits(a, b);
 		int r = (DIVU(a,result));
