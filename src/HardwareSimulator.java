@@ -558,14 +558,14 @@ public class HardwareSimulator {
 	
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Module Name: DumpArray
+	 * Description: Dumps the current MEM array.
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/22/2010
 	 * Modifications:
 	 */
 	private static void DumpArray()
@@ -592,14 +592,14 @@ public class HardwareSimulator {
 	
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Module Name: DumpInfo
+	 * Description: Information concerning the instruction being executed, displayed before and after each instruction.
+	 * Input Params: N/A
+	 * Output Params: N/A
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns, Oscar Flores, Rakaan Kayali
+	 * Date of Installation: 11/22/2010
 	 * Modifications:
 	 */
 	private static void DumpInfo()
@@ -609,17 +609,17 @@ public class HardwareSimulator {
 	
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Module Name: readFileToArrayList
+	 * Description: Inputs Load Module into an Array to be processed.
+	 * Input Params: fileName is the .txt LoadModule
+	 * Output Params: ArrayList<String> with each line of LoadModule
+	 * Error Conditions Tested: Invalid fileName, Unable to read from file
+	 * Error Messages Generated: "",""
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/21/2010
 	 * Modifications:
-	 * @param fileName
-	 * @return
+	 * @param fileName LoadModule name in .txt format
+	 * @return ArrayList<String> with each line from LoadModule
 	 */
 	public static ArrayList<String> readFileToArrayList(String fileName)
 
@@ -657,16 +657,16 @@ public class HardwareSimulator {
 	
 	/**
 	 * 
-	 * Module Name:
-	 * Description:
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated
-	 * Original Author
-	 * Date of Installation
+	 * Module Name: isValidHex
+	 * Description: Checks for valid Hex String
+	 * Input Params: a String
+	 * Output Params: TRUE iff the input String "hex" is a valid Hex String, FALSE otherwise
+	 * Error Conditions Tested: Hex digits, length
+	 * Error Messages Generated: N/A
+	 * Original Author: Oscar Flores
+	 * Date of Installation: 11/20/2010
 	 * Modifications:
-	 * @param hex
+	 * @param hex String to be evaluated
 	 * @return
 	 */
 	
