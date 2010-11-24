@@ -275,6 +275,7 @@ public class HardwareSimulator {
 					//System.out.println(CompleteModuleLength);
 					String IniLodAddr = LHTokenizer.nextToken();
 					initialLoadAddr = Integer.parseInt(IniLodAddr);
+					System.out.println(initialLoadAddr);
 					PC = initialLoadAddr;
 					String Date = LHTokenizer.nextToken();
 					String Time = LHTokenizer.nextToken();
@@ -563,11 +564,11 @@ public class HardwareSimulator {
 	{
 		
 		System.out.println("DUMP MEM");
-		int last = CompleteModuleLength + initialLoadAddr +34;
+		int last = CompleteModuleLength + initialLoadAddr;
 		
 		int printcount = 0;
 		System.out.println("Regs\t" + registers[0] + "  " + registers[1] + "  " + registers[2] + "  " + registers[3] + "  " + registers[4] + "  " + registers[5] + "  " + registers[6] + "  " + registers[7]);
-		for(int i = initialLoadAddr+1 ; i < last-1 ; i++){
+		for(int i = initialLoadAddr ; i < last ; i++){
 		
 				if(printcount % 8 == 0)
 				{
