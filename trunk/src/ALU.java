@@ -662,7 +662,7 @@ public class ALU {
 	 * Module Name: SRL.
 	 * Description: performs a Shift logical right bit n bits.
 	 * Input Params: Reg: binary string to be shifted.
-	 * 				 bits: binary string containing the number of bits to be shifted.
+	 * 				 bits: int containing the number of bits to be shifted.
 	 * Output Params: a string of bits that has been shifted to the right by n bits.
 	 * Error Conditions Tested: None.
 	 * Error Messages Generated: None.
@@ -670,9 +670,9 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public String SRL(String Reg, String bits){
+	public String SRL(String Reg, int bits){
 	String result = "";
-	int bits2 = Integer.parseInt(bits, 2);
+	int bits2 = bits;
 	int len = Reg.length();
 	for(int i = bits2; i>0; i--){
 		result += '0';
@@ -687,7 +687,7 @@ public class ALU {
 	 * Module Name: SRA.
 	 * Description: performs a Shift right arithmetic bit n bits.
 	 * Input Params: Reg: binary string to be shifted.
-	 * 				 bits: binary string containing the number of bits to be shifted.
+	 * 				 bits: int containing the number of bits to be shifted.
 	 * Output Params: a string of bits that has been shifted to the right by n bits.
 	 * Error Conditions Tested: None.
 	 * Error Messages Generated: None.
@@ -695,8 +695,8 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public String SRA(String Reg, String bits){
-		int bits2 = Integer.parseInt(bits, 2);
+	public String SRA(String Reg, int bits){
+		int bits2 = bits;
 		
 		int len = Reg.length();
 
