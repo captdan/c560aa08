@@ -44,19 +44,9 @@ public class HardwareSimulator {
 		initializeREGS();
 		FillGlobalSymbTable();
 		instructionType type;
-	
-			if(args.length == 1 )
-		{
-		
-				LoadModule = readFileToArrayList(args[0]);
-		
-		
-		}
-		else{
-			System.out.println("Unspecified Load File name");
-			System.exit(2);
-		}
-	
+
+		LoadModule = readFileToArrayList(args[0]);
+
 		
 		 // Fill MEM array
 		 

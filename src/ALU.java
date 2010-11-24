@@ -9,8 +9,7 @@
  *
  */
 public class ALU {
-	public static boolean overflowFromLastOperation = false;
-	public static boolean zerodiv = false; 
+
 	public ALU() {
 		
 	}
@@ -44,7 +43,8 @@ public class ALU {
 		cValue = aValue + bValue;
 		}
 		catch(Exception overflow){
-			overflowFromLastOperation = true;
+			System.err.println("Over Flow");
+			System.exit(1);
 		}
 		System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
@@ -78,7 +78,8 @@ public class ALU {
 		
 		}
 		catch(Exception overflow){
-			overflowFromLastOperation = true;
+			System.err.println("Over Flow");
+			System.exit(1);
 		}
 		System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
@@ -110,7 +111,8 @@ public class ALU {
 		cValue = aValue * bValue;
 		}
 		catch(Exception overflow){
-			overflowFromLastOperation = true;
+			System.err.println("Over Flow");
+			System.exit(1);
 		}
 		System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
@@ -143,7 +145,8 @@ public class ALU {
 		cValue = aValue/bValue;
 		}
 		catch(Exception overflow){
-			overflowFromLastOperation = true;
+			System.err.println("Over Flow");
+			System.exit(1);
 		}
 		System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
@@ -175,7 +178,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
-		overflowFromLastOperation = false;
+		
 		System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
 		
@@ -206,7 +209,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
-		overflowFromLastOperation = false;
+		
 		System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 		
@@ -237,7 +240,7 @@ public class ALU {
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
-		overflowFromLastOperation = false;
+		
 		System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
 		
@@ -269,13 +272,14 @@ public class ALU {
 		cValue = aValue / bValue;
 		}
 		catch(Exception zerodivision){
-			zerodiv = true;
+			System.err.println("Division by Zero occurred");
+			System.exit(1);
 		}
 		
 		if(cValue < 0){
 			cValue = cValue*-1;
 		}
-		overflowFromLastOperation = false;
+		
 		System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
 		
@@ -307,7 +311,7 @@ public class ALU {
 		c = (int) Math.pow(aValue, bValue);
 		}
 		catch(Exception overflow){
-			overflowFromLastOperation = true;
+			
 		}
 		System.out.println(aValue + " ^ " + bValue +" = " + c);
 		return c;
@@ -678,8 +682,6 @@ public class ALU {
 		result += '0';
 	}
 	result += Reg.substring(0,len-bits2);
-	
-	
 	return result;
 	}
 	/**
