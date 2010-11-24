@@ -637,7 +637,7 @@ public class ALU {
 	 * Module Name: SLL.
 	 * Description: performs a Shift logical left bit n bits.
 	 * Input Params: Reg: binary string to be shifted.
-	 * 				 bits: binary string containing the number of bits to be shifted.
+	 * 				 bits: int containing the number of bits to be shifted.
 	 * Output Params: a string of bits that has been shifted to the left by n bits.
 	 * Error Conditions Tested: None.
 	 * Error Messages Generated: None.
@@ -645,9 +645,9 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public String SLL(String Reg, String bits){
+	public String SLL(String Reg, int bits){
 		
-		int bits2 = Integer.parseInt(bits, 2);
+		int bits2 = bits;
 		int len = Reg.length();
 		
 		String result = Reg.substring(bits2,len);
@@ -1037,7 +1037,6 @@ public class ALU {
 		return hex;
 	}
 	/**
-	 * 
 	 * Module Name: intToBin.
 	 * Description: converts an integer to a 32-bit two's complement binary string.
 	 * Input Params: in: an arbitraty integer.
