@@ -31,9 +31,6 @@ public class HardwareSimulator {
 	{
 		 R, S, J, IO, I, NOTINSTRUCTION;
 	}
-	/**
-	 * Holds all symbols encountered while passing through source code.
-	 */
 
 	/**
 	 * @param args
@@ -44,10 +41,16 @@ public class HardwareSimulator {
 		initializeREGS();
 		FillGlobalSymbTable();
 		instructionType type;
-
-		LoadModule = readFileToArrayList(args[0]);
-
-		
+	
+		if(args.length == 1 )
+		{
+			LoadModule = readFileToArrayList(args[0]);
+		}
+		else{
+			System.out.println("Unspecified Load File name");
+			System.exit(2);
+		}
+	
 		 // Fill MEM array
 		 
 		putToMEM();
@@ -70,7 +73,7 @@ public class HardwareSimulator {
 				}
 				catch(NumberFormatException e)
 				{
-					// Handle Invalid Opcode
+					
 					System.err.println("Invalid OPCODE....proceeding to next instruction.");
 					return;
 				}
@@ -87,21 +90,28 @@ public class HardwareSimulator {
 			{
 				case S: evaluateSType(String.valueOf(OPCODE),binaryInstruction);
 					break;
+					
 				case R:  evaluateRType(String.valueOf(OPCODE),binaryInstruction);
 					break;
+					
 				case J:  
-				DumpInfo();
+						DumpInstructionInfo();
 
-				if(debug)
-				{
-					DumpArray();
-				}
+						if(debug)
+						{
+							DumpArray();
+						}
+	
+						System.exit(1);
 				
-				System.exit(1);
-				
-				break;
+						break;
+						
 				case IO: evaluateIOType(String.valueOf(OPCODE),binaryInstruction);
 					break;
+					
+				case I: evaluateIType(String.valueOf(OPCODE),binaryInstruction);
+					break;
+					
 				case NOTINSTRUCTION: ;
 					break;
 			}
@@ -380,9 +390,9 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateSType(String opcode, String binaryInstruction) 
 	{
-		DumpInfo();
+		DumpInstructionInfo();
 		// Evaluate Instruction
-		DumpInfo();
+		DumpInstructionInfo();
 		if(debug)
 		{
 			DumpArray();
@@ -405,20 +415,200 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateRType(String opcode, String binaryInstruction) 
 	{
-		
-		DumpInfo();
-		// TODO Evaluate Instruction KERMIT
-		
-		System.out.println("Error");
-		DumpInfo();
-		if(debug)
+		int op = Integer.valueOf(opcode);
+		int r1,r2,r3,shift,function;
+		try
 		{
-			DumpArray();
+			r1 = Integer.parseInt(binaryInstruction.substring(8,10));
+			r2 = Integer.parseInt(binaryInstruction.substring(11,13));
+			r3 = Integer.parseInt(binaryInstruction.substring(14,16));
+			shift = Integer.parseInt(binaryInstruction.substring(17,22));
+			if(shift > 24)
+			{
+				System.err.println("Excessive bit shift...proceeding to next instructin");
+				return;
+			}
+			function = Integer.parseInt(binaryInstruction.substring(26,31));
+			
+		}
+		catch (NumberFormatException e)
+		{
+			System.err.println("Wow...how the hell did you find this error???");
 			return;
+		}
+		DumpInstructionInfo();
+		
+		if(op == 1)
+		{
+			if(((function >= 24) && (function <= 29)) || ((function >=32) && (function <= 35)))
+			{
+				if(function == 32)
+				{
+					registers[r1] = ALU.intToBin(ALU.ADD(registers[r2], registers[r3]));
+				}
+				else if(function == 33)
+				{
+					registers[r1] = ALU.intToBin(ALU.ADDU(registers[r2], registers[r3]));
+				}
+				else if(function == 34)
+				{
+					registers[r1] = ALU.intToBin(ALU.SUB(registers[r2], registers[r3]));
+				}
+				else if(function == 35)
+				{
+					registers[r1] = ALU.intToBin(ALU.SUBU(registers[r2], registers[r3]));
+				}
+				else if(function == 24)
+				{
+					registers[r1] = ALU.intToBin(ALU.MUL(registers[r2], registers[r3]));
+				}
+				else if(function == 25)
+				{
+					registers[r1] = ALU.intToBin(ALU.MULU(registers[r2], registers[r3]));
+				}
+				else if(function == 26)
+				{
+					registers[r1] = ALU.intToBin(ALU.DIV(registers[r2], registers[r3]));
+				}
+				else if(function == 27)
+				{
+					registers[r1] = ALU.intToBin(ALU.DIVU(registers[r2], registers[r3]));
+				}
+				else if(function == 28)
+				{
+					registers[r1] = ALU.intToBin(ALU.PWR(registers[r2], registers[r3]));
+				}
+			}
+			else
+			{
+				System.err.println("Invalide Function Code with R-Type Instruction");
+				return;
+			}
+		}
+		else if(op == 2)
+		{
+			if(function == 0)
+			{
+				registers[r1] = ALU.SLL(registers[r2], shift);
+			}
+			else if(function == 2)
+			{
+				registers[r1] = ALU.SRL(registers[r2], shift);
+			}
+			else if(function == 3)
+			{
+				registers[r1] = ALU.SRA(registers[r2], shift);
+			}
+			else if(function == 36)
+			{
+				registers[r1] = ALU.AND(registers[r2], registers[r3]);
+			}
+			else if(function == 37)
+			{
+				registers[r1] = ALU.OR(registers[r2], registers[r3]);
+			}
+			else if(function == 38)
+			{
+				registers[r1] = ALU.XOR(registers[r2], registers[r3]);
+			}
+			else if(function == 39)
+			{
+				registers[r1] = ALU.NOR(registers[r2], registers[r3]);
+			}
+			else 
+			{
+				System.err.println("Invalide Function Code with R-Type Instruction");
+				return;
+			}
+		}
+		else if (op == 3)
+		{
+			registers[r2] = ALU.intToBin(0);
+			registers[r3] = ALU.intToBin(0);
+			int jump = Integer.parseInt(registers[r1],2);
+			if(jump <= 65535)
+			{
+				PC = jump -1;
+				NPIC = PC;
+			}
+			else
+			{
+				System.err.println("Jump address is out of bounds!");
+				return;
+			}
+			
+		}
+		else if (op == 63)
+		{
+			if((r1 <= 1) && (r2 <= 1) && r3 <= 1)
+			{
+				if(r1 == 1)
+				{
+					System.out.println("Regs\t" + registers[0] + "  " + registers[1] + "  " + registers[2] + "  " + registers[3] + "  " + registers[4] + "  " + registers[5] + "  " + registers[6] + "  " + registers[7]);
+				}
+				if(r2 == 1)
+				{
+					DumpArray();
+				}
+				if(r3 == 1)
+				{
+					System.out.println("LC: " + PC);
+				}
+			}
+			else
+			{
+				System.err.println("Please specify a correct Dump.");
+				return;
+			}
 		}
 		
 		
+		DumpInstructionInfo();
+		if(debug)
+		{
+			DumpArray();
+			
+		}	
 		
+	}
+	
+	/**
+	 * 
+	 * Module Name: evaluateIType	
+	 * Description: Evaluates SAL560 I Type instructions.
+	 * Input Params: 32bit Binary String of Instruction to be evaluated
+	 * Output Params: N/A
+	 * Error Conditions Tested:
+	 * Error Messages Generated: 
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 
+	 * Modifications:
+	 * @param binaryInstruction
+	 */
+	private static void evaluateIType(String opcode, String binaryInstruction) 
+	{
+		
+		DumpInstructionInfo();
+		int r1,r2,immediate;
+		try
+		{
+			r1 = Integer.parseInt(binaryInstruction.substring(8,10));
+			r2 = Integer.parseInt(binaryInstruction.substring(11,13));
+			immediate = Integer.parseInt(binaryInstruction.substring(16,31));
+			
+		}
+		catch (NumberFormatException e)
+		{
+			System.err.println("Wow...how the hell did you find this error???");
+			return;
+		}
+		DumpInstructionInfo();
+		
+		
+		if(debug)
+		{
+			DumpArray();
+		}	
 	}
 
 	/**
@@ -436,7 +626,7 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateIOType(String opcode, String binaryInstruction) 
 	{
-		DumpInfo();
+		DumpInstructionInfo();
 		
 		EFFADDR = Integer.parseInt(binaryInstruction.substring(16),2)+Integer.parseInt(binaryInstruction.substring(8,11));
 		
@@ -540,7 +730,7 @@ public class HardwareSimulator {
 			}
 			
 		}
-		DumpInfo();
+		DumpInstructionInfo();
 		if(debug)
 		{
 			DumpArray();
@@ -584,7 +774,7 @@ public class HardwareSimulator {
 	
 	/**
 	 * 
-	 * Module Name: DumpInfo
+	 * Module Name: DumpInstructionInfo
 	 * Description: Information concerning the instruction being executed, displayed before and after each instruction.
 	 * Input Params: N/A
 	 * Output Params: N/A
@@ -594,7 +784,7 @@ public class HardwareSimulator {
 	 * Date of Installation: 11/22/2010
 	 * Modifications:
 	 */
-	private static void DumpInfo()
+	private static void DumpInstructionInfo()
 	{
 		// TODO
 	}
@@ -843,4 +1033,6 @@ public class HardwareSimulator {
 		}
 		return result;
 	}
+
+	
 }
