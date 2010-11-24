@@ -1038,6 +1038,7 @@ public class ALU {
 		//System.out.println(hex);
 		return hex;
 	}
+	
 	/**
 	 * Module Name: intToBin.
 	 * Description: converts an integer to a 32-bit two's complement binary string.
@@ -1049,7 +1050,7 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public static String intToBin(int in){
+	public String intToBin(int in){
 		String result = "";
 		if(in < 0){
 			result = Integer.toBinaryString(in);
@@ -1079,7 +1080,7 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public static String intToHex(int in){
+	public String intToHex(int in){
 		String result = "";
 		if(in <0){
 			result = Integer.toHexString(in);
