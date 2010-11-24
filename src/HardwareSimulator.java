@@ -45,7 +45,7 @@ public class HardwareSimulator {
 		FillGlobalSymbTable();
 		instructionType type;
 	
-			if(args.length == 2 )
+			if(args.length == 1 )
 		{
 		
 				LoadModule = readFileToArrayList(args[0]);
@@ -308,7 +308,7 @@ public class HardwareSimulator {
 				if(st.countTokens() == 4)
 				{
 					String loardAddr = st.nextToken();
-						if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false);
+						if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false)
 						{
 							System.err.println("Unrecoverable problem with Load Module:");
 						}
@@ -350,6 +350,7 @@ public class HardwareSimulator {
 			 */
 			String LE = LoadModule.get(LoadModule.size()-1);
 			StringTokenizer LETokenizer = new StringTokenizer(LE, "|");
+			
 			
 			if(LHTokenizer.countTokens() == 3)
 				{
