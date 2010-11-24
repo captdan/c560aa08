@@ -22,6 +22,7 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		int o = -24;
+		ALU ALU = new ALU();
 		System.out.println(ALU.intToHex(o));
 		System.out.println("ADD TEST");
 		String binaryInstruction2 = "11111111111111111111111111111111";
@@ -31,7 +32,7 @@ public class Test {
 		
 		// -01111
 		// -15
-		ALU ALU = new ALU();
+		
 		
 		int b = ALU.ADD(binaryInstruction2, imm);
 		
