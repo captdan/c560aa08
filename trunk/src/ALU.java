@@ -392,8 +392,11 @@ public class ALU {
 	 */
 	public String ORI(String reg, String imm){
 		
-		String result = padZeros(reg, imm);
-		return OR(reg,result);
+		String temp = reg.substring(16);
+		String result = OR(reg, temp);
+		result += reg.substring(0, 16);
+		
+		return result;
 	}
 	/**
 	 * 
@@ -455,8 +458,10 @@ public class ALU {
 	 * Modifications: None.
 	 */
 	public String XORI(String reg, String imm){
-		String result = padZeros(reg, imm);
-		return XOR(reg,result);
+		String temp = reg.substring(16);
+		String result = XOR(reg, temp);
+		result += reg.substring(0, 16);
+		return result;
 	}
 	/**
 	 * 
@@ -471,8 +476,10 @@ public class ALU {
 	 * Modifications: None.
 	 */
 	public String NORI(String reg, String imm){
-		String result = padZeros(reg, imm);
-		return NOR(reg,result);
+		String temp = reg.substring(16);
+		String result = NOR(reg, temp);
+		result += reg.substring(0, 16);
+		return result;
 	}
 	/**
 	 * 
@@ -487,8 +494,10 @@ public class ALU {
 	 * Modifications: None.
 	 */
 	public String ANDI(String reg, String imm){
-		String result = padZeros(reg, imm);
-		return AND(reg,result);
+		String temp = reg.substring(16);
+		String result = AND(reg, temp);
+		result += reg.substring(0, 16);
+		return result;
 	}
 	/**
 	 * 
