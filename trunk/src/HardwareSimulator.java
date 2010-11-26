@@ -85,7 +85,7 @@ public class HardwareSimulator {
 					break;
 					
 				case R:
-					System.out.println(binaryInstruction);
+					//System.out.println(binaryInstruction);
 					evaluateRType(String.valueOf(OPCODE),binaryInstruction);
 					break;
 					
@@ -135,8 +135,9 @@ public class HardwareSimulator {
 		instructionType result;
 		try
 		{
-			
+			//System.out.println("OPCODE SELECT " + (binaryInstruction2.substring(0,6)));
 			OPCODE = Integer.parseInt(binaryInstruction2.substring(0,6),2);
+			//System.out.println(OPCODE);
 			
 		}
 		catch(NumberFormatException e)
@@ -148,7 +149,7 @@ public class HardwareSimulator {
 		
 		// At this point, OPCODE is the Hex representation of the opcode
 		
-		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 52) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
+		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 50) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
 		{
 			result = instructionType.I;
 		}
@@ -636,7 +637,7 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateRType(String opcode, String binaryInstruction) 
 	{
-		System.out.println("OPCODE "+ opcode);
+		//System.out.println("OPCODE "+ opcode);
 		int op = Integer.valueOf(opcode);
 		int r1,r2,r3,shift,function;
 		try
@@ -673,39 +674,39 @@ public class HardwareSimulator {
 			
 				if(function == 32)
 				{
-					registers[r1] = ALU.intToHex(ALU.ADD(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.ADD(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 33)
 				{
-					registers[r1] = ALU.intToHex(ALU.ADDU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.ADDU(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 34)
 				{
-					registers[r1] = ALU.intToHex(ALU.SUB(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.SUB(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 35)
 				{
-					registers[r1] = ALU.intToHex(ALU.SUBU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.SUBU(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 24)
 				{
-					registers[r1] = ALU.intToHex(ALU.MUL(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.MUL(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 25)
 				{
-					registers[r1] = ALU.intToHex(ALU.MULU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.MULU(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 26)
 				{
-					registers[r1] = ALU.intToHex(ALU.DIV(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.DIV(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 27)
 				{
-					registers[r1] = ALU.intToHex(ALU.DIVU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.DIVU(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else if(function == 28)
 				{
-					registers[r1] = ALU.intToHex(ALU.PWR(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.PWR(ALU.hexToBin(registers[r2]), ALU.hexToBin(registers[r3])));
 				}
 				else
 				{
@@ -719,31 +720,31 @@ public class HardwareSimulator {
 		{
 			if(function == 0)
 			{
-				registers[r1] = ALU.SLL(registers[r2], shift);
+				registers[r1] = ALU.SLL(ALU.hexToBin(registers[r2]), shift);
 			}
 			else if(function == 2)
 			{
-				registers[r1] = ALU.SRL(registers[r2], shift);
+				registers[r1] = ALU.SRL(ALU.hexToBin(registers[r2]), shift);
 			}
 			else if(function == 3)
 			{
-				registers[r1] = ALU.SRA(registers[r2], shift);
+				registers[r1] = ALU.SRA(ALU.hexToBin(registers[r2]), shift);
 			}
 			else if(function == 36)
 			{
-				registers[r1] = ALU.AND(registers[r2], registers[r3]);
+				registers[r1] = ALU.AND(ALU.hexToBin(registers[r2]), registers[r3]);
 			}
 			else if(function == 37)
 			{
-				registers[r1] = ALU.OR(registers[r2], registers[r3]);
+				registers[r1] = ALU.OR(ALU.hexToBin(registers[r2]), registers[r3]);
 			}
 			else if(function == 38)
 			{
-				registers[r1] = ALU.XOR(registers[r2], registers[r3]);
+				registers[r1] = ALU.XOR(ALU.hexToBin(registers[r2]), registers[r3]);
 			}
 			else if(function == 39)
 			{
-				registers[r1] = ALU.NOR(registers[r2], registers[r3]);
+				registers[r1] = ALU.NOR(ALU.hexToBin(registers[r2]), registers[r3]);
 			}
 			else 
 			{
@@ -801,6 +802,7 @@ public class HardwareSimulator {
 		}	
 		
 	}
+
 	
 	/**
 	 * 
@@ -817,14 +819,23 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateIType(String opcode, String binaryInstruction) 
 	{
-		System.out.println("YAY?");
-		DumpInstructionInfo();
-		int r1,r2,immediate;
+		//System.out.println("OPCODE "+ opcode + " WTF");
+		int op = Integer.valueOf(opcode);
+		//System.out.println("OP  " + op);
+		int r1,r2;
+		String opc = binaryInstruction.substring(0, 6);
+		String unused = binaryInstruction.substring(6, 8);
+		String R1 = binaryInstruction.substring(8, 11);
+		String R2 = binaryInstruction.substring(11, 14);
+		String unused2 = binaryInstruction.substring(14, 16);
+		String imm = binaryInstruction.substring(16);
+		//System.out.println("IMMEDIATE " + imm);
 		try
 		{
-			r1 = Integer.parseInt(binaryInstruction.substring(8,10),2);
-			r2 = Integer.parseInt(binaryInstruction.substring(11,13),2);
-			immediate = Integer.parseInt(binaryInstruction.substring(16),2);
+			//r1 = Integer.parseInt(binaryInstruction.substring(arg0, arg1), 2);
+			
+			r1 = Integer.parseInt(R1, 2);
+			r2 = Integer.parseInt(R2,2);
 			
 		}
 		catch (NumberFormatException e)
@@ -832,6 +843,70 @@ public class HardwareSimulator {
 			System.err.println("Wow...how the hell did you find this error???");
 			return;
 		}
+		DumpArray();
+		int result = 0;
+		if(op == 16){
+			registers[r1] = ALU.intToHex(ALU.ADDI(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 17){
+			registers[r1] = ALU.intToHex(ALU.ADDIU(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 18){
+			registers[r1] = ALU.intToHex(ALU.SUBI(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 19){
+			registers[r1] = ALU.intToHex(ALU.SUBIU(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 20){
+			registers[r1] = ALU.intToHex(ALU.MULI(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 21){
+			registers[r1] = ALU.intToHex(ALU.MULIU(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 22){
+			registers[r1] = ALU.intToHex(ALU.DIVI(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 23){
+			registers[r1] = ALU.intToHex(ALU.DIVIU(ALU.hexToBin(registers[r2]), imm));
+		}
+		if(op == 50){
+			// LWI
+			registers[r1] = ALU.binToHex32bits(imm);
+		}
+		if(op == 51){
+			// LUI
+			registers[r1] = ALU.binToHex32bits(ALU.intToBin((ALU.GetIntegerFromTwosComplementUnsigned(imm))));
+		}
+		if(op == 52){
+			// ori
+			registers[r1] = ALU.binToHex32bits(ALU.ORI(registers[r2], imm));
+		}
+		if(op == 53){
+			// xori
+			registers[r1] = ALU.binToHex32bits(ALU.XORI(registers[r2], imm));
+		}
+		if(op == 54){
+			// nori
+			registers[r1] = ALU.binToHex32bits(ALU.NORI(registers[r2], imm));
+		}
+		if(op == 55){
+			// andi
+			registers[r1] = ALU.binToHex32bits(ALU.ANDI(registers[r2], imm));
+		}
+		if(op == 61){
+			// SRV
+			registers[r1] = ALU.binToHex32bits(imm);
+			registers[r2] = ALU.binToHex32bits(imm);
+		}
+		if(op == 30){
+			// TODO outni
+
+		}
+		if(op == 31){
+			// outci
+
+		}
+		
 		DumpInstructionInfo();
 		
 		
@@ -875,13 +950,15 @@ public class HardwareSimulator {
 		
 		else if(opcode.equals("10"))
 		{
-			System.out.print("Enter the integer you want stored in memory:");
+			
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
-			
+			int addretowrite = EFFADDR;
 			for(int i = 0; i < words; i++)
 			{
+				System.out.print("Enter the integer you want stored in memory:");
+				addretowrite += i;
 			try{
 				
 				userInput = scan.nextInt();
@@ -892,8 +969,8 @@ public class HardwareSimulator {
 				return;
 			}
 			
-			MEM[EFFADDR] = String.valueOf(ALU.intToHex(userInput));	
-			EFFADDR++;
+			MEM[addretowrite] = String.valueOf(ALU.intToHex(userInput));	
+			
 			}
 		}
 		else if (opcode.equals("11"))
@@ -954,7 +1031,7 @@ public class HardwareSimulator {
 		else if (opcode.equals("13") || opcode.equals("14"))
 		{
 			int displayAddress = 0;
-			System.out.println("YAY");
+			//System.out.println("YAY");
 			for (int i = 0; i<displayNumber; i++)
 			{
 				displayAddress = EFFADDR + i;
@@ -1015,6 +1092,7 @@ public class HardwareSimulator {
 				printcount++;
 			
 		}
+		System.out.println();
 	}
 	
 	/**

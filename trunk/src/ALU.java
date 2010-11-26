@@ -98,6 +98,8 @@ public class ALU {
 	 * Modifications: None.
 	 */
 	public int MUL(String a, String b){
+		
+		//System.out.println("immetiate: " + b);
 		int cValue = 0;
 		int aValue = GetIntegerFromTwosComplementSigned(a);
 		int bValue = GetIntegerFromTwosComplementSigned(b);
@@ -551,7 +553,12 @@ public class ALU {
 	 * Modifications: None.
 	 */
 	public int MULI(String a, String b){
+	//	System.out.println("-----------------------------------------------------------");
+		//System.out.println(a);
+		//System.out.println(b);
+	//	System.out.println("-----------------------------------------------------------");
 		String result = extendBits(a, b);
+		//System.out.print("MULI ");
 		int r = (MUL(a,result));
 		return r;
 	}
@@ -728,8 +735,9 @@ public class ALU {
 	 * Date of Installation: 11/20/2010.
 	 * Modifications: NONE.
 	 */
-	public static int GetIntegerFromTwosComplementSigned(String a){
+	public int GetIntegerFromTwosComplementSigned(String a){
 		char [] bits = new char[a.length()];
+		//System.out.println("A: " + a);
 		boolean negative = false;
 		if(a.charAt(0) == '1'){
 			negative = true;
@@ -789,7 +797,7 @@ public class ALU {
 	 * Date of Installation: 11/20/2010.
 	 * Modifications: NONE.
 	 */
-	public static int GetIntegerFromTwosComplementUnsigned(String a){
+	public int GetIntegerFromTwosComplementUnsigned(String a){
 		char [] bits = new char[a.length()];
 		for(int i = a.length()-1; i >0; i--)
 		{
@@ -981,7 +989,7 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public static String binToHex32bits(String bin){
+	public String binToHex32bits(String bin){
 		String a = "";
 		for(int i = 0; i <=32; i++){
 			a+='0';
