@@ -389,7 +389,230 @@ public class HardwareSimulator {
 	private static void evaluateSType(String opcode, String binaryInstruction) 
 	{
 		DumpInstructionInfo();
-		// Evaluate Instruction
+		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
+			
+		int registerTwo = Integer.parseInt(binaryInstruction.substring(11,14),2);
+		
+		int registerOneValue = Integer.parseInt(registers[registerOne],2);
+		
+		int registerTwoValue = Integer.parseInt(registers[registerTwo],2);
+		
+		int lastSixteen = Integer.parseInt(binaryInstruction.substring(16,32),2);
+		
+		if (!(registerOne>=0 && registerOne<=7 && registerTwo >=0 && registerTwo <=7))
+		{
+			System.err.println("specified register is not between 0 and 7");
+		}
+		else if (opcode.equals(32)) // handle Jump on equal
+		{
+				if(registerOneValue==registerTwoValue)
+				{
+					PC = lastSixteen-1;
+				
+					NPIC = PC;
+				}
+		}
+		else if (opcode.equals(33)) //handles Jump on not equal
+		{
+			if(registerOneValue!=registerTwoValue)
+			{
+				PC = lastSixteen-1;
+			
+				NPIC = PC;
+			}
+		}
+		else if (opcode.equals(34)) //handles Jump greater than
+		{
+			if(registerOneValue>registerTwoValue)
+			{
+				PC = lastSixteen-1;
+			
+				NPIC = PC;
+			}
+		}
+		else if (opcode.equals(35)) //handles Jump less than
+		{
+			if(registerOneValue<registerTwoValue)
+			{
+				PC = lastSixteen-1;
+			
+				NPIC = PC;
+			}
+		}
+		else if (opcode.equals(36)) //handles Jump less than or equal to
+		{
+			if(registerOneValue<=registerTwoValue)
+			{
+				PC = lastSixteen-1;
+			
+				NPIC = PC;
+			}
+		}
+		else if (opcode.equals(39)) // store word address
+		{
+			EFFADDR = registerTwoValue + lastSixteen;
+			
+			if (EFFADDR < 65535)
+			{
+			MEM[EFFADDR] = registers[registerOne];
+			}
+			else
+			{
+				System.err.println("address out of bounds");
+			}
+		}
+		else if (opcode.equals(48)) // load word address
+		{
+			EFFADDR = registerTwoValue + lastSixteen;
+			if (EFFADDR < 65535)
+			{
+			registers[registerOne] = MEM[registerTwoValue + lastSixteen];
+			}
+			else
+			{
+				System.err.println("address out of bounds");
+			}
+		}
+		else if (opcode.equals(49)) // load negative address
+		{
+			EFFADDR = registerTwoValue + lastSixteen;
+			if (EFFADDR < 65535)
+			{
+			int loadedValue = Integer.parseInt(MEM[registerTwoValue + lastSixteen],16)*(-1);
+			
+			registers[registerOne] =  Integer.toBinaryString(loadedValue);
+			}
+			else
+			{
+				System.err.println("address out of bounds");
+			}
+		}
+		else if (opcode.equals(56))//load address of word into register //ask to make sure interpretation is correct
+		{
+			EFFADDR = lastSixteen + registerTwoValue;
+			
+			if(EFFADDR < 65535)
+			{
+			int decimal = Integer.parseInt(MEM[EFFADDR],16);
+			
+			registers[registerOne]= Integer.toBinaryString(decimal);
+			}
+			else
+			{
+				System.err.println("address out of bounds");
+			}
+		}
+		else if (opcode.equals(57))//store address in word
+		{
+			EFFADDR = registerTwoValue + lastSixteen;
+			
+			if (EFFADDR < 65535)
+			{
+				
+			MEM[EFFADDR] = Integer.toHexString(registerOneValue);
+			
+			}
+			else
+			{
+				System.err.println("address out of bounds");
+			}
+		}
+		else if (opcode.equals(58))//and register to storage
+		{	
+			EFFADDR = registerTwoValue + lastSixteen;
+			
+			if (EFFADDR <65536)
+			{
+			int decimal = Integer.parseInt(MEM[EFFADDR],16);
+			
+			String binary = Integer.toBinaryString(decimal);
+			
+			String andResult = "";
+			
+			for (int i = 0; i <binary.length(); i++){
+			
+				if (registers[registerOne].charAt(i)==binary.charAt(i))
+				{
+					andResult = andResult + "1";
+				}
+				else 
+				{
+					andResult = andResult + "0";
+				}
+			}
+			
+			registers[registerOne] = andResult;
+			}
+			else
+			{
+				
+			System.err.println("address out of bounds");
+			
+			}
+		}
+		else if (opcode.equals(59))
+		{
+			EFFADDR = registerTwoValue + lastSixteen;
+		
+			if (EFFADDR < 65536)
+			{
+			int decimal = Integer.parseInt(MEM[EFFADDR],16);
+			
+			String binary = Integer.toBinaryString(decimal);
+			
+			String andResult = "";
+			
+			for (int i = 0; i <binary.length(); i++){
+			
+				if (registers[registerOne].charAt(i)!=binary.charAt(i))
+				{
+					andResult = andResult + "1";
+				}
+				else 
+				{
+					andResult = andResult + "0";
+				}
+			}
+			
+			registers[registerOne] = andResult;
+			}
+			else
+			{
+				
+			System.err.println("address out of bounds");
+			
+			}
+		}
+		else if (opcode.equals(6))//Jump
+		{
+			if(lastSixteen <65536)
+			{
+				PC = lastSixteen-1;
+			
+				NPIC = PC;
+			}
+		}
+		else if (opcode.equals(7))//Jump and link
+		{
+			//
+			PC = lastSixteen;
+		}
+		else if (opcode.equals(26))
+		{
+			
+		}
+		else if (opcode.equals(27))
+		{
+			
+		}
+		else if (opcode.equals(28))
+		{
+			
+		}
+		else if (opcode.equals(29))
+		{
+			
+		}
 		DumpInstructionInfo();
 		if(debug)
 		{
@@ -646,11 +869,13 @@ public class HardwareSimulator {
 		
 		if (EFFADDR > 65536)
 		{
-			//print error, address is out of bounds.
+			System.err.println("address is out of bounds");
+			return;
 		}
 		
 		else if(opcode.equals("10"))
 		{
+			System.out.print("Enter the integer you want stored in memory:");
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
@@ -662,8 +887,9 @@ public class HardwareSimulator {
 				userInput = scan.nextInt();
 				
 			} catch (Exception e){
-				
-				//error reading user's input
+			
+				System.err.println("couldn't read user's input");
+				return;
 			}
 			
 			MEM[EFFADDR] = String.valueOf(ALU.intToHex(userInput));	
@@ -672,7 +898,7 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("11"))
 		{
-			//System.out.print("Enter the character string you want stored in memory:");
+			System.out.print("Enter the character string you want stored in memory:");
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			
@@ -683,8 +909,9 @@ public class HardwareSimulator {
 				userInput = br.readLine();
 				
 			} catch(Exception e) {
-			
-				//error reading user's input				
+				
+				System.err.println("couldn't read user's input");
+				return;
 			}
 			
 			//convert string value entered by user into ASCII equivalent
@@ -708,7 +935,8 @@ public class HardwareSimulator {
 			}
 			else
 			{
-				//print error, input is too long.
+				System.err.println("input is too long");
+				return;
 			}
 		}
 		else if (opcode.equals("12"))
