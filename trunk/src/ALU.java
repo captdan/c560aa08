@@ -736,48 +736,18 @@ public class ALU {
 	 * Modifications: NONE.
 	 */
 	public int GetIntegerFromTwosComplementSigned(String a){
-		char [] bits = new char[a.length()];
+		
 		//System.out.println("A: " + a);
-		boolean negative = false;
+	
+		int value = 0;
 		if(a.charAt(0) == '1'){
-			negative = true;
 			
+			value = GetIntegerFromTwosComplementUnsigned(a);
+			value= value*-1;
 		}
-		for(int i = a.length()-1; i >0; i--)
-		{
-			if(a.charAt(i) == '1'){
-				// invert the rest of the bits
-				bits[i] = a.charAt(i);
-				i--;
-				while(i >=0){
-					if(a.charAt(i) == '0'){
-						bits[i] = '1';
-					}
-					else{
-						bits[i] = '0';
-					}
-					i--;
-				}
-				break;
-			}
-			else{
-				// copy bits
-				bits[i] = a.charAt(i);
-			}
-		}
-		
-		 //  at this point this is a two's complement String
-		
-		
-		String bin = "";
-		for(int i = 1; i < a.length(); i++){
-			bin += bits[i];
-		}
-		//System.out.println(bin);
-		int value = Integer.parseInt(bin,2);
-		
-		if(negative){
-			value = value*-1;
+
+		else{
+		value = Integer.parseInt(a,2);
 		}
 		//System.out.println(value);
 		

@@ -21,8 +21,12 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		String t = "0000000000000101";
+		
 		int o = -24;
 		ALU ALU = new ALU();
+		System.out.println(ALU.GetIntegerFromTwosComplementSigned(t));
+		
 		System.out.println(ALU.intToHex(o));
 		System.out.println("ADD TEST");
 		String binaryInstruction2 = "11111111111111111111111111111111";

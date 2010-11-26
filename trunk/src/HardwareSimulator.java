@@ -400,23 +400,26 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateSType(String opcode, String binaryInstruction) 
 	{
+		System.out.println(opcode);
+		System.out.println(binaryInstruction);
 		DumpInstructionInfo();
 		int debugnow = PC;
 		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
 			
 		int registerTwo = Integer.parseInt(binaryInstruction.substring(11,14),2);
 		
-		int registerOneValue = Integer.parseInt(registers[registerOne],2);
+		int registerOneValue = ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(registers[registerOne]));
 		
-		int registerTwoValue = Integer.parseInt(registers[registerTwo],2);
+		int registerTwoValue = ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(registers[registerTwo]));
 		
-		int lastSixteen = Integer.parseInt(binaryInstruction.substring(16,32),2);
-		
+		int lastSixteen = ALU.GetIntegerFromTwosComplementSigned(binaryInstruction.substring(16));
+		System.out.println(lastSixteen);
+		System.out.println(binaryInstruction.substring(16));
 		if (!(registerOne>=0 && registerOne<=7 && registerTwo >=0 && registerTwo <=7))
 		{
 			System.err.println("specified register is not between 0 and 7");
 		}
-		else if (opcode.equals(32)) // handle Jump on equal
+		else if (opcode.equals("32")) // handle Jump on equal
 		{
 				if(registerOneValue==registerTwoValue)
 				{
@@ -425,7 +428,7 @@ public class HardwareSimulator {
 					NPIC = PC;
 				}
 		}
-		else if (opcode.equals(33)) //handles Jump on not equal
+		else if (opcode.equals("33")) //handles Jump on not equal
 		{
 			if(registerOneValue!=registerTwoValue)
 			{
@@ -434,7 +437,7 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals(34)) //handles Jump greater than
+		else if (opcode.equals("34")) //handles Jump greater than
 		{
 			if(registerOneValue>registerTwoValue)
 			{
@@ -443,7 +446,7 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals(35)) //handles Jump less than
+		else if (opcode.equals("35")) //handles Jump less than
 		{
 			if(registerOneValue<registerTwoValue)
 			{
@@ -452,7 +455,7 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals(36)) //handles Jump less than or equal to
+		else if (opcode.equals("36")) //handles Jump less than or equal to
 		{
 			if(registerOneValue<=registerTwoValue)
 			{
@@ -461,7 +464,7 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals(39)) // store word address
+		else if (opcode.equals("39")) // store word address
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 			
@@ -474,19 +477,19 @@ public class HardwareSimulator {
 				System.err.println("address out of bounds");
 			}
 		}
-		else if (opcode.equals(48)) // load word address
+		else if (opcode.equals("48")) // load word address
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 			if (EFFADDR < 65535)
 			{
-			registers[registerOne] = MEM[registerTwoValue + lastSixteen];
+			registers[registerOne] = MEM[lastSixteen];
 			}
 			else
 			{
 				System.err.println("address out of bounds");
 			}
 		}
-		else if (opcode.equals(49)) // load negative address
+		else if (opcode.equals("49")) // load negative address
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 			if (EFFADDR < 65535)
@@ -500,7 +503,7 @@ public class HardwareSimulator {
 				System.err.println("address out of bounds");
 			}
 		}
-		else if (opcode.equals(56))//load address of word into register //ask to make sure interpretation is correct
+		else if (opcode.equals("56"))//load address of word into register //ask to make sure interpretation is correct
 		{
 			EFFADDR = lastSixteen + registerTwoValue;
 			
@@ -515,7 +518,7 @@ public class HardwareSimulator {
 				System.err.println("address out of bounds");
 			}
 		}
-		else if (opcode.equals(57))//store address in word
+		else if (opcode.equals("57"))//store address in word
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 			
@@ -530,7 +533,7 @@ public class HardwareSimulator {
 				System.err.println("address out of bounds");
 			}
 		}
-		else if (opcode.equals(58))//and register to storage
+		else if (opcode.equals("58"))//and register to storage
 		{	
 			EFFADDR = registerTwoValue + lastSixteen;
 			
@@ -563,7 +566,7 @@ public class HardwareSimulator {
 			
 			}
 		}
-		else if (opcode.equals(59))
+		else if (opcode.equals("59"))
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 		
@@ -596,7 +599,7 @@ public class HardwareSimulator {
 			
 			}
 		}
-		else if (opcode.equals(6))//Jump
+		else if (opcode.equals("6"))//Jump
 		{
 			if(lastSixteen <65536)
 			{
@@ -605,24 +608,24 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals(7))//Jump and link
+		else if (opcode.equals("7"))//Jump and link
 		{
 			//
 			PC = lastSixteen;
 		}
-		else if (opcode.equals(26))
+		else if (opcode.equals("26"))
 		{
 			
 		}
-		else if (opcode.equals(27))
+		else if (opcode.equals("27"))
 		{
 			
 		}
-		else if (opcode.equals(28))
+		else if (opcode.equals("28"))
 		{
 			
 		}
-		else if (opcode.equals(29))
+		else if (opcode.equals("29"))
 		{
 			
 		}
@@ -847,7 +850,7 @@ public class HardwareSimulator {
 		{
 			//r1 = Integer.parseInt(binaryInstruction.substring(arg0, arg1), 2);
 			
-			r1 = Integer.parseInt(R1, 2);
+			r1 = Integer.parseInt(R1,2);
 			r2 = Integer.parseInt(R2,2);
 			
 		}
@@ -916,7 +919,7 @@ public class HardwareSimulator {
 
 		}
 		if(op == 31){
-			// outci
+			// TODO outci
 
 		}
 		
