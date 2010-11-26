@@ -15,7 +15,7 @@ public class HardwareSimulator {
 	static ArrayList<String> LoadModule = new ArrayList<String>();
 	static int OPCODE = 0;
 	ArrayList<Error> Errors = new  ArrayList<Error>();
-	static boolean debug = false;
+	static boolean[] debug = new boolean[65536];
 	static int PC = 0;
 	static int NPIC = 0;
 	static String binaryInstruction = "";
@@ -92,11 +92,6 @@ public class HardwareSimulator {
 				case J:  
 						DumpInstructionInfo();
 						DumpArray();
-						if(debug)
-						{
-							DumpArray();
-						}
-	
 						System.exit(1);
 				
 						break;
@@ -211,6 +206,7 @@ public class HardwareSimulator {
 		for(int i = 0; i < MEM.length; i++){
 			//These are always the leading 4 hex digits of a Halt instruction
 			MEM[i] = "2000";
+			debug[i] = false;
 			//This uses the integer value of the MEM location to calculate the last 4 hex digits of the HALT instruction for each MEM
 			MEM[i] += SixteenBitBinaryToFourHexDigits(padZeros16Bits(Integer.toBinaryString(i)));
 			 
@@ -293,6 +289,7 @@ public class HardwareSimulator {
 				{
 				
 					System.err.println("Unable to load Load Module:");
+					System.exit(1);
 				}
 			
 			String LT = LoadModule.get(1);
@@ -308,21 +305,28 @@ public class HardwareSimulator {
 						if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false)
 						{
 							System.err.println("Unrecoverable problem with Load Module:");
+							System.exit(1);
 						}
 					// get Load address for MEM	
 					int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
 					
-					String debug = st.nextToken();
+					String debug1 = st.nextToken();
 					//System.out.println(debug);
-					if((debug.equals("Y") || (debug.equals("N"))) == false)
+					if((debug1.equals("Y") || (debug1.equals("N"))) == false)
 						{
-							// TODO Generate error .. invalid debug flag
+							System.err.println("Invalud Dubug Flag");
+							System.exit(1);
 						}
+					else if(debug1.equals("Y") ){
+						debug[loadAddsDecimal] = true;
+					}
 					String Hex = st.nextToken();
 					//System.out.println(Hex);
-						if(((isValidHex(Hex)&& (Hex.length() == 8))) == false);
+						if(((isValidHex(Hex)&& (Hex.length() == 8))) == false)
 						{
-						// TODO Generate Error .. invalid hex
+							System.err.println("Invalid Hex");
+							System.exit(1);
+					
 						}
 					String moduleName = st.nextToken();
 					//System.out.println(moduleName);
@@ -333,13 +337,15 @@ public class HardwareSimulator {
 					}
 					catch(Exception e)
 					{
-						// Generate Error ... MEM out of bounds
+						System.err.println("Memory out of bounds");
+						System.exit(1);
 					}
 					
 				}
 				else
 				{
-					// TODO GEnerate Error .. missing argument in Load File
+					System.err.println("Unrecoverable problem with Load Module: missing element in Load File ");
+					System.exit(1);
  				}
 				
 				LT = LoadModule.get(i);
@@ -349,23 +355,28 @@ public class HardwareSimulator {
 			 * Handle LE
 			 */
 			String LE = LoadModule.get(LoadModule.size()-1);
+			
 			StringTokenizer LETokenizer = new StringTokenizer(LE, "|");
 			
-			
-			if(LHTokenizer.countTokens() == 3)
+			System.out.println(LHTokenizer.countTokens());
+			if(LETokenizer.countTokens() == 3)
 				{
-				
+					
 					String endRecord = LETokenizer.nextToken();
 					String totalNumberOfMudules = LETokenizer.nextToken();
 					String LEfirstModuleName = LETokenizer.nextToken();
 					if(LEfirstModuleName.equals(LHfirstModuleName) == false){
-						//TODO Generate Error ... miss-matching LH and LH firstModuleName 
+						System.err.println("Unrecoverable problem with Load Module: Unmatching Module names");
+						System.exit(1);
+					
 					}
 					
 				}
 			else
 			{
-				// TODO generate Error .... invalid number of arguments in LE 
+			
+				System.err.println("Unrecoverable problem with Load Module: invalid number of arguments in LE record ");
+				System.exit(1);
 			}
 		}
 		
@@ -390,6 +401,7 @@ public class HardwareSimulator {
 	private static void evaluateSType(String opcode, String binaryInstruction) 
 	{
 		DumpInstructionInfo();
+		int debugnow = PC;
 		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
 			
 		int registerTwo = Integer.parseInt(binaryInstruction.substring(11,14),2);
@@ -615,7 +627,7 @@ public class HardwareSimulator {
 			
 		}
 		DumpInstructionInfo();
-		if(debug)
+		if(debug[debugnow])
 		{
 			DumpArray();
 		}
@@ -637,6 +649,7 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateRType(String opcode, String binaryInstruction) 
 	{
+		int debugnow = PC;
 		//System.out.println("OPCODE "+ opcode);
 		int op = Integer.valueOf(opcode);
 		int r1,r2,r3,shift,function;
@@ -794,12 +807,11 @@ public class HardwareSimulator {
 		}
 		
 		
-		DumpInstructionInfo();
-		if(debug)
+		if(debug[debugnow])
 		{
 			DumpArray();
-			
-		}	
+		}
+		
 		
 	}
 
@@ -819,6 +831,7 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateIType(String opcode, String binaryInstruction) 
 	{
+		int debugnow = PC;
 		//System.out.println("OPCODE "+ opcode + " WTF");
 		int op = Integer.valueOf(opcode);
 		//System.out.println("OP  " + op);
@@ -909,11 +922,11 @@ public class HardwareSimulator {
 		
 		DumpInstructionInfo();
 		
-		
-		if(debug)
+		if(debug[debugnow])
 		{
 			DumpArray();
-		}	
+		}
+			
 	}
 
 	/**
@@ -931,6 +944,7 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateIOType(String opcode, String binaryInstruction) 
 	{
+		int debugnow = PC;
 		DumpInstructionInfo();
 		String opCode = binaryInstruction.substring(0,6);
 		String addrCode = binaryInstruction.substring(6,8);
@@ -1053,10 +1067,11 @@ public class HardwareSimulator {
 		}
 		
 		DumpInstructionInfo();
-		if(debug)
+		if(debug[debugnow])
 		{
 			DumpArray();
 		}
+		
 		
 	}
 	
@@ -1093,6 +1108,8 @@ public class HardwareSimulator {
 			
 		}
 		System.out.println();
+		Scanner scan = new Scanner(System.in);
+		scan.nextLine();
 	}
 	
 	/**
