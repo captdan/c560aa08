@@ -22,6 +22,14 @@ public class ALUTest {
 	private String pos5imm;
 	private String pos10imm;
 	private String pos50imm;
+	private String negoneHex;
+	private String neg5Hex;
+	private String neg10Hex;
+	private String neg50Hex;
+	private String pos5Hex;
+	private String pos10Hex;
+	private String pos50Hex;
+	private String zeroHex;
 	private ALU ALU;
 	/**
 	 * Module Name:
@@ -52,6 +60,14 @@ public class ALUTest {
 		pos5imm    = "0000000000000101";
 		pos10imm   = "0000000000001010";
 		pos50imm   = "0000000000110010";
+		zeroHex = "00000000";
+		negoneHex = "ffffffff";
+		neg5Hex   = "fffffffB";
+		neg10Hex  = "fffffff6";
+		neg50Hex  = "ffffffCE";
+		pos5Hex   = "00000005";
+		pos10Hex  = "0000000A";
+		pos50Hex  = "00000032";	
 		ALU = new ALU();
 	}
 	@Test
@@ -79,10 +95,46 @@ public class ALUTest {
 	}
 	@Test
 	public void padZeroesTest(){
-		assert(ALU.padZeros(neg10, zeroimm).equals("00000000000000000000000000000000"));
-		assert(ALU.padZeros(neg10, neg5imm).equals("00000000000000000000000000000000"));
-		assert(ALU.padZeros(neg10,neg10imm).equals("00000000000000000000000000000000"));
-		assert(ALU.padZeros(neg10,neg50imm).equals("00000000000000000000000000000000"));
+		assertEquals("",ALU.padZeros(neg10, zeroimm),"00000000000000000000000000000000");
+		assertEquals("",ALU.padZeros(neg10, neg5imm),"00000000000000001111111111111011");
+		assertEquals("",ALU.padZeros(neg10,neg10imm),"00000000000000001111111111110110");
+		assertEquals("",ALU.padZeros(neg10,neg50imm),"00000000000000001111111111001110");
+		assertEquals("",ALU.padZeros(neg10, pos5imm),"00000000000000000000000000000101");
+		assertEquals("",ALU.padZeros(neg10,pos10imm),"00000000000000000000000000001010");
+		assertEquals("",ALU.padZeros(neg10,pos50imm),"00000000000000000000000000110010");
+	}
+	@Test
+	public void extendBitsTest(){
+		assertEquals("",ALU.extendBits(neg10, zeroimm),"00000000000000000000000000000000");
+		assertEquals("",ALU.extendBits(neg10, neg5imm),"11111111111111111111111111111011");
+		assertEquals("",ALU.extendBits(neg10,neg10imm),"11111111111111111111111111110110");
+		assertEquals("",ALU.extendBits(neg10,neg50imm),"11111111111111111111111111001110");
+		assertEquals("",ALU.extendBits(neg10, pos5imm),"00000000000000000000000000000101");
+		assertEquals("",ALU.extendBits(neg10,pos10imm),"00000000000000000000000000001010");
+		assertEquals("",ALU.extendBits(neg10,pos50imm),"00000000000000000000000000110010");
+		assertEquals("",ALU.extendBits(neg10,pos50),"00000000000000000000000000110010");
+		
+	}
+	@Test
+	public void HexToBinTest(){
+		assertEquals("",ALU.hexToBin(zeroHex),  "00000000000000000000000000000000");
+		assertEquals("",ALU.hexToBin(negoneHex),"11111111111111111111111111111111");
+		assertEquals("",ALU.hexToBin(neg5Hex),neg5);
+		assertEquals("",ALU.hexToBin(neg10Hex),neg10);
+		assertEquals("",ALU.hexToBin(neg50Hex),neg50);
+		assertEquals("",ALU.hexToBin(pos5Hex),pos5);
+		assertEquals("",ALU.hexToBin(pos10Hex),pos10);
+		assertEquals("",ALU.hexToBin(pos50Hex),pos50);
+	}
+	@Test
+	public void BinToHex(){
+		assertEquals("",ALU.binToHex32bits(zero), zeroHex);
+		assertEquals("",ALU.binToHex32bits(neg5),neg5Hex.toUpperCase());
+		assertEquals("",ALU.binToHex32bits(neg10),neg10Hex.toUpperCase());
+		assertEquals("",ALU.binToHex32bits(neg50),neg50Hex.toUpperCase());
+		assertEquals("",ALU.binToHex32bits(pos5),pos5Hex.toUpperCase());
+		assertEquals("",ALU.binToHex32bits(pos10),pos10Hex.toUpperCase());
+		assertEquals("",ALU.binToHex32bits(pos50),pos50Hex.toUpperCase());
 	}
 
 }

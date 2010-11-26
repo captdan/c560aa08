@@ -736,7 +736,9 @@ public class ALU {
 	 * Modifications: NONE.
 	 */
 	public int GetIntegerFromTwosComplementSigned(String a){
-		
+		if(a.equals("10000000000000000000000000000000")){
+			return Integer.MAX_VALUE;
+		}
 		//System.out.println("A: " + a);
 	
 		int value = 0;
@@ -768,6 +770,9 @@ public class ALU {
 	 * Modifications: NONE.
 	 */
 	public int GetIntegerFromTwosComplementUnsigned(String a){
+		if(a.equals("10000000000000000000000000000000")){
+			return Integer.MAX_VALUE;
+		}
 		//System.out.println("a:  " + a);
 		String bin = "";
 		char [] bits = new char[a.length()];
@@ -823,7 +828,7 @@ public class ALU {
 	 * Date of Installation: 11/21/2010
 	 * Modifications: None.
 	 */
-	public static String invertBits(String a){
+	public  String invertBits(String a){
 		String result = "";
 		for(int i = 0; i < a.length();i++){
 			if(a.charAt(i)=='1'){
@@ -847,7 +852,7 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public static String padZeros(String reg,String imm){
+	public  String padZeros(String reg,String imm){
 		String result = "";
 		int zeroes = 32- imm.length();
 		while (zeroes >0){
@@ -869,24 +874,30 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public static String extendBits(String reg, String imm){
+	public  String extendBits(String reg, String imm){
 		String result = "";
-		int zeroes = reg.length() - imm.length();
-		while (zeroes >0){
+		
+		int zeroes = 32 - imm.length();
+		if(zeroes >0){
+		//System.out.println(zeroes);
+		while (zeroes > 0){
 			if(imm.charAt(0) == '1'){
 				while(zeroes >0){
 					result+= '1';
 					zeroes--;
 				}
 				result += imm;
+				break;
 			}
 			else{
 				result = padZeros(reg,imm);
 				break;
 			}
-			zeroes--;
 		}
-		
+		}
+		else{
+			result = imm;
+		}
 		return result;
 	}
 	/**
@@ -901,7 +912,7 @@ public class ALU {
 	 * Date of Installation: 11/21/2010.
 	 * Modifications: None.
 	 */
-	public static String hexToBin(String hex){
+	public  String hexToBin(String hex){
 		String result = "";
 		for(int i = 0; i <hex.length(); i++){
 			if(hex.charAt(i) == '0'){
@@ -976,10 +987,13 @@ public class ALU {
 		//System.out.println(extended32bitbinary);
 		String hex = "";
 		int b = 4;
-		for(int i = 0; b <= 32 ; i+=4){
+		for(int i = 0; i+4 <= 32 ; i+=4){
 			
-			String singlehexinbin = extended32bitbinary.substring(i, b);
-			
+			String singlehexinbin = extended32bitbinary.substring(i, i+4);
+			//System.out.println();
+			//System.out.println(i);
+			//System.out.println(b);
+			//System.out.println(singlehexinbin);
 			if(singlehexinbin.equals("0000")){
 				hex+='0';
 			}
@@ -1030,6 +1044,7 @@ public class ALU {
 			}
 			b+=4;
 		}
+		//System.out.println("^^^^");
 		//System.out.println(hex);
 		return hex;
 	}
