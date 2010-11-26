@@ -768,7 +768,10 @@ public class ALU {
 	 * Modifications: NONE.
 	 */
 	public int GetIntegerFromTwosComplementUnsigned(String a){
+		//System.out.println("a:  " + a);
+		String bin = "";
 		char [] bits = new char[a.length()];
+		if(a.charAt(0)== '1'){
 		for(int i = a.length()-1; i >0; i--)
 		{
 			if(a.charAt(i) == '1'){
@@ -795,11 +798,16 @@ public class ALU {
 		 //  at this point this is a two's complement String
 		
 		
-		String bin = "";
-		for(int i = 1; i < a.length(); i++){
+		
+		for(int i = 0; i < a.length(); i++){
+			//System.out.print(bits[i]);
 			bin += bits[i];
 		}
-		//System.out.println(bin);
+		}
+		else{
+			bin = a;
+		}
+		//System.out.println("bin:"+bin);
 		int value = Integer.parseInt(bin,2);
 		return value;
 	}
@@ -1025,7 +1033,6 @@ public class ALU {
 		//System.out.println(hex);
 		return hex;
 	}
-	
 	/**
 	 * Module Name: intToBin.
 	 * Description: converts an integer to a 32-bit two's complement binary string.
