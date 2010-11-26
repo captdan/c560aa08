@@ -654,6 +654,7 @@ public class HardwareSimulator {
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
+			
 			for(int i = 0; i < words; i++)
 			{
 			try{
