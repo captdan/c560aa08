@@ -145,8 +145,8 @@ public class ALU {
 		cValue = aValue/bValue;
 		}
 		catch(Exception overflow){
-			System.err.println("Over Flow");
-			System.exit(1);
+			System.out.println("Zero Division");
+			//System.exit(1);
 		}
 		System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
