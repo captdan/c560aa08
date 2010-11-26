@@ -41,16 +41,9 @@ public class HardwareSimulator {
 		initializeREGS();
 		FillGlobalSymbTable();
 		instructionType type;
-	
-		if(args.length == 1 )
-		{
-			LoadModule = readFileToArrayList(args[0]);
-		}
-		else{
-			System.out.println("Unspecified Load File name");
-			System.exit(2);
-		}
-	
+		putToMEM();
+		LoadModule = readFileToArrayList(args[0]);
+		putToMEM();
 		 // Fill MEM array
 		 
 		putToMEM();
@@ -91,12 +84,14 @@ public class HardwareSimulator {
 				case S: evaluateSType(String.valueOf(OPCODE),binaryInstruction);
 					break;
 					
-				case R:  evaluateRType(String.valueOf(OPCODE),binaryInstruction);
+				case R:
+					System.out.println(binaryInstruction);
+					evaluateRType(String.valueOf(OPCODE),binaryInstruction);
 					break;
 					
 				case J:  
 						DumpInstructionInfo();
-
+						DumpArray();
 						if(debug)
 						{
 							DumpArray();
@@ -270,7 +265,6 @@ public class HardwareSimulator {
 		
 			String LH = LoadModule.get(0);
 			StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
-			
 			if(LHTokenizer.countTokens() == 11)
 				{
 				
@@ -281,11 +275,11 @@ public class HardwareSimulator {
 					LHfirstModuleName = LHTokenizer.nextToken();
 					String LengthOfModule = LHTokenizer.nextToken();
 					
-					CompleteModuleLength = Integer.parseInt(LengthOfModule);
+					CompleteModuleLength = Integer.parseInt(LengthOfModule,16);
 					//System.out.println(CompleteModuleLength);
 					String IniLodAddr = LHTokenizer.nextToken();
-					initialLoadAddr = Integer.parseInt(IniLodAddr);
-					System.out.println(initialLoadAddr);
+					initialLoadAddr = Integer.parseInt(IniLodAddr,16);
+					//System.out.println(initialLoadAddr);
 					PC = initialLoadAddr;
 					String Date = LHTokenizer.nextToken();
 					String Time = LHTokenizer.nextToken();
@@ -309,6 +303,7 @@ public class HardwareSimulator {
 				if(st.countTokens() == 4)
 				{
 					String loardAddr = st.nextToken();
+					//System.out.println(loardAddr);
 						if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false)
 						{
 							System.err.println("Unrecoverable problem with Load Module:");
@@ -317,16 +312,19 @@ public class HardwareSimulator {
 					int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
 					
 					String debug = st.nextToken();
-						if((debug.equals("Y") || (debug.equals("N"))) == false)
+					//System.out.println(debug);
+					if((debug.equals("Y") || (debug.equals("N"))) == false)
 						{
 							// TODO Generate error .. invalid debug flag
 						}
 					String Hex = st.nextToken();
+					//System.out.println(Hex);
 						if(((isValidHex(Hex)&& (Hex.length() == 8))) == false);
 						{
 						// TODO Generate Error .. invalid hex
 						}
 					String moduleName = st.nextToken();
+					//System.out.println(moduleName);
 					// add the Hex code to MEM
 					try
 					{
@@ -415,20 +413,29 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateRType(String opcode, String binaryInstruction) 
 	{
+		System.out.println("OPCODE "+ opcode);
 		int op = Integer.valueOf(opcode);
 		int r1,r2,r3,shift,function;
 		try
 		{
-			r1 = Integer.parseInt(binaryInstruction.substring(8,10));
-			r2 = Integer.parseInt(binaryInstruction.substring(11,13));
-			r3 = Integer.parseInt(binaryInstruction.substring(14,16));
-			shift = Integer.parseInt(binaryInstruction.substring(17,22));
+			r1 = Integer.parseInt(binaryInstruction.substring(8,11),2);
+		//	System.out.println(binaryInstruction.substring(9,11));
+		//	System.out.println("$"+r1);
+			r2 = Integer.parseInt(binaryInstruction.substring(11,14),2);
+		//	System.out.println("$"+r2);
+			r3 = Integer.parseInt(binaryInstruction.substring(14,17),2);
+		//	System.out.println("$"+r3);
+			shift = Integer.parseInt(binaryInstruction.substring(17,23),2);
+		//	System.out.println(binaryInstruction.substring(17,23));
+		//	System.out.println("Shift "+shift);
 			if(shift > 24)
 			{
 				System.err.println("Excessive bit shift...proceeding to next instructin");
 				return;
 			}
-			function = Integer.parseInt(binaryInstruction.substring(26,31));
+			function = Integer.parseInt((binaryInstruction.substring(26)),2);
+		//	System.out.println("Function = " + function);
+			
 			
 		}
 		catch (NumberFormatException e)
@@ -440,50 +447,50 @@ public class HardwareSimulator {
 		
 		if(op == 1)
 		{
-			if(((function >= 24) && (function <= 29)) || ((function >=32) && (function <= 35)))
-			{
+			
 				if(function == 32)
 				{
-					registers[r1] = ALU.intToBin(ALU.ADD(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.ADD(registers[r2], registers[r3]));
 				}
 				else if(function == 33)
 				{
-					registers[r1] = ALU.intToBin(ALU.ADDU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.ADDU(registers[r2], registers[r3]));
 				}
 				else if(function == 34)
 				{
-					registers[r1] = ALU.intToBin(ALU.SUB(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.SUB(registers[r2], registers[r3]));
 				}
 				else if(function == 35)
 				{
-					registers[r1] = ALU.intToBin(ALU.SUBU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.SUBU(registers[r2], registers[r3]));
 				}
 				else if(function == 24)
 				{
-					registers[r1] = ALU.intToBin(ALU.MUL(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.MUL(registers[r2], registers[r3]));
 				}
 				else if(function == 25)
 				{
-					registers[r1] = ALU.intToBin(ALU.MULU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.MULU(registers[r2], registers[r3]));
 				}
 				else if(function == 26)
 				{
-					registers[r1] = ALU.intToBin(ALU.DIV(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.DIV(registers[r2], registers[r3]));
 				}
 				else if(function == 27)
 				{
-					registers[r1] = ALU.intToBin(ALU.DIVU(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.DIVU(registers[r2], registers[r3]));
 				}
 				else if(function == 28)
 				{
-					registers[r1] = ALU.intToBin(ALU.PWR(registers[r2], registers[r3]));
+					registers[r1] = ALU.intToHex(ALU.PWR(registers[r2], registers[r3]));
 				}
-			}
-			else
-			{
-				System.err.println("Invalide Function Code with R-Type Instruction");
-				return;
-			}
+				else
+				{
+						System.err.println("Invalide Function Code with R-Type Instruction");
+						return;
+				}
+			
+		
 		}
 		else if(op == 2)
 		{
@@ -587,14 +594,14 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateIType(String opcode, String binaryInstruction) 
 	{
-		
+		System.out.println("YAY?");
 		DumpInstructionInfo();
 		int r1,r2,immediate;
 		try
 		{
-			r1 = Integer.parseInt(binaryInstruction.substring(8,10));
-			r2 = Integer.parseInt(binaryInstruction.substring(11,13));
-			immediate = Integer.parseInt(binaryInstruction.substring(16,31));
+			r1 = Integer.parseInt(binaryInstruction.substring(8,10),2);
+			r2 = Integer.parseInt(binaryInstruction.substring(11,13),2);
+			immediate = Integer.parseInt(binaryInstruction.substring(16),2);
 			
 		}
 		catch (NumberFormatException e)
@@ -627,6 +634,11 @@ public class HardwareSimulator {
 	private static void evaluateIOType(String opcode, String binaryInstruction) 
 	{
 		DumpInstructionInfo();
+		String opCode = binaryInstruction.substring(0,6);
+		String addrCode = binaryInstruction.substring(6,8);
+		String reg1 = binaryInstruction.substring(8,11);
+		int words =  Integer.parseInt(binaryInstruction.substring(11,16),2);
+		int MemStart =  Integer.parseInt(binaryInstruction.substring(16),2);
 		
 		EFFADDR = Integer.parseInt(binaryInstruction.substring(16),2)+Integer.parseInt(binaryInstruction.substring(8,11));
 		
@@ -642,7 +654,8 @@ public class HardwareSimulator {
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
-			
+			for(int i = 0; i < words; i++)
+			{
 			try{
 				
 				userInput = scan.nextInt();
@@ -652,7 +665,9 @@ public class HardwareSimulator {
 				//error reading user's input
 			}
 			
-			MEM[EFFADDR] = String.valueOf(Integer.toHexString(userInput));	
+			MEM[EFFADDR] = String.valueOf(ALU.intToHex(userInput));	
+			EFFADDR++;
+			}
 		}
 		else if (opcode.equals("11"))
 		{
@@ -707,10 +722,10 @@ public class HardwareSimulator {
 			}
 						
 		}
-		else
+		else if (opcode.equals("13") || opcode.equals("14"))
 		{
 			int displayAddress = 0;
-			
+			System.out.println("YAY");
 			for (int i = 0; i<displayNumber; i++)
 			{
 				displayAddress = EFFADDR + i;
@@ -730,6 +745,7 @@ public class HardwareSimulator {
 			}
 			
 		}
+		
 		DumpInstructionInfo();
 		if(debug)
 		{
