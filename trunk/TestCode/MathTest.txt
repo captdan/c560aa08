@@ -6,6 +6,7 @@ XX int.data 0
 err str.data 'YY=0'
 .text
 	Exect.Start *
+	debug 1
 inn 2, YY
 lw $2,YY
 lw $3, ZZ
