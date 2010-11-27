@@ -90,7 +90,7 @@ public class HardwareSimulator {
 					break;
 					
 				case J:  
-						DumpInstructionInfo();
+						DumpInstructionInfo(String.valueOf(OPCODE), binaryInstruction, instructionType.J);
 						DumpArray();
 						System.exit(1);
 				
@@ -142,7 +142,7 @@ public class HardwareSimulator {
 			return instructionType.NOTINSTRUCTION;
 		}
 		
-		// At this point, OPCODE is the Hex representation of the opcode
+		// At this point, OPCODE is the Decimal representation of the opcode
 		
 		if((16 <= OPCODE) && (OPCODE <= 23) || (OPCODE >= 50) && (OPCODE <= 55) || (OPCODE == 61) || (OPCODE == 30) || (OPCODE == 31) )
 		{
@@ -400,9 +400,9 @@ public class HardwareSimulator {
 	 */
 	private static void evaluateSType(String opcode, String binaryInstruction) 
 	{
-		System.out.println(opcode);
-		System.out.println(binaryInstruction);
-		DumpInstructionInfo();
+		//System.out.println(opcode);
+		//System.out.println(binaryInstruction);
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
 		int debugnow = PC;
 		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
 			
@@ -629,7 +629,7 @@ public class HardwareSimulator {
 		{
 			
 		}
-		DumpInstructionInfo();
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
 		if(debug[debugnow])
 		{
 			DumpArray();
@@ -683,7 +683,7 @@ public class HardwareSimulator {
 			System.err.println("Wow...how the hell did you find this error???");
 			return;
 		}
-		DumpInstructionInfo();
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.R);
 		
 		if(op == 1)
 		{
@@ -809,6 +809,7 @@ public class HardwareSimulator {
 			}
 		}
 		
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.R);
 		
 		if(debug[debugnow])
 		{
@@ -818,7 +819,6 @@ public class HardwareSimulator {
 		
 	}
 
-	
 	/**
 	 * 
 	 * Module Name: evaluateIType	
@@ -859,7 +859,7 @@ public class HardwareSimulator {
 			System.err.println("Wow...how the hell did you find this error???");
 			return;
 		}
-		DumpArray();
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.I);
 		int result = 0;
 		if(op == 16){
 			registers[r1] = ALU.intToHex(ALU.ADDI(ALU.hexToBin(registers[r2]), imm));
@@ -915,15 +915,54 @@ public class HardwareSimulator {
 			registers[r2] = ALU.binToHex32bits(imm);
 		}
 		if(op == 30){
-			// TODO outni
-
+			
+			if(imm.startsWith("0"))
+			{
+				//Binary Immediate is a positive number, parseInt and print
+				try
+				{
+					System.out.println(Integer.parseInt(imm, 2));
+				}
+				catch (NumberFormatException e)
+				{
+					System.err.println("Invalid Immediate Value");
+					return;
+				}
+			}
+			else
+			{
+				//Must start with 1, so it's a negative number in 2's Complement Form, convert and print
+				try
+				{
+					System.out.println(-1*(1+Integer.parseInt(ALU.XOR(imm, "1111111111111111"), 2)));
+				}
+				catch (NumberFormatException e)
+				{
+					System.err.println("Invalid Immediate Value");
+					return;
+				}
+				
+			}
 		}
 		if(op == 31){
-			// TODO outci
-
+		
+			try
+			{
+				//1st Character
+				System.out.print((char)Integer.parseInt(imm.substring(0,7),2));
+				
+				//2nd Character
+				System.out.println((char)Integer.parseInt(imm.substring(8,15),2));
+				
+			}
+			catch (NumberFormatException e)
+			{
+				System.err.println("Invalid Character String!");
+				return;
+			}
 		}
 		
-		DumpInstructionInfo();
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.I);
 		
 		if(debug[debugnow])
 		{
@@ -948,12 +987,13 @@ public class HardwareSimulator {
 	private static void evaluateIOType(String opcode, String binaryInstruction) 
 	{
 		int debugnow = PC;
-		DumpInstructionInfo();
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.IO);
 		String opCode = binaryInstruction.substring(0,6);
 		String addrCode = binaryInstruction.substring(6,8);
 		String reg1 = binaryInstruction.substring(8,11);
 		int words =  Integer.parseInt(binaryInstruction.substring(11,16),2);
 		int MemStart =  Integer.parseInt(binaryInstruction.substring(16),2);
+		String imm =  binaryInstruction.substring(16);
 		
 		EFFADDR = Integer.parseInt(binaryInstruction.substring(16),2)+Integer.parseInt(binaryInstruction.substring(8,11));
 		
@@ -1004,7 +1044,7 @@ public class HardwareSimulator {
 				
 			} catch(Exception e) {
 				
-				System.err.println("couldn't read user's input");
+				System.err.println("Couldn't read user's input");
 				return;
 			}
 			
@@ -1045,31 +1085,60 @@ public class HardwareSimulator {
 			}
 						
 		}
-		else if (opcode.equals("13") || opcode.equals("14"))
+		else if (opcode.equals("30"))
 		{
-			int displayAddress = 0;
-			//System.out.println("YAY");
-			for (int i = 0; i<displayNumber; i++)
+			//OUTNI
+			if(imm.startsWith("0"))
 			{
-				displayAddress = EFFADDR + i;
-				
-				String output = "";
-				
-				for (int cutter = 0; cutter < MEM[displayAddress].length(); cutter+=2)
+				//Binary Immediate is a positive number, parseInt and print
+				try
 				{
-					int letter = Integer.parseInt(MEM[displayAddress].substring(cutter, cutter+2),16);
-					
-					char appendment = (char)letter;
-					
-					output = output + appendment;
+					System.out.println(Integer.parseInt(imm, 2));
+				}
+				catch (NumberFormatException e)
+				{
+					System.err.println("Invalid Immediate Value");
+					return;
+				}
+			}
+			else
+			{
+				//Must start with 1, so it's a negative number in 2's Complement Form, convert and print
+				try
+				{
+					System.out.println(-1*(1+Integer.parseInt(ALU.XOR(imm, "1111111111111111"), 2)));
+				}
+				catch (NumberFormatException e)
+				{
+					System.err.println("Invalid Immediate Value");
+					return;
 				}
 				
-				System.out.println(output);
+			}
+			
+			
+		}
+		else if (opcode.equals("31"))
+		{
+			//OUTCI
+			try
+			{
+				//1st Character
+				System.out.print((char)Integer.parseInt(imm.substring(0,7),2));
+				
+				//2nd Character
+				System.out.println((char)Integer.parseInt(imm.substring(8,15),2));
+				
+			}
+			catch (NumberFormatException e)
+			{
+				System.err.println("Invalid Character String!");
+				return;
 			}
 			
 		}
 		
-		DumpInstructionInfo();
+		DumpInstructionInfo(opcode,binaryInstruction,instructionType.IO);
 		if(debug[debugnow])
 		{
 			DumpArray();
@@ -1127,9 +1196,25 @@ public class HardwareSimulator {
 	 * Date of Installation: 11/22/2010
 	 * Modifications:
 	 */
-	private static void DumpInstructionInfo()
+	private static void DumpInstructionInfo(String op,String instruction, instructionType i)
 	{
-		// TODO
+		//Current PC/LC Value
+		System.out.println("LC: " + String.valueOf(PC));
+		
+		//Current values in Registers
+		System.out.println("Regs\t" + registers[0] + "  " + registers[1] + "  " + registers[2] + "  " + registers[3] + "  " + registers[4] + "  " + registers[5] + "  " + registers[6] + "  " + registers[7]);
+		
+		//Binary Instruction
+		System.out.println("\tBinary Instruction: " + instruction);
+		
+		//Opcode of Instruction
+		System.out.println("\tOpcode (HEX): " + opcodeInHex(instruction.substring(0, 5)));
+		
+		//EFFADDR if S-type or IO-type
+		if(i.equals(instructionType.S) || i.equals(instructionType.IO))
+		{
+			System.out.println("EFFADDR: " + String.valueOf(EFFADDR));
+		}
 	}
 	
 	/**
@@ -1377,5 +1462,65 @@ public class HardwareSimulator {
 		return result;
 	}
 
-	
+	/**
+	 * Module Name: opcodeInHex
+	 * Description: Takes 6 binary digits of Instruction opcode and converts to hex
+	 * Input Params: 6 digit binary string
+	 * Output Params: 2 digits valid hex
+	 * Error Conditions Tested: N/A
+	 * Error Messages Generated: N/A
+	 * Original Author: Kermit Stearns
+	 * Date of Installation: 11/27/2010
+	 * Modifications:
+	 * @param binary 6 digits to be converted to hex
+	 * @return 2 valid hex digits
+	 */
+	public static String opcodeInHex(String binary)
+	{
+		String hex = "";
+		ArrayList<Integer> digits = new ArrayList<Integer>();
+		try
+		{
+			digits.add(Integer.parseInt(binary.substring(0,1),2));
+			digits.add(Integer.parseInt(binary.substring(2,5)),2);
+		}
+		catch (NumberFormatException e)
+		{
+			//Won't Happen
+		}
+		
+		for(int i = 0; i < 2; i++)
+		{
+			if(digits.get(i) < 10)
+			{
+				hex += String.valueOf(digits.get(i));
+			}
+			else if(digits.get(i) == 10)
+			{
+				hex += "A";
+			}
+			else if(digits.get(i) == 11)
+			{
+				hex += "B";
+			}
+			else if(digits.get(i) == 12)
+			{
+				hex += "C";
+			}
+			else if(digits.get(i) == 13)
+			{
+				hex += "D";
+			}
+			else if(digits.get(i) == 14)
+			{
+				hex += "E";
+			}
+			else if(digits.get(i) == 15)
+			{
+				hex += "F";
+			}
+		}
+		
+		return hex;
+	}
 }
