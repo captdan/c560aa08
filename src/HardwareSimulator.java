@@ -122,84 +122,92 @@ public class HardwareSimulator {
 	 * @param args
 	 * Implementation of loader. Simulates the actual implementation of SAL560
 	 */
-	public static void main(String[] args) {
-		
-		initializeMEM();
-		initializeREGS();
-		FillGlobalSymbTable();
-		instructionType type;
-		putToMEM();
-		LoadModule = readFileToArrayList(args[0]);
-		putToMEM();
-		 // Fill MEM array
-		 
-		putToMEM();
-		NPIC = PC + 1;
-		DumpArray();
-		type = null;
-		
-		for(PC = excecStart; PC <= initialLoadAddr + CompleteModuleLength - 1; PC++)
-		{
-			//System.out.println(ALU.hexToBin(MEM[PC]));
-			try
-			{
-				binaryInstruction =	ALU.hexToBin(MEM[PC]);
-				type = SelectInstructionType(binaryInstruction);
-				try
-				{		
-					OPCODE = Integer.parseInt(binaryInstruction.substring(0,6),2);	
-				}
-				catch(NumberFormatException e)
-				{
-					
-					System.err.println("Invalid OPCODE....proceeding to next instruction.");
-					return;
-				}
-			}
-			catch(NumberFormatException e)
-			{
-				
-				System.err.println("Invalid Machine Hex....Proceeding to next instruction.");
-				type = instructionType.NOTINSTRUCTION;
-				
-			}
-			
-			switch (type)
-			{
-				case S: evaluateSType(String.valueOf(OPCODE),binaryInstruction);
-					break;
-					
-				case R:
-					//System.out.println(binaryInstruction);
-					evaluateRType(String.valueOf(OPCODE),binaryInstruction);
-					break;
-					
-				case J:  
-						
-						DumpArray();
-						DumpInstructionInfo(String.valueOf(OPCODE), binaryInstruction, instructionType.J);
-						
-					
-						System.exit(1);
-				
-						break;
-						
-				case IO: evaluateIOType(String.valueOf(OPCODE),binaryInstruction);
-					break;
-					
-				case I: evaluateIType(String.valueOf(OPCODE),binaryInstruction);
-					break;
-					
-				case NOTINSTRUCTION: ;
-					break;
-			}
-			
-			NPIC++;
-			
-		}
-		
-		DumpArray();
-	}
+    public static void main(String[] args) {
+        
+        initializeMEM();
+        initializeREGS();
+        instructionType type;
+        
+        if(args.length == 2){
+        LoadModule = readFileToArrayList(args[0]);
+        GSymbTableArray = readFileToArrayList(args[1]);
+        }
+        else{
+                System.err.println("Missing Global Symbol Table or Load File");
+                System.exit(1);
+        }
+        FillGlobalSymbTable();
+        putToMEM();
+         // Fill MEM array
+         
+        
+        NPIC = PC + 1;
+        DumpArray();
+        type = null;
+        
+        for(PC = excecStart; PC <= initialLoadAddr + CompleteModuleLength - 1; PC++)
+        {
+                //System.out.println(ALU.hexToBin(MEM[PC]));
+                try
+                {
+                        binaryInstruction =     ALU.hexToBin(MEM[PC]);
+                        type = SelectInstructionType(binaryInstruction);
+                        try
+                        {               
+                                OPCODE = Integer.parseInt(binaryInstruction.substring(0,6),2);  
+                        }
+                        catch(NumberFormatException e)
+                        {
+                                
+                                System.err.println("Invalid OPCODE....proceeding to next instruction.");
+                                return;
+                        }
+                }
+                catch(NumberFormatException e)
+                {
+                        
+                        System.err.println("Invalid Machine Hex....Proceeding to next instruction.");
+                        type = instructionType.NOTINSTRUCTION;
+                        
+                }
+                
+                switch (type)
+                {
+                        case S: evaluateSType(String.valueOf(OPCODE),binaryInstruction);
+                                break;
+                                
+                        case R:
+                                //System.out.println(binaryInstruction);
+                                evaluateRType(String.valueOf(OPCODE),binaryInstruction);
+                                break;
+                                
+                        case J:  
+                                        
+                                        DumpArray();
+                                        DumpInstructionInfo(String.valueOf(OPCODE), binaryInstruction, instructionType.J);
+                                        
+                                
+                                        System.exit(1);
+                        
+                                        break;
+                                        
+                        case IO: evaluateIOType(String.valueOf(OPCODE),binaryInstruction);
+                                break;
+                                
+                        case I: evaluateIType(String.valueOf(OPCODE),binaryInstruction);
+                                break;
+                                
+                        case NOTINSTRUCTION: ;
+                                break;
+                }
+                
+                NPIC++;
+                
+        }
+        
+        DumpArray();
+}
+
 
 	/**
 	 * Module Name: SelectInstructionType
@@ -344,134 +352,192 @@ public class HardwareSimulator {
 	 * Modifications:Added error checking to check format of load Module.
 	 * @param loadModule2
 	 */
-	private static void putToMEM() {
-		try{
-			
-		
-			String LH = LoadModule.get(0);
-			StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
-			if(LHTokenizer.countTokens() == 11)
-				{
-				
-					String H = LHTokenizer.nextToken();
-					String exStart = LHTokenizer.nextToken();
-					excecStart = Integer.parseInt(exStart);
-					//System.out.println(exectStart);
-					LHfirstModuleName = LHTokenizer.nextToken();
-					String LengthOfModule = LHTokenizer.nextToken();
-					
-					CompleteModuleLength = Integer.parseInt(LengthOfModule,16);
-					//System.out.println(CompleteModuleLength);
-					String IniLodAddr = LHTokenizer.nextToken();
-					initialLoadAddr = Integer.parseInt(IniLodAddr,16);
-					//System.out.println(initialLoadAddr);
-					PC = initialLoadAddr;
-					String Date = LHTokenizer.nextToken();
-					String Time = LHTokenizer.nextToken();
-					String SAL = LHTokenizer.nextToken();
-					String version = LHTokenizer.nextToken();
-					String revision = LHTokenizer.nextToken();
-					String firstModuleName2 = LHTokenizer.nextToken();
-				}
-			else
-				{
-				
-					System.err.println("Unable to load Load Module:");
-					System.exit(1);
-				}
-			
-			String LT = LoadModule.get(1);
-			//System.out.println(LT);
-			StringTokenizer st = new StringTokenizer(LT, "|");
-			for(int i = 2; st.nextToken().equals("LT") ; i++)
-			{
-				
-				if(st.countTokens() == 4)
-				{
-					String loardAddr = st.nextToken();
-					//System.out.println(loardAddr);
-						if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false)
-						{
-							System.err.println("Unrecoverable problem with Load Module:");
-							System.exit(1);
-						}
-					// get Load address for MEM	
-					int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
-					
-					String debug1 = st.nextToken();
-					//System.out.println(debug);
-					if((debug1.equals("Y") || (debug1.equals("N"))) == false)
-						{
-							System.err.println("Invalud Dubug Flag");
-							System.exit(1);
-						}
-					else if(debug1.equals("Y") ){
-						debug[loadAddsDecimal] = true;
-					}
-					String Hex = st.nextToken();
-					//System.out.println(Hex);
-						if(((isValidHex(Hex)&& (Hex.length() == 8))) == false)
-						{
-							System.err.println("Invalid Hex");
-							System.exit(1);
-					
-						}
-					String moduleName = st.nextToken();
-					//System.out.println(moduleName);
-					// add the Hex code to MEM
-					try
-					{
-					MEM[loadAddsDecimal] = Hex;	
-					}
-					catch(Exception e)
-					{
-						System.err.println("Memory out of bounds");
-						System.exit(1);
-					}
-					
-				}
-				else
-				{
-					System.err.println("Unrecoverable problem with Load Module: missing element in Load File ");
-					System.exit(1);
- 				}
-				
-				LT = LoadModule.get(i);
-				st = new StringTokenizer(LT, "|");
-			}
-			/*
-			 * Handle LE
-			 */
-			String LE = LoadModule.get(LoadModule.size()-1);
-			
-			StringTokenizer LETokenizer = new StringTokenizer(LE, "|");
-			
-			//System.out.println(LHTokenizer.countTokens());
-			if(LETokenizer.countTokens() == 3)
-				{
-					
-					String endRecord = LETokenizer.nextToken();
-					String totalNumberOfMudules = LETokenizer.nextToken();
-					String LEfirstModuleName = LETokenizer.nextToken();
-					if(LEfirstModuleName.equals(LHfirstModuleName) == false){
-						System.err.println("Unrecoverable problem with Load Module: Unmatching Module names");
-						System.exit(1);
-					
-					}
-					
-				}
-			else
-			{
-			
-				System.err.println("Unrecoverable problem with Load Module: invalid number of arguments in LE record ");
-				System.exit(1);
-			}
-		}
-		
-		catch(Exception e){
-			
-		}
-	}
+
+    private static void putToMEM() {
+            try{
+                    
+            
+                    String LH = LoadModule.get(0);
+                    StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
+                    if(LHTokenizer.countTokens() == 11)
+                            {
+                            
+                                    String H = LHTokenizer.nextToken();
+                                    String exStart = LHTokenizer.nextToken();
+                                    excecStart = Integer.parseInt(exStart);
+                                    //System.out.println(exectStart);
+                                    LHfirstModuleName = LHTokenizer.nextToken();
+                                    if(!GSymbTable.isInTable(LHfirstModuleName)){
+                                    	System.out.println("??");
+                                    	System.out.println(LHfirstModuleName);
+                                    	System.out.println(GSymbTable.isInTable(LHfirstModuleName));
+                                            System.err.println("Uknown Module Name.... terminating");
+                                            System.exit(1);
+                                    }
+                                    String LengthOfModule = LHTokenizer.nextToken();
+                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(LHfirstModuleName);
+                                    String len = (String) a.get(2);
+                                    //System.out.println(len);
+                                    
+                                    if(!LengthOfModule.equals(len)){
+                                            System.err.println("Length in load module does not match Symbol table");
+                                            System.exit(1);
+                                    }
+                                    CompleteModuleLength = Integer.parseInt(LengthOfModule,16);
+                                    //System.out.println(CompleteModuleLength);
+                                    String IniLodAddr = LHTokenizer.nextToken();
+                                    initialLoadAddr = Integer.parseInt(IniLodAddr,16);
+                                    if(initialLoadAddr >65536){
+                                            System.err.println("Length out of bounds");
+                                            System.exit(1);
+                                    }
+                                    if(initialLoadAddr + Integer.parseInt(LengthOfModule)>65536){
+                                            System.err.println("Length out of bounds");
+                                            System.exit(1);
+                                    }
+                                    //System.out.println(initialLoadAddr);
+                                    PC = initialLoadAddr;
+                                    String Date = LHTokenizer.nextToken();
+                                    String Time = LHTokenizer.nextToken();
+                                    String SAL = LHTokenizer.nextToken();
+                                    String version = LHTokenizer.nextToken();
+                                    String revision = LHTokenizer.nextToken();
+                                    String firstModuleName2 = LHTokenizer.nextToken();
+                                    System.out.println("a "+ GSymbTable.isInTable(firstModuleName2));
+                                    if(!GSymbTable.isInTable(firstModuleName2)){
+                                            System.err.println("Uknown Module Name.... terminating");
+                                            System.exit(1);
+                                    }
+                            }
+                    else
+                            {
+                            
+                                    System.err.println("Unable to load Load Module:");
+                                    System.exit(1);
+                            }
+                    
+                    String LT = LoadModule.get(1);
+                    //System.out.println(LT);
+                    StringTokenizer st = new StringTokenizer(LT, "|");
+                    for(int i = 2; st.nextToken().equals("LT") ; i++)
+                    {
+                            
+                            if(st.countTokens() == 4)
+                            {
+                                    String loardAddr = st.nextToken();
+                                    //System.out.println(loardAddr);
+                                            if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false)
+                                            {
+                                                    System.err.println("Unrecoverable problem with Load Module:");
+                                                    System.exit(1);
+                                            }
+                                    // get Load address for MEM     
+                                    int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
+                                    if(loadAddsDecimal > 65536){
+                                            System.err.println("Unrecoverable problem with Load Module: out of bound address");
+                                            System.exit(1);
+                                    }
+                                    String debug1 = st.nextToken();
+                                    //System.out.println(debug);
+                                    if((debug1.equals("Y") || (debug1.equals("N"))) == false)
+                                            {
+                                                    System.err.println("Invalud Dubug Flag");
+                                                    System.exit(1);
+                                            }
+                                    else if(debug1.equals("Y") ){
+                                            debug[loadAddsDecimal] = true;
+                                    }
+                                    String Hex = st.nextToken();
+                                    //System.out.println(Hex);
+                                            if(((isValidHex(Hex)&& (Hex.length() == 8))) == false)
+                                            {
+                                                    System.err.println("Invalid Hex");
+                                                    System.exit(1);
+                                    
+                                            }
+                                    String moduleName = st.nextToken();
+                                    
+                                    if(!GSymbTable.isInTable(moduleName)){
+                                            System.err.println("Uknown Module Name.... terminating");
+                                            System.exit(1);
+                                    }
+                                    else{
+                                            
+                                            if(moduleonename == null){
+                                                    moduleonename = moduleName;
+                                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
+                                                    String len = (String) a.get(2);
+                                                    moduleonelength = Integer.parseInt(len,16);
+                                            }
+                                            else if((moduletwoname == null) && (!moduleName.equals(moduleonename))){
+                                                    moduletwoname = moduleName;
+                                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
+                                                    String len = (String) a.get(2);
+                                                    moduletwolength = Integer.parseInt(len,16);
+                                            }
+                                            else if((modulethreename == null)&& (!moduleName.equals(moduleonename)) && (!moduleName.equals(moduletwoname))){
+                                                    modulethreename = moduleName;
+                                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
+                                                    String len = (String) a.get(2);
+                                                    modulethreelength = Integer.parseInt(len,16);
+                                            }
+                                            
+                                    }
+                                    //System.out.println(moduleName);
+                                    // add the Hex code to MEM
+                                    try
+                                    {
+                                    MEM[loadAddsDecimal] = Hex;     
+                                    }
+                                    catch(Exception e)
+                                    {
+                                            System.err.println("Memory out of bounds");
+                                            System.exit(1);
+                                    }
+                                    
+                            }
+                            else
+                            {
+                                    System.err.println("Unrecoverable problem with Load Module: missing element in Load File ");
+                                    System.exit(1);
+                            }
+                            
+                            LT = LoadModule.get(i);
+                            st = new StringTokenizer(LT, "|");
+                    }
+                    /*
+                     * Handle LE
+                     */
+                    String LE = LoadModule.get(LoadModule.size()-1);
+                    
+                    StringTokenizer LETokenizer = new StringTokenizer(LE, "|");
+                    
+                    //System.out.println(LHTokenizer.countTokens());
+                    if(LETokenizer.countTokens() == 3)
+                            {
+                                    
+                                    String endRecord = LETokenizer.nextToken();
+                                    String totalNumberOfMudules = LETokenizer.nextToken();
+                                    String LEfirstModuleName = LETokenizer.nextToken();
+                                    if(LEfirstModuleName.equals(LHfirstModuleName) == false){
+                                            System.err.println("Unrecoverable problem with Load Module: Unmatching Module names");
+                                            System.exit(1);
+                                    
+                                    }
+                                    
+                            }
+                    else
+                    {
+                    
+                            System.err.println("Unrecoverable problem with Load Module: invalid number of arguments in LE record ");
+                            System.exit(1);
+                    }
+            }
+            
+            catch(Exception e){
+                    
+            }
+    }
 
 	/**
 	 * 
