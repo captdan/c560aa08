@@ -206,9 +206,9 @@ public class Instruction
 			{
 				for(Operand operand : this.operandsArray)
 				{
-					System.out.println(operand.operand + " : " + operand.operandType);
+					//System.out.println(operand.operand + " : " + operand.operandType);
 				}
-				System.out.println("TEST2 : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
+				//System.out.println("TEST2 : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.COMPLEXADDRESS)).get(1).operand,3);
 				addr = padZeros(toBinary(returnOperand(0,operandTypes.COMPLEXADDRESS)).get(0).operand,16);
 			}
@@ -216,9 +216,9 @@ public class Instruction
 			{
 				for(Operand operand : this.operandsArray)
 				{
-					System.out.println(operand.operand + " : " + operand.operandType);
+					//System.out.println(operand.operand + " : " + operand.operandType);
 				}
-				System.out.println("TEST : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
+				//System.out.println("TEST : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.REGISTER)).get(0).operand,3);
 				reg2 = padZeros(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand,3);
 				System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand);
@@ -229,9 +229,9 @@ public class Instruction
 			{
 				for(Operand operand : this.operandsArray)
 				{
-					System.out.println(operand.operand + " : " + operand.operandType);
+					//System.out.println(operand.operand + " : " + operand.operandType);
 				}
-				System.out.println("TEST4 : " + returnOperand(0,operandTypes.COMPLEXADDRESS).operand);
+				//System.out.println("TEST4 : " + returnOperand(0,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.REGISTER)).get(0).operand,3);
 				reg2 = padZeros(toBinary(returnOperand(1,operandTypes.REGISTER)).get(0).operand,3);
 				addr = padZeros(toBinary(returnOperand(2,operandTypes.ADDRESS)).get(0).operand,16);
@@ -265,6 +265,8 @@ public class Instruction
 	public ArrayList<Operand> toBinary(Operand inputOperand)
 	{
 		ArrayList<Operand> binaryOperands = new ArrayList<Operand>();
+		if (inputOperand != null )
+		{
 		
 		int value = 0;
 		int value2 = 0;
@@ -336,7 +338,7 @@ public class Instruction
 				catch(NumberFormatException e){}
 			}
 
-			System.out.println("ERROR : " + inputOperand.operand);
+			//System.out.println("ERROR : " + inputOperand.operand);
 			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(value)),Instruction.operandTypes.ADDRESS));
 			binaryOperands.add(new Operand(String.valueOf(Integer.toBinaryString(value2)),Instruction.operandTypes.REGISTER));
 		}
@@ -392,6 +394,7 @@ public class Instruction
 				tempOperand = new Operand(String.valueOf(Integer.toBinaryString(Integer.valueOf(inputOperand.operand))),Instruction.operandTypes.SIGNEDIMMEDIATE);
 			}
 			binaryOperands.add(tempOperand);
+		}
 		}
 			
 		return binaryOperands;
@@ -527,10 +530,15 @@ public class Instruction
 		{
 			for(Operand tempOperand : operandsArray)
 			{
+				//System.out.println("WOOO HOOO" + tempOperand.operand );
 				if (operandType == tempOperand.operandType)
 				{
 					operandValue = tempOperand;
 				}
+			}
+			if(operandValue == null)
+			{
+				operandValue = new Operand("0",Instruction.operandTypes.NUMBER);
 			}
 		}
 		else if(operandIndex < operandsArray.size() && operandsArray.get(operandIndex).operandType == operandType)

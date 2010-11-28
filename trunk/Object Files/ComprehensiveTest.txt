@@ -4,7 +4,6 @@ T|0000|N|0000000A|1|A|ComprehensiveTest
 T|0001|N|41424344|1|A|ComprehensiveTest
 T|0002|N|45464720|1|A|ComprehensiveTest
 T|0003|N|20202020|1|A|ComprehensiveTest
-
 T|0004|N|00000000|1|R|+|0|ComprehensiveTest
 T|0005|N|0000000F|1|A|ComprehensiveTest
 T|0006|N|00000006|1|A|ComprehensiveTest
