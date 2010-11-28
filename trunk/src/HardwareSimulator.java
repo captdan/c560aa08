@@ -1133,9 +1133,12 @@ public class HardwareSimulator {
 			try
 			{
 				//1st Character
-				System.out.print((char)Integer.parseInt(hbin.substring(0,8),2));				//2nd Character
-				System.out.print((char)Integer.parseInt(hbin.substring(8,16),2));				//3rd Character
-				System.out.print((char)Integer.parseInt(hbin.substring(16,24),2));				//4th Character
+				System.out.print((char)Integer.parseInt(hbin.substring(0,8),2));				
+				//2nd Character
+				System.out.print((char)Integer.parseInt(hbin.substring(8,16),2));				
+				//3rd Character
+				System.out.print((char)Integer.parseInt(hbin.substring(16,24),2));				
+				//4th Character
 				System.out.print((char)Integer.parseInt(hbin.substring(24),2));
 				System.out.println();
 			}
