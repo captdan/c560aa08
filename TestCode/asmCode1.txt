@@ -1,6 +1,0 @@
-.start, test, 00
-
-aa    add $r1,$r2,$r3 |Comment1 with add instruction
-|Comment2 with no instruction
-add $r1
-.end test

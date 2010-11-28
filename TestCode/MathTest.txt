@@ -1,22 +1,22 @@
-.Start,Math,05			
-.data
+	.Start,Math,05			
+	.data
 YY int.data 0
 ZZ int.data 0
 XX int.data 0
 err str.data 'YY=0'
 .text
-	Exect.Start *
+Exect.Start *
 	debug 1
-inn 2, YY
-lw $2,YY
-lw $3, ZZ
-JEQ $2,$0,ERROR
-MUL $4,$3,$2
-MULI $4,$4,20
-DIV $5,$4,$2
-SW $5, XX
-outn 1,XX
-HALT 0
-ERROR		outc 1, err
-HALT 250
-.end, Math
+	inn 2, YY
+	lw $2,YY
+	lw $3, ZZ
+	JEQ $2,$0,ERROR
+	MUL $4,$3,$2
+	MULI $4,$4,20
+	DIV $5,$4,$2
+	SW $5, XX
+	outn 1,XX
+	HALT 0
+ERROR	outc 1, err
+	HALT 250
+.end,Math
