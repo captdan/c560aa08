@@ -1,0 +1,25 @@
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\bin\Debug\Linker.exe
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\bin\Debug\Linker.pdb
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\bin\Debug\Linker.xml
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\WindowsApplication1.Linker.resources
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\Linker.exe
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\Linker.xml
+C:\Users\Admin\documents\visual studio 2010\Projects\Linker\Linker\obj\x86\Debug\Linker.pdb
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\Linker.xml
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\Linker.pdb
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\bin\Debug\Linker.exe
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\bin\Debug\Linker.pdb
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\bin\Debug\Linker.xml
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\WindowsApplication1.Linker.resources
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\Linker\obj\x86\Debug\Linker.exe
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\obj\x86\Debug\Linker.exe
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\obj\x86\Debug\Linker.xml
+C:\EclipseWorkspace\c560aa08\SP3\Linker\Linker\obj\x86\Debug\Linker.pdb
