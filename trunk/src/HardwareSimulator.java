@@ -7,7 +7,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
+/**
+ * 
+ * @author Team c560aa08 collaboration.
+ * this class simulates the .
+ * 
+ */
 public class HardwareSimulator {
 
 	static String[] registers = new String[15];
@@ -125,7 +130,7 @@ public class HardwareSimulator {
 	 * Description: Looks at a Binary Instruction and determines the Instruction Type 
 	 * Input Params: Valid Binary Instruction
 	 * Output Params: instructionType Enum
-	 * Error Conditions Tested: 
+	 * Error Conditions Tested: Number Formatting for Instructions and OPCODE validity.
 	 * Error Messages Generated: Invalid OPCODE, Invalid Instruction
 	 * Original Author: Kermit Stearns
 	 * Date of Installation: 11/21/2010
@@ -224,13 +229,13 @@ public class HardwareSimulator {
 	/**
 	 * Module Name: FillGlobalSmbTable
 	 * Description: Creates our Global Symbol Table
-	 * Input Params:
-	 * Output Params:
-	 * Error Conditions Tested:
-	 * Error Messages Generated:
-	 * Original Author:
-	 * Date of Installation:
-	 * Modifications:
+	 * Input Params:N/A
+	 * Output Params:N/A
+	 * Error Conditions Tested:Number of tokens is appropriate.
+	 * Error Messages Generated: Missing element in global symbol table.
+	 * Original Author:Oscar Flores
+	 * Date of Installation:11/25/2010
+	 * Modifications:N/A
 	 */
 	private static void FillGlobalSymbTable() {
 		for(int i =0; i<GSymbTableArray.size(); i++){
@@ -396,13 +401,14 @@ public class HardwareSimulator {
 	 * 
 	 * Module Name: evaluateSType
 	 * Description: Evaluates SAL560 S Type instructions.
-	 * Input Params: 32 bit binary String
+	 * Input Params: opcode: Holds the opcode of the line of code we are reading.
+	 * 				binaryInstruction Holds the 32 bit binary String.
 	 * Output Params: N/A
 	 * Error Conditions Tested: 
 	 * Error Messages Generated: 
-	 * Original Author: Kermit Stearns
+	 * Original Author: Rakaan Kayali
 	 * Date of Installation: 11/18/2010
-	 * Modifications:
+	 * Modifications:Used ALU class to perform calculations.
 	 * @param binaryInstruction Binary string (32bits) presumed to be valid instruction.
 	 */
 	private static void evaluateSType(String opcode, String binaryInstruction) 
@@ -648,13 +654,23 @@ public class HardwareSimulator {
 	 * 
 	 * Module Name: evaluateRType	
 	 * Description: Evaluates SAL560 R Type instructions.
-	 * Input Params: 32bit Binary String of Instruction to be evaluated
+	 * Input Params: binaryInstruction 32bit Binary String of Instruction to be evaluated
+	 * 				 opcode holds the opcode in binaryInstruction.
 	 * Output Params: N/A
-	 * Error Conditions Tested:
-	 * Error Messages Generated: 
+	 * Error Conditions Tested:Checks if number of bits shifted is valid.
+	 * 						   Checks if referenced register is valid.
+	 *						   Checks if function code with R-Type is valid.
+	 *						   Checks if Jump address is in bounds.
+	 *						   Checks if proper Dump is specified.
+	 * Error Messages Generated:
+	 * "Excessive bit shift...proceeding to next instruction."
+	 * "Invalid Register Specified...proceeding to next instruction."
+	 * "Wow...how the hell did you find this error???"
+	 * "Invalide Function Code with R-Type Instruction"
+	 * "Please specify a correct Dump."
 	 * Original Author: Kermit Stearns
-	 * Date of Installation: 
-	 * Modifications:
+	 * Date of Installation: 11/20/2010
+	 * Modifications:Added error checking
 	 * @param binaryInstruction
 	 */
 	private static void evaluateRType(String opcode, String binaryInstruction) 
@@ -738,7 +754,7 @@ public class HardwareSimulator {
 				}
 				else
 				{
-						System.err.println("Invalide Function Code with R-Type Instruction");
+						System.err.println("Invalid Function Code with R-Type Instruction");
 						return;
 				}
 			
@@ -835,13 +851,18 @@ public class HardwareSimulator {
 	 * 
 	 * Module Name: evaluateIType	
 	 * Description: Evaluates SAL560 I Type instructions.
-	 * Input Params: 32bit Binary String of Instruction to be evaluated
+	 * Input Params: binaryInstruction 32bit Binary String of Instruction to be evaluated
+	 * 				 opcode holds the opcode in binaryInstruction
 	 * Output Params: N/A
-	 * Error Conditions Tested:
-	 * Error Messages Generated: 
+	 * Error Conditions Tested:checks if immediate value is valid
+	 * 						   checks if string of characters is valid
+	 * 						   re check validity of integers.
+	 * Error Messages Generated:"Wow...how the hell did you find this error???"
+	 * 							"Invalid Immediate Value"
+	 * 							"Invalid Character String!"
 	 * Original Author: Kermit Stearns
-	 * Date of Installation: 
-	 * Modifications:
+	 * Date of Installation: 11/23/2010 
+	 * Modifications: performed conversions into HEX using the ALU class.
 	 * @param binaryInstruction
 	 */
 	private static void evaluateIType(String opcode, String binaryInstruction) 
@@ -987,10 +1008,19 @@ public class HardwareSimulator {
 	 * 
 	 * Module Name: evaluateIOType
 	 * Description: Evaluates SAL560 IO Instruction
-	 * Input Params: 
+	 * Input Params:binaryInstruction 32bit Binary String of Instruction to be evaluated 
+	 * 				opcode holds the opcode of binaryInstruction.
 	 * Output Params: N/A
-	 * Error Conditions Tested:
-	 * Error Messages Generated: 
+	 * Error Conditions Tested:Checks if address is in bounds
+	 * 						   Checks if user's input is valid
+	 * 						   Checks if input length is within limit
+	 * 						   Checks if immediate Value is valid.
+	 * 						   Checks if character string is valid.
+	 * Error Messages Generated:"address is out of bounds"
+	 * 							"couldn't read user's input" 
+	 * 							"input is too long"
+	 * 							"Invalid immediate Value"
+	 * 							"Invalid Character String!"
 	 * Original Author: Rakaan Kayali
 	 * Date of Installation: 11/18/2010
 	 * Modifications:
@@ -1287,7 +1317,7 @@ public class HardwareSimulator {
 	 * Input Params: fileName is the .txt LoadModule
 	 * Output Params: ArrayList<String> with each line of LoadModule
 	 * Error Conditions Tested: Invalid fileName, Unable to read from file
-	 * Error Messages Generated: "",""
+	 * Error Messages Generated: "File Not Found","Error Reading File"
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/21/2010
 	 * Modifications:
@@ -1317,12 +1347,12 @@ public class HardwareSimulator {
 		} 
 		catch (FileNotFoundException e) 
 		{
-			System.out.println("File Not Found");
+			System.err.println("File Not Found");
 			System.exit(0);
 		} 
 		catch (IOException e) 
 		{
-			System.out.println("Error Reading File");
+			System.err.println("Error Reading File");
 			e.printStackTrace();
 		}
 		return linesOfCode;
