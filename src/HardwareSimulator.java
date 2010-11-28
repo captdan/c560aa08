@@ -411,6 +411,7 @@ public class HardwareSimulator {
 		//System.out.println(binaryInstruction);
 		
 		int debugnow = PC;
+		String addrCode = binaryInstruction.substring(6, 8);
 		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
 			
 		int registerTwo = Integer.parseInt(binaryInstruction.substring(11,14),2);
@@ -420,6 +421,17 @@ public class HardwareSimulator {
 		int registerTwoValue = ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(registers[registerTwo]));
 		
 		int lastSixteen = ALU.GetIntegerFromTwosComplementSigned(binaryInstruction.substring(16));
+		
+		if(addrCode.equals("00") || addrCode.equals("10"))
+		{
+			//Direct Addressing Modes
+			EFFADDR = registerTwoValue + lastSixteen;
+		}
+		else
+		{
+			//Indirect Addressing Mode
+			EFFADDR = registerTwoValue + ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(MEM[lastSixteen]));
+		}
 		//System.out.println(lastSixteen);
 		//System.out.println(binaryInstruction.substring(16));
 		if (!(registerOne>=0 && registerOne<=7 && registerTwo >=0 && registerTwo <=7))
@@ -473,10 +485,8 @@ public class HardwareSimulator {
 			}
 		}
 		else if (opcode.equals("39")) // store word address
-		{
-			EFFADDR = registerTwoValue + lastSixteen;
-			
-			if (EFFADDR < 65536)
+		{			
+			if (EFFADDR < 65535)
 			{
 			MEM[EFFADDR] = registers[registerOne];
 			
@@ -488,10 +498,9 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("48")) // load word address
 		{
-			EFFADDR = registerTwoValue + lastSixteen;
-			if (EFFADDR < 65536)
+			if (EFFADDR < 65535)
 			{
-			registers[registerOne] = MEM[lastSixteen];
+				registers[registerOne] = MEM[EFFADDR];
 			}
 			else
 			{
@@ -500,10 +509,10 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("49")) // load negative address
 		{
-			EFFADDR = registerTwoValue + lastSixteen;
-			if (EFFADDR < 65536)
+			
+			if (EFFADDR < 65535)
 			{
-			int loadedValue = Integer.parseInt(MEM[registerTwoValue + lastSixteen],16)*(-1);
+			int loadedValue = Integer.parseInt(MEM[EFFADDR],16)*(-1);
 			
 			registers[registerOne] =  Integer.toBinaryString(loadedValue);
 			}
@@ -514,9 +523,7 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("56"))//load address of word into register //ask to make sure interpretation is correct
 		{
-			EFFADDR = lastSixteen + registerTwoValue;
-			
-			if(EFFADDR < 65536)
+			if(EFFADDR < 65535)
 			{
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
@@ -529,7 +536,6 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("57"))//store address in word
 		{
-			EFFADDR = registerTwoValue + lastSixteen;
 			
 			if (EFFADDR < 65535)
 			{
@@ -544,9 +550,7 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("58"))//and register to storage
 		{	
-			EFFADDR = registerTwoValue + lastSixteen;
-			
-			if (EFFADDR < 65536)
+			if (EFFADDR <65536)
 			{
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
@@ -564,8 +568,6 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("59"))//OR
 		{
-			EFFADDR = registerTwoValue + lastSixteen;
-		
 			if (EFFADDR < 65536)
 			{
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
@@ -1014,7 +1016,6 @@ public class HardwareSimulator {
 		{
 			//Direct Addressing Modes
 			EFFADDR = r1Contents + ALU.GetIntegerFromTwosComplementSigned(imm);
-			System.out.println("EFFADRR: " +EFFADDR );
 		}
 		else
 		{
