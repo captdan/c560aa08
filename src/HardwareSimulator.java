@@ -476,7 +476,7 @@ public class HardwareSimulator {
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 			
-			if (EFFADDR < 65535)
+			if (EFFADDR < 65536)
 			{
 			MEM[EFFADDR] = registers[registerOne];
 			
@@ -489,7 +489,7 @@ public class HardwareSimulator {
 		else if (opcode.equals("48")) // load word address
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
-			if (EFFADDR < 65535)
+			if (EFFADDR < 65536)
 			{
 			registers[registerOne] = MEM[lastSixteen];
 			}
@@ -501,7 +501,7 @@ public class HardwareSimulator {
 		else if (opcode.equals("49")) // load negative address
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
-			if (EFFADDR < 65535)
+			if (EFFADDR < 65536)
 			{
 			int loadedValue = Integer.parseInt(MEM[registerTwoValue + lastSixteen],16)*(-1);
 			
@@ -516,7 +516,7 @@ public class HardwareSimulator {
 		{
 			EFFADDR = lastSixteen + registerTwoValue;
 			
-			if(EFFADDR < 65535)
+			if(EFFADDR < 65536)
 			{
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
@@ -617,14 +617,16 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals("7"))//Jump and link //ask if this is right
+		else if (opcode.equals("7"))//Jump and link 
 
 		{
 			int returnAddress = PC + 1;
 			
 			registers[7] = Integer.toString(returnAddress);
 			
-			PC = lastSixteen;
+			PC = lastSixteen -1;
+			
+			NPIC = PC;
 			
 		}
 
