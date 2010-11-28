@@ -1011,10 +1011,11 @@ public class HardwareSimulator {
 		int MemStart =  Integer.parseInt(imm,2);
 		
 		
-		if(addrCode == "00" || addrCode == "10")
+		if(addrCode.equals("00") || addrCode.equals("10"))
 		{
 			//Direct Addressing Modes
-			EFFADDR = r1Contents + Integer.parseInt(imm,2);
+			EFFADDR = r1Contents + ALU.GetIntegerFromTwosComplementSigned(imm);
+			System.out.println("EFFADRR: " +EFFADDR );
 		}
 		else
 		{
@@ -1033,7 +1034,7 @@ public class HardwareSimulator {
 		
 		else if(opcode.equals("10"))
 		{
-			
+			System.out.println("?????");
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
@@ -1054,7 +1055,7 @@ public class HardwareSimulator {
 				return;
 			}
 			
-			MEM[addretowrite] = String.valueOf(ALU.intToHex(userInput));	
+			MEM[addretowrite] = ALU.intToHex(userInput);	
 			
 			}
 		}
