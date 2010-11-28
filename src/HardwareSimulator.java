@@ -23,6 +23,12 @@ public class HardwareSimulator {
 	public static GlobalSymbolTable GSymbTable = new GlobalSymbolTable();
 	public static int excecStart = 0;
 	public static int initialLoadAddr = 0;
+	public static int moduleonelength = 0;
+	public static int moduletwolength = 0;
+	public static int modulethreelength = 0;
+	public static String moduleonename;
+	public static String moduletwoname ;
+	public static String modulethreename;
 	public static int CompleteModuleLength = 0;
 	public static String LHfirstModuleName;
 	public static ALU ALU = new ALU();
@@ -403,7 +409,7 @@ public class HardwareSimulator {
 	{
 		//System.out.println(opcode);
 		//System.out.println(binaryInstruction);
-		System.out.println(opcode);
+		
 		int debugnow = PC;
 		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
 			
@@ -818,8 +824,7 @@ public class HardwareSimulator {
 			}
 		}
 		
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.R);
-		
+	
 		if(debug[debugnow])
 		{
 			DumpArray();
@@ -972,7 +977,6 @@ public class HardwareSimulator {
 			}
 		}
 		
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.I);
 		
 		if(debug[debugnow])
 		{
@@ -1034,7 +1038,7 @@ public class HardwareSimulator {
 		
 		else if(opcode.equals("10"))
 		{
-			System.out.println("?????");
+			//System.out.println("?????");
 			Scanner scan = new Scanner(System.in);
 			
 			int userInput = 0;
@@ -1268,7 +1272,7 @@ public class HardwareSimulator {
 		System.out.print("Binary Instruction: " + instruction);
 		
 		//Opcode of Instruction
-		System.out.println("\tOpcode (HEX): " + Integer.toHexString(Integer.parseInt(instruction.substring(0, 6),2)) + '\t');
+		System.out.println("\tOpcode (HEX): " + Integer.toHexString(Integer.parseInt(instruction.substring(0, 6),2)).toUpperCase() + '\t');
 		
 		//EFFADDR if S-type or IO-type
 		if(i.equals(instructionType.S) || i.equals(instructionType.IO))
