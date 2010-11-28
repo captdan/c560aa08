@@ -1,0 +1,4 @@
+H|Altest_11|0000|015E|2010:28|00:52:41|0002|0000|015E|SAL|1|1|Altest_11
+L|Altest_11|0000|start|Altest_11
+L|r2|FFFFFFFF|ent|Altest_11
+E|0004|Altest_11
