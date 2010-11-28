@@ -1127,21 +1127,19 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("13"))
 		{
+			String hbin = ALU.hexToBin(MEM[EFFADDR]);
+			//System.out.println(hbin);
+			//System.out.println((char)Integer.parseInt(hbin.substring(0,8),2));
 			try
 			{
 				//1st Character
-				System.out.print((char)Integer.parseInt(MEM[EFFADDR].substring(0,7),2));
-				
-				//2nd Character
-				System.out.println((char)Integer.parseInt(MEM[EFFADDR].substring(8,15),2));
-				
-				//3rd Character
-				System.out.println((char)Integer.parseInt(MEM[EFFADDR].substring(16,23),2));
-				
-				//4th Character
-				System.out.println((char)Integer.parseInt(MEM[EFFADDR].substring(24,31),2));
+				System.out.print((char)Integer.parseInt(hbin.substring(0,8),2));				//2nd Character
+				System.out.print((char)Integer.parseInt(hbin.substring(8,16),2));				//3rd Character
+				System.out.print((char)Integer.parseInt(hbin.substring(16,24),2));				//4th Character
+				System.out.print((char)Integer.parseInt(hbin.substring(24),2));
+				System.out.println();
 			}
-			catch (NumberFormatException e)
+				catch (NumberFormatException e)
 			{
 				System.err.println("Invalid Character String!");
 				return;
