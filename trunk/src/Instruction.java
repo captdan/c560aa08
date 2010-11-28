@@ -221,8 +221,8 @@ public class Instruction
 				//System.out.println("TEST : " + returnOperand(1,operandTypes.COMPLEXADDRESS).operand);
 				reg1 = padZeros(toBinary(returnOperand(0,operandTypes.REGISTER)).get(0).operand,3);
 				reg2 = padZeros(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand,3);
-				System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand);
-				System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(0).operand);
+				//System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(1).operand);
+				//System.out.println(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(0).operand);
 				addr = padZeros(toBinary(returnOperand(1,operandTypes.COMPLEXADDRESS)).get(0).operand,16);
 			}
 			else

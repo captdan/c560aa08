@@ -13,7 +13,8 @@ import java.util.StringTokenizer;
  * @author Kerovesmo
  *
  */
-public class ObjectFile {
+public class ObjectFile 
+{
 	
 	private String programLength = "";
 	private Program p;
@@ -88,12 +89,14 @@ public class ObjectFile {
 	 * Date of Installation: 11/5/2010
 	 * Modifications: 
 	 */
-	public ArrayList<ArrayList<String>> createTextRecord() {
+	public ArrayList<ArrayList<String>> createTextRecord() 
+	{
 		
 		ArrayList<ArrayList<String>> textRecord = new ArrayList<ArrayList<String>>();
 		
 		for (CodeLine codeline : p.CodeLineArray)
 		{
+			System.out.println(codeline.originalLineOfCode);
 			ArrayList<String> record = makeOneTextRecord(codeline);
 		
 			
@@ -128,6 +131,10 @@ public class ObjectFile {
 					}
 				}
 				
+			}
+			else if(codeline.instruction != null)
+			{
+				textRecord.add(record);
 			}
 			
 		}
