@@ -51,12 +51,12 @@ public class HardwareSimulator {
 		DumpArray();
 		type = null;
 		
-		for(PC = excecStart; PC < initialLoadAddr + CompleteModuleLength - 1; PC++)
+		for(PC = excecStart; PC <= initialLoadAddr + CompleteModuleLength - 1; PC++)
 		{
-			
+			//System.out.println(ALU.hexToBin(MEM[PC]));
 			try
 			{
-				binaryInstruction =	hexToBin(MEM[PC]);
+				binaryInstruction =	ALU.hexToBin(MEM[PC]);
 				type = SelectInstructionType(binaryInstruction);
 				try
 				{
@@ -93,6 +93,8 @@ public class HardwareSimulator {
 						
 						DumpArray();
 						DumpInstructionInfo(String.valueOf(OPCODE), binaryInstruction, instructionType.J);
+						
+					
 						System.exit(1);
 				
 						break;
@@ -413,7 +415,7 @@ public class HardwareSimulator {
 		
 		int registerTwoValue = ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(registers[registerTwo]));
 		
-		int lastSixteen = ALU.GetIntegerFromTwosComplementUnsigned(binaryInstruction.substring(16));
+		int lastSixteen = ALU.GetIntegerFromTwosComplementSigned(binaryInstruction.substring(16));
 		//System.out.println(lastSixteen);
 		//System.out.println(binaryInstruction.substring(16));
 		if (!(registerOne>=0 && registerOne<=7 && registerTwo >=0 && registerTwo <=7))
@@ -422,10 +424,11 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("32")) // handle Jump on equal
 		{
+				//System.out.println(Integer.parseInt(binaryInstruction.substring(16),2));
 				if(registerOneValue==registerTwoValue)
 				{
-					PC = lastSixteen;
-				
+					PC = lastSixteen-1;
+					//System.out.println("PC= " + PC);
 					NPIC = PC;
 				}
 		}
@@ -631,7 +634,7 @@ public class HardwareSimulator {
 		{
 			
 		}
-		System.out.println(opcode);
+		//System.out.println(opcode);
 		if(debug[debugnow])
 		{
 			DumpArray();
@@ -1097,6 +1100,11 @@ public class HardwareSimulator {
 
 				
 			}
+						
+		}
+		else if (opcode.equals("13"))
+		{
+			// TODO Generate output for outc
 						
 		}
 		else if (opcode.equals("30"))

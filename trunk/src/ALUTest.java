@@ -68,6 +68,7 @@ public class ALUTest {
 
 	@Test
 	public void TestTwosComplamentFunctions() {
+		
 		assertEquals("", ALU.GetIntegerFromTwosComplementSigned(zero), 0);
 		assertEquals("", ALU.GetIntegerFromTwosComplementSigned(neg5), -5);
 		assertEquals("", ALU.GetIntegerFromTwosComplementSigned(neg10), -10);
