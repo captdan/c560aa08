@@ -5,7 +5,7 @@ ZZ int.data 0
 XX int.data 0
 err str.data 'YY=0'
 .text
-Exect.Start *
+Exec.Start *
 	debug 1
 	inn 2, YY
 	lw $2,YY
