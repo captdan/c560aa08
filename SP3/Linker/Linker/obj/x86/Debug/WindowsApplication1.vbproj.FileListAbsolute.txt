@@ -1,0 +1,11 @@
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\WindowsApplication1.exe
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\WindowsApplication1.pdb
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\bin\Debug\WindowsApplication1.xml
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.Linker.resources
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.exe
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.xml
+C:\Users\Admin\AppData\Local\Temporary Projects\WindowsApplication1\obj\x86\Debug\WindowsApplication1.pdb
