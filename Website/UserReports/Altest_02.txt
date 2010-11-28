@@ -1,0 +1,33 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+0	00000000		1	.start,altest_02,0
+0	00000000		2	.data
+0	00000004	A	3	   mem.skip 4         |00
+4	00000011	A	4	   int.data 17        |04   00000011
+5	00000009	A	5	   int.data  9        |05 00000005
+6	00000000		6	.text
+6	00000010	A	7	   RESET.LC 16
+10	00000010	A	8	   Exec.start *       |10
+10	c0a00004	A	9	   lw   $5,4          |10   78000004
+11	70b40005	A	10	   muls $5,$5,5       |11   70000005
+12	9ca0000a	A	11	   sw   $5,10         |12   9C00000A
+13	c0200004	A	12	   lw   $1,4          |13   78200004
+14	74240005	A	13	   DIVs $1,$1,5       |14   74200005
+15	9c20000b	A	14	   sw   $1,11         |15   9C20000B
+16	c0400004	A	15	   lw   $2,4          |16   78400004
+17	e8740002	A	16	   ands $3,5($2)      |17   E8240005
+18	9c40000c	A	17	   sw   $2,12         |18   9C40000C
+19	c0600004	A	18	   lw   $3,4          |19   78600004
+1a	ec740002	A	19	   ORs  $3,5($2)      |1A   EC600005
+1b	9c60000d	A	20	   sw   $3,13         |1B   9C60000D
+1c	c0800004	A	21	   lw   $4,4          |1C   78800004
+1d	6c900005	A	22	   subs $4,$4,5       |1D   6C800005
+1e	9c80000e	A	23	   sw   $4,14         |1E   9C80000D
+1f	c0000004	A	24	   lw   $0,4          |1F   78200004
+20	08000400	A	25	   SlL  $0,$0,2       |20   02000402
+21	9c00000f	A	26	   sw   $0,15         |21   9C00000F
+22
+	0	Expected 3 operands and received 1 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+22	68d80005	A	28	   adds $6,$6,5       |23   68040005
+23	200000c8	A	29	   halt 200           |24   200000C8
+24	00000000		30	.end,altest_02

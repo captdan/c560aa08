@@ -1,0 +1,24 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+5	00000000		1	.Start,Math,05			
+5	00000000		2	.data
+5	00000000	A	3	YY int.data 0
+6	00000000	A	4	ZZ int.data 0
+7	00000000	A	5	XX int.data 0
+8	02cd9f70	A	6	err str.data 'YY=0'
+9	00000000		7	.text
+9
+	99	General Error	Check this line for syntax errors.
+9	00000001	A	9		debug 1
+9	10020005	A	10	inn 2, YY
+a	c0400005	A	11	lw $2,YY
+b	c0600006	A	12	lw $3, ZZ
+c	80400013	A	13	JEQ $2,$0,ERROR
+d	048d0018	A	14	MUL $4,$3,$2
+e	50900014	A	15	MULI $4,$4,20
+f	04b1001a	A	16	DIV $5,$4,$2
+10	9ca00007	A	17	SW $5, XX
+11	28010007	A	18	outn 1,XX
+12	20000000	A	19	HALT 0
+13	2c010008	A	20	ERROR		outc 1, err
+14	200000fa	A	21	HALT 250
+15	00000000		22	.end, Math
