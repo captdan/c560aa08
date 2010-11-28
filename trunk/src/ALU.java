@@ -46,7 +46,7 @@ public class ALU {
 			System.err.println("Over Flow");
 			System.exit(1);
 		}
-		System.out.println(aValue + " + " + bValue +" = " + cValue);
+		//System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -81,7 +81,7 @@ public class ALU {
 			System.err.println("Over Flow");
 			System.exit(1);
 		}
-		System.out.println(aValue + " - " + bValue +" = " + cValue);
+		//System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 	}
 	/**
@@ -116,7 +116,7 @@ public class ALU {
 			System.err.println("Over Flow");
 			System.exit(1);
 		}
-		System.out.println(aValue + " * " + bValue +" = " + cValue);
+		//System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -148,7 +148,7 @@ public class ALU {
 		}
 		catch(Exception overflow){
 			System.out.println("Zero Division");
-			//System.exit(1);
+			System.exit(1);
 		}
 		System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
@@ -181,7 +181,7 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		
-		System.out.println(aValue + " + " + bValue +" = " + cValue);
+		//System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -212,7 +212,7 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		
-		System.out.println(aValue + " - " + bValue +" = " + cValue);
+		//System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -243,7 +243,7 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		
-		System.out.println(aValue + " * " + bValue +" = " + cValue);
+		//System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -282,7 +282,7 @@ public class ALU {
 			cValue = cValue*-1;
 		}
 		
-		System.out.println(aValue + " / " + bValue +" = " + cValue);
+		//System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -315,7 +315,7 @@ public class ALU {
 		catch(Exception overflow){
 			
 		}
-		System.out.println(aValue + " ^ " + bValue +" = " + c);
+		//System.out.println(aValue + " ^ " + bValue +" = " + c);
 		return c;
 	}
 	/**
@@ -345,7 +345,8 @@ public class ALU {
 			
 		}
 		else{
-			// TODO generate error
+			System.err.println("unequal Strings being AND");
+			System.exit(1);
 		}
 		return result;
 	}
