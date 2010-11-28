@@ -546,36 +546,23 @@ public class HardwareSimulator {
 		{	
 			EFFADDR = registerTwoValue + lastSixteen;
 			
-			if (EFFADDR <65536)
+			if (EFFADDR < 65536)
 			{
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
 			String binary = Integer.toBinaryString(decimal);
 			
-			String andResult = "";
-			
-			for (int i = 0; i <binary.length(); i++){
-			
-				if (registers[registerOne].charAt(i)==binary.charAt(i))
-				{
-					andResult = andResult + "1";
-				}
-				else 
-				{
-					andResult = andResult + "0";
-				}
-			}
+			String andResult = ALU.AND(registers[registerOne],binary);
 			
 			registers[registerOne] = andResult;
 			}
 			else
 			{
-				
 			System.err.println("address out of bounds");
 			
 			}
 		}
-		else if (opcode.equals("59"))
+		else if (opcode.equals("59"))//OR
 		{
 			EFFADDR = registerTwoValue + lastSixteen;
 		
@@ -585,25 +572,12 @@ public class HardwareSimulator {
 			
 			String binary = Integer.toBinaryString(decimal);
 			
-			String andResult = "";
-			
-			for (int i = 0; i <binary.length(); i++){
-			
-				if (registers[registerOne].charAt(i)!=binary.charAt(i))
-				{
-					andResult = andResult + "1";
-				}
-				else 
-				{
-					andResult = andResult + "0";
-				}
-			}
+			String andResult = ALU.OR(registers[registerOne],binary);
 			
 			registers[registerOne] = andResult;
 			}
 			else
 			{
-				
 			System.err.println("address out of bounds");
 			
 			}
