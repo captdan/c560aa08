@@ -1,0 +1,23 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+0	00000000		1	.start,Altest_04,0
+0	00000000		2	.data
+0	00000000	A	3	YY int.data 0
+1	00000000	A	4	ZZ int.data 0
+2	00000000	A	5	XX int.data 0
+3	02d5af70	A	6	Err str.data 'ZZ=0'
+4	00000000		7	.text
+4	00000002	R	8	ENT XX             | Another program may come looking for the result
+4	00000004	A	9	exec.start *
+4	10020000	A	10	inn 2,YY             |read in 2 numbers into locations YY and ZZ
+5	c0600000	A	11	LW $3,YY
+6	8060000e	A	12	JEQ $3,$0,ERROR
+7	c0400001	A	13	LW $2,ZZ
+8	048d0018	A	14	mul $4,$3,$2       | place intermediate result in reg 4
+9	50b00014	A	15	muli $5,$4,20       | place intermediate result in reg 5
+a	04b5801a	A	16	Div $5,$5,$3       | Final result is in reg 5
+b	9ca00002	A	17	sw $5,XX
+c	28010002	A	18	outn 1,XX             | output 1 word at location XX
+d	20000000	A	19	HALT 0
+e	2c010003	A	20	ERROR outc 1,Err
+f	200000fa	A	21	HALT 250             | Halt and display error code 250
+10	00000000		22	.end,Altest_04

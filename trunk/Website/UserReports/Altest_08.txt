@@ -1,0 +1,4 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+ffff	00000000		1	.start,Altest_08,65535 | program length 0 load point FFFF
+ffff		2	.end,Altest_08
+	6	Memory out of bounds.	change address number
