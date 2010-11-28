@@ -59,10 +59,8 @@ public class HardwareSimulator {
 				binaryInstruction =	ALU.hexToBin(MEM[PC]);
 				type = SelectInstructionType(binaryInstruction);
 				try
-				{
-					
-					OPCODE = Integer.parseInt(binaryInstruction.substring(0,6),2);
-					
+				{		
+					OPCODE = Integer.parseInt(binaryInstruction.substring(0,6),2);	
 				}
 				catch(NumberFormatException e)
 				{
@@ -676,7 +674,12 @@ public class HardwareSimulator {
 		//	System.out.println("Shift "+shift);
 			if(shift > 24)
 			{
-				System.err.println("Excessive bit shift...proceeding to next instructin");
+				System.err.println("Excessive bit shift...proceeding to next instruction.");
+				return;
+			}
+			if((r1 > 7) || (r2 > 7) || (r3 > 7))
+			{
+				System.err.println("Invalid Register Specified...proceeding to next instruction.");
 				return;
 			}
 			function = Integer.parseInt((binaryInstruction.substring(26)),2);
@@ -998,12 +1001,27 @@ public class HardwareSimulator {
 		
 		String opCode = binaryInstruction.substring(0,6);
 		String addrCode = binaryInstruction.substring(6,8);
-		String reg1 = binaryInstruction.substring(8,11);
-		int words =  Integer.parseInt(binaryInstruction.substring(11,16),2);
-		int MemStart =  Integer.parseInt(binaryInstruction.substring(16),2);
-		String imm =  binaryInstruction.substring(16);
 		
-		EFFADDR = Integer.parseInt(binaryInstruction.substring(16),2)+Integer.parseInt(binaryInstruction.substring(8,11));
+		int r1 = Integer.parseInt(binaryInstruction.substring(8,11));
+		int r1Contents = ALU.GetIntegerFromTwosComplementSigned(registers[r1]);
+		
+		int words =  Integer.parseInt(binaryInstruction.substring(11,16),2);
+		
+		String imm =  binaryInstruction.substring(16);
+		int MemStart =  Integer.parseInt(imm,2);
+		
+		
+		if(addrCode == "00" || addrCode == "10")
+		{
+			//Direct Addressing Modes
+			EFFADDR = r1Contents + Integer.parseInt(imm,2);
+		}
+		else
+		{
+			//Indirect Addressing Mode
+			EFFADDR = r1Contents + ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(MEM[Integer.parseInt(imm, 2)]));
+		}
+		
 		
 		int displayNumber = Integer.parseInt(binaryInstruction.substring(11,16),2);
 		
@@ -1104,7 +1122,25 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("13"))
 		{
-			// TODO Generate output for outc
+			try
+			{
+				//1st Character
+				System.out.print((char)Integer.parseInt(MEM[EFFADDR].substring(0,7),2));
+				
+				//2nd Character
+				System.out.println((char)Integer.parseInt(MEM[EFFADDR].substring(8,15),2));
+				
+				//3rd Character
+				System.out.println((char)Integer.parseInt(MEM[EFFADDR].substring(16,23),2));
+				
+				//4th Character
+				System.out.println((char)Integer.parseInt(MEM[EFFADDR].substring(24,31),2));
+			}
+			catch (NumberFormatException e)
+			{
+				System.err.println("Invalid Character String!");
+				return;
+			}
 						
 		}
 		else if (opcode.equals("30"))
@@ -1551,4 +1587,5 @@ public class HardwareSimulator {
 		
 		return hex;
 	}
+
 }
