@@ -163,13 +163,16 @@ public class Parser
 		SymbTable.prettyFerret();	
 		
 		Program newProgram = new Program(programName, startingLocation, execStart, debugMode,PC, CodeLineArray, SymbTable, litTable);
-		ObjectFile newObjectFile = new ObjectFile(newProgram);
-		
-		newObjectFile.prettyFerret2();
-		
-		Program newProgram2 = new Program(programName, startingLocation, execStart,debugMode,PC, CodeLineArray, SymbTable, litTable);
-		AssemblyListing newAssemblyListing = new AssemblyListing(newProgram2);
-		newAssemblyListing.prettyFerret3();
+		if (newProgram != null)
+		{
+			ObjectFile newObjectFile = new ObjectFile(newProgram);
+			
+			newObjectFile.prettyFerret2();
+			
+			Program newProgram2 = new Program(programName, startingLocation, execStart,debugMode,PC, CodeLineArray, SymbTable, litTable);
+			AssemblyListing newAssemblyListing = new AssemblyListing(newProgram2);
+			newAssemblyListing.prettyFerret3();
+		}
 	}
 	
 	/**
