@@ -10,34 +10,109 @@ import java.util.StringTokenizer;
 /**
  * 
  * @author Team c560aa08 collaboration.
- * this class simulates the .
+ * This class simulates the work of a computers hardware. When fed a source file with a SAL560 program it 
+ * reads the program line by line and adjusts memories and registers accordingly.
  * 
  */
 public class HardwareSimulator {
-
+	/**
+	 * registers is an array representing our 16 registers
+	 */
 	static String[] registers = new String[15];
+	/**
+	 *MEM is an arraylist of string that represents all available memory. 
+	 */
 	static String[] MEM = new String[65536];
+	/**
+	 * loadModule is an arraylist used to hold the lines of code that are to be read.  
+	 */
 	static ArrayList<String> LoadModule = new ArrayList<String>();
+	/**
+	 * OPCODE holds the opcode of a specified line of code.
+	 */
 	static int OPCODE = 0;
+	/**
+	 * Errors holds an array of possible errors.
+	 */
 	ArrayList<Error> Errors = new  ArrayList<Error>();
+	/**
+	 * debug is an array of boolean indicating whether each line of code has its debug on or off.
+	 */
 	static boolean[] debug = new boolean[65536];
+	/**
+	 * PC is the program counter
+	 */
 	static int PC = 0;
+	/**
+	 * NPIC holds the address of the next instruction.
+	 */
 	static int NPIC = 0;
+	/**
+	 * binaryInstruction holds the line of code in binary.
+	 */
 	static String binaryInstruction = "";
+	/**
+	 * GSymbTableArray holds the lines of code that will be used to fill the Global Symbol Table.
+	 */
 	public static ArrayList<String> GSymbTableArray = new ArrayList<String>();
+	/**
+	 * GSymbol holds the actual Global Symbol Table.
+	 */
 	public static GlobalSymbolTable GSymbTable = new GlobalSymbolTable();
+	/**
+	 * Holds address where execution is going to start.
+	 */
 	public static int excecStart = 0;
+	/**
+	 * Holds the initial loading Address.
+	 */
 	public static int initialLoadAddr = 0;
+	/**
+	 * Holds the length of the first Module.
+	 */
 	public static int moduleonelength = 0;
+	/**
+	 * Holds the length of the two Module.
+	 */
 	public static int moduletwolength = 0;
+	/**
+	 * Holds the length of the third Module.
+	 */
 	public static int modulethreelength = 0;
-	public static String moduleonename = null;
-	public static String moduletwoname = null;
-	public static String modulethreename = null;
+	/**
+	 * Holds the name of the first Module.
+	 */
+	public static String moduleonename;
+	/**
+	 * Holds the name of the second Module.
+	 */
+	public static String moduletwoname ;
+	/**
+	 * Holds the name of the third Module.
+	 */
+	public static String modulethreename;
+	/**
+	 * Holds the length of the complete Module.
+	 */
 	public static int CompleteModuleLength = 0;
+	/**
+	 * Holds the Header of the first Module.
+	 */
 	public static String LHfirstModuleName;
+	/**
+	 * Declares an ALU object to be used with conversions and mathematical calculations.
+	 */
 	public static ALU ALU = new ALU();
+	/**
+	 * Holds the effective address for each instruction execution.
+	 */
 	public static int EFFADDR = 0;
+	/**
+	 * 
+	 * @author Kermit
+	 * Holds the possible addressing types that may be encountered reading a SAL560 program.
+	 *
+	 */
  	public static enum instructionType
 	{
 		 R, S, J, IO, I, NOTINSTRUCTION;
@@ -45,26 +120,20 @@ public class HardwareSimulator {
 
 	/**
 	 * @param args
+	 * Implementation of loader. Simulates the actual implementation of SAL560
 	 */
 	public static void main(String[] args) {
 		
 		initializeMEM();
 		initializeREGS();
-		instructionType type;
-		
-		if(args.length == 2){
-		LoadModule = readFileToArrayList(args[0]);
-		GSymbTableArray = readFileToArrayList(args[1]);
-		}
-		else{
-			System.err.println("Missing Global Symbol Table or Load File");
-			System.exit(1);
-		}
 		FillGlobalSymbTable();
+		instructionType type;
+		putToMEM();
+		LoadModule = readFileToArrayList(args[0]);
 		putToMEM();
 		 // Fill MEM array
 		 
-		
+		putToMEM();
 		NPIC = PC + 1;
 		DumpArray();
 		type = null;
@@ -141,7 +210,7 @@ public class HardwareSimulator {
 	 * Error Messages Generated: Invalid OPCODE, Invalid Instruction
 	 * Original Author: Kermit Stearns
 	 * Date of Installation: 11/21/2010
-	 * Modifications:
+	 * Modifications:Had to change opcodes to correspond with their hex equivalents.
 	 * @param binaryInstruction2 Valid Binary Instruction 
 	 * @return An instructionType Enum.
 	 */
@@ -201,7 +270,7 @@ public class HardwareSimulator {
 	 * Error Messages Generated: N/A
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/22/2010
-	 * Modifications:
+	 * Modifications:N/A
 	 */
 	private static void initializeREGS() {
 		for(int i = 0; i < registers.length; i++){
@@ -247,7 +316,7 @@ public class HardwareSimulator {
 	private static void FillGlobalSymbTable() {
 		for(int i =0; i<GSymbTableArray.size(); i++){
 			String Line = GSymbTableArray.get(i);
-			StringTokenizer st = new StringTokenizer(Line, "|");
+			StringTokenizer st = new StringTokenizer(Line, " \t |");
 			if(st.countTokens() == 4){
 				String label = st.nextToken();
 				String assemblerAddr = st.nextToken(); 
@@ -268,11 +337,11 @@ public class HardwareSimulator {
 	 * Description: Inputs the LoadModule from Linker into our Memory Array (MEM)
 	 * Input Params: The .txt name from the LoadModule specified from the command line
 	 * Output Params: N/A
-	 * Error Conditions Tested: Invalid Load Module (both file specified and interna structure of load module)
-	 * Error Messages Generated: Invalid LoadModule specified, inproperly formatted header,text, or end records in LoadModule
+	 * Error Conditions Tested: Invalid Load Module (both file specified and internal structure of load module)
+	 * Error Messages Generated: Invalid LoadModule specified, improperly formatted header,text, or end records in LoadModule
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/21/2010
-	 * Modifications:
+	 * Modifications:Added error checking to check format of load Module.
 	 * @param loadModule2
 	 */
 	private static void putToMEM() {
@@ -289,31 +358,12 @@ public class HardwareSimulator {
 					excecStart = Integer.parseInt(exStart);
 					//System.out.println(exectStart);
 					LHfirstModuleName = LHTokenizer.nextToken();
-					if(!GSymbTable.isInTable(LHfirstModuleName)){
-						System.err.println("Uknown Module Name.... terminating");
-						System.exit(1);
-					}
 					String LengthOfModule = LHTokenizer.nextToken();
-					ArrayList<Object> a = GSymbTable.getInfoFromSymbol(LHfirstModuleName);
-					String len = (String) a.get(2);
-					//System.out.println(len);
 					
-					if(!LengthOfModule.equals(len)){
-						System.err.println("Length in load module does not match Symbol table");
-						System.exit(1);
-					}
 					CompleteModuleLength = Integer.parseInt(LengthOfModule,16);
 					//System.out.println(CompleteModuleLength);
 					String IniLodAddr = LHTokenizer.nextToken();
 					initialLoadAddr = Integer.parseInt(IniLodAddr,16);
-					if(initialLoadAddr >65536){
-						System.err.println("Length out of bounds");
-						System.exit(1);
-					}
-					if(initialLoadAddr + Integer.parseInt(LengthOfModule)>65536){
-						System.err.println("Length out of bounds");
-						System.exit(1);
-					}
 					//System.out.println(initialLoadAddr);
 					PC = initialLoadAddr;
 					String Date = LHTokenizer.nextToken();
@@ -322,10 +372,6 @@ public class HardwareSimulator {
 					String version = LHTokenizer.nextToken();
 					String revision = LHTokenizer.nextToken();
 					String firstModuleName2 = LHTokenizer.nextToken();
-					if(!GSymbTable.isInTable(firstModuleName2)){
-						System.err.println("Uknown Module Name.... terminating");
-						System.exit(1);
-					}
 				}
 			else
 				{
@@ -351,10 +397,7 @@ public class HardwareSimulator {
 						}
 					// get Load address for MEM	
 					int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
-					if(loadAddsDecimal > 65536){
-						System.err.println("Unrecoverable problem with Load Module: out of bound address");
-						System.exit(1);
-					}
+					
 					String debug1 = st.nextToken();
 					//System.out.println(debug);
 					if((debug1.equals("Y") || (debug1.equals("N"))) == false)
@@ -374,33 +417,6 @@ public class HardwareSimulator {
 					
 						}
 					String moduleName = st.nextToken();
-					
-					if(!GSymbTable.isInTable(moduleName)){
-						System.err.println("Uknown Module Name.... terminating");
-						System.exit(1);
-					}
-					else{
-						
-						if(moduleonename == null){
-							moduleonename = moduleName;
-							ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
-							String len = (String) a.get(2);
-							moduleonelength = Integer.parseInt(len,16);
-						}
-						else if((moduletwoname == null) && (!moduleName.equals(moduleonename))){
-							moduletwoname = moduleName;
-							ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
-							String len = (String) a.get(2);
-							moduletwolength = Integer.parseInt(len,16);
-						}
-						else if((modulethreename == null)&& (!moduleName.equals(moduleonename)) && (!moduleName.equals(moduletwoname))){
-							modulethreename = moduleName;
-							ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
-							String len = (String) a.get(2);
-							modulethreelength = Integer.parseInt(len,16);
-						}
-						
-					}
 					//System.out.println(moduleName);
 					// add the Hex code to MEM
 					try
@@ -464,8 +480,10 @@ public class HardwareSimulator {
 	 * Input Params: opcode: Holds the opcode of the line of code we are reading.
 	 * 				binaryInstruction Holds the 32 bit binary String.
 	 * Output Params: N/A
-	 * Error Conditions Tested: 
-	 * Error Messages Generated: 
+	 * Error Conditions Tested: Check if referenced register is within proper bounds.
+	 * 							Check if address is out of bounds.
+	 * Error Messages Generated: "specified register is not between 0 and 7"
+	 * 							 "address out of bounds"
 	 * Original Author: Rakaan Kayali
 	 * Date of Installation: 11/18/2010
 	 * Modifications:Used ALU class to perform calculations.
@@ -722,8 +740,7 @@ public class HardwareSimulator {
 	 *						   Checks if function code with R-Type is valid.
 	 *						   Checks if Jump address is in bounds.
 	 *						   Checks if proper Dump is specified.
-	 * Error Messages Generated:
-	 * "Excessive bit shift...proceeding to next instruction."
+	 * Error Messages Generated: "Excessive bit shift...proceeding to next instruction."
 	 * "Invalid Register Specified...proceeding to next instruction."
 	 * "Wow...how the hell did you find this error???"
 	 * "Invalide Function Code with R-Type Instruction"
@@ -1083,7 +1100,7 @@ public class HardwareSimulator {
 	 * 							"Invalid Character String!"
 	 * Original Author: Rakaan Kayali
 	 * Date of Installation: 11/18/2010
-	 * Modifications:
+	 * Modifications:Used the AlU class to perform conversions to Integers from twos compliment.
 	 * @param binaryInstruction
 	 */
 	private static void evaluateIOType(String opcode, String binaryInstruction) 
@@ -1308,7 +1325,7 @@ public class HardwareSimulator {
 	 * Error Messages Generated: N/A
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/22/2010
-	 * Modifications:
+	 * Modifications:N/A
 	 */
 	private static void DumpArray()
 	{
@@ -1339,7 +1356,9 @@ public class HardwareSimulator {
 	 * 
 	 * Module Name: DumpInstructionInfo
 	 * Description: Information concerning the instruction being executed, displayed before and after each instruction.
-	 * Input Params: N/A
+	 * Input Params: op String holding the opcode for a line of code.
+	 * 				instruction String holding the instruction to be dumped
+	 * 				i holds the instruction type of instruction.
 	 * Output Params: N/A
 	 * Error Conditions Tested: N/A
 	 * Error Messages Generated: N/A
@@ -1380,7 +1399,7 @@ public class HardwareSimulator {
 	 * Error Messages Generated: "File Not Found","Error Reading File"
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/21/2010
-	 * Modifications:
+	 * Modifications:add try catch block to see if file is readable.
 	 * @param fileName LoadModule name in .txt format
 	 * @return ArrayList<String> with each line from LoadModule
 	 */
@@ -1454,7 +1473,7 @@ public class HardwareSimulator {
 	 * Error Messages Generated: N/A
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/23/2010
-	 * Modifications: Original function padded to 32 bits....lol
+	 * Modifications: Original function padded to 32 bits.
 	 * @param binary Binary String to be padded with zeros in order to form 16 bit binary value
 	 * @return
 	 */
@@ -1480,8 +1499,8 @@ public class HardwareSimulator {
 	 * Original Author: Oscar Flores
 	 * Date of Installation: 11/23/2010
 	 * Modifications: Kermit changed this to 4 hex digits from 8 hex digits
-	 * @param bin
-	 * @return
+	 * @param bin String holds the binary string that is to be converted to hex.
+	 * @return hex String holds the hex value of the binary string bin.
 	 */
 	
 	public static String SixteenBitBinaryToFourHexDigits (String bin){
@@ -1553,8 +1572,8 @@ public class HardwareSimulator {
 	 * 
 	 * Module Name: hexToBin.
 	 * Description: converts a hex number to a binary string.
-	 * Input Params: hex: a hex String.
-	 * Output Params: a binary string.
+	 * Input Params: hex a hex String.
+	 * Output Params: result: a binary string.
 	 * Error Conditions Tested: None.
 	 * Error Messages Generated:  None.
 	 * Original Author: Oscar Flores.
@@ -1619,13 +1638,13 @@ public class HardwareSimulator {
 	/**
 	 * Module Name: opcodeInHex
 	 * Description: Takes 6 binary digits of Instruction opcode and converts to hex
-	 * Input Params: 6 digit binary string
-	 * Output Params: 2 digits valid hex
+	 * Input Params: binary String 6 digit binary string
+	 * Output Params: hex String 2 digits valid hex
 	 * Error Conditions Tested: N/A
 	 * Error Messages Generated: N/A
 	 * Original Author: Kermit Stearns
 	 * Date of Installation: 11/27/2010
-	 * Modifications:
+	 * Modifications:N/A
 	 * @param binary 6 digits to be converted to hex
 	 * @return 2 valid hex digits
 	 */
