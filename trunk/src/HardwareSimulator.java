@@ -617,26 +617,45 @@ public class HardwareSimulator {
 				NPIC = PC;
 			}
 		}
-		else if (opcode.equals("7"))//Jump and link
+		else if (opcode.equals("7"))//Jump and link //ask if this is right
+
 		{
-			//
+			int returnAddress = PC + 1;
+			
+			registers[7] = Integer.toString(returnAddress);
+			
 			PC = lastSixteen;
-		}
-		else if (opcode.equals("26"))
-		{
 			
 		}
-		else if (opcode.equals("27"))
+
+		else if (opcode.equals("26"))//$R1=$R2+addr
+
 		{
+			int decimal = ALU.ADD(registers[registerTwo],binaryInstruction.substring(16));
+			registers[registerOne] = Integer.toBinaryString(decimal);
 			
 		}
-		else if (opcode.equals("28"))
+
+		else if (opcode.equals("27"))//$R1=$R2-addr
+
 		{
-			
+			int decimal = ALU.SUB(registers[registerTwo], binaryInstruction.substring(16));
+			registers[registerOne] = Integer.toBinaryString(decimal);
 		}
-		else if (opcode.equals("29"))
+
+		else if (opcode.equals("28"))//$R1=$R2*addr
+
+		{
+			int decimal = ALU.MUL(registers[registerTwo], binaryInstruction.substring(16));
+			registers[registerOne] = Integer.toBinaryString(decimal);
+		}
+
+		else if (opcode.equals("29"))//$R1=$R2/addr
 		{
 			
+			int decimal = ALU.DIV(registers[registerTwo],binaryInstruction.substring(16));
+			
+			registers[registerOne] = Integer.toBinaryString(decimal);
 		}
 		//System.out.println(opcode);
 		if(debug[debugnow])
