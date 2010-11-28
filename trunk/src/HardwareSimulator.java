@@ -1358,7 +1358,8 @@ public class HardwareSimulator {
 	
 	public static String SixteenBitBinaryToFourHexDigits (String bin){
 		
-		String binaryString = padZeros16Bits(bin);
+		String binaryString = ALU.padZeros("0",bin);
+		binaryString = binaryString.substring(16);
 		
 		String hex = "";
 		int b = 4;
