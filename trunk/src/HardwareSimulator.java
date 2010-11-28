@@ -48,7 +48,7 @@ public class HardwareSimulator {
 		 
 		putToMEM();
 		NPIC = PC + 1;
-		
+		DumpArray();
 		type = null;
 		
 		for(PC = excecStart; PC < initialLoadAddr + CompleteModuleLength - 1; PC++)
@@ -90,8 +90,9 @@ public class HardwareSimulator {
 					break;
 					
 				case J:  
-						DumpInstructionInfo(String.valueOf(OPCODE), binaryInstruction, instructionType.J);
+						
 						DumpArray();
+						DumpInstructionInfo(String.valueOf(OPCODE), binaryInstruction, instructionType.J);
 						System.exit(1);
 				
 						break;
@@ -358,7 +359,7 @@ public class HardwareSimulator {
 			
 			StringTokenizer LETokenizer = new StringTokenizer(LE, "|");
 			
-			System.out.println(LHTokenizer.countTokens());
+			//System.out.println(LHTokenizer.countTokens());
 			if(LETokenizer.countTokens() == 3)
 				{
 					
@@ -402,7 +403,7 @@ public class HardwareSimulator {
 	{
 		//System.out.println(opcode);
 		//System.out.println(binaryInstruction);
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
+		System.out.println(opcode);
 		int debugnow = PC;
 		int registerOne = Integer.parseInt(binaryInstruction.substring(8,11),2);
 			
@@ -412,9 +413,9 @@ public class HardwareSimulator {
 		
 		int registerTwoValue = ALU.GetIntegerFromTwosComplementSigned(ALU.hexToBin(registers[registerTwo]));
 		
-		int lastSixteen = ALU.GetIntegerFromTwosComplementSigned(binaryInstruction.substring(16));
-		System.out.println(lastSixteen);
-		System.out.println(binaryInstruction.substring(16));
+		int lastSixteen = ALU.GetIntegerFromTwosComplementUnsigned(binaryInstruction.substring(16));
+		//System.out.println(lastSixteen);
+		//System.out.println(binaryInstruction.substring(16));
 		if (!(registerOne>=0 && registerOne<=7 && registerTwo >=0 && registerTwo <=7))
 		{
 			System.err.println("specified register is not between 0 and 7");
@@ -423,7 +424,7 @@ public class HardwareSimulator {
 		{
 				if(registerOneValue==registerTwoValue)
 				{
-					PC = lastSixteen-1;
+					PC = lastSixteen;
 				
 					NPIC = PC;
 				}
@@ -471,6 +472,7 @@ public class HardwareSimulator {
 			if (EFFADDR < 65535)
 			{
 			MEM[EFFADDR] = registers[registerOne];
+			
 			}
 			else
 			{
@@ -629,10 +631,11 @@ public class HardwareSimulator {
 		{
 			
 		}
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
+		System.out.println(opcode);
 		if(debug[debugnow])
 		{
 			DumpArray();
+			DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
 		}
 		
 	}
@@ -683,7 +686,7 @@ public class HardwareSimulator {
 			System.err.println("Wow...how the hell did you find this error???");
 			return;
 		}
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.R);
+		
 		
 		if(op == 1)
 		{
@@ -814,6 +817,7 @@ public class HardwareSimulator {
 		if(debug[debugnow])
 		{
 			DumpArray();
+			DumpInstructionInfo(opcode,binaryInstruction,instructionType.R);
 		}
 		
 		
@@ -859,7 +863,7 @@ public class HardwareSimulator {
 			System.err.println("Wow...how the hell did you find this error???");
 			return;
 		}
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.I);
+		
 		int result = 0;
 		if(op == 16){
 			registers[r1] = ALU.intToHex(ALU.ADDI(ALU.hexToBin(registers[r2]), imm));
@@ -967,6 +971,7 @@ public class HardwareSimulator {
 		if(debug[debugnow])
 		{
 			DumpArray();
+			DumpInstructionInfo(opcode,binaryInstruction,instructionType.I);
 		}
 			
 	}
@@ -987,7 +992,7 @@ public class HardwareSimulator {
 	private static void evaluateIOType(String opcode, String binaryInstruction) 
 	{
 		int debugnow = PC;
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.IO);
+		
 		String opCode = binaryInstruction.substring(0,6);
 		String addrCode = binaryInstruction.substring(6,8);
 		String reg1 = binaryInstruction.substring(8,11);
@@ -1019,6 +1024,8 @@ public class HardwareSimulator {
 			try{
 				
 				userInput = scan.nextInt();
+
+				
 				
 			} catch (Exception e){
 			
@@ -1062,6 +1069,11 @@ public class HardwareSimulator {
 				String append = String.valueOf(j);
 				
 				userInputHex = userInputHex + append; 
+				if(debug[debugnow])
+				{
+					DumpArray();
+					DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
+				}
 				
 			}
 			
@@ -1082,6 +1094,8 @@ public class HardwareSimulator {
 				displayAddress = EFFADDR + i;
 				
 				System.out.println(Integer.parseInt(MEM[displayAddress],16));	
+
+				
 			}
 						
 		}
@@ -1138,11 +1152,12 @@ public class HardwareSimulator {
 			
 		}
 		
-		DumpInstructionInfo(opcode,binaryInstruction,instructionType.IO);
 		if(debug[debugnow])
 		{
 			DumpArray();
+			DumpInstructionInfo(opcode,binaryInstruction,instructionType.S);
 		}
+		
 		
 		
 	}
@@ -1180,8 +1195,8 @@ public class HardwareSimulator {
 			
 		}
 		System.out.println();
-		Scanner scan = new Scanner(System.in);
-		scan.nextLine();
+		
+		
 	}
 	
 	/**
@@ -1199,22 +1214,24 @@ public class HardwareSimulator {
 	private static void DumpInstructionInfo(String op,String instruction, instructionType i)
 	{
 		//Current PC/LC Value
-		System.out.println("LC: " + String.valueOf(PC));
+		System.out.print("LC: " + String.valueOf(PC) + '\t');
 		
 		//Current values in Registers
-		System.out.println("Regs\t" + registers[0] + "  " + registers[1] + "  " + registers[2] + "  " + registers[3] + "  " + registers[4] + "  " + registers[5] + "  " + registers[6] + "  " + registers[7]);
+		//System.out.println("Regs\t" + registers[0] + "  " + registers[1] + "  " + registers[2] + "  " + registers[3] + "  " + registers[4] + "  " + registers[5] + "  " + registers[6] + "  " + registers[7]);
 		
 		//Binary Instruction
-		System.out.println("\tBinary Instruction: " + instruction);
+		System.out.print("Binary Instruction: " + instruction);
 		
 		//Opcode of Instruction
-		System.out.println("\tOpcode (HEX): " + opcodeInHex(instruction.substring(0, 5)));
+		System.out.println("\tOpcode (HEX): " + Integer.toHexString(Integer.parseInt(instruction.substring(0, 6),2)) + '\t');
 		
 		//EFFADDR if S-type or IO-type
 		if(i.equals(instructionType.S) || i.equals(instructionType.IO))
 		{
 			System.out.println("EFFADDR: " + String.valueOf(EFFADDR));
 		}
+		Scanner scan = new Scanner(System.in);
+		scan.nextLine();
 	}
 	
 	/**
@@ -1255,7 +1272,7 @@ public class HardwareSimulator {
 		catch (FileNotFoundException e) 
 		{
 			System.out.println("File Not Found");
-			
+			System.exit(0);
 		} 
 		catch (IOException e) 
 		{
@@ -1478,11 +1495,13 @@ public class HardwareSimulator {
 	public static String opcodeInHex(String binary)
 	{
 		String hex = "";
+		//System.out.println(binary);
+		//System.out.println((binary.substring(0,1)));
 		ArrayList<Integer> digits = new ArrayList<Integer>();
 		try
 		{
 			digits.add(Integer.parseInt(binary.substring(0,1),2));
-			digits.add(Integer.parseInt(binary.substring(2,5)),2);
+			digits.add(Integer.parseInt(binary.substring(1,6),2));
 		}
 		catch (NumberFormatException e)
 		{
