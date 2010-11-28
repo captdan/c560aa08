@@ -44,7 +44,7 @@ public class ALU {
 		}
 		catch(Exception overflow){
 			System.err.println("Over Flow");
-			System.exit(1);
+			cValue = Integer.MAX_VALUE;
 		}
 		//System.out.println(aValue + " + " + bValue +" = " + cValue);
 		return cValue;
@@ -79,7 +79,7 @@ public class ALU {
 		}
 		catch(Exception overflow){
 			System.err.println("Over Flow");
-			System.exit(1);
+			cValue = Integer.MAX_VALUE;
 		}
 		//System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
@@ -114,7 +114,7 @@ public class ALU {
 		}
 		catch(Exception overflow){
 			System.err.println("Over Flow");
-			System.exit(1);
+			cValue = Integer.MAX_VALUE;
 		}
 		//System.out.println(aValue + " * " + bValue +" = " + cValue);
 		return cValue;
@@ -148,9 +148,9 @@ public class ALU {
 		}
 		catch(Exception overflow){
 			System.out.println("Zero Division");
-			System.exit(1);
+			cValue = 0;
 		}
-		System.out.println(aValue + " / " + bValue +" = " + cValue);
+		//System.out.println(aValue + " / " + bValue +" = " + cValue);
 		return cValue;
 		
 	}
@@ -208,10 +208,6 @@ public class ALU {
 			bValue = Integer.parseInt(b, 2);
 		}
 		int cValue = aValue - bValue;
-		if(cValue < 0){
-			cValue = cValue*-1;
-		}
-		
 		//System.out.println(aValue + " - " + bValue +" = " + cValue);
 		return cValue;
 		
@@ -275,7 +271,7 @@ public class ALU {
 		}
 		catch(Exception zerodivision){
 			System.err.println("Division by Zero occurred");
-			System.exit(1);
+			cValue = 0;
 		}
 		
 		if(cValue < 0){
@@ -313,7 +309,7 @@ public class ALU {
 		c = (int) Math.pow(aValue, bValue);
 		}
 		catch(Exception overflow){
-			
+			c = Integer.MAX_VALUE;
 		}
 		//System.out.println(aValue + " ^ " + bValue +" = " + c);
 		return c;
@@ -332,7 +328,7 @@ public class ALU {
 	 */
 	public String AND(String a, String b){
 		String result = "";
-		if(a.length() == b.length()){
+		
 			for(int i = 0; i <a.length(); i++){
 				if((a.charAt(i)== b.charAt(i)) && (a.charAt(i) == '1')){
 					result = result + '1';
@@ -343,11 +339,7 @@ public class ALU {
 				}
 			}
 			
-		}
-		else{
-			System.err.println("unequal Strings being AND");
-			System.exit(1);
-		}
+		
 		return result;
 	}
 	/**

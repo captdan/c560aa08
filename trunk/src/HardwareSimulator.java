@@ -31,9 +31,9 @@ public class HardwareSimulator {
 	public static int moduleonelength = 0;
 	public static int moduletwolength = 0;
 	public static int modulethreelength = 0;
-	public static String moduleonename;
-	public static String moduletwoname ;
-	public static String modulethreename;
+	public static String moduleonename = null;
+	public static String moduletwoname = null;
+	public static String modulethreename = null;
 	public static int CompleteModuleLength = 0;
 	public static String LHfirstModuleName;
 	public static ALU ALU = new ALU();
@@ -50,14 +50,21 @@ public class HardwareSimulator {
 		
 		initializeMEM();
 		initializeREGS();
-		FillGlobalSymbTable();
 		instructionType type;
-		putToMEM();
+		
+		if(args.length == 2){
 		LoadModule = readFileToArrayList(args[0]);
+		GSymbTableArray = readFileToArrayList(args[1]);
+		}
+		else{
+			System.err.println("Missing Global Symbol Table or Load File");
+			System.exit(1);
+		}
+		FillGlobalSymbTable();
 		putToMEM();
 		 // Fill MEM array
 		 
-		putToMEM();
+		
 		NPIC = PC + 1;
 		DumpArray();
 		type = null;
@@ -240,7 +247,7 @@ public class HardwareSimulator {
 	private static void FillGlobalSymbTable() {
 		for(int i =0; i<GSymbTableArray.size(); i++){
 			String Line = GSymbTableArray.get(i);
-			StringTokenizer st = new StringTokenizer(Line, " \t |");
+			StringTokenizer st = new StringTokenizer(Line, "|");
 			if(st.countTokens() == 4){
 				String label = st.nextToken();
 				String assemblerAddr = st.nextToken(); 
@@ -282,12 +289,31 @@ public class HardwareSimulator {
 					excecStart = Integer.parseInt(exStart);
 					//System.out.println(exectStart);
 					LHfirstModuleName = LHTokenizer.nextToken();
+					if(!GSymbTable.isInTable(LHfirstModuleName)){
+						System.err.println("Uknown Module Name.... terminating");
+						System.exit(1);
+					}
 					String LengthOfModule = LHTokenizer.nextToken();
+					ArrayList<Object> a = GSymbTable.getInfoFromSymbol(LHfirstModuleName);
+					String len = (String) a.get(2);
+					//System.out.println(len);
 					
+					if(!LengthOfModule.equals(len)){
+						System.err.println("Length in load module does not match Symbol table");
+						System.exit(1);
+					}
 					CompleteModuleLength = Integer.parseInt(LengthOfModule,16);
 					//System.out.println(CompleteModuleLength);
 					String IniLodAddr = LHTokenizer.nextToken();
 					initialLoadAddr = Integer.parseInt(IniLodAddr,16);
+					if(initialLoadAddr >65536){
+						System.err.println("Length out of bounds");
+						System.exit(1);
+					}
+					if(initialLoadAddr + Integer.parseInt(LengthOfModule)>65536){
+						System.err.println("Length out of bounds");
+						System.exit(1);
+					}
 					//System.out.println(initialLoadAddr);
 					PC = initialLoadAddr;
 					String Date = LHTokenizer.nextToken();
@@ -296,6 +322,10 @@ public class HardwareSimulator {
 					String version = LHTokenizer.nextToken();
 					String revision = LHTokenizer.nextToken();
 					String firstModuleName2 = LHTokenizer.nextToken();
+					if(!GSymbTable.isInTable(firstModuleName2)){
+						System.err.println("Uknown Module Name.... terminating");
+						System.exit(1);
+					}
 				}
 			else
 				{
@@ -321,7 +351,10 @@ public class HardwareSimulator {
 						}
 					// get Load address for MEM	
 					int loadAddsDecimal = Integer.parseInt(loardAddr, 16);
-					
+					if(loadAddsDecimal > 65536){
+						System.err.println("Unrecoverable problem with Load Module: out of bound address");
+						System.exit(1);
+					}
 					String debug1 = st.nextToken();
 					//System.out.println(debug);
 					if((debug1.equals("Y") || (debug1.equals("N"))) == false)
@@ -341,6 +374,33 @@ public class HardwareSimulator {
 					
 						}
 					String moduleName = st.nextToken();
+					
+					if(!GSymbTable.isInTable(moduleName)){
+						System.err.println("Uknown Module Name.... terminating");
+						System.exit(1);
+					}
+					else{
+						
+						if(moduleonename == null){
+							moduleonename = moduleName;
+							ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
+							String len = (String) a.get(2);
+							moduleonelength = Integer.parseInt(len,16);
+						}
+						else if((moduletwoname == null) && (!moduleName.equals(moduleonename))){
+							moduletwoname = moduleName;
+							ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
+							String len = (String) a.get(2);
+							moduletwolength = Integer.parseInt(len,16);
+						}
+						else if((modulethreename == null)&& (!moduleName.equals(moduleonename)) && (!moduleName.equals(moduletwoname))){
+							modulethreename = moduleName;
+							ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
+							String len = (String) a.get(2);
+							modulethreelength = Integer.parseInt(len,16);
+						}
+						
+					}
 					//System.out.println(moduleName);
 					// add the Hex code to MEM
 					try
