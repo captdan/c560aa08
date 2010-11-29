@@ -1,0 +1,555 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="NeoOffice 3.1.1  (Unix)">
+	<META NAME="CREATED" CONTENT="20101128;20383400">
+	<META NAME="CHANGED" CONTENT="20101128;21243000">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		TD P { margin-bottom: 0in }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P ALIGN=CENTER STYLE="margin-bottom: 0in">Input and Output
+Descriptions</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">SP1/2 Input:</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Input for SP1/2 includes 5
+different instruction types and pseudo-ops, aka directives. In the
+input file, we don't require it to be in tab separated columns. We
+only require that labels, instructions/directives and registers are
+separated white space.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Instruction types:</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">	R Type<BR>		</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Op-code</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Unused</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Register r1</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Register r2</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Register r3</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Shift/Rotate amount</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Unused</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Function</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>Total bits</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>6 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>2 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>3 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>3 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>3 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>6 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>3 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>6 bits</P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=CENTER>32 bits</P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt"><BR>	</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">	S
+Type</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">	</FONT></FONT></FONT></P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Op-code</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Addr code</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Register r1</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Register r2</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Unused</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Memory reference</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Total bits</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>6 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>2 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>3 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>3 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>2 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>16 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>32 bits</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">	I
+Type</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Op-code</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Unused</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Register r1</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Register r2</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Unused</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Immediate</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>Total bits</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>6 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>2 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>3 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>3 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>2 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>16 bits</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=CENTER><FONT SIZE=3>32 bits</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">	J
+Type</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=51*>
+	<COL WIDTH=51*>
+	<COL WIDTH=51*>
+	<COL WIDTH=51*>
+	<COL WIDTH=51*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>Op-code</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>Addr code</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>Unused</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>Destination address</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>Total bits</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>6 bits</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>2 bits</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>8 bits</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>16 bits</FONT></P>
+		</TD>
+		<TD WIDTH=20%>
+			<P ALIGN=CENTER><FONT SIZE=3>32 bits</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">	IO
+Type</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>Op-code</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>Addr code</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>Register r1</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>Quantity in words</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>Memory reference address</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>Total bits</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>6 bits</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>2 bits</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>3 bits</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>5 bits</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>16 bits</FONT></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P ALIGN=CENTER><FONT SIZE=3>32 bits</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Check
+the instructions page to see all of the individual instructions and
+how they are formatted.</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Directives:</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Every
+input file must begin with a .start directive and conclude with a
+.end directive, no exceptions.</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Other
+directives are used throughout to denote data or text areas and such.
+For examples on directives see the directives page.</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">SP1/2
+Output:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>Description of Object File:</B>
+Holds the program name, its length, the date the program was run, the
+version of the program being run, the address where execution
+started, number of linking records including their addresses in hex,
+types and entry names. All program lines of code including their hex
+address, debugging code, number of adjustments, type of action (R,E
+or A), label references when present, and finally the end record
+which includes the number of header, linking, text and ending
+records.</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Additionally
+each record is recorder on a separate line and the various fields of
+each record are separated by “|”. The object file will also be
+the input for SP3.</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif"><B>Assembly
+Listing: </B></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">The
+assembly listing records the value of the location counter in HEX for
+each line of code, the object code for each line of code, the type of
+addressing (absolute, relative or external) the source code as it was
+read from the program file and any accompanying error for each source
+code recorded below the line of code where the error occurred. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">SP3
+Output/SP4 Input: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">The
+output from SP3 is also the input for SP4. This is a Load Module.</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">A
+load module will start with a header:</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<COL WIDTH=28*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>LH</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>Execution start address hhhh</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>Name of the first module</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>Total module length in hex </FONT>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3>hhhh</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=11%>
+			<P ALIGN=LEFT><FONT SIZE=3>Initial load address in hex</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3>hhhh</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<COL WIDTH=23*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>Date </FONT>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3>yyyy:ddd</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>Time</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3>hh:mm:ss</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>SAL-LINK</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>Version #</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>Revision #</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=9%>
+			<P ALIGN=LEFT><FONT SIZE=3>Name of first module</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Then
+it will be followed by linker text records for each instruction:</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<COL WIDTH=37*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>LT</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>Hex address of instruction/data</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3>hhhh</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>Hex code to be loaded</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3>hhhhhhhh</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=14%>
+			<P ALIGN=LEFT><FONT SIZE=3>Name of source module</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#000000"><FONT FACE="Times-Roman, serif">Finally,
+each module will conclude with a linker end record:</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<COL WIDTH=64*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=25%>
+			<P ALIGN=LEFT><FONT SIZE=3>LE</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=LEFT><FONT SIZE=3>|</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=LEFT><FONT SIZE=3>The amount of records loaded in this
+			file</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3>1’s+2’s+3’s</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=LEFT><FONT SIZE=3>Name of source module</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+</BODY>
+</HTML>
