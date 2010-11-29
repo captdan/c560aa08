@@ -1,0 +1,3 @@
+﻿LH|0000|Altest_15|0800|0000|2010:Mon|03:06:07|SAL-LINK|1|2|Altest_15
+LT|07ff|N|00000000|Altest_15
+LE|0003|Altest_15
