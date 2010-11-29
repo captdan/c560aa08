@@ -1,15 +1,22 @@
-H|Math|000C|0005|2010:828|06:00:10|0001|000C|0009|SAL|1|1|Math
-L|Math|0005|start|Math
-T|0005|N|00000000|1|A|Math
-T|0006|N|00000000|1|A|Math
-T|0007|N|00000000|1|A|Math
-T|0008|N|59593D30|1|A|Math
-T|0009|Y|c0400005|1|R|+|5|Math
-T|000A|Y|08000000|1|A|Math
-T|000B|Y|048d0018|1|A|Math
-T|000C|Y|50900014|1|A|Math
-T|000D|Y|04b1001a|1|A|Math
-T|000E|Y|30010007|1|R|+|5|Math
-T|000F|Y|20000000|1|A|Math
-T|0010|Y|200000FA|1|A|Math
-E|000F|Math
+	.Start,Math,05				|05
+	.data						|05
+YY int.data 0					|05
+ZZ int.data 0					|06
+XX int.data 0					|07
+err str.data 'YY=0'				|08
+.text							|09
+Exec.Start *					|09
+	debug 1						|09
+	inn 2, YY					|09
+	lw $2,YY					|A
+	lw $3, ZZ					|B
+	JEQ $2,$0,ERROR				|C
+	MUL $4,$3,$2				|D
+	MULI $4,$4,20				|E
+	DIV $5,$4,$2				|F
+	SW $5, XX					|10
+	outn 1,XX					|11
+	HALT 0						|12
+ERROR	outc 1, err				|13
+	HALT 250					|14
+.end,Math						|14
