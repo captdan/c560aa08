@@ -182,8 +182,8 @@ public class ObjectFile
 		//Still need data_word checking for directives
 		if (codeline.directive != null)
 		{
-			textRecord.add(codeline.directive.returnHexCodeLine(codeline));
-			
+				textRecord.add(codeline.directive.returnHexCodeLine(codeline));
+
 		}
 		
 		//Still need data_word checking for instructions
@@ -554,22 +554,22 @@ public class ObjectFile
 
 		BufferedWriter bufferedWriter = new BufferedWriter(fileStream);
 		
-		bufferedWriter.write(joinStringArray(headerRecord,"|") + "\n");
+		bufferedWriter.write(joinStringArray(headerRecord,"|") + "\r\n");
 		
 		for(ArrayList<String> a : linkingRecord)
 		{
-			bufferedWriter.write(joinStringArray(a,"|") + "\n");
+			bufferedWriter.write(joinStringArray(a,"|") + "\r\n");
 		}	
 		
 		for(ArrayList<String> a : textRecord)
 		{
 			if(a.size() > 0)
 			{
-				bufferedWriter.write(joinStringArray(a,"|") + "\n");
+				bufferedWriter.write(joinStringArray(a,"|") + "\r\n");
 			}
 		}
 		
-		bufferedWriter.write(joinStringArray(endRecord,"|") + "\n");
+		bufferedWriter.write(joinStringArray(endRecord,"|") + "\r\n");
 		
 		bufferedWriter.close();
 		} 

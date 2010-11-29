@@ -416,8 +416,13 @@ public class Parser
 	{
 		for (CodeLine codeLine : CodeLineArrayValue) 
 		{
+			try
+			{
+				
 			if (codeLine.instruction != null)
 			{
+
+				
 				for (int x = 0; x < codeLine.instruction.operands.size(); x++) 
 				{
 					Instruction.operandTypes operand = codeLine.instruction.operands.get(x);
@@ -492,7 +497,12 @@ public class Parser
 					}
 				}
 			}
-
+			}
+			catch (Exception e)
+			{
+				codeLine.errors.add(new Error(19,"Operand Could Not Parse Operands","Change Operand"));
+				codeLine.instruction = null;
+			}
 		}
 	}
 	

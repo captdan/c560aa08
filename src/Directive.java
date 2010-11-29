@@ -125,7 +125,14 @@ public class Directive
 		String binaryCodeLine = "";
 		if(this.operandArray.size() > 0)
 		{
-			binaryCodeLine += padZeros(toBinary(this.operandArray.get(0),cl).get(0).operand,32);
+			try
+			{
+				binaryCodeLine += padZeros(toBinary(this.operandArray.get(0),cl).get(0).operand,32);
+			}
+			catch(Exception e)
+			{
+				binaryCodeLine += padZeros("",32);
+			}
 		}
 		else
 		{
@@ -213,7 +220,12 @@ public class Directive
 			}
 			else if(inputOperand.operandType == Directive.operandTypes.CHARSTR || inputOperand.operandType == Directive.operandTypes.STRING)
 			{
-				String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+
+				if (inputOperand.operand.length() > 1)
+				{
+					String tempString = inputOperand.operand.subSequence(1, inputOperand.operand.length()-1).toString();
+				
+				
 
 				//System.out.println("OK : " + inputOperand.operand);
 
@@ -237,6 +249,8 @@ public class Directive
 					tempString2 = "00100000001000000010000000100000";
 				}
 				binaryOperands.add(new Operand(tempString2,Directive.operandTypes.CHARSTR));
+			
+				}
 			}
 			else if(inputOperand.operandType == Directive.operandTypes.EXP)
 			{
