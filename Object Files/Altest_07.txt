@@ -1,7 +1,7 @@
-H|Altest_7|cf|15|2010:333|13:00:03|1|4|f|SAL|1|2|Altest_7
+H|Altest_7|cf|15|2010:333|13:37:58|1|4|f|SAL|1|2|Altest_7
 L|Altest_7|f|START|Altest_7
 T|f|N|0000000c|1|A|Altest_7
 T|10|N|0c762020|1|A|Altest_7
-T|11|N|00000000|1|E|ZX|Altest_7
+T|11|N|00000000|1|E|+|ZX|Altest_7
 T|ce|N|00000000|0|Altest_7
 E|7|Altest_7

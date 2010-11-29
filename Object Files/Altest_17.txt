@@ -1,4 +1,4 @@
-H|Altest_03|8|0|2010:333|13:03:46|1|6|0|SAL|1|2|Altest_03
+H|Altest_03|8|0|2010:333|13:40:19|1|6|0|SAL|1|2|Altest_03
 L|Altest_03|0|START|Altest_03
 T|1|N|9ce00005|2|A|R|+|0|Altest_03
 T|3|N|00000000|0|Altest_03

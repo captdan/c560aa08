@@ -1,6 +1,6 @@
-H|Altest_01|2f|0|2010:333|12:57:06|1|1e|0|SAL|1|2|Altest_01
+H|Altest_01|2f|0|2010:333|13:35:42|1|1e|0|SAL|1|2|Altest_01
 L|Altest_01|0|START|Altest_01
-T|0|N|00000000|1|E|DQ|Altest_01
+T|0|N|00000000|1|E|+|DQ|Altest_01
 T|8|N|10210000|2|A|R|+|0|A|Altest_01
 T|9|N|28210000|2|A|R|+|0|A|Altest_01
 T|a|N|10210000|2|A|R|+|0|A|Altest_01
@@ -22,7 +22,7 @@ T|1a|N|20000100|1|A|Altest_01
 T|1b|N|2c040021|2|A|R|+|0|Altest_01
 T|1c|N|c020001e|2|A|R|+|0|Altest_01
 T|1d|N|20000000|1|A|Altest_01
-T|1e|N|00000000|1|E|DQ|Altest_01
+T|1e|N|00000000|1|E|+|DQ|Altest_01
 T|1f|N|00000026|1|R|+|0|Altest_01
 T|20|N|00000004|1|A|Altest_01
 T|21|N|00000004|1|A|Altest_01

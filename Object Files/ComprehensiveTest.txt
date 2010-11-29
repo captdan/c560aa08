@@ -1,4 +1,4 @@
-H|ComprehensiveTest|7d|0|2010:333|13:04:36|1|43|0|SAL|1|2|ComprehensiveTest
+H|ComprehensiveTest|7d|0|2010:333|13:40:39|1|43|0|SAL|1|2|ComprehensiveTest
 L|ComprehensiveTest|0|START|ComprehensiveTest
 T|0|N|0000000a|1|A|ComprehensiveTest
 T|1|N|830a1c48b1a390|1|A|ComprehensiveTest
@@ -11,7 +11,7 @@ T|7|N|0000000f|1|A|ComprehensiveTest
 T|8|N|00000006|1|A|ComprehensiveTest
 T|9|N|00000003|1|A|ComprehensiveTest
 T|a|N|0000003c|1|A|ComprehensiveTest
-T|46|N|00000000|3|E|TTT|E|RRR|E|QQQ|ComprehensiveTest
+T|46|N|00000000|3|E|+|TTT|E|+|RRR|E|+|QQQ|ComprehensiveTest
 T|46|N|fc000000|3|A|A|A|ComprehensiveTest
 T|47|N|c0240000|2|A|R|+|0|A|ComprehensiveTest
 T|48|N|c0240000|2|A|A|ComprehensiveTest
