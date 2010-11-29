@@ -1,0 +1,2 @@
+﻿Symbol	Address	Linker Address	Program Length
+Math	5	0	22
