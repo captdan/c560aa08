@@ -127,7 +127,7 @@ public class HardwareSimulator {
         initializeMEM();
         initializeREGS();
         instructionType type;
-        
+
         if(args.length == 2){
         LoadModule = readFileToArrayList(args[0]);
         GSymbTableArray = readFileToArrayList(args[1]);
@@ -137,10 +137,9 @@ public class HardwareSimulator {
                 System.exit(1);
         }
         FillGlobalSymbTable();
-        putToMEM();
-         // Fill MEM array
-         
         
+        putToMEM();
+
         NPIC = PC + 1;
         DumpArray();
         type = null;
@@ -335,7 +334,6 @@ public class HardwareSimulator {
 			else{
 				System.out.println("Error: Missing element in global symbol table");
 			}
-			
 		}
 		
 	}
@@ -355,46 +353,27 @@ public class HardwareSimulator {
 
     private static void putToMEM() {
             try{
-                    
-            
+            		//kx3nB4SY4au3
                     String LH = LoadModule.get(0);
                     StringTokenizer LHTokenizer = new StringTokenizer(LH, "|");
                     if(LHTokenizer.countTokens() == 11)
                             {
-                            
+                            	
                                     String H = LHTokenizer.nextToken();
                                     String exStart = LHTokenizer.nextToken();
                                     excecStart = Integer.parseInt(exStart);
                                     //System.out.println(exectStart);
                                     LHfirstModuleName = LHTokenizer.nextToken();
-                                    if(!GSymbTable.isInTable(LHfirstModuleName)){
-                                    	System.out.println("??");
-                                    	System.out.println(LHfirstModuleName);
-                                    	System.out.println(GSymbTable.isInTable(LHfirstModuleName));
-                                            System.err.println("Uknown Module Name.... terminating");
-                                            System.exit(1);
-                                    }
+                                   
                                     String LengthOfModule = LHTokenizer.nextToken();
-                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(LHfirstModuleName);
-                                    String len = (String) a.get(2);
+                                    
                                     //System.out.println(len);
                                     
-                                    if(!LengthOfModule.equals(len)){
-                                            System.err.println("Length in load module does not match Symbol table");
-                                            System.exit(1);
-                                    }
+                                  
                                     CompleteModuleLength = Integer.parseInt(LengthOfModule,16);
                                     //System.out.println(CompleteModuleLength);
                                     String IniLodAddr = LHTokenizer.nextToken();
                                     initialLoadAddr = Integer.parseInt(IniLodAddr,16);
-                                    if(initialLoadAddr >65536){
-                                            System.err.println("Length out of bounds");
-                                            System.exit(1);
-                                    }
-                                    if(initialLoadAddr + Integer.parseInt(LengthOfModule)>65536){
-                                            System.err.println("Length out of bounds");
-                                            System.exit(1);
-                                    }
                                     //System.out.println(initialLoadAddr);
                                     PC = initialLoadAddr;
                                     String Date = LHTokenizer.nextToken();
@@ -403,30 +382,30 @@ public class HardwareSimulator {
                                     String version = LHTokenizer.nextToken();
                                     String revision = LHTokenizer.nextToken();
                                     String firstModuleName2 = LHTokenizer.nextToken();
-                                    System.out.println("a "+ GSymbTable.isInTable(firstModuleName2));
-                                    if(!GSymbTable.isInTable(firstModuleName2)){
-                                            System.err.println("Uknown Module Name.... terminating");
-                                            System.exit(1);
-                                    }
+                                    //System.out.println("a "+ GSymbTable.isInTable(firstModuleName2));
+                                  
                             }
-                    else
+                    		else
                             {
-                            
                                     System.err.println("Unable to load Load Module:");
                                     System.exit(1);
                             }
-                    
+                   
                     String LT = LoadModule.get(1);
+                   
                     //System.out.println(LT);
                     StringTokenizer st = new StringTokenizer(LT, "|");
+                   
+                    
+                    
                     for(int i = 2; st.nextToken().equals("LT") ; i++)
                     {
-                            
+                           
                             if(st.countTokens() == 4)
                             {
                                     String loardAddr = st.nextToken();
                                     //System.out.println(loardAddr);
-                                            if(((isValidHex(loardAddr)&& (loardAddr.length() == 4))) == false)
+                                            if(((isValidHex(loardAddr.toUpperCase())&& (loardAddr.length() == 4))) == false)
                                             {
                                                     System.err.println("Unrecoverable problem with Load Module:");
                                                     System.exit(1);
@@ -449,7 +428,7 @@ public class HardwareSimulator {
                                     }
                                     String Hex = st.nextToken();
                                     //System.out.println(Hex);
-                                            if(((isValidHex(Hex)&& (Hex.length() == 8))) == false)
+                                            if(((isValidHex(Hex.toUpperCase())&& (Hex.length() == 8))) == false)
                                             {
                                                     System.err.println("Invalid Hex");
                                                     System.exit(1);
@@ -457,32 +436,7 @@ public class HardwareSimulator {
                                             }
                                     String moduleName = st.nextToken();
                                     
-                                    if(!GSymbTable.isInTable(moduleName)){
-                                            System.err.println("Uknown Module Name.... terminating");
-                                            System.exit(1);
-                                    }
-                                    else{
-                                            
-                                            if(moduleonename == null){
-                                                    moduleonename = moduleName;
-                                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
-                                                    String len = (String) a.get(2);
-                                                    moduleonelength = Integer.parseInt(len,16);
-                                            }
-                                            else if((moduletwoname == null) && (!moduleName.equals(moduleonename))){
-                                                    moduletwoname = moduleName;
-                                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
-                                                    String len = (String) a.get(2);
-                                                    moduletwolength = Integer.parseInt(len,16);
-                                            }
-                                            else if((modulethreename == null)&& (!moduleName.equals(moduleonename)) && (!moduleName.equals(moduletwoname))){
-                                                    modulethreename = moduleName;
-                                                    ArrayList<Object> a = GSymbTable.getInfoFromSymbol(moduleName);
-                                                    String len = (String) a.get(2);
-                                                    modulethreelength = Integer.parseInt(len,16);
-                                            }
-                                            
-                                    }
+  
                                     //System.out.println(moduleName);
                                     // add the Hex code to MEM
                                     try
@@ -494,6 +448,7 @@ public class HardwareSimulator {
                                             System.err.println("Memory out of bounds");
                                             System.exit(1);
                                     }
+                                   
                                     
                             }
                             else
@@ -501,6 +456,7 @@ public class HardwareSimulator {
                                     System.err.println("Unrecoverable problem with Load Module: missing element in Load File ");
                                     System.exit(1);
                             }
+                            
                             
                             LT = LoadModule.get(i);
                             st = new StringTokenizer(LT, "|");
@@ -593,7 +549,13 @@ public class HardwareSimulator {
 				//System.out.println(Integer.parseInt(binaryInstruction.substring(16),2));
 				if(registerOneValue==registerTwoValue)
 				{
+					
 					PC = lastSixteen-1;
+					if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+					{
+						System.err.println("try to access memory not accessible to this module... terminating");
+						System.exit(1);
+					}
 					//System.out.println("PC= " + PC);
 					NPIC = PC;
 				}
@@ -603,7 +565,11 @@ public class HardwareSimulator {
 			if(registerOneValue!=registerTwoValue)
 			{
 				PC = lastSixteen-1;
-			
+				if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				NPIC = PC;
 			}
 		}
@@ -612,7 +578,11 @@ public class HardwareSimulator {
 			if(registerOneValue>registerTwoValue)
 			{
 				PC = lastSixteen-1;
-			
+				if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				NPIC = PC;
 			}
 		}
@@ -621,7 +591,11 @@ public class HardwareSimulator {
 			if(registerOneValue<registerTwoValue)
 			{
 				PC = lastSixteen-1;
-			
+				if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				NPIC = PC;
 			}
 		}
@@ -630,7 +604,11 @@ public class HardwareSimulator {
 			if(registerOneValue<=registerTwoValue)
 			{
 				PC = lastSixteen-1;
-			
+				if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				NPIC = PC;
 			}
 		}
@@ -638,6 +616,11 @@ public class HardwareSimulator {
 		{			
 			if (EFFADDR < 65535)
 			{
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 			MEM[EFFADDR] = registers[registerOne];
 			
 			}
@@ -650,6 +633,11 @@ public class HardwareSimulator {
 		{
 			if (EFFADDR < 65535)
 			{
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				registers[registerOne] = MEM[EFFADDR];
 			}
 			else
@@ -662,9 +650,14 @@ public class HardwareSimulator {
 			
 			if (EFFADDR < 65535)
 			{
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 			int loadedValue = Integer.parseInt(MEM[EFFADDR],16)*(-1);
 			
-			registers[registerOne] =  Integer.toBinaryString(loadedValue);
+			registers[registerOne] =  ALU.intToHex(loadedValue);
 			}
 			else
 			{
@@ -675,9 +668,14 @@ public class HardwareSimulator {
 		{
 			if(EFFADDR < 65535)
 			{
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
-			registers[registerOne]= Integer.toBinaryString(decimal);
+			registers[registerOne]= ALU.intToHex(decimal);
 			}
 			else
 			{
@@ -689,7 +687,11 @@ public class HardwareSimulator {
 			
 			if (EFFADDR < 65535)
 			{
-				
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 			MEM[EFFADDR] = Integer.toHexString(registerOneValue);
 			
 			}
@@ -702,13 +704,18 @@ public class HardwareSimulator {
 		{	
 			if (EFFADDR <65536)
 			{
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
 			String binary = Integer.toBinaryString(decimal);
 			
-			String andResult = ALU.AND(registers[registerOne],binary);
+			String andResult = ALU.AND(ALU.hexToBin(registers[registerOne]),binary);
 			
-			registers[registerOne] = andResult;
+			registers[registerOne] = ALU.binToHex32bits(andResult);
 			}
 			else
 			{
@@ -720,13 +727,18 @@ public class HardwareSimulator {
 		{
 			if (EFFADDR < 65536)
 			{
+				if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 			int decimal = Integer.parseInt(MEM[EFFADDR],16);
 			
 			String binary = Integer.toBinaryString(decimal);
 			
-			String andResult = ALU.OR(registers[registerOne],binary);
+			String andResult = ALU.OR(ALU.hexToBin(registers[registerOne]),binary);
 			
-			registers[registerOne] = andResult;
+			registers[registerOne] = ALU.binToHex32bits(andResult);
 			}
 			else
 			{
@@ -738,8 +750,13 @@ public class HardwareSimulator {
 		{
 			if(lastSixteen <65536)
 			{
+				
 				PC = lastSixteen-1;
-			
+				if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				NPIC = PC;
 			}
 		}
@@ -747,8 +764,12 @@ public class HardwareSimulator {
 
 		{
 			int returnAddress = PC + 1;
-			
-			registers[7] = Integer.toString(returnAddress);
+			if(!(PC >= initialLoadAddr || PC  <= CompleteModuleLength))
+			{
+				System.err.println("try to access memory not accessible to this module... terminating");
+				System.exit(1);
+			}
+			registers[7] = ALU.intToHex(returnAddress);
 			
 			PC = lastSixteen -1;
 			
@@ -759,7 +780,7 @@ public class HardwareSimulator {
 		else if (opcode.equals("26"))//$R1=$R2+addr
 
 		{
-			int decimal = ALU.ADD(registers[registerTwo],binaryInstruction.substring(16));
+			int decimal = ALU.ADD(ALU.hexToBin(registers[registerTwo]),binaryInstruction.substring(16));
 			registers[registerOne] = Integer.toBinaryString(decimal);
 			
 		}
@@ -767,23 +788,23 @@ public class HardwareSimulator {
 		else if (opcode.equals("27"))//$R1=$R2-addr
 
 		{
-			int decimal = ALU.SUB(registers[registerTwo], binaryInstruction.substring(16));
+			int decimal = ALU.SUB(ALU.hexToBin(registers[registerTwo]), binaryInstruction.substring(16));
 			registers[registerOne] = Integer.toBinaryString(decimal);
 		}
 
 		else if (opcode.equals("28"))//$R1=$R2*addr
 
 		{
-			int decimal = ALU.MUL(registers[registerTwo], binaryInstruction.substring(16));
+			int decimal = ALU.MUL(ALU.hexToBin(registers[registerTwo]), binaryInstruction.substring(16));
 			registers[registerOne] = Integer.toBinaryString(decimal);
 		}
 
 		else if (opcode.equals("29"))//$R1=$R2/addr
 		{
 			
-			int decimal = ALU.DIV(registers[registerTwo],binaryInstruction.substring(16));
+			int decimal = ALU.DIV(ALU.hexToBin(registers[registerTwo]),binaryInstruction.substring(16));
 			
-			registers[registerOne] = Integer.toBinaryString(decimal);
+			registers[registerOne] = ALU.intToHex(decimal);
 		}
 		//System.out.println(opcode);
 		if(debug[debugnow])
@@ -907,31 +928,31 @@ public class HardwareSimulator {
 		{
 			if(function == 0)
 			{
-				registers[r1] = ALU.SLL(ALU.hexToBin(registers[r2]), shift);
+				registers[r1] = ALU.binToHex32bits(ALU.SLL(ALU.hexToBin(registers[r2]), shift));
 			}
 			else if(function == 2)
 			{
-				registers[r1] = ALU.SRL(ALU.hexToBin(registers[r2]), shift);
+				registers[r1] = ALU.binToHex32bits(ALU.SRL(ALU.hexToBin(registers[r2]), shift));
 			}
 			else if(function == 3)
 			{
-				registers[r1] = ALU.SRA(ALU.hexToBin(registers[r2]), shift);
+				registers[r1] = ALU.binToHex32bits(ALU.SRA(ALU.hexToBin(registers[r2]), shift));
 			}
 			else if(function == 36)
 			{
-				registers[r1] = ALU.AND(ALU.hexToBin(registers[r2]), registers[r3]);
+				registers[r1] = ALU.binToHex32bits(ALU.AND(ALU.hexToBin(registers[r2]), registers[r3]));
 			}
 			else if(function == 37)
 			{
-				registers[r1] = ALU.OR(ALU.hexToBin(registers[r2]), registers[r3]);
+				registers[r1] = ALU.binToHex32bits(ALU.OR(ALU.hexToBin(registers[r2]), registers[r3]));
 			}
 			else if(function == 38)
 			{
-				registers[r1] = ALU.XOR(ALU.hexToBin(registers[r2]), registers[r3]);
+				registers[r1] = ALU.binToHex32bits(ALU.XOR(ALU.hexToBin(registers[r2]), registers[r3]));
 			}
 			else if(function == 39)
 			{
-				registers[r1] = ALU.NOR(ALU.hexToBin(registers[r2]), registers[r3]);
+				registers[r1] = ALU.binToHex32bits(ALU.NOR(ALU.hexToBin(registers[r2]), registers[r3]));
 			}
 			else 
 			{
@@ -941,8 +962,8 @@ public class HardwareSimulator {
 		}
 		else if (op == 3)
 		{
-			registers[r2] = ALU.intToBin(0);
-			registers[r3] = ALU.intToBin(0);
+			registers[r2] = ALU.intToHex(0);
+			registers[r3] = ALU.intToHex(0);
 			int jump = Integer.parseInt(registers[r1],2);
 			if(jump <= 65535)
 			{
@@ -1227,6 +1248,11 @@ public class HardwareSimulator {
 				System.err.println("couldn't read user's input");
 				return;
 			}
+			if(!(addretowrite >= initialLoadAddr || addretowrite  <= CompleteModuleLength))
+			{
+				System.err.println("try to access memory not accessible to this module... terminating");
+				System.exit(1);
+			}
 			
 			MEM[addretowrite] = ALU.intToHex(userInput);	
 			
@@ -1271,7 +1297,11 @@ public class HardwareSimulator {
 				}
 				
 			}
-			
+			if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+			{
+				System.err.println("try to access memory not accessible to this module... terminating");
+				System.exit(1);
+			}
 			MEM[EFFADDR] = userInputHex;
 			}
 			else
@@ -1287,7 +1317,11 @@ public class HardwareSimulator {
 			for (int i = 0; i < displayNumber; i++ )
 			{
 				displayAddress = EFFADDR + i;
-				
+				if(!(EFFADDR+1 >= initialLoadAddr || EFFADDR+1  <= CompleteModuleLength))
+				{
+					System.err.println("try to access memory not accessible to this module... terminating");
+					System.exit(1);
+				}
 				System.out.println(Integer.parseInt(MEM[displayAddress],16));	
 
 				
@@ -1296,6 +1330,11 @@ public class HardwareSimulator {
 		}
 		else if (opcode.equals("13"))
 		{
+			if(!(EFFADDR >= initialLoadAddr || EFFADDR  <= CompleteModuleLength))
+			{
+				System.err.println("try to access memory not accessible to this module... terminating");
+				System.exit(1);
+			}
 			String hbin = ALU.hexToBin(MEM[EFFADDR]);
 			//System.out.println(hbin);
 			//System.out.println((char)Integer.parseInt(hbin.substring(0,8),2));

@@ -1,0 +1,618 @@
+Malwarebytes' Anti-Malware 1.46
+www.malwarebytes.org
+
+Database version: 5208
+
+Windows 5.1.2600 Service Pack 3
+Internet Explorer 8.0.6001.18702
+
+11/28/2010 6:38:19 PM
+mbam-log-2010-11-28 (18-38-19).txt
+
+Scan type: Full scan (C:\|F:\|)
+Objects scanned: 413324
+Time elapsed: 1 hour(s), 15 minute(s), 20 second(s)
+
+Memory Processes Infected: 18
+Memory Modules Infected: 32
+Registry Keys Infected: 171
+Registry Values Infected: 4
+Registry Data Items Infected: 21
+Folders Infected: 4
+Files Infected: 332
+
+Memory Processes Infected:
+C:\Program Files\a01.exe (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a02.exe (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a03.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a04.exe (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a05.exe (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a06.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a07.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a09.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a10.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a11.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a12.exe (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a14.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a16.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a17.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a19.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a20.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\xx.exe (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\mbox311.exe (Adware.Agent) -> No action taken.
+
+Memory Modules Infected:
+C:\RECYCLER\KB970594.DLL (Spyware.OnLineGames) -> No action taken.
+C:\Temporary\wyfjdkwec.DLL (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\769421n11.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\754406n24.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14465312n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14469078n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14471734n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\dcfa6fn01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14482328n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\dd1c4fn07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14495171n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14505609n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14509671n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14544515n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14551281n18.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14562046n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\WINDOWS\system32\dsyh0.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\HtmlUI.dll (Malware.Tool) -> No action taken.
+C:\WINDOWS\system32\dsyhu.dll (Trojan.Agent) -> No action taken.
+C:\WINDOWS\system32\1.2.8\cryptocm.dll (Trojan.Clicker) -> No action taken.
+C:\RECYCLER\KB970580.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970582.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970584.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970586.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970592.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970596.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970598.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970600.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970602.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970604.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970608.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970610.DLL (Spyware.OnlineGames) -> No action taken.
+
+Registry Keys Infected:
+HKEY_CLASSES_ROOT\bhoplugin.eyeonie (Trojan.Banker) -> No action taken.
+HKEY_CLASSES_ROOT\TypeLib\{a2d5957f-6d1a-44ce-bfba-d448eaab8781} (Trojan.Banker) -> No action taken.
+HKEY_CLASSES_ROOT\Interface\{4cf9a0d2-ed75-40cb-98c0-36df6a30e040} (Trojan.Banker) -> No action taken.
+HKEY_CLASSES_ROOT\bhoplugin.eyeonie.1 (Trojan.Banker) -> No action taken.
+HKEY_CLASSES_ROOT\ietimbar.crnp (Trojan.BHO) -> No action taken.
+HKEY_CLASSES_ROOT\ietimbar.crnp.1 (Trojan.BHO) -> No action taken.
+HKEY_CLASSES_ROOT\testatl.atlmy (Trojan.Agent) -> No action taken.
+HKEY_CLASSES_ROOT\TypeLib\{ce673b02-973c-4268-a819-da005c782b5d} (Trojan.Agent) -> No action taken.
+HKEY_CLASSES_ROOT\Interface\{f5cc5892-346b-4f19-b304-307dd1ef1a45} (Trojan.Agent) -> No action taken.
+HKEY_CLASSES_ROOT\testatl.atlmy.1 (Trojan.Agent) -> No action taken.
+HKEY_CLASSES_ROOT\Interface\{5e7f36b2-e909-4c3f-8a47-a3f70d840720} (Trojan.BHO) -> No action taken.
+HKEY_CLASSES_ROOT\Interface\{dc95fdf7-6b69-46f9-8f67-61f2a1d9030e} (Trojan.BHO) -> No action taken.
+HKEY_CLASSES_ROOT\CLSID\{86aefbe8-763f-0647-899c-a93278894599} (Trojan.Agent) -> No action taken.
+HKEY_CLASSES_ROOT\CLSID\{c4560d12-ce25-4a2e-a5d4-b5070fcbe282} (Trojan.Agent) -> No action taken.
+HKEY_CLASSES_ROOT\CLSID\{6e28339b-7a2a-47b6-aeb2-46ba53782379} (Trojan.Banker) -> No action taken.
+HKEY_CLASSES_ROOT\CLSID\{1163e531-b58e-4bb9-b877-0906a0a22aec} (Trojan.BHO) -> No action taken.
+HKEY_CLASSES_ROOT\Typelib\{ff5795dc-245c-42c3-a882-7c0aab708619} (Trojan.BHO) -> No action taken.
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Settings\{1163e531-b58e-4bb9-b877-0906a0a22aec} (Trojan.BHO) -> No action taken.
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{1163e531-b58e-4bb9-b877-0906a0a22aec} (Trojan.BHO) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{1163e531-b58e-4bb9-b877-0906a0a22aec} (Trojan.BHO) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{86aefbe8-763f-0647-899c-a93278894599} (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ffgfghjkk (Trojan.Backdoor) -> No action taken.
+HKEY_CLASSES_ROOT\TypeLib\{ce7c3ce2-4b15-11d1-abed-fa4c0c0931ed} (Trojan.StartPage) -> No action taken.
+HKEY_CLASSES_ROOT\Interface\{ce7c3cef-4b15-11d1-abed-fa4c0c0931ed} (Trojan.StartPage) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\IETimbar (Malware.Trace) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360deepscan.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360hotfix.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360rp.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360rpt.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360safe.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360safebox.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360sd.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\360tray.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\adam.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\agentsvr.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\antiarp.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\appsvc32.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\arvmon.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\autoguarder.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\autoruns.exe (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avcenter.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avgaurd.exe (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avgnt.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avgrssvc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avmonitor.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avp.com (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avp.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ccenter.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ccSvcHst.exe (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DSMain.exe (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\filedsty.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\findt2005.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ftcleanershell.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\hijackthis.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\icesword.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\iparmo.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\iparmor.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ishelp.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ispwdsvc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kabaload.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kascrscn.scr (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kasmain.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kastask.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kav32.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kavdx.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kavpfw.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kavsetup.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kavstart.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\killhidepid.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kislnchr.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kissvc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kmailmon.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kmfilter.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kpfw32.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kpfw32x.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kpfwsvc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\krepair.com (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\krnl360svc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ksloader.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kswebshield.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvcenter.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvdetect.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvfw.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvfwmcl.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvmonxp.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvmonxp_1.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvol.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvolself.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvreport.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvscan.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvsrvxp.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvstub.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvupload.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvwsc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvxp.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kvxp_1.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kwatch.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kwatch9x.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\kwatchx.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\liveupdate360.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\loaddll.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\magicset.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mcconsol.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mcnasvc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mcproxy.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mcshield.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mcsysmon.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mmqczj.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mmsk.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\navsetup.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\nod32krn.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\nod32kui.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\pfw.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\pfwliveupdate.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\qhset.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ras.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rav.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravcopy.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravmon.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravmond.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravstore.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravstub.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravt08.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ravtask.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\regclean.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\regex.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rfwcfg.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rfwmain.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rfwolusr.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rfwproxy.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rfwsrv.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rsagent.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rsaupd.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rsmain.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rsnetsvr.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\rstray.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\runiep.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\safebank.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\safeboxtray.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\safelive.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\scan32.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\scanfrm.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\shcfg32.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\smartassistant.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\smartup.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sreng.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\srengps.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\SuperKiller.exe (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\symlcsvc.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\syscheck.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\syscheck2.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\syssafe.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\toolsup.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\trojandetector.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\trojanwall.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\trojdie.kxp (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\uihost.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\umxagent.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\umxattachment.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\umxcfg.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\umxfwhlp.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\umxpol.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\uplive.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\wopticlean.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\zhudongfangyu.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\zxsweep.exe (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ietimbar (Adware.IEtimbar) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Softfy (Trojan.Dropper) -> No action taken.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\Root\LEGACY_FFGFGHJKK (Backdoor.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{ce7c3cef-4b15-11d1-abed-fa4c0c0931ed} (Trojan.FakeAlert) -> No action taken.
+HKEY_CLASSES_ROOT\CLSID\{ce7c3cef-4b15-11d1-abed-fa4c0c0931ed} (Trojan.FakeAlert) -> No action taken.
+
+Registry Values Infected:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\safedrv (Worm.Autorun) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\{c4560d12-ce25-4a2e-a5d4-b5070fcbe282} (Trojan.Agent) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\egui.exe\debugger (Security.Hijack) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ekrn.exe\debugger (Security.Hijack) -> No action taken.
+
+Registry Data Items Infected:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnLineGames) -> Data: c:\recycler\kb970594.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970580.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970582.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970584.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970586.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970592.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970596.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970598.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970600.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970602.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970604.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970608.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs (Spyware.OnlineGames) -> Data: c:\recycler\kb970610.dll -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Security Center\AntiVirusDisableNotify (Disabled.SecurityCenter) -> Bad: (1) Good: (0) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify (Disabled.SecurityCenter) -> Bad: (1) Good: (0) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify (Disabled.SecurityCenter) -> Bad: (1) Good: (0) -> No action taken.
+HKEY_CLASSES_ROOT\CLSID\{871C5380-42A0-1069-A2EA-08002B30309D}\shell\OpenHomePage\Command\(default) (Hijack.HomePage) -> Bad: ("c:\program files\internet explorer\iexplore.exe" http://www.9384.com/?100041) Good: (iexplore.exe) -> No action taken.
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\Start Page (Hijack.StartPage) -> Bad: (http://www.wz157.cn) Good: (http://www.google.com) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\Default_Page_URL (Hijack.StartPage) -> Bad: (http://www.wz157.cn) Good: (http://www.google.com) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\default_page_url (Hijack.StartPage) -> Bad: (http://www.wz157.cn) Good: (http://www.google.com/) -> No action taken.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\Start Page (Hijack.StartPage) -> Bad: (http://www.wz157.cn) Good: (http://www.google.com) -> No action taken.
+
+Folders Infected:
+C:\Documents and Settings\buckeye\Favorites\常用 (Malware.Trace) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\sign (Adware.IETimbar) -> No action taken.
+C:\WINDOWS\system32\1.2.8 (Trojan.Clicker) -> No action taken.
+
+Files Infected:
+C:\RECYCLER\KB970594.DLL (Spyware.OnLineGames) -> No action taken.
+C:\Temporary\wyfjdkwec.DLL (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\769421n11.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\754406n24.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a01.exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14465312n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a02.exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14469078n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a03.exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14471734n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a04.exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\dcfa6fn01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a05.exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14482328n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a06.exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\dd1c4fn07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Program Files\a07.exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14495171n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a09.exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14505609n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a10.exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14509671n06.dll (Spyware.PWS) -> No action taken.
+C:\Program Files\a11.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a12.exe (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a14.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a16.exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14544515n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a17.exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14551281n18.dll (Spyware.OnLineGames) -> No action taken.
+C:\Program Files\a19.exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\14562046n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\a20.exe (Spyware.OnlineGames) -> No action taken.
+C:\Program Files\xx.exe (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\mbox311.exe (Adware.Agent) -> No action taken.
+C:\WINDOWS\system32\dsyh0.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\HtmlUI.dll (Malware.Tool) -> No action taken.
+C:\Program Files\Common Files\SafeDrv.exe (Worm.Autorun) -> No action taken.
+C:\WINDOWS\system32\ghjik.dll (Trojan.Banker) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\IETimbar.dll (Trojan.BHO) -> No action taken.
+C:\WINDOWS\system32\dsyhu.dll (Trojan.Agent) -> No action taken.
+C:\AutoRun.inf (Worm.Autorun) -> No action taken.
+C:\SafeDrv.exe (Worm.Autorun) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\100812n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\111890n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\111890n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\111906n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\114687n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\119625n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\124421n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\129093n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\132312n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1326187j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1331765n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1332109c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\j08j.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\j10j.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\m13m.dll (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\m16t2.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\m17m.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\734484n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\735015n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\739234n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\739843g07.dll (Trojan.GamesThief) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\740906j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\745109n18.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\746625c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3125031n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3157937n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3192296n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\4313750j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\r21r.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\t23t.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp10.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp11.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp17.tmp (Trojan.Agent) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp2.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp5.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp6.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp7.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp8.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmp9.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmpA.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmpD.tmp (Trojan.Patched) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\tmpE.tmp (Trojan.Agent) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2f6414n07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\665515m13.dll (Trojan.Dropper) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\691593n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\88437n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n01d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\6713234j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\6718515c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\676250n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\678859n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\683734n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\689859n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\136171n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1413984n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\159921n24.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\167546n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\171062n18.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\176734n11.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\18298n01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\183015n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1913109j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1918437c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1a718n07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1b512n01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\a1bf3n01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\a4574n07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\a55d0t23.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\ab507n01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\aeb59n07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\c02c.dll (Worm.Magania) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\d03d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\g07g.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n02d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n03d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n04d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n05d.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n06d.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n07d.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n11d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n16d.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n17d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n18d.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n19d.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n20d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n24d.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\n28d.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\Q19q.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\1c203n07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2436890n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2446000n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2447609n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2461531n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2476609n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2486546n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2491640n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2526546n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\258614n01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\25b37dn07.dll (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\2f466an01.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\4319031c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\4875078n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\5513718j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\5519015c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\639500n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\648015n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\650625n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\651906d03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\660968m16t.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\664218n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\695703Q19.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\697187n06.dll (Spyware.PWS) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\704843n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\706375j10.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\721093n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\755171m17.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\758203n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\760781r21.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\772796n24.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\774687n19.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\789843n11.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\815171n20.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\84531n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\86515n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\86906n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3075734n03.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3083250n02.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3086968n04.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3098484n05.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3110078n17.dll (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3117765j08.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3120718n16.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\3123328c02.dll (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a01[2].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a02[3].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a05[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a11[2].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a12[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a12[2].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\mbox311[1].exe (Adware.Agent) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\yz[2].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a13[2].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a14[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a16[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a17[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\a20[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\fh[1].exe (Adware.BHO) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\2ZXMLOZ4\js[2].exe (Trojan.Backdoor) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a11[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a02[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a04[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a06[2].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a07[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a07[2].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a09[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\yz[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a14[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a18[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\8MDATC8A\a20[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\js[1].exe (Trojan.Backdoor) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\xx[3].exe (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\xx[6].exe (Malware.Packer.Gen) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\a06[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\a08[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\a15[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\a18[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\AA26G6DQ\a21[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a01[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a03[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a03[2].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a04[2].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a05[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a08[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a09[2].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a10[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a10[2].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a13[1].exe (Spyware.OnLineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a15[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a15[2].exe (Spyware.Onlinegames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a16[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a17[1].exe (Spyware.OnlineGames) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temporary Internet Files\Content.IE5\OROD6N7E\a19[1].exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\a21.exe (Spyware.Onlinegames) -> No action taken.
+C:\Program Files\js.exe (Trojan.Backdoor) -> No action taken.
+C:\Program Files\fh.exe (Adware.BHO) -> No action taken.
+C:\Program Files\Java\jre6\bin\javaw.exe (Trojan.FakeAlert) -> No action taken.
+C:\RECYCLER\KB971594.TMP (Spyware.OnLineGames) -> No action taken.
+C:\RECYCLER\KB971582.TMP78546 (Spyware.OnLineGames) -> No action taken.
+C:\RECYCLER\KB971584.TMP72843 (Spyware.OnLineGames) -> No action taken.
+C:\RECYCLER\KB971586.TMP61265 (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000963.exe (Malware.Packer.Gen) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000967.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000971.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000979.DLL (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000985.dll (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000995.exe (Malware.Packer.Gen) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000996.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000998.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001007.exe (Malware.Packer.Gen) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001008.exe (Trojan.Backdoor) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0000968.DLL (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001149.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001124.dll (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001135.exe (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001136.exe (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001138.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001139.exe (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001140.exe (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001141.exe (Spyware.Onlinegames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001142.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001147.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001150.exe (Spyware.Onlinegames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001152.exe (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001154.exe (Spyware.Onlinegames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001155.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001156.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001158.exe (Malware.Packer.Gen) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001160.exe (Trojan.Backdoor) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP11\A0001263.exe (Spyware.Banker) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP6\A0000479.exe (Worm.Autorun) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP6\A0000478.dll (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP7\A0000533.dll (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP7\A0000535.exe (Worm.Autorun) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP7\A0000710.exe (Trojan.Backdoor) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP7\A0000752.dll (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP7\A0000754.exe (Worm.Autorun) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP7\A0000755.exe (Worm.Autorun) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000795.dll (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000800.DLL (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000803.exe (Malware.Packer.Gen) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000808.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000809.DLL (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000811.exe (Spyware.OnlineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000812.DLL (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000814.DLL (Spyware.OnLineGames) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000827.exe (Malware.Packer.Gen) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000896.exe (Trojan.Agent) -> No action taken.
+C:\System Volume Information\_restore{0676506A-72FE-4334-BAA5-646CAA59ECC6}\RP8\A0000898.exe (Trojan.Backdoor) -> No action taken.
+C:\WINDOWS\system32\OneClickRun.dll (Trojan.Agent) -> No action taken.
+C:\WINDOWS\system32\dlllhost.exe (Spyware.Banker) -> No action taken.
+C:\WINDOWS\system32\fcho8.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\ff55g.exe (Trojan.Backdoor) -> No action taken.
+C:\WINDOWS\system32\ndbe3.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\NoViewRun2.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\runie.dll (Trojan.Agent) -> No action taken.
+C:\WINDOWS\system32\uvlb0.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\bhoexe.dll (Trojan.StartPage) -> No action taken.
+C:\WINDOWS\system32\SSLCore.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\r5tyg.dll (Spyware.OnlineGames) -> No action taken.
+C:\WINDOWS\system32\dllcache\fcho8.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\dllcache\ndbe3.dll (Trojan.Downloader) -> No action taken.
+C:\WINDOWS\system32\dllcache\uvlb0.dll (Trojan.Downloader) -> No action taken.
+F:\SafeDrv.exe (Worm.Autorun) -> No action taken.
+C:\Documents and Settings\buckeye\Favorites\常用\当当网.lnk (Malware.Trace) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\cfg.dat (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\crpop.dat (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\ddv2.dat (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\httpf.dat (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\udb.dat (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\udb.dat.backup (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\udb.dat2 (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\udb.dat2.tmp (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\udb.dat2p (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\Uninstall.exe (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\vercfg.dat (Adware.IETimbar) -> No action taken.
+C:\Program Files\Internet Explorer\IETimbar\sign\1290920400 (Adware.IETimbar) -> No action taken.
+C:\WINDOWS\system32\1.2.8\cryptocm.dll (Trojan.Clicker) -> No action taken.
+C:\Documents and Settings\buckeye\Favorites\当当网.lnk (Malware.Trace) -> No action taken.
+C:\ddv2.dat (Malware.Trace) -> No action taken.
+C:\RECYCLER\KB970580.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970582.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970584.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970586.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970592.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970596.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970598.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970600.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970602.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970604.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970608.DLL (Spyware.OnlineGames) -> No action taken.
+C:\RECYCLER\KB970610.DLL (Spyware.OnlineGames) -> No action taken.
+C:\WINDOWS\system32\domspring.dat (Malware.Trace) -> No action taken.
+C:\WINDOWS\system32\mprmsgse.axp (Malware.Trace) -> No action taken.
+C:\WINDOWS\system32\somarshal.dat (Malware.Trace) -> No action taken.
+C:\WINDOWS\system32\sysdrvd.cio (Malware.Trace) -> No action taken.
+C:\WINDOWS\system32\winldr.atd (Malware.Trace) -> No action taken.
+C:\WINDOWS\system32\winoer.dat (Malware.Trace) -> No action taken.
+C:\Documents and Settings\buckeye\Local Settings\Temp\svchost.exe (Trojan.Agent) -> No action taken.
+C:\WINDOWS\ctfmon.exe (Trojan.Agent) -> No action taken.
+C:\WINDOWS\Help\lpk.dll (Trojan.Agent) -> No action taken.
