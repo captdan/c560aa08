@@ -321,6 +321,7 @@ public class ObjectFile
 					textRecord.add(codeline.directive.operandArray.get(count).relocationType.toString());
 					if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.E )
 					{
+						textRecord.add("+");
 						textRecord.add(codeline.directive.operandArray.get(count).operand);
 					}
 					else if(codeline.directive.operandArray.get(count).relocationType == Operand.relocationTypes.R )
