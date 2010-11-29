@@ -1,0 +1,22 @@
+﻿
+FileName : C:\Users\Admin\Desktop\InterLinker\ObjectFiles\Altest_13.txt
+H|Altest_13|90|78|2010:333|13:39:42|1|13|78|SAL|1|2|Altest_13
+L|Altest_13|78|START|Altest_13
+T|78|N|0000000a|1|A|Altest_13
+T|79|N|00000021|1|A|Altest_13
+T|7a|N|020df720|1|A|Altest_13
+T|7b|N|68240078|3|A|A|R|+|120|Altest_13
+T|7c|N|48240007|3|A|A|A|Altest_13
+T|7d|N|9c20008d|2|A|R|+|120|Altest_13
+T|7f|N|00000000|0|Altest_13
+T|80|N|08480000|3|A|A|A|Altest_13
+T|81|N|c060008d|2|A|R|+|120|Altest_13
+T|82|N|00000004|1|A|Altest_13
+T|83|N|c0800082|2|A|R|+|120|Altest_13
+T|84|N|9cc0008e|2|A|R|+|120|Altest_13
+T|86|N|20000002|1|A|Altest_13
+T|87|N|a9a34f3834f3836f92020|1|A|Altest_13
+Could not parse Data of Text Record
+Fatal Error Exiting Linking
+File is missing end record.
+The Number of Text Records does not match the actual amount of text records in the header record expected 19 recieved 13

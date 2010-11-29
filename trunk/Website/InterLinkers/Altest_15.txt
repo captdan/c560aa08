@@ -1,0 +1,6 @@
+﻿
+FileName : C:\Users\Admin\Desktop\InterLinker\ObjectFiles\Altest_15.txt
+H|Altest_15|800|0|2010:333|13:40:02|1|1|0|SAL|1|2|Altest_15
+L|Altest_15|0|START|Altest_15
+T|7ff|N|00000000|0|Altest_15
+E|4|Altest_15

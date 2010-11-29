@@ -1,0 +1,11 @@
+﻿
+FileName : C:\Users\Admin\Desktop\InterLinker\ObjectFiles\Altest_10.txt
+H|Altest_10|106|100|2010:333|13:38:52|1|5|100|SAL|1|2|Altest_10
+L|Altest_10|100|START|Altest_10
+T|100|N|00000000|1|E|+|subprocedure|Altest_10
+T|101|N|1870e220|1|A|Altest_10
+T|102|N|20000002|1|A|Altest_10
+T|103|N|7fffffff|1|A|Altest_10
+T|106|N|00000000|0|Altest_10
+E|8|Altest_10
+No ENT Linking Record Found For EXT Label subprocedure
