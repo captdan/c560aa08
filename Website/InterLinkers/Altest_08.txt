@@ -1,0 +1,9 @@
+﻿
+FileName : C:\Users\Admin\Desktop\InterLinker\ObjectFiles\Altest_08.txt
+H|Altest_08|ffff|65535|2010:333|13:38:17|1|1|ffff|SAL|1|2|Altest_08
+Could Not Parse Header Line Program Load Address
+Fatal Error Exiting Linking
+File is missing header record.
+File is missing end record.
+The Number of Linking Records does not match the actual amount of linking records in the header record.
+The Number of Text Records does not match the actual amount of text records in the header record expected 1 recieved 0

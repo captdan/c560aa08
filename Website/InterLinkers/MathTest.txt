@@ -1,0 +1,21 @@
+﻿
+FileName : C:\Users\Admin\Desktop\InterLinker\ObjectFiles\MathTest.txt
+H|Math|16|5|2010:333|13:40:59|1|10|9|SAL|1|2|Math
+L|Math|5|START|Math
+T|5|Y|00000000|1|A|Math
+T|6|Y|00000000|1|A|Math
+T|7|Y|00000000|1|A|Math
+T|8|Y|02cd9f70|1|A|Math
+T|9|Y|10020005|2|A|R|+|5|Math
+T|b|Y|c0600006|2|A|R|+|5|Math
+T|c|Y|80400013|3|A|A|R|+|5|Math
+T|d|Y|048d0018|3|A|A|A|Math
+T|e|Y|50900014|3|A|A|A|Math
+T|f|Y|04b1001a|3|A|A|A|Math
+T|10|Y|9ca00007|2|A|R|+|5|Math
+T|11|Y|28010007|2|A|R|+|5|Math
+T|12|Y|20000000|1|A|Math
+T|13|Y|2c010008|2|A|R|+|5|Math
+T|14|Y|200000fa|1|A|Math
+T|15|Y|00000000|0|Math
+E|13|Math

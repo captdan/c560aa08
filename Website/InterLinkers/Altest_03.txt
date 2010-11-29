@@ -1,0 +1,15 @@
+﻿
+FileName : C:\Users\Admin\Desktop\InterLinker\ObjectFiles\Altest_03.txt
+H|Altest_03|18|e|2010:333|13:36:51|1|b|10|SAL|1|2|Altest_03
+L|Altest_03|e|START|Altest_03
+T|e|N|00000080|1|A|Altest_03
+T|f|N|00000064|1|A|Altest_03
+T|10|N|00000000|1|E|+|mars|Altest_03
+T|10|N|c020000e|2|A|R|+|14|Altest_03
+T|11|N|04248018|3|A|A|A|Altest_03
+T|12|N|4024001c|3|A|A|A|Altest_03
+T|13|N|7444c34f|3|A|A|E|mars|Altest_03
+Could not parse E type Adjustment of Text Record
+Fatal Error Exiting Linking
+File is missing end record.
+The Number of Text Records does not match the actual amount of text records in the header record expected 11 recieved 6
