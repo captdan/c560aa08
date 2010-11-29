@@ -1,0 +1,384 @@
+------------------------------------------
+CodeLine 0
+PC: 0
+Original Line Of Code: .start,Altest_04,0
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 0
+Original Line Of Code: .data
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 0
+Original Line Of Code: YY int.data 0
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 3
+PC: 1
+Original Line Of Code: ZZ int.data 0
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 4
+PC: 2
+Original Line Of Code: XX int.data 0
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 5
+PC: 3
+Original Line Of Code: Err str.data 'ZZ=0'
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	'ZZ=0'
+Operand Types: 
+	CHARSTR
+
+------------------------------------------
+CodeLine 6
+PC: 4
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 7
+PC: 4
+Original Line Of Code: ENT XX             | Another program may come looking for the result
+Line Comment: | Another program may come looking for the result
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: ENT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	XX
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 8
+PC: 4
+Original Line Of Code: exec.start *
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EXEC.START
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	*
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 9
+PC: 4
+Original Line Of Code: inn 2,YY             |read in 2 numbers into locations YY and ZZ
+Line Comment: |read in 2 numbers into locations YY and ZZ
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: INN
+Instruction Type: IO
+Instruction Binary: 100
+Instruction Hex: 04
+Operands: 
+	2
+	YY
+Operand Types: 
+	NUMBER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 10
+PC: 5
+Original Line Of Code: LW $3,YY
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$3
+	YY
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 11
+PC: 6
+Original Line Of Code: JEQ $3,$0,ERROR
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: JEQ
+Instruction Type: S
+Instruction Binary: 100000
+Instruction Hex: 20
+Operands: 
+	$3
+	$0
+	ERROR
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 12
+PC: 7
+Original Line Of Code: LW $2,ZZ
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$2
+	ZZ
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 13
+PC: 8
+Original Line Of Code: mul $4,$3,$2       | place intermediate result in reg 4
+Line Comment: | place intermediate result in reg 4
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: MUL
+Instruction Type: R
+Instruction Binary: 1
+Instruction Hex: 01
+Operands: 
+	$4
+	$3
+	$2
+Operand Types: 
+	REGISTER
+	REGISTER
+	REGISTER
+
+------------------------------------------
+CodeLine 14
+PC: 9
+Original Line Of Code: muli $5,$4,20       | place intermediate result in reg 5
+Line Comment: | place intermediate result in reg 5
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: MULI
+Instruction Type: I
+Instruction Binary: 10100
+Instruction Hex: 14
+Operands: 
+	$5
+	$4
+	20
+Operand Types: 
+	REGISTER
+	REGISTER
+	SIGNEDIMMEDIATE
+
+------------------------------------------
+CodeLine 15
+PC: 10
+Original Line Of Code: Div $5,$5,$3       | Final result is in reg 5
+Line Comment: | Final result is in reg 5
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: DIV
+Instruction Type: R
+Instruction Binary: 1
+Instruction Hex: 01
+Operands: 
+	$5
+	$5
+	$3
+Operand Types: 
+	REGISTER
+	REGISTER
+	REGISTER
+
+------------------------------------------
+CodeLine 16
+PC: 11
+Original Line Of Code: sw $5,XX
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$5
+	XX
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 17
+PC: 12
+Original Line Of Code: outn 1,XX             | output 1 word at location XX
+Line Comment: | output 1 word at location XX
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: OUTN
+Instruction Type: IO
+Instruction Binary: 1010
+Instruction Hex: 0A
+Operands: 
+	1
+	XX
+Operand Types: 
+	NUMBER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 18
+PC: 13
+Original Line Of Code: HALT 0
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: HALT
+Instruction Type: J
+Instruction Binary: 1000
+Instruction Hex: 08
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 19
+PC: 14
+Original Line Of Code: ERROR outc 1,Err
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: OUTC
+Instruction Type: IO
+Instruction Binary: 1011
+Instruction Hex: 0B
+Operands: 
+	1
+	Err
+Operand Types: 
+	NUMBER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 20
+PC: 15
+Original Line Of Code: HALT 250             | Halt and display error code 250
+Line Comment: | Halt and display error code 250
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: HALT
+Instruction Type: J
+Instruction Binary: 1000
+Instruction Hex: 08
+Operands: 
+	250
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 21
+PC: 16
+Original Line Of Code: .end,Altest_04
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

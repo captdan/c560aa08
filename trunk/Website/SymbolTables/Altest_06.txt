@@ -1,0 +1,3 @@
+Key		PC		EQU		Use
+Altest_06	0	NONE	PROGRAM_NAME
+E1	0	10	EQU

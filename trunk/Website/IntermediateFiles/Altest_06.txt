@@ -1,0 +1,84 @@
+------------------------------------------
+CodeLine 0
+PC: 0
+Original Line Of Code: .start,Altest_06,0   |should overflow memory fatal error
+Line Comment: |should overflow memory fatal error
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 0
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 0
+Original Line Of Code: E1	EQU  10
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EQU
+Directive Label: REQUIREDLABEL
+Directive Code Location: TEXT
+Operands: 
+	10
+Operand Types: 
+	STRING
+
+------------------------------------------
+CodeLine 3
+PC: 0
+Original Line Of Code: A1	exec.start	E1
+Line Comment: 
+Line Length: 0
+Error Count: 1
+Errors:
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 4
+PC: 0
+Original Line Of Code: 	mem.skip 65535 
+Line Comment: 
+Line Length: 65535
+Error Count: 0
+Errors:
+Directive Name: MEM.SKIP
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	65535
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 5
+PC: 65535
+Original Line Of Code: .end,Altest_06  	   
+Line Comment: 
+Line Length: 1
+Error Count: 1
+Errors:
+	6	Memory out of bounds.	change address number
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
