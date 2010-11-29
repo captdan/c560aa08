@@ -1,0 +1,5 @@
+﻿Number	Error Msg	Suggested Fix	File	Line #
+25	Could not parse Data of Text Record	Check Text Record Data Field	C:\EclipseWorkspace\c560aa08\Website\ObjectFiles\Altest_13.txt	16
+11	Fatal Error Exiting Linking	Check Previous Errors	C:\EclipseWorkspace\c560aa08\Website\ObjectFiles\Altest_13.txt	17
+13	File is missing end record.	Check Input File End Record	C:\EclipseWorkspace\c560aa08\Website\ObjectFiles\Altest_13.txt	17
+15	The Number of Text Records does not match the actual amount of text records in the header record expected 19 recieved 13	Check the number of text records	C:\EclipseWorkspace\c560aa08\Website\ObjectFiles\Altest_13.txt	17
