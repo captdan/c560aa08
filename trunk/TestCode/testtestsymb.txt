@@ -1,2 +1,1 @@
-﻿Symbol	Address	Linker Address	Program Name
-Math	5	0	12
+﻿Math|0005|0000|0012
