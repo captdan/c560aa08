@@ -1,0 +1,24 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+100	00000000		1	.start,Altest_10,256
+100	00000000		2	.text
+100	00000000	E	3	           ext subprocedure
+100	00000000		4	.data
+100	1870e220	A	5	           str.data 'aab'
+101	00000000		6	.text
+101
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+101
+	99	General Error	Check this line for syntax errors.
+101
+	99	General Error	Check this line for syntax errors.
+101	20000002	A	10	           HALT   2
+102	00000000		11	.data
+102	7fffffff	A	12	prm1       int.data  2147483647
+103
+	19	The operand 0: -2147483648 did not match the operand type NUMBER.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+104
+	19	The operand 0: *+2 did not match the operand type LABEL.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+105	00000000		15	.end,Altest_10   |a.test.10

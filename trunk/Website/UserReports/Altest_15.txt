@@ -1,0 +1,10 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+0	00000000		1	.start,Altest_15,0   | should produce just an H and E object file record
+0	00000000		2	.text
+0	00000064	A	3	Oak   reset.lc 100
+64	000003e8	A	4	Elm   reset.lc 1000
+3e8
+	19	The operand 0: 1001 did not match the operand type LABELREF.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+3e8	000007ff	A	6	Maple reset.lc 2047
+7ff	00000000		7	.end,Altest_15  

@@ -1,0 +1,18 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+0	00000000		1	.start,Altest_09,0   |Some Errors
+0
+	99	General Error	Check this line for syntax errors.
+0
+	19	Operand [2]: =9222212000000 is not a valid SIGNEDIMMEDIATE.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+1
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+1
+	99	General Error	Check this line for syntax errors.
+1
+	99	General Error	Check this line for syntax errors.
+1
+	19	Operand [2]: =-12 is not a valid SIGNEDIMMEDIATE.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+2	00000000		8	.end,Altest_09   | should report instruction after end instruction ignored
