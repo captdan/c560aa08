@@ -17,11 +17,11 @@ ul.pureCssMenu,ul.pureCssMenu ul {
 ul.pureCssMenu table {border-collapse:collapse}ul.pureCssMenu {
 	display:block;
 	zoom:1;
-	_width:118.65px;
+	_width:120px;
 	float: left;
 }
 ul.pureCssMenu ul{
-	width:139.65px;
+	width:168px;
 }
 ul.pureCssMenu li{
 	display:block;
