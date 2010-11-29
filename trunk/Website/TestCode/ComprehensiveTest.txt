@@ -1,7 +1,7 @@
 .Start,ComprehensiveTest,00
 .data
 A int.data 10
-B Str.data 'ABCDEFG'
+B Str.data 'ABCD'
 BB Str.data ' '
 BBB1 Str.data ''
 C hex.data 8
