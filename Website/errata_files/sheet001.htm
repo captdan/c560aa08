@@ -1,0 +1,166 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 12">
+<link id=Main-File rel=Main-File href="../errata.htm">
+<link rel=File-List href=filelist.xml>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--@page WORDSECTION1
+	{margin-bottom:1in;
+	margin-left:1in;
+	margin-right:1in;
+	margin-top:1in;
+	mso-footer-margin:.5in;
+	mso-header-margin:.5in;
+	mso-paper-source-first-page:0;
+	mso-paper-source-other-pages:0;
+	size:8.5in 11in;}
+table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:1.0in .75in 1.0in .75in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../errata.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link=blue vlink=purple class=xl65 lang=EN-US style='tab-interval:.5in'>
+
+<table border=0 cellpadding=0 cellspacing=0 width=698 style='border-collapse:
+ collapse;table-layout:fixed;width:523pt'>
+ <col class=xl65 width=240 style='mso-width-source:userset;mso-width-alt:8777;
+ width:180pt'>
+ <col class=xl65 width=115 style='mso-width-source:userset;mso-width-alt:4205;
+ width:86pt'>
+ <col class=xl65 width=96 style='mso-width-source:userset;mso-width-alt:3510;
+ width:72pt'>
+ <col class=xl65 width=119 style='mso-width-source:userset;mso-width-alt:4352;
+ width:89pt'>
+ <col class=xl65 width=128 style='mso-width-source:userset;mso-width-alt:4681;
+ width:96pt'>
+ <tr height=35 style='height:26.25pt'>
+  <td height=35 class=xl66 colspan=3 width=451 style='height:26.25pt;
+  mso-ignore:colspan;width:338pt'><span style='line-height:115%'>ERRATA REPORT
+  SP2</span></td>
+  <td class=xl65 width=119 style='width:89pt'>&nbsp;</td>
+  <td class=xl65 width=128 style='width:96pt'>&nbsp;</td>
+ </tr>
+ <tr height=36 style='height:27.0pt'>
+  <td height=36 class=xl67 style='height:27.0pt'><span style='line-height:115%'>&nbsp;</span></td>
+  <td colspan=4 class=xl65 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=64 style='height:48.0pt;mso-yfti-firstrow:yes;mso-yfti-irow:0'>
+  <td height=64 class=xl68 width=240 style='height:48.0pt;width:180pt;
+  padding-bottom:0in;padding-top:0in'>Example Code</td>
+  <td class=xl69 width=115 style='width:86pt;padding-bottom:0in;padding-top:
+  0in'>Actual Program Behavior</td>
+  <td class=xl69 width=96 style='width:72pt;padding-bottom:0in;padding-top:
+  0in'>Desired Program Behavior</td>
+  <td class=xl69 width=119 style='width:89pt;padding-bottom:0in;padding-top:
+  0in'>Proposed Fix</td>
+  <td class=xl69 width=128 style='width:96pt;padding-bottom:0in;padding-top:
+  0in'>Problem Fixed Y/N</td>
+ </tr>
+ <tr height=42 style='mso-height-source:userset;height:31.7pt;mso-yfti-irow:
+  1'>
+  <td height=42 class=xl70 width=240 style='height:31.7pt;width:180pt;
+  padding-bottom:0in;padding-top:0in'>EXT mud,oak,abc,yup,bbb</td>
+  <td class=xl71 width=115 style='width:86pt'>Crashes program</td>
+  <td class=xl71 width=96 style='width:72pt'>Throw Error Message</td>
+  <td class=xl71 width=119 style='width:89pt'>Check number of operands throw
+  error if greater than 4</td>
+  <td class=xl71 width=128 style='width:96pt'>Y</td>
+ </tr>
+ <tr height=64 style='height:48.0pt;mso-yfti-irow:2'>
+  <td height=64 class=xl70 width=240 style='height:48.0pt;width:180pt;
+  padding-bottom:0in;padding-top:0in'>F2 adr.exp 1+2-</td>
+  <td class=xl71 width=115 style='width:86pt'>Crashes Program</td>
+  <td class=xl71 width=96 style='width:72pt'>Throw Error Message</td>
+  <td class=xl71 width=119 style='width:89pt'>Check expressions to be valid</td>
+  <td class=xl71 width=128 style='width:96pt'>Y</td>
+ </tr>
+ <tr height=64 style='height:48.0pt;mso-yfti-irow:3'>
+  <td height=64 class=xl70 width=240 style='height:48.0pt;width:180pt;
+  padding-bottom:0in;padding-top:0in'>F2 adr.exp 1+2-9999999999999</td>
+  <td class=xl71 width=115 style='width:86pt'>Crashes Program</td>
+  <td class=xl71 width=96 style='width:72pt'>Throw Error Message</td>
+  <td class=xl71 width=119 style='width:89pt'>Check expressions to be valid</td>
+  <td class=xl71 width=128 style='width:96pt'>Y</td>
+ </tr>
+ <tr height=64 style='height:48.0pt;mso-yfti-irow:4'>
+  <td height=64 class=xl70 width=240 style='height:48.0pt;width:180pt;
+  padding-bottom:0in;padding-top:0in'>D bin.data 50</td>
+  <td class=xl71 width=115 style='width:86pt'>Crashes Program</td>
+  <td class=xl71 width=96 style='width:72pt'>Throw Error Message</td>
+  <td class=xl71 width=119 style='width:89pt'>Check Bin.data to have valid
+  number</td>
+  <td class=xl71 width=128 style='width:96pt'>Y</td>
+ </tr>
+ <tr height=64 style='height:48.0pt;mso-yfti-irow:5;mso-yfti-lastrow:yes'>
+  <td height=64 class=xl70 width=240 style='height:48.0pt;width:180pt;
+  padding-bottom:0in;padding-top:0in'>B Str.data ''</td>
+  <td class=xl71 width=115 style='width:86pt'>Crashes program</td>
+  <td class=xl71 width=96 style='width:72pt'>Needs to accept ‘’</td>
+  <td class=xl71 width=119 style='width:89pt'>Allow Str.data to deal with the
+  empty string.</td>
+  <td class=xl71 width=128 style='width:96pt'>Y</td>
+ </tr>
+ <tr height=85 style='height:63.75pt'>
+  <td height=85 class=xl70 width=240 style='height:63.75pt;width:180pt'>ADR.EXP</td>
+  <td class=xl71 width=115 style='width:86pt'>Uses actual value instead of
+  Address</td>
+  <td class=xl71 width=96 style='width:72pt'>Needs to differentiate between
+  them</td>
+  <td class=xl71 width=119 style='width:89pt'>Sort out the ADR.EXP from EQU.EXP
+  before linking</td>
+  <td class=xl71 width=128 style='width:96pt'>N</td>
+ </tr>
+ <tr height=35 style='height:26.25pt'>
+  <td height=35 class=xl67 style='height:26.25pt'><span style='line-height:
+  115%'>&nbsp;</span></td>
+  <td colspan=4 class=xl65 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=240 style='width:180pt'></td>
+  <td width=115 style='width:86pt'></td>
+  <td width=96 style='width:72pt'></td>
+  <td width=119 style='width:89pt'></td>
+  <td width=128 style='width:96pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>
