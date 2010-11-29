@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DynamicHelp xmlns="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xsi:schemaLocation="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd">	
+   <LINKGROUP ID="Linker" Title="Linker Reference Help" Priority="2100">
+      <GLYPH Expanded="vs:/ctxhelp_show.gif" Collapsed="vs:/ctxhelp_hide.gif"/>
+   </LINKGROUP>
+
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Adjustment" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000001C.html" LinkGroup="Linker">Adjustment Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Button1_Click" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000004.html" LinkGroup="Linker">Button1_Click Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Button2_Click" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000007.html" LinkGroup="Linker">Button2_Click Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Button3_Click" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000006.html" LinkGroup="Linker">Button3_Click Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Button4_Click_1" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000018.html" LinkGroup="Linker">Button4_Click_1 Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Button5_Click" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000016.html" LinkGroup="Linker">Button5_Click Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Button6_Click" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000017.html" LinkGroup="Linker">Button6_Click Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.InitializeComponent" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000003.html" LinkGroup="Linker">InitializeComponent Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000002.html" LinkGroup="Linker">Linker Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="Linker Reference" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000001D.html" LinkGroup="Linker">Linker Reference</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.Linker_Load" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000005.html" LinkGroup="Linker">Linker_Load Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.LinkingRecord" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000001A.html" LinkGroup="Linker">LinkingRecord Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.ListView2_MouseUp" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000015.html" LinkGroup="Linker">ListView2_MouseUp Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.ObjectFile" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000019.html" LinkGroup="Linker">ObjectFile Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.TextRecord" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000001B.html" LinkGroup="Linker">TextRecord Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000001F.html" LinkGroup="Linker">WindowsApplication1 Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.addError" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000014.html" LinkGroup="Linker">addError Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.checkExtRecords" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000009.html" LinkGroup="Linker">checkExtRecords Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.createLinkerFile" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000000A.html" LinkGroup="Linker">createLinkerFile Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.createObjectFile" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000000E.html" LinkGroup="Linker">createObjectFile Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.createSymbolTable" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000008.html" LinkGroup="Linker">createSymbolTable Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.hasWhiteSpace" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000012.html" LinkGroup="Linker">hasWhiteSpace Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.linkingLabelExistsInObject" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000000C.html" LinkGroup="Linker">linkingLabelExistsInObject Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.padZeros" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000000B.html" LinkGroup="Linker">padZeros Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.parseEndRecord" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000000F.html" LinkGroup="Linker">parseEndRecord Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.parseHeader" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000013.html" LinkGroup="Linker">parseHeader Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.parseLinkRecord" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000011.html" LinkGroup="Linker">parseLinkRecord Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.parseTextRecord" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_0000000000000010.html" LinkGroup="Linker">parseTextRecord Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="WindowsApplication1.Linker.returnLinkingLabelValue" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:Linker.chm::/topic_000000000000000D.html" LinkGroup="Linker">returnLinkingLabelValue Method</LItem>
+      </Links>
+   </Context>
+   
+
+</DynamicHelp>
+
