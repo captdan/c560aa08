@@ -1,0 +1,77 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+0	00000000		1	.start,Altest_12,0      |n/a
+0	00000000		2	.text
+0
+0	c0e00100	A	4	ADDs  Lw  $7,256        |0  ---100  
+1	68fc0101	A	5	      ADDs  $7,$7,257    |1  ---101	
+2	9ce0015e	A	6		Sw    $7,350      |2  ---15E
+3
+3	c0c00100	A	8	Subs  Lw    $6,256      |3  ---100         
+4	6cd80101	A	9		Subs  $6,$6,257   |4  ---101
+5	9cc0015f	A	10	      Sw    $6,351      |5	---15F
+6
+6	c0a00100	A	12	MULS  Lw    $5,256      |6  ---100         
+7	70b40101	A	13	      Muls  $5,$5,257   |7  ---101
+8	9ca00160	A	14	      Sw    $5,352      |8  ---160
+9
+9	c0800100	A	16	DIVS  Lw    $4,256      |9  ---100     
+a	74940101	A	17	      Divs  $4,$5,257   |A  ---101     
+b	9c800161	A	18	      Sw    $4,353      |B  ---161     
+c
+c	10010162	A	20	inn   inn    1,354      |C  ---162  
+d
+d	28010162	A	22	Outn  outn   1,354      |D  ---162	
+e
+e	c0600100	A	24	ANA   Lw    $3,256      |E  ---100  
+f
+	99	General Error	Check this line for syntax errors.
+f	9c600163	A	26	      Sw   $3,355       |10  ---163
+10
+10
+	0	Expected 3 operands and received 1 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+10
+	99	General Error	Check this line for syntax errors.
+10	9c400164	A	30	      Sw    $2,356      |13  ---164
+11
+11
+	99	General Error	Check this line for syntax errors.
+11
+	99	General Error	Check this line for syntax errors.
+11
+	0	Expected 2 operands and received 1 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+11
+11
+	99	General Error	Check this line for syntax errors.
+11
+	99	General Error	Check this line for syntax errors.
+11
+	0	Expected 2 operands and received 1 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+11
+11
+	99	General Error	Check this line for syntax errors.
+11
+	0	Expected 3 operands and received 1 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+11
+	99	General Error	Check this line for syntax errors.
+11
+	19	Operand [0]: 1 is not a valid REGISTER.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+12
+12
+	99	General Error	Check this line for syntax errors.
+12
+	99	General Error	Check this line for syntax errors.
+12
+	0	Expected 2 operands and received 1 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+12
+12	1001016a	A	49	inc  inc  1,362         |23  ---16A 
+13
+13	2c01016a	A	51	outc outc   1,362       |24  ---16A 
+14
+	99	General Error	Check this line for syntax errors.
+14	00000000		53	.END,Altest_12

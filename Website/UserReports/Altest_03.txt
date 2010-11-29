@@ -1,0 +1,19 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+e	00000000		1	.start,Altest_03,14    |E  midterm program
+e	00000000		2	.data
+e	00000080	A	3	Jupiter int.data 128   |E  00000080     A
+f	00000064	A	4	Saturn  int.data 100   |F  00000064     A
+10
+	19	The operand 0: ‘DOG’ did not match the operand type CHARSTR.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+10	00000000		6	.text
+10	00000000	E	7	   EXT mars
+10	00000010	A	8	   Exec.start *
+10	c020000e	A	9	   LW    $1,Jupiter    |S-type  11   C020000E     R
+11	04248018	A	10	   MUL   $1,$1,$1      |R-type  12   04248018     A
+12	4024001c	A	11	   Addi  $1,$1,28      |I-type  13   4024001C     A
+13	7444c34f	A	12	   DIVs  $2,$1,mars    |S-type  14   77440000     E
+14	08480802	A	13	   Srl   $2,$2,4       |R-type  15   08480802     A
+15	9c40000f	A	14	   Sw    $2,Saturn     |S-type  16   9C40000F     R
+16	20000000	A	15	   Halt  0             |J-type  17   20000000     A
+17	00000000		16	.end,Altest_03

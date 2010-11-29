@@ -1,0 +1,101 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+f	00000000		1	.Start,Altest_7,15     |0F	n/a
+f	00000000		2	.text
+f	0000000c	A	3	ADD     int.data  12        |0F	0000000C	A
+10	0c762020	A	4	Test07a str.data  '16'      |10	00F1F620	A
+11	00000000	E	5	        EXT       ZX        |11  n/a
+11	0000007f	A	6	Test07b reset.lc	127     
+7f
+	19	The operand 0: *+ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: *+ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: ZX+* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: ADD+ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: ZX+ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: 100+ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: ADD+100 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: 100+ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: ZX+100 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: *+100 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+	19	The operand 0: 100+* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f
+7f	000000c8	A	19	RESET RESET.LC    200          |00c8
+c8
+	19	The operand 0: *+ADD did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+c9
+	19	The operand 0: ADD+* did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ca
+	19	The operand 0: 100+ADD did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+cb
+	19	The operand 0: ADD+100 did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+cc
+	19	The operand 0: *+100 did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+cd
+	19	The operand 0: 100+* did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+ce
+	19	The operand 0: *-ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: ADD-* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: *-ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: ZX-* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: ADD-ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: ZX-ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: 100-ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: ADD-10 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: 10-ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: ZX-10 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: *-10 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+	19	The operand 0: 300-* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+ce
+ce	20202020	A	40	SQR    equ     15     
+ce	00000000	A	41	zero   equ     0     
+ce	00000000		42	.END,Altest_7 |Altest.07

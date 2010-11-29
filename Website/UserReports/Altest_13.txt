@@ -1,0 +1,39 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+78	00000000		1	.start,Altest_13,120
+78	00000000		2	.text
+78
+	99	General Error	Check this line for syntax errors.
+78	0000000a	A	4	myDec         int.data     10
+79	00000021	A	5	myHex         int.data     33
+7a	020df720	A	6	myOct         str.data     ' 77'
+7b	68240078	A	7	              adds         $1,$1,myDec
+7c	48240007	A	8	              subi         $1,$1,7
+7d	9c20008d	A	9	              Sw           $1,result
+7e	0000008c	R	10	              Ent          myVar
+7e
+	19	Operand [0]: *+2 is not a valid COMPLEXADDRESS.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+7f	00000000		12	              NOP
+80	08480000	A	13	              SLL          $2,$2,0          | a nop
+81	c060008d	A	14	              Lw           $3,result
+82	00000000		15	.data
+82	00000004	A	16	newVar        int.data     4
+83	00000000		17	.text
+83	c0800082	A	18	               Lw          $4,newVar
+84
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+84	9cc0008e	A	20	               Sw          $6,resultTwo
+85
+	19	The operand 0: resutlTwo+result did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+86
+86	20000002	A	23	               HALT        2
+87
+87	00000000		25	.data
+87	a9a34f3834f3836f92020	A	26	str1           str.data    'This is my'  program
+8a	e9979f483867d	A	27	               str.data    'test pgm'
+8c	0000002a	A	28	myVar          int.data     42
+8d	00000000	A	29	result         int.data     0
+8e	00000000	A	30	resultTwo      int.data     0
+8f	00000000		31	.end,Altest_13

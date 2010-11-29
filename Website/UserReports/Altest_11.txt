@@ -1,0 +1,15 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+15e	00000000		1	.start,Altest_11,350    |15E program length 0
+15e
+15e	00000000		3	.text
+15e	35202020	A	4	r2     EQU    255       |15E 
+15e	00000000	A	5	r3     equ    0         |15E 
+15e
+	19	The operand 0: on did not match the operand type BOOLEAN.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+15e
+	19	The operand 0: off did not match the operand type BOOLEAN.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+15e	0000015e	A	8	       ENT    r2        |15E 
+15e	00000000	E	9	       Ext    ex1       |15E 
+15e	00000000		10	.end,Altest_11          |test11

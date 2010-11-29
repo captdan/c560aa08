@@ -1,0 +1,17 @@
+LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
+0	00000000		1	.Start,Altest_03,0		|Start Location Counter at zero
+0
+	19	Operand [1]: DEC1 is not a valid COMPLEXADDRESS.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+1
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+1	9ce00005	A	4		 Sw	$7,SUM	|Store SUM
+2
+	19	Operand [1]: SUM+1 is not a valid COMPLEXADDRESS.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+3	00000000		6	OUT	 NOP		
+4	20000000	A	7	HALT	 HALT	0	      |Stop execution
+5	000003e8	A	8	SUM	 int.data	1000	
+6	000003e9	A	9		 int.data	1001	
+7	00000000		10	.end,Altest_03		|end of Altest03
