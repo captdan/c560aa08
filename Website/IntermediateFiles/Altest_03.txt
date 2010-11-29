@@ -1,0 +1,269 @@
+------------------------------------------
+CodeLine 0
+PC: 14
+Original Line Of Code: .start,Altest_03,14    |E  midterm program
+Line Comment: |E  midterm program
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 14
+Original Line Of Code: .data
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 14
+Original Line Of Code: Jupiter int.data 128   |E  00000080     A
+Line Comment: |E  00000080     A
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	128
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 3
+PC: 15
+Original Line Of Code: Saturn  int.data 100   |F  00000064     A
+Line Comment: |F  00000064     A
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	100
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 4
+PC: 16
+Original Line Of Code: Pluto   str.data ‘DOG’ |10 444F4720     A
+Line Comment: |10 444F4720     A
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ‘DOG’ did not match the operand type CHARSTR.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 5
+PC: 16
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 6
+PC: 16
+Original Line Of Code:    EXT mars
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EXT
+Directive Label: NOLABEL
+Directive Code Location: INFO
+Operands: 
+	mars
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 7
+PC: 16
+Original Line Of Code:    Exec.start *
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EXEC.START
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	*
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 8
+PC: 16
+Original Line Of Code:    LW    $1,Jupiter    |S-type  11   C020000E     R
+Line Comment: |S-type  11   C020000E     R
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$1
+	Jupiter
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 9
+PC: 17
+Original Line Of Code:    MUL   $1,$1,$1      |R-type  12   04248018     A
+Line Comment: |R-type  12   04248018     A
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: MUL
+Instruction Type: R
+Instruction Binary: 1
+Instruction Hex: 01
+Operands: 
+	$1
+	$1
+	$1
+Operand Types: 
+	REGISTER
+	REGISTER
+	REGISTER
+
+------------------------------------------
+CodeLine 10
+PC: 18
+Original Line Of Code:    Addi  $1,$1,28      |I-type  13   4024001C     A
+Line Comment: |I-type  13   4024001C     A
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: ADDI
+Instruction Type: I
+Instruction Binary: 10000
+Instruction Hex: 10
+Operands: 
+	$1
+	$1
+	28
+Operand Types: 
+	REGISTER
+	REGISTER
+	SIGNEDIMMEDIATE
+
+------------------------------------------
+CodeLine 11
+PC: 19
+Original Line Of Code:    DIVs  $2,$1,mars    |S-type  14   77440000     E
+Line Comment: |S-type  14   77440000     E
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: DIVS
+Instruction Type: S
+Instruction Binary: 11101
+Instruction Hex: 1D
+Operands: 
+	$2
+	$1
+	mars
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 12
+PC: 20
+Original Line Of Code:    Srl   $2,$2,4       |R-type  15   08480802     A
+Line Comment: |R-type  15   08480802     A
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SRL
+Instruction Type: R
+Instruction Binary: 10
+Instruction Hex: 02
+Operands: 
+	$2
+	$2
+	4
+Operand Types: 
+	REGISTER
+	REGISTER
+	BITS
+
+------------------------------------------
+CodeLine 13
+PC: 21
+Original Line Of Code:    Sw    $2,Saturn     |S-type  16   9C40000F     R
+Line Comment: |S-type  16   9C40000F     R
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$2
+	Saturn
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 14
+PC: 22
+Original Line Of Code:    Halt  0             |J-type  17   20000000     A
+Line Comment: |J-type  17   20000000     A
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: HALT
+Instruction Type: J
+Instruction Binary: 1000
+Instruction Hex: 08
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 15
+PC: 23
+Original Line Of Code: .end,Altest_03
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

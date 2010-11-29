@@ -1,0 +1,140 @@
+------------------------------------------
+CodeLine 0
+PC: 0
+Original Line Of Code: .Start,Altest_03,0		|Start Location Counter at zero
+Line Comment: |Start Location Counter at zero
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 0
+Original Line Of Code: 	 Lw  $7,DEC1	|Load Number
+Line Comment: |Load Number
+Line Length: 0
+Error Count: 2
+Errors:
+	19	Operand [1]: DEC1 is not a valid COMPLEXADDRESS.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 2
+PC: 1
+Original Line Of Code: 	 ADDs $7,DEC2	|Add second number
+Line Comment: |Add second number
+Line Length: 0
+Error Count: 2
+Errors:
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 3
+PC: 1
+Original Line Of Code: 	 Sw	$7,SUM	|Store SUM
+Line Comment: |Store SUM
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$7
+	SUM
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 4
+PC: 2
+Original Line Of Code: 	 Sw	$7,SUM+1	|Should be an error
+Line Comment: |Should be an error
+Line Length: 0
+Error Count: 2
+Errors:
+	19	Operand [1]: SUM+1 is not a valid COMPLEXADDRESS.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 5
+PC: 3
+Original Line Of Code: OUT	 NOP		
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: NOP
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 6
+PC: 4
+Original Line Of Code: HALT	 HALT	0	      |Stop execution
+Line Comment: |Stop execution
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: HALT
+Instruction Type: J
+Instruction Binary: 1000
+Instruction Hex: 08
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 7
+PC: 5
+Original Line Of Code: SUM	 int.data	1000	
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	1000
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 8
+PC: 6
+Original Line Of Code: 	 int.data	1001	
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	1001
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 9
+PC: 7
+Original Line Of Code: .end,Altest_03		|end of Altest03
+Line Comment: |end of Altest03
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

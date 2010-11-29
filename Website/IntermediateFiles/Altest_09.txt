@@ -1,0 +1,85 @@
+------------------------------------------
+CodeLine 0
+PC: 0
+Original Line Of Code: .start,Altest_09,0   |Some Errors
+Line Comment: |Some Errors
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 0
+Original Line Of Code: $$$      ADDs   $12,4099
+Line Comment: 
+Line Length: 0
+Error Count: 1
+Errors:
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 2
+PC: 0
+Original Line Of Code: 	   Muli   $5,$5,=9222212000000
+Line Comment: 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	Operand [2]: =9222212000000 is not a valid SIGNEDIMMEDIATE.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 3
+PC: 1
+Original Line Of Code: 	   Divi   $4,$4'ccc'
+Line Comment: 
+Line Length: 0
+Error Count: 2
+Errors:
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 4
+PC: 1
+Original Line Of Code: Xx       int.data  1,999
+Line Comment: 
+Line Length: 0
+Error Count: 1
+Errors:
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 5
+PC: 1
+Original Line Of Code:          int.data  52,IR
+Line Comment: 
+Line Length: 0
+Error Count: 1
+Errors:
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 6
+PC: 1
+Original Line Of Code: 	   Muli   $1,$2,=-12
+Line Comment: 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	Operand [2]: =-12 is not a valid SIGNEDIMMEDIATE.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 7
+PC: 2
+Original Line Of Code: .end,Altest_09   | should report instruction after end instruction ignored
+Line Comment: | should report instruction after end instruction ignored
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

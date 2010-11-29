@@ -1,0 +1,468 @@
+------------------------------------------
+CodeLine 0
+PC: 15
+Original Line Of Code: .Start,Altest_7,15     |0F	n/a
+Line Comment: |0F	n/a
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 15
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 15
+Original Line Of Code: ADD     int.data  12        |0F	0000000C	A
+Line Comment: |0F	0000000C	A
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	12
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 3
+PC: 16
+Original Line Of Code: Test07a str.data  '16'      |10	00F1F620	A
+Line Comment: |10	00F1F620	A
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	'16'
+Operand Types: 
+	CHARSTR
+
+------------------------------------------
+CodeLine 4
+PC: 17
+Original Line Of Code:         EXT       ZX        |11  n/a
+Line Comment: |11  n/a
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EXT
+Directive Label: NOLABEL
+Directive Code Location: INFO
+Operands: 
+	ZX
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 5
+PC: 17
+Original Line Of Code: Test07b reset.lc	127     
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: RESET.LC
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	127
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 6
+PC: 127
+Original Line Of Code: x1a   adr.exp     *+ADD     |007E 0000008D	C  
+Line Comment: |007E 0000008D	C  
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *+ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 7
+PC: 127
+Original Line Of Code: x2a   adr.exp     *+ZX      |0080 00000080	C
+Line Comment: |0080 00000080	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *+ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 8
+PC: 127
+Original Line Of Code: x2b   adr.exp     ZX+*      |0081 00000081	C   Should be an error chk 
+Line Comment: |0081 00000081	C   Should be an error chk 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ZX+* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 9
+PC: 127
+Original Line Of Code: x3a   adr.exp     ADD+ZX    |0082 0000000F	C
+Line Comment: |0082 0000000F	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD+ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 10
+PC: 127
+Original Line Of Code: x3b   adr.exp     ZX+ADD    |0083 0000000F	C
+Line Comment: |0083 0000000F	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ZX+ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 11
+PC: 127
+Original Line Of Code: x4a   adr.exp     100+ADD   |0084 00000073	C
+Line Comment: |0084 00000073	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 100+ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 12
+PC: 127
+Original Line Of Code: x4b   adr.exp     ADD+100   |0085 00000073	C
+Line Comment: |0085 00000073	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD+100 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 13
+PC: 127
+Original Line Of Code: x5a   adr.exp     100+ZX    |0086 00000064	C
+Line Comment: |0086 00000064	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 100+ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 14
+PC: 127
+Original Line Of Code: x5b   adr.exp     ZX+100    |0087 00000064	C
+Line Comment: |0087 00000064	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ZX+100 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 15
+PC: 127
+Original Line Of Code: x6a   adr.exp     *+100     |0088 000000EC	C
+Line Comment: |0088 000000EC	C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *+100 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 16
+PC: 127
+Original Line Of Code: x6b   adr.exp     100+*     |0089 000000ED	C Should be an error chk 
+Line Comment: |0089 000000ED	C Should be an error chk 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 100+* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 17
+PC: 127
+Original Line Of Code: |
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+------------------------------------------
+CodeLine 18
+PC: 127
+Original Line Of Code: RESET RESET.LC    200          |00c8
+Line Comment: |00c8
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: RESET.LC
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	200
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 19
+PC: 200
+Original Line Of Code: y1a   equ.exp     *+ADD      |00C8  200+15=	0215	in hex=	D7	
+Line Comment: |00C8  200+15=	0215	in hex=	D7	
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *+ADD did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 20
+PC: 201
+Original Line Of Code: y1b   equ.exp     ADD+*      |00C8  15+200=	0215	in hex=	D7	
+Line Comment: |00C8  15+200=	0215	in hex=	D7	
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD+* did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 21
+PC: 202
+Original Line Of Code: y2a   equ.exp     100+ADD    |00C8  100+15=	0115	in hex=	73	
+Line Comment: |00C8  100+15=	0115	in hex=	73	
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 100+ADD did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 22
+PC: 203
+Original Line Of Code: y2b   equ.exp     ADD+100    |00C8  15+100=	0115	in hex=	73	
+Line Comment: |00C8  15+100=	0115	in hex=	73	
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD+100 did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 23
+PC: 204
+Original Line Of Code: y3a   equ.exp     *+100      |00C8  200+15=	0215	in hex=	D7	
+Line Comment: |00C8  200+15=	0215	in hex=	D7	
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *+100 did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 24
+PC: 205
+Original Line Of Code: y3b   equ.exp     100+*      |00C8  15+200=	0215	in hex=	D7
+Line Comment: |00C8  15+200=	0215	in hex=	D7
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 100+* did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 25
+PC: 206
+Original Line Of Code: |
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+------------------------------------------
+CodeLine 26
+PC: 206
+Original Line Of Code: x1a2   adr.exp     *-ADD    |00C8 000000B9  A
+Line Comment: |00C8 000000B9  A
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *-ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 27
+PC: 206
+Original Line Of Code: x1b2   adr.exp     ADD-*    |00C9 000000BA  A Should be an error chk docs 
+Line Comment: |00C9 000000BA  A Should be an error chk docs 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD-* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 28
+PC: 206
+Original Line Of Code: x2a2   adr.exp     *-ZX     |00CA 000000CA  C
+Line Comment: |00CA 000000CA  C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *-ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 29
+PC: 206
+Original Line Of Code: x2b2   adr.exp     ZX-*     |00CB 000000CB  C Should be an error chk docs 
+Line Comment: |00CB 000000CB  C Should be an error chk docs 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ZX-* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 30
+PC: 206
+Original Line Of Code: x3a2   adr.exp     ADD-ZX   |00CC 0000000F  C
+Line Comment: |00CC 0000000F  C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD-ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 31
+PC: 206
+Original Line Of Code: x3b2   adr.exp     ZX-ADD   |00CD 00000000  C Should be an error NEG ADDR
+Line Comment: |00CD 00000000  C Should be an error NEG ADDR
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ZX-ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 32
+PC: 206
+Original Line Of Code: x4a2   adr.exp     100-ADD  |00CE 00000055  A
+Line Comment: |00CE 00000055  A
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 100-ADD did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 33
+PC: 206
+Original Line Of Code: x4b2   adr.exp     ADD-10   |00CF 00000005  A
+Line Comment: |00CF 00000005  A
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ADD-10 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 34
+PC: 206
+Original Line Of Code: x5a2   adr.exp     10-ZX    |00D0 0000000A  C
+Line Comment: |00D0 0000000A  C
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 10-ZX did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 35
+PC: 206
+Original Line Of Code: x5b2   adr.exp     ZX-10    |00D1 00000000  C Should be an error NEG ADDR 
+Line Comment: |00D1 00000000  C Should be an error NEG ADDR 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: ZX-10 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 36
+PC: 206
+Original Line Of Code: x6a2   adr.exp     *-10     |00D2 000000C8  A
+Line Comment: |00D2 000000C8  A
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: *-10 did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 37
+PC: 206
+Original Line Of Code: x6b2   adr.exp     300-*    |00D3 00000059  A
+Line Comment: |00D3 00000059  A
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 300-* did not match the operand type EXP.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 38
+PC: 206
+Original Line Of Code: |
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+------------------------------------------
+CodeLine 39
+PC: 206
+Original Line Of Code: SQR    equ     15     
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EQU
+Directive Label: REQUIREDLABEL
+Directive Code Location: TEXT
+Operands: 
+	15
+Operand Types: 
+	STRING
+
+------------------------------------------
+CodeLine 40
+PC: 206
+Original Line Of Code: zero   equ     0     
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: EQU
+Directive Label: REQUIREDLABEL
+Directive Code Location: TEXT
+Operands: 
+	0
+Operand Types: 
+	STRING
+
+------------------------------------------
+CodeLine 41
+PC: 206
+Original Line Of Code: .END,Altest_7 |Altest.07
+Line Comment: |Altest.07
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
