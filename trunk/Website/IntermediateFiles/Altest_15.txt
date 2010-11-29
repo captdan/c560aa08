@@ -1,0 +1,100 @@
+------------------------------------------
+CodeLine 0
+PC: 0
+Original Line Of Code: .start,Altest_15,0   | should produce just an H and E object file record
+Line Comment: | should produce just an H and E object file record
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 0
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 0
+Original Line Of Code: Oak   reset.lc 100
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: RESET.LC
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	100
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 3
+PC: 100
+Original Line Of Code: Elm   reset.lc 1000
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: RESET.LC
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	1000
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 4
+PC: 1000
+Original Line Of Code:               exec.start  1001
+Line Comment: 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: 1001 did not match the operand type LABELREF.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 5
+PC: 1000
+Original Line Of Code: Maple reset.lc 2047
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: RESET.LC
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+	2047
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 6
+PC: 2047
+Original Line Of Code: .end,Altest_15  
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+

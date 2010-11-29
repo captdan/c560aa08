@@ -1,0 +1,469 @@
+------------------------------------------
+CodeLine 0
+PC: 120
+Original Line Of Code: .start,Altest_13,120
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .START
+Directive Label: NOLABEL
+Directive Code Location: START
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 1
+PC: 120
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 2
+PC: 120
+Original Line Of Code:               skip.mem     100
+Line Comment: 
+Line Length: 0
+Error Count: 1
+Errors:
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 3
+PC: 120
+Original Line Of Code: myDec         int.data     10
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	10
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 4
+PC: 121
+Original Line Of Code: myHex         int.data     33
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	33
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 5
+PC: 122
+Original Line Of Code: myOct         str.data     ' 77'
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	' 77'
+Operand Types: 
+	CHARSTR
+
+------------------------------------------
+CodeLine 6
+PC: 123
+Original Line Of Code:               adds         $1,$1,myDec
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: ADDS
+Instruction Type: S
+Instruction Binary: 11010
+Instruction Hex: 1A
+Operands: 
+	$1
+	$1
+	myDec
+Operand Types: 
+	REGISTER
+	REGISTER
+	ADDRESS
+
+------------------------------------------
+CodeLine 7
+PC: 124
+Original Line Of Code:               subi         $1,$1,7
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SUBI
+Instruction Type: I
+Instruction Binary: 10010
+Instruction Hex: 12
+Operands: 
+	$1
+	$1
+	7
+Operand Types: 
+	REGISTER
+	REGISTER
+	SIGNEDIMMEDIATE
+
+------------------------------------------
+CodeLine 8
+PC: 125
+Original Line Of Code:               Sw           $1,result
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$1
+	result
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 9
+PC: 126
+Original Line Of Code:               Ent          myVar
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: ENT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+	myVar
+Operand Types: 
+	LABELREF
+
+------------------------------------------
+CodeLine 10
+PC: 126
+Original Line Of Code:               J            *+2      |JUMP
+Line Comment: |JUMP
+Line Length: 0
+Error Count: 2
+Errors:
+	19	Operand [0]: *+2 is not a valid COMPLEXADDRESS.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 11
+PC: 127
+Original Line Of Code:               NOP
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: NOP
+Directive Label: OPTIONALLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 12
+PC: 128
+Original Line Of Code:               SLL          $2,$2,0          | a nop
+Line Comment: | a nop
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SLL
+Instruction Type: R
+Instruction Binary: 10
+Instruction Hex: 02
+Operands: 
+	$2
+	$2
+	0
+Operand Types: 
+	REGISTER
+	REGISTER
+	BITS
+
+------------------------------------------
+CodeLine 13
+PC: 129
+Original Line Of Code:               Lw           $3,result
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$3
+	result
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 14
+PC: 130
+Original Line Of Code: .data
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 15
+PC: 130
+Original Line Of Code: newVar        int.data     4
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	4
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 16
+PC: 131
+Original Line Of Code: .text
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .TEXT
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 17
+PC: 131
+Original Line Of Code:                Lw          $4,newVar
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: LW
+Instruction Type: S
+Instruction Binary: 110000
+Instruction Hex: 30
+Operands: 
+	$4
+	newVar
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 18
+PC: 132
+Original Line Of Code:                Mul         $5,$5       |missing OPERAND
+Line Comment: |missing OPERAND
+Line Length: 0
+Error Count: 2
+Errors:
+	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
+	99	General Error	Check this line for syntax errors.
+------------------------------------------
+CodeLine 19
+PC: 132
+Original Line Of Code:                Sw          $6,resultTwo
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: SW
+Instruction Type: S
+Instruction Binary: 100111
+Instruction Hex: 27
+Operands: 
+	$6
+	resultTwo
+Operand Types: 
+	REGISTER
+	COMPLEXADDRESS
+
+------------------------------------------
+CodeLine 20
+PC: 133
+Original Line Of Code: myEqu          EQU.exp     resutlTwo + result
+Line Comment: 
+Line Length: 0
+Error Count: 2
+Errors:
+	19	The operand 0: resutlTwo+result did not match the operand type STRING.	Change Operand
+	19	Operand Could Not Parse Operands	Change Operand
+------------------------------------------
+CodeLine 21
+PC: 134
+Original Line Of Code: |comment
+Line Comment: |comment
+Line Length: 0
+Error Count: 0
+Errors:
+------------------------------------------
+CodeLine 22
+PC: 134
+Original Line Of Code:                HALT        2
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Instruction: HALT
+Instruction Type: J
+Instruction Binary: 1000
+Instruction Hex: 08
+Operands: 
+	2
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 23
+PC: 135
+Original Line Of Code: |consts and temps
+Line Comment: |consts and temps
+Line Length: 0
+Error Count: 0
+Errors:
+------------------------------------------
+CodeLine 24
+PC: 135
+Original Line Of Code: .data
+Line Comment: 
+Line Length: 0
+Error Count: 0
+Errors:
+Directive Name: .DATA
+Directive Label: NOLABEL
+Directive Code Location: DATA
+Operands: 
+Operand Types: 
+
+------------------------------------------
+CodeLine 25
+PC: 135
+Original Line Of Code: str1           str.data    'This is my'  program
+Line Comment: 
+Line Length: 3
+Error Count: 0
+Errors:
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	'This is my'
+Operand Types: 
+	CHARSTR
+
+------------------------------------------
+CodeLine 26
+PC: 138
+Original Line Of Code:                str.data    'test pgm'
+Line Comment: 
+Line Length: 2
+Error Count: 0
+Errors:
+Directive Name: STR.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	'test pgm'
+Operand Types: 
+	CHARSTR
+
+------------------------------------------
+CodeLine 27
+PC: 140
+Original Line Of Code: myVar          int.data     42
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	42
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 28
+PC: 141
+Original Line Of Code: result         int.data     0
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 29
+PC: 142
+Original Line Of Code: resultTwo      int.data     0
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: INT.DATA
+Directive Label: OPTIONALLABEL
+Directive Code Location: DATA
+Operands: 
+	0
+Operand Types: 
+	NUMBER
+
+------------------------------------------
+CodeLine 30
+PC: 143
+Original Line Of Code: .end,Altest_13
+Line Comment: 
+Line Length: 1
+Error Count: 0
+Errors:
+Directive Name: .END
+Directive Label: NOLABEL
+Directive Code Location: TEXT
+Operands: 
+Operand Types: 
+
