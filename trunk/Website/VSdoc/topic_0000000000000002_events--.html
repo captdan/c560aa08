@@ -1,0 +1,3173 @@
+<html DIR="LTR" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>Linker Events</title>
+    <xml>
+      <MSHelp:TOCTitle Title="Linker Events" />
+      <MSHelp:RLTitle Title="Linker Events" />
+      <MSHelp:Keyword Index="K" Term="Linker Class, Events" />
+      <MSHelp:Keyword Index="A" Term="Events.T:WindowsApplication1.Linker" />
+      <MSHelp:Attr Name="AssetID" Value="Events.T:WindowsApplication1.Linker" />
+      <MSHelp:Attr Name="HelpPriority" Value="1" />
+      <MSHelp:Attr Name="DocSet" Value="WindowsForms" />
+      <MSHelp:Attr Name="TopicType" Value="kbSyntax" />
+      <MSHelp:Attr Name="DocSet" Value="NETFramework" />
+      <MSHelp:Attr Name="DocSet" Value="NETFrameworkXpr" />
+      <MSHelp:Attr Name="DocSet" Value="ExpressLibVS" />
+      <MSHelp:Attr Name="Technology" Value="ManagedCode" />
+      <MSHelp:Attr Name="TechnologyVers" Value="netframework20" />
+      <MSHelp:Attr Name="DevLang" Value="VJ#" />
+      <MSHelp:Attr Name="TargetOS" Value="Windows" />
+      <MSHelp:Attr Name="TopicVersion" Value="02.00.00000.10000" />
+      <MSHelp:Attr Name="TargetOS" Value="Windows" />
+      <MSHelp:Attr Name="DevLang" Value="CSharp" />
+      <MSHelp:Attr Name="DevLang" Value="VB" />
+      <MSHelp:Attr Name="DevLang" Value="C++" />
+      <MSHelp:Attr Name="DevLang" Value="jsharp" />
+      <MSHelp:Attr Name="DevLang" Value="JScript" />
+      <MSHelp:Attr Name="DocSet" Value="NetCompactFramework" />
+      <MSHelp:Attr Name="Technology" Value="kbNetFramewk" />
+      <MSHelp:Attr Name="Technology" Value="kbNetCompactFramewk" />
+      <MSHelp:Attr Name="Locale" Value="en-us" />
+    </xml>
+
+		<link rel="stylesheet" type="text/css" href="msdn2/msdn2.css"></link>
+		<script src="msdn2/msdn2.js"></script>
+		<script src="SyntaxHighlighter/scripts/shCore_helixoft.js"></script>
+		<script src="SyntaxHighlighter/scripts/shBrushVb.js"></script>
+		<script src="SyntaxHighlighter/scripts/shBrushCSharp.js"></script>
+		<script src="SyntaxHighlighter/scripts/shBrushCpp.js"></script>
+		<script src="SyntaxHighlighter/scripts/shBrushJScript.js"></script>
+		<link href="SyntaxHighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+		<link href="SyntaxHighlighter/styles/shThemeVS.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript">
+			SyntaxHighlighter.all()
+		</script>				
+
+		<link rel="stylesheet" type="text/css" href="ms-help://MS.VSCC.v90/dv_vscccommon/styles/presentation.css">
+		</link>
+		<link rel="stylesheet" type="text/css" href="ms-help://Hx/HxRuntime/HxLink.css">
+		</link>
+
+  	<script type="text/javascript">
+<!--
+if (self.name != "vbdocright") {
+	var filename = location.pathname.replace(/\\/g, "/");
+	filename = filename.substring(filename.lastIndexOf('/')+1);
+	location.replace("index.html?" + filename); 
+}
+//-->
+		</script>	
+  </head>
+
+  <body style="direction: ltr;">
+	<script>
+		parent.document.title = document.title 
+	</script>
+    <input type="hidden" id="userDataCache" class="userDataStyle"></input>
+    <input type="hidden" id="hiddenScrollOffset"></input>
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="DropDown image" src="msdn9/dropdown.gif"></img>
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="msdn9/dropdownHover.gif"></img>
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="msdn2/collapse_all.gif"></img>
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="msdn2/expand_all.gif"></img>
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="msdn2/collall.gif"></img>
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="msdn2/expall.gif"></img>
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="msdn2/copycode.gif"></img>
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="msdn2/copycodeHighlight.gif"></img>
+    
+    <div id="header">
+      <table id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" style="cursor:default;" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage, event)" tabindex="0">
+              <img ID="toggleAllImage" class="toggleAll" src="msdn2/collall.gif" />
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">Collapse All</label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">Expand All</label>
+            </span>
+            <span>    </span>
+            <span id="devlangsDropdown" class="filter" tabindex="0">
+              <img id="devlangsDropdownImage" src="msdn9/dropdown.gif" />
+              <label id="devlangsMenuAllLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: All </nobr></label><label id="devlangsMenuMultipleLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: Multiple </nobr></label><label id="devlangsMenuVisualBasicLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: Visual Basic </nobr></label><label id="devlangsMenuCSharpLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: C# </nobr></label><label id="devlangsMenuManagedCPlusPlusLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: Visual C++ </nobr></label><label id="devlangsMenuJSharpLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: J# </nobr></label><label id="devlangsMenuJScriptLabel" for="devlangsDropdownImage" style="display: none;"><nobr>Code: JScript </nobr></label>
+            </span>
+            <span>    </span>
+            <span id="memberOptionsDropdown" class="filter" tabindex="0" style="display: none;">
+              <img id="memberOptionsDropdownImage" src="msdn9/dropdown.gif" />
+              <label id="memberOptionsMenuAllLabel" for="memberOptionsDropdownImage" style="display: none;"><nobr>Members Options: Show All </nobr></label>
+              <label id="memberOptionsMenuMultipleLabel" for="memberOptionsDropdownImage" style="display: none;"><nobr>Members Options: Filtered </nobr></label>
+              <label id="memberOptionsMenuProtectedLabel" for="memberOptionsDropdownImage" style="display: none;"><nobr>Members Options: Filtered </nobr></label>
+              <label id="memberOptionsMenuInheritedLabel" for="memberOptionsDropdownImage" style="display: none;"><nobr>Members Options: Filtered </nobr></label>
+            </span>
+            <span>    </span>
+            <span id="memberFrameworksDropdown" class="filter" tabindex="0" style="display: none;">
+              <img id="memberFrameworksDropdownImage" src="msdn9/dropdown.gif" /> 
+              <label id="memberFrameworksMenuAllLabel" for="memberFrameworksDropdownImage" style="display: none;"><nobr>Frameworks: Show All </nobr></label>
+              <label id="memberFrameworksMenuMultipleLabel" for="memberFrameworksDropdownImage" style="display: none;"><nobr>Frameworks: Multiple </nobr></label>
+              <label id="memberFrameworksMenunetfwLabel" for="memberFrameworksDropdownImage" style="display: none;"><nobr>Frameworks: .NET Framework Only </nobr></label>
+              <label id="memberFrameworksMenunetcfwLabel" for="memberFrameworksDropdownImage" style="display: none;"><nobr>Frameworks: .NET Compact Framework Only </nobr></label>
+              <label id="memberFrameworksMenuxnafwLabel" for="memberFrameworksDropdownImage" style="display: none;"><nobr>Frameworks: XNA Framework Only </nobr></label></span>
+          </td>
+        </tr>
+      </table>
+      <div id="devlangsMenu">
+        <input id="VisualBasicCheckbox" type="checkbox" data="VisualBasic,vb,'persist'" value="on" onClick="SetLanguageEx(this)" />
+        <label class="checkboxLabel" for="VisualBasicCheckbox">Visual Basic</label>
+        <br />
+
+        <input id="CSharpCheckbox" type="checkbox" data="CSharp,cs,'persist'" value="on" onClick="SetLanguageEx(this)" />
+        <label class="checkboxLabel" for="CSharpCheckbox">C#</label>
+        <br />
+
+        <input id="ManagedCPlusPlusCheckbox" type="checkbox" data="ManagedCPlusPlus,cpp,'persist'" value="on" onClick="SetLanguageEx(this)" />
+        <label class="checkboxLabel" for="ManagedCPlusPlusCheckbox">Visual C++</label>
+        <br />
+
+        <input id="JScriptCheckbox" type="checkbox" data="JScript,cs,'persist'" value="on" onClick="SetLanguageEx(this)" />
+        <label class="checkboxLabel" for="JScriptCheckbox">JScript</label>
+        <br />
+        
+      </div>
+      <div id="memberOptionsMenu">
+        <input id="ProtectedCheckbox" type="checkbox" data="Protected" value="on" onClick="SetMemberOptions(this, 'vis')" />
+        <label class="checkboxLabel" for="ProtectedCheckbox">Include Protected Members</label>
+        <br />
+        <input id="InheritedCheckbox" type="checkbox" data="Inherited" value="on" onClick="SetMemberOptions(this, 'decl')" />
+        <label class="checkboxLabel" for="InheritedCheckbox">Include Inherited Members</label>
+        <br />
+      </div>
+      <div id="memberFrameworksMenu">
+        <input id="netfwCheckbox" type="checkbox" data="netfw,'persist'" value="on" onClick="SetMemberFrameworks(this)" />
+        <label class="checkboxLabel" for="netfwCheckbox">Include .NET Framework Members</label>
+        <br />
+        <input id="netcfwCheckbox" type="checkbox" data="netcfw,'persist'" value="on" onClick="SetMemberFrameworks(this)" />
+        <label class="checkboxLabel" for="netcfwCheckbox">Include .NET Compact Framework Members</label>
+        <br />
+        <input id="xnafwCheckbox" type="checkbox" data="xnafw,'persist'" value="on" onClick="SetMemberFrameworks(this)" />
+        <label class="checkboxLabel" for="xnafwCheckbox">Include XNA Framework Members</label>
+        <br />
+      </div>
+      <table id="topTable" cellpadding="0" cellspacing="0">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">Linker Reference</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Linker Events</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td align="left">
+            <a href="topic_0000000000000002.html">Linker Class</a>
+            &nbsp;<a href="#seeAlsoToggle" onclick="OpenSection(seeAlsoToggle)">See Also</a>
+            </td>
+        </tr>
+      </table>
+      <table id="gradientTable">
+        <tr>
+          <td class="nsrBottom" background="msdn9/gradient.gif" />
+        </tr>
+      </table>
+    </div>
+
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+        </div>
+        <p />
+
+
+<!-- Public -->
+
+<h1 class="heading">
+  <span onclick="ExpandCollapse(PublicEventsToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(PublicEventsToggle)" tabindex="0">
+    <img id="PublicEventsToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="msdn2/expand_all.gif">
+    </img>
+    Public Events
+  </span>
+</h1>
+<div id="PublicEventsSection" class="section" name="collapseableSection" style="display: none;">
+  <table width="100%" class="memberListTable" cellspacing="2" cellpadding="5">
+    <col width="10%" />
+    <col width="30%" />
+    <col width="60%" />
+    <tr>
+      <th style="border-right-style: none;">&nbsp;</th>
+      <th align="left" style="border-left-style: none; border-right-style: none;">
+        Name
+      </th>
+      <th align="left" style="border-left-style: none;">
+        Description
+      </th>
+    </tr>
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.activated.aspx">Activated</a>
+
+
+  </td>
+  <td>
+
+Occurs when the form is activated in code or by the user.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.autosizechanged.aspx">AutoSizeChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.autosize.aspx">AutoSize</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.autovalidatechanged.aspx">AutoValidateChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/51d5b3a8.aspx">AutoValidate</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.backcolorchanged.aspx">BackColorChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.backcolor.aspx">BackColor</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.backgroundimagechanged.aspx">BackgroundImageChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.backgroundimage.aspx">BackgroundImage</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.backgroundimagelayoutchanged.aspx">BackgroundImageLayoutChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.backgroundimagelayout.aspx">BackgroundImageLayout</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.bindingcontextchanged.aspx">BindingContextChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.bindingcontext.aspx">BindingContext</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.causesvalidationchanged.aspx">CausesValidationChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.causesvalidation.aspx">CausesValidation</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.changeuicues.aspx">ChangeUICues</a>
+
+
+  </td>
+  <td>
+
+Occurs when the focus or keyboard user interface (UI) cues change.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.click.aspx">Click</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is clicked.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.clientsizechanged.aspx">ClientSizeChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.clientsize.aspx">ClientSize</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.closed.aspx">Closed</a>
+
+
+  </td>
+  <td>
+
+Occurs when the form is closed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.closing.aspx">Closing</a>
+
+
+  </td>
+  <td>
+
+Occurs when the form is closing.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.contextmenuchanged.aspx">ContextMenuChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.contextmenu.aspx">ContextMenu</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.contextmenustripchanged.aspx">ContextMenuStripChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.contextmenustrip.aspx">ContextMenuStrip</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.controladded.aspx">ControlAdded</a>
+
+
+  </td>
+  <td>
+
+Occurs when a new control is added to the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.controlcollection.aspx">ControlCollection</a>.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.controlremoved.aspx">ControlRemoved</a>
+
+
+  </td>
+  <td>
+
+Occurs when a control is removed from the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.controlcollection.aspx">ControlCollection</a>.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.cursorchanged.aspx">CursorChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.cursor.aspx">Cursor</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.deactivate.aspx">Deactivate</a>
+
+
+  </td>
+  <td>
+
+Occurs when the form loses focus and is no longer the active form.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.disposed.aspx">Disposed</a>
+
+
+  </td>
+  <td>
+
+Occurs when the component is disposed by a call to the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.dispose.aspx">Dispose</a> method.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.componentmodel.component.aspx">Component</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dockchanged.aspx">DockChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dock.aspx">Dock</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.doubleclick.aspx">DoubleClick</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is double-clicked.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dragdrop.aspx">DragDrop</a>
+
+
+  </td>
+  <td>
+
+Occurs when a drag-and-drop operation is completed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dragenter.aspx">DragEnter</a>
+
+
+  </td>
+  <td>
+
+Occurs when an object is dragged into the control's bounds.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dragleave.aspx">DragLeave</a>
+
+
+  </td>
+  <td>
+
+Occurs when an object is dragged out of the control's bounds.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dragover.aspx">DragOver</a>
+
+
+  </td>
+  <td>
+
+Occurs when an object is dragged over the control's bounds.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.enabledchanged.aspx">EnabledChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.enabled.aspx">Enabled</a> property value has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.enter.aspx">Enter</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is entered.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.fontchanged.aspx">FontChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.font.aspx">Font</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.forecolorchanged.aspx">ForeColorChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.forecolor.aspx">ForeColor</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.formclosed.aspx">FormClosed</a>
+
+
+  </td>
+  <td>
+
+Occurs after the form is closed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.formclosing.aspx">FormClosing</a>
+
+
+  </td>
+  <td>
+
+Occurs before the form is closed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.givefeedback.aspx">GiveFeedback</a>
+
+
+  </td>
+  <td>
+
+Occurs during a drag operation.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.gotfocus.aspx">GotFocus</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control receives focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.handlecreated.aspx">HandleCreated</a>
+
+
+  </td>
+  <td>
+
+Occurs when a handle is created for the control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.handledestroyed.aspx">HandleDestroyed</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control's handle is in the process of being destroyed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.helpbuttonclicked.aspx">HelpButtonClicked</a>
+
+
+  </td>
+  <td>
+
+Occurs when the Help button is clicked.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.helprequested.aspx">HelpRequested</a>
+
+
+  </td>
+  <td>
+
+Occurs when the user requests help for a control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.imemodechanged.aspx">ImeModeChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.imemode.aspx">ImeMode</a> property has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.inputlanguagechanged.aspx">InputLanguageChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs after the input language of the form has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.inputlanguagechanging.aspx">InputLanguageChanging</a>
+
+
+  </td>
+  <td>
+
+Occurs when the user attempts to change the input language for the form.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.invalidated.aspx">Invalidated</a>
+
+
+  </td>
+  <td>
+
+Occurs when a control's display requires redrawing.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.keydown.aspx">KeyDown</a>
+
+
+  </td>
+  <td>
+
+Occurs when a key is pressed while the control has focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.keypress.aspx">KeyPress</a>
+
+
+  </td>
+  <td>
+
+Occurs when a key is pressed while the control has focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.keyup.aspx">KeyUp</a>
+
+
+  </td>
+  <td>
+
+Occurs when a key is released while the control has focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.layout.aspx">Layout</a>
+
+
+  </td>
+  <td>
+
+Occurs when a control should reposition its child controls.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.leave.aspx">Leave</a>
+
+
+  </td>
+  <td>
+
+Occurs when the input focus leaves the control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.load.aspx">Load</a>
+
+
+  </td>
+  <td>
+
+Occurs before a form is displayed for the first time.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.locationchanged.aspx">LocationChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.location.aspx">Location</a> property value has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.lostfocus.aspx">LostFocus</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control loses focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.marginchanged.aspx">MarginChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.margin.aspx">Margin</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.maximizedboundschanged.aspx">MaximizedBoundsChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.maximizedbounds.aspx">MaximizedBounds</a> property has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.maximumsizechanged.aspx">MaximumSizeChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.maximumsize.aspx">MaximumSize</a> property has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.mdichildactivate.aspx">MdiChildActivate</a>
+
+
+  </td>
+  <td>
+
+Occurs when a multiple-document interface (MDI) child form is activated or closed within an MDI application.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.menucomplete.aspx">MenuComplete</a>
+
+
+  </td>
+  <td>
+
+Occurs when the menu of a form loses focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.menustart.aspx">MenuStart</a>
+
+
+  </td>
+  <td>
+
+Occurs when the menu of a form receives focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.minimumsizechanged.aspx">MinimumSizeChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.minimumsize.aspx">MinimumSize</a> property has changed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mousecapturechanged.aspx">MouseCaptureChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control loses or gains mouse capture.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mouseclick.aspx">MouseClick</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is clicked by the mouse.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mousedoubleclick.aspx">MouseDoubleClick</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is double clicked by the mouse.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mousedown.aspx">MouseDown</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse pointer is over the control and a mouse button is pressed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mouseenter.aspx">MouseEnter</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse pointer enters the control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mousehover.aspx">MouseHover</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse pointer rests on the control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mouseleave.aspx">MouseLeave</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse pointer leaves the control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mousemove.aspx">MouseMove</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse pointer is moved over the control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mouseup.aspx">MouseUp</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse pointer is over the control and a mouse button is released.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.mousewheel.aspx">MouseWheel</a>
+
+
+  </td>
+  <td>
+
+Occurs when the mouse wheel moves while the control has focus.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.move.aspx">Move</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is moved.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.paddingchanged.aspx">PaddingChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control's padding changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.paint.aspx">Paint</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is redrawn.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.parentchanged.aspx">ParentChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.parent.aspx">Parent</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.previewkeydown.aspx">PreviewKeyDown</a>
+
+
+  </td>
+  <td>
+
+Occurs before the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.keydown.aspx">KeyDown</a> event when a key is pressed while focus is on this control.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.queryaccessibilityhelp.aspx">QueryAccessibilityHelp</a>
+
+
+  </td>
+  <td>
+
+Occurs when <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.accessibleobject.aspx">AccessibleObject</a> is providing help to accessibility applications.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.querycontinuedrag.aspx">QueryContinueDrag</a>
+
+
+  </td>
+  <td>
+
+Occurs during a drag-and-drop operation and enables the drag source to determine whether the drag-and-drop operation should be canceled.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.regionchanged.aspx">RegionChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.region.aspx">Region</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.resize.aspx">Resize</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is resized.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.resizebegin.aspx">ResizeBegin</a>
+
+
+  </td>
+  <td>
+
+Occurs when a form enters resizing mode.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.resizeend.aspx">ResizeEnd</a>
+
+
+  </td>
+  <td>
+
+Occurs when a form exits resizing mode.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.righttoleftchanged.aspx">RightToLeftChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.righttoleft.aspx">RightToLeft</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.righttoleftlayoutchanged.aspx">RightToLeftLayoutChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs after the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.righttoleftlayout.aspx">RightToLeftLayout</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.scrollablecontrol.scroll.aspx">Scroll</a>
+
+
+  </td>
+  <td>
+
+Occurs when the user or code scrolls through the client area.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.scrollablecontrol.aspx">ScrollableControl</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.shown.aspx">Shown</a>
+
+
+  </td>
+  <td>
+
+Occurs whenever the form is first displayed.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.sizechanged.aspx">SizeChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.size.aspx">Size</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.stylechanged.aspx">StyleChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control style changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.systemcolorschanged.aspx">SystemColorsChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the system colors change.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.tabindexchanged.aspx">TabIndexChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the value of the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/0as9a62t.aspx">TabIndex</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.tabstopchanged.aspx">TabStopChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/576sywk2.aspx">TabStop</a> property changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.textchanged.aspx">TextChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.text.aspx">Text</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.validated.aspx">Validated</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is finished validating.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.validating.aspx">Validating</a>
+
+
+  </td>
+  <td>
+
+Occurs when the control is validating.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+<tr valign="top"
+name="inheritedMember"
+
+
+notSupportedOn="netcf"
+
+>
+  <td class="imageCell">
+    <img alt="Public event" src="msdn2/pubevent.gif"></img>
+
+    
+  </td>
+  <td>
+
+    <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.visiblechanged.aspx">VisibleChanged</a>
+
+
+  </td>
+  <td>
+
+Occurs when the <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.visible.aspx">Visible</a> property value changes.
+(inherited from <a target="_top" href="http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.aspx">Control</a>).
+
+	</td>
+</tr>
+
+
+
+
+  </table>
+  <a href="#mainBody">
+    Top
+  </a>
+</div>
+
+<!-- Public End-->
+
+<!-- Protected -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Protected End-->
+
+<!-- Private and rest -->
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<!-- Private and rest End-->
+
+
+
+<h1 class="heading">
+	<span onclick="ExpandCollapse(seeAlsoToggle)" style="cursor:default;" onkeypress="ExpandCollapse_CheckKey(seeAlsoToggle)" tabindex="0">
+		<img id="seeAlsoToggle" onload="OnLoadImage()" class="toggle" name="toggleSwitch" alt="Expand image" src="msdn2/expand_all.gif">
+		</img>
+		See Also
+	</span></h1>
+<div id="seeAlsoSection" class="section" name="collapseableSection" style="display: none;">
+	<div>
+		<h4 class="subHeading">
+			Reference</h4>
+		<A HREF="topic_0000000000000002.html">Linker Class</A><br />
+
+		
+
+	</div>
+</div>
+			</div>
+      <div id="footer">
+        <div class="footerLine">
+          <img alt="Footer image" width="100%" height="3px" src="msdn2/footer.gif">
+          </img>
+        </div>
+          <font color="#FF0000">Generated with unregistered version of <a href="http://www.helixoft.com/vsdocman/overview.html">VSdocman</a></font>&nbsp;<br>Your own footer text will only be shown in registered version.
+      </div>
+    </div>
+  	<script type="text/javascript">
+<!--
+	parent.frames["vbdocswitch"].expandLinkInToc(location.href);
+//-->
+		</script>	
+  </body>
+</html>
+
