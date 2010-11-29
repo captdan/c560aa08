@@ -1,55 +1,25 @@
 LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
-0	00000000		1	.start,Altest_01,0
-0	00000000		2	.text
-0	00000000	E	3	EXT          DQ
-0	00000008	A	4	Reset.lc    8
-8
-	99	General Error	Check this line for syntax errors.
-8	10210000	A	6	P2 inn    1,XX($1)   | READ NEXT XX from keyboard
-9	28210000	A	7	Outn   1,XX($1)   | ECHO XX to the display
-a	10210000	A	8	Inn    1,YY($1)   | READ IN NEXT YY from keyboard
-b	28210000	A	9	Outn   1,YY($1)   | ECHO YY to the display
-c	c0440000	A	10	Lw     $2,XX($1)   | Begin to FORM XX/YY
-d	c0640000	A	11	Lw     $3,YY($1)
-e	80600019	A	12	JEQ    $3,$0,ER   | IF DIVIDE BY 0, GO PRT MSG AND HALT
-f	0449801a	A	13	DIV    $2,$2,$3   | OTHERWISE  DIVIDE
-10	9c440000	A	14	SW     $2,QQ($1)   | STORE RESULT
-11
-	19	Operand [0]: $10 is not a valid REGISTER.	Change Operand
+5	00000000		1		.Start,Math,05			
+5	00000000		2		.data
+5	00000000	A	3	YY int.data 0
+6	00000000	A	4	ZZ int.data 0
+7	00000000	A	5	XX int.data 0
+8	02cd9f70	A	6	err str.data 'YY=0'
+9	00000000		7	.text
+9	00000009	A	8	Exec.Start *
+9	00000001	A	9		debug 1
+9	10020005	A	10		inn 2, YY
+a
+	19	Operand [1]: #YY is not a valid COMPLEXADDRESS.	Change Operand
 	19	Operand Could Not Parse Operands	Change Operand
-12
-	0	Expected 3 operands and received 2 operands.	Add or Remove Operands accordingly.
-	99	General Error	Check this line for syntax errors.
-12	04488020	A	17	add    $2,$2,$1   | TEST IF 4 TIME THROUGH THE LOOP
-13	48480004	A	18	SUBi   $2,$2,4
-14	80400008	A	19	JEQ    $2,$0,P2   | IF NOT DONE, LOOP BACK
-15	9ce00025	A	20	Sw     $7,Q1   | IF DONE, STORE AND PRINT RESULT
-16	2c020021	A	21	outc   2,M1   | Output 2 words
-17	2c010025	A	22	outc   1,Q1
-18	1800001b	R	23	J      E1   | THEN GO TO THE EXIT ROUTINE
-19	2c020021	A	24	ER outc   2,ME   | ZERO DIVISOR, PRINT Y IS 0
-1a	20000100	A	25	HALT   256   | DUMP AND HALT
-1b	2c040021	A	26	E1 outc   4,M2
-1c	c020001e	A	27	Lw     $1,A1
-1d
-	99	General Error	Check this line for syntax errors.
-1d	20000000	A	29	HALT   0     | HALT normal exit user code 0
-1e
-1e	00000000		31	.data
-1e	00000000	E	32	A1  adr.data  DQ     | ADDRESS OF DQ.
-1f	00000026	R	33	A2  adr.data  XX     | ADDRESS of XX.
-20	00000004	A	34	C4  int.data  4
-21
-	19	The operand 0: �YIS0� did not match the operand type CHARSTR.	Change Operand
-	19	Operand Could Not Parse Operands	Change Operand
-21
-	19	The operand 0: �Q=� did not match the operand type CHARSTR.	Change Operand
-	19	Operand Could Not Parse Operands	Change Operand
-21
-	19	The operand 0: �ENDofProgram� did not match the operand type CHARSTR.	Change Operand
-	19	Operand Could Not Parse Operands	Change Operand
-21	00000004	A	38	QQ  mem.SKIP 4
-25	00000001	A	39	Q1  mem.SKIP 1
-26	00000004	A	40	XX  mem.SKIP 4
-2a	00000004	A	41	YY  mem.SKIP 4
-2e	00000000		42	.END,Altest_01
+b	c0600006	A	12		lw $3, ZZ
+c	80400013	A	13		JEQ $2,$0,ERROR
+d	048d0018	A	14		MUL $4,$3,$2
+e	50900014	A	15		MULI $4,$4,20
+f	04b1001a	A	16		DIV $5,$4,$2
+10	9ca00007	A	17		SW $5, XX
+11	28010007	A	18		outn 1,XX
+12	20000000	A	19		HALT 0
+13	2c010008	A	20	ERROR	outc 1, err
+14	200000fa	A	21		HALT 250
+15	00000000		22	.end,Math

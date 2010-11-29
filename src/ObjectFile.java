@@ -360,15 +360,19 @@ public class ObjectFile
 			}
 			else
 			{
+				System.out.println("YEAH : " + codeline.instruction.operandsArray.get(count).operand);
 				if(Operand.splitByCharacter(codeline.instruction.operandsArray.get(count).operand, '(').length > 1)
 				{
+					
 					String[] operandsArray = Operand.splitByCharacter(codeline.instruction.operandsArray.get(count).operand, '(');
 					if(operandsArray.length > 1)
 					{
+						
 						if(Parser.SymbTable.isInTable(operandsArray[0]))
 						{
 							textRecord.add(Operand.relocationTypes.R.toString());
 							textRecord.add("+");
+							textRecord.add(String.valueOf(p.startLocation));
 						}
 						else
 						{
@@ -385,7 +389,12 @@ public class ObjectFile
 				}
 				else
 				{
-					
+					if(Parser.SymbTable.isInTable(codeline.instruction.operandsArray.get(count).operand))
+					{
+						textRecord.add(Operand.relocationTypes.R.toString());
+						textRecord.add("+");
+						textRecord.add(String.valueOf(p.startLocation));
+					}
 				}
 				//textRecord.add(codeline.instruction.operandsArray.get(count).returnComplexAddressLabel());
 				
