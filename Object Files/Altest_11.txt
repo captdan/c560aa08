@@ -1,4 +1,5 @@
-H|Altest_11|0000|015E|2010:029|11:23:15|0002|0000|015E|SAL|1|1|Altest_11
-L|Altest_11|0000|start|Altest_11
-L|r2|FFFFFFFF|ent|Altest_11
-E|0004|Altest_11
+H|Altest_11|15f|350|2010:333|13:01:47|1|2|15e|SAL|1|2|Altest_11
+L|Altest_11|15e|START|Altest_11
+T|15e|N|00000000|1|E|ex1|Altest_11
+T|15e|N|00000000|0|Altest_11
+E|5|Altest_11
