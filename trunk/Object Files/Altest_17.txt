@@ -1,3 +1,9 @@
-H|Altest_03|0000|0000|2010:029|11:24:01|0001|0000|0000|SAL|1|1|Altest_03
-L|Altest_03|0000|start|Altest_03
-E|0003|Altest_03
+H|Altest_03|8|0|2010:333|13:03:46|1|6|0|SAL|1|2|Altest_03
+L|Altest_03|0|START|Altest_03
+T|1|N|9ce00005|2|A|R|+|0|Altest_03
+T|3|N|00000000|0|Altest_03
+T|4|N|20000000|1|A|Altest_03
+T|5|N|000003e8|1|A|Altest_03
+T|6|N|000003e9|1|A|Altest_03
+T|7|N|00000000|0|Altest_03
+E|9|Altest_03
