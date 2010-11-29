@@ -1,23 +1,75 @@
 LOC	OBJ CODE A/R/E STMT SOURCE STATEMENT
-5	00000000		1		.Start,Math,05			
-5	00000000		2		.data
-5	00000000	A	3	YY int.data 0
-6	00000000	A	4	ZZ int.data 0
-7	00000000	A	5	XX int.data 0
-8	02cd9f70	A	6	err str.data 'YY=0'
-9	00000000		7	.text
-9	00000009	A	8	Exec.Start *
-9	00000001	A	9		debug 1
-9	10020005	A	10		inn 2, YY
-a	c0400005	A	11		lw $2,YY
-b	c0600006	A	12		lw $3, ZZ
-c	80400013	A	13		JEQ $2,$0,ERROR
-d	048d0018	A	14		MUL $4,$3,$2
-e	50900014	A	15		MULI $4,$4,20
-f	04b1001a	A	16		DIV $5,$4,$2
-10	9ca00007	A	17		SW $5, XX
-11	28010007	A	18		outn 1,XX
-12	20000000	A	19		HALT 0
-13	2c010008	A	20	ERROR	outc 1, err
-14	200000fa	A	21		HALT 250
-15	00000000		22	.end,Math
+0	00000000		1	.Start,ComprehensiveTest,00
+0	00000000		2	.data
+0	0000000a	A	3	A int.data 10
+1	830a1c48b1a390	A	4	B Str.data 'ABCDEFG'
+3	20202020	A	5	BB Str.data ' '
+4	20202020	A	6	BBB1 Str.data ''
+4	00000008	A	7	C hex.data 8
+5	00000006	A	8	D bin.data 0110
+6	00000000	R	9	E Adr.data A
+7	0000000f	A	10	A1 int.data 15
+8	00000006	A	11	A2 int.data 6
+9	00000003	A	12	A3 int.data 3
+a	0000003c	A	13		mem.skip 60
+46	20202020	A	14	R3	EQU  50
+46	00000000		15	.text
+46	00000000	A	16	Debug 0
+46	00000000	E	17		EXT TTT,RRR,QQQ
+46	fc000000	A	18		dump 1,0,0
+47	c0240000	A	19		LW $1,A($1)
+48	c0240000	A	20		LW $1,($1)
+49
+49	8028004b	A	22	H	JEQ	$1,$2,I		|jump to I if $1 == $2
+4a	04ce001a	A	23		div $6, $3,$4
+4b	8428004e	A	24	I	JNE	$1,$2,J		|jump to J if $1 != $2
+4c	04258018	A	25		mul $1,$1,$3
+4d	dc340032	A	26		andi $1,$5,50
+4e	88280050	A	27	J	JGT	$1,$2,K		|jump to K if $1 > $2
+4f	04488020	A	28		add $2,$2,$1
+50	8c280055	A	29	K	JLT	$1,$2,L		|jump to L if $1 < $2
+51	042e0022	A	30		sub $1, $3,$4
+52	c0a00009	A	31		LW $5,A3
+53	e83940000	A	32		ands $1,0($5)
+54	ec3940002	A	33		ors $1,2($5)
+55	9028005a	A	34	L	JLE	$1,$2,M		|jump to M if $1 <= $2
+56	04288020	A	35		add $1,$2,$1	
+57	9c340000	A	36		SW $1,0($2)
+58	0c200008	A	37		JR $1
+59	0429801c	A	38		PWR $1,$2,$3
+5a	50a40004	A	39	M	muli $5,$1,4
+5b	f428000a	A	40	O	SRV $1,$2,10
+5c	08440a00	A	41		SLL $2,$1,5
+5d	08b40402	A	42		SRL $5,$5,2
+5e	9cb40000	A	43	N	SW $5,0($2)	
+5f	c4740000	A	44	P	LnW $3, 0($2)
+60	c8200000	A	45	Q	LWi	$1, 4
+61	1ca4005f	A	46		jal	$5,$1,P
+62	cc400032	A	47	R	Lui $2, 50
+63
+63	08250025	A	49	S	or $1,$1,$2
+64	08258024	A	50	T	and $1,$1,$3
+65	f4a80002	A	51		SRV $5,$2,2
+66	08da8026	A	52	U	xor $6,$6,$5
+67	08518027	A	53	V	nor $2,$4,$3
+68	d0540006	A	54	W	ori $2,$5,6
+69	d4b80009	A	55	X	xori $5,$6,9
+6a	d8a40038	A	56	Y	nori $5, $1,56
+6b	1c28007b	A	57	Z	jal $1,$2, halt2
+6c	ec3940000	A	58		ors $1,halt2($5)
+6d	70280046	A	59		muls $1,$2, R3
+6e	68b80046	A	60		adds $5,$6, R3
+6f	6c700046	A	61		subs $3,$4,R3
+70	c0740000	A	62		LW $3, 0($2)
+71	e0360000	A	63		LA $1, 0($3)
+72	e4360000	A	64		SA $1, 0($3)
+73	78000005	A	65		outni	5, 5
+74	7c007468	A	66		outci 3,'th'
+75	7c00656e	A	67		outci 3,'en'
+76	10220000	A	68		Inn 2,A($1)
+77	10030000	A	69		InC 3,($0)
+78	10010001	A	70		Inn 1,B
+79	18000000	R	71		J HALT($0)
+7a	20000000	A	72	HALT	Halt 0
+7b	20000002	A	73	halt2 	halt 2
+7c	00000000		74	.END,ComprehensiveTest
