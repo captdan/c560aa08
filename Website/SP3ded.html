@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<HTML>
+<HEAD>
+	
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="NeoOffice 3.1.1  (Unix)">
+	<META NAME="CREATED" CONTENT="20101128;15332600">
+	<META NAME="CHANGED" CONTENT="20101128;16481400">
+	
+	<STYLE>
+		<!-- 
+		BODY,DIV,TABLE,THEAD,TBODY,TFOOT,TR,TH,TD,P { font-family:"Arial"; font-size:x-small }
+		 -->
+	</STYLE>
+	
+</HEAD>
+
+<BODY TEXT="#000000">
+<TABLE FRAME=VOID CELLSPACING=0 COLS=6 RULES=NONE BORDER=0>
+	<COLGROUP><COL WIDTH=167><COL WIDTH=111><COL WIDTH=111><COL WIDTH=121><COL WIDTH=128><COL WIDTH=86></COLGROUP>
+	<TBODY>
+		<TR>
+			<TD WIDTH=167 HEIGHT=25 ALIGN=CENTER BGCOLOR="#BBCA8A"><B><FONT FACE="ArialMT" SIZE=4>Variable Name</FONT></B></TD>
+			<TD WIDTH=111 ALIGN=CENTER BGCOLOR="#BBCA8A"><B><FONT FACE="ArialMT" SIZE=4>Class</FONT></B></TD>
+			<TD WIDTH=111 ALIGN=CENTER BGCOLOR="#BBCA8A"><B><FONT FACE="ArialMT" SIZE=4>Function</FONT></B></TD>
+			<TD WIDTH=121 ALIGN=CENTER BGCOLOR="#BBCA8A"><B><FONT FACE="ArialMT" SIZE=4>Purpose</FONT></B></TD>
+			<TD WIDTH=128 ALIGN=CENTER BGCOLOR="#BBCA8A"><B><FONT FACE="ArialMT" SIZE=4>Data Type</FONT></B></TD>
+			<TD WIDTH=86 ALIGN=CENTER BGCOLOR="#BBCA8A"><B><FONT FACE="ArialMT" SIZE=4>Range</FONT></B></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=CENTER>filesToBeLinked</TD>
+			<TD ALIGN=CENTER>Linker</TD>
+			<TD ALIGN=CENTER>Global</TD>
+			<TD ALIGN=CENTER>Contains the files that will be linked by the program</TD>
+			<TD ALIGN=CENTER>ArrayList</TD>
+			<TD ALIGN=CENTER>Any 3 legitimate object file names</TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>errorsArray</TD>
+			<TD ALIGN=CENTER>Linker</TD>
+			<TD ALIGN=CENTER>Global</TD>
+			<TD ALIGN=LEFT>Holds all the possible errors that can be thrown</TD>
+			<TD ALIGN=LEFT>ArrayList</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>outputFile</TD>
+			<TD ALIGN=CENTER>Linker</TD>
+			<TD ALIGN=CENTER>Global</TD>
+			<TD ALIGN=LEFT>The name of the file to be output to</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT>Any legitimate file name</TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>currentLine</TD>
+			<TD ALIGN=CENTER>Linker</TD>
+			<TD ALIGN=CENTER>Global</TD>
+			<TD ALIGN=LEFT>The number of the line that is currently being processed</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT>Any number within the amount of lines in the current object file</TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>currentObjectFile</TD>
+			<TD ALIGN=CENTER>Linker</TD>
+			<TD ALIGN=CENTER>Global</TD>
+			<TD ALIGN=LEFT>The name of the object file that is currently being processed</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT>Any possible name of an object file</TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>objectFileArray</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>Button2_click</TD>
+			<TD ALIGN=LEFT>holds the file created by the linker</TD>
+			<TD ALIGN=LEFT>arrayList</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>tempObjectFileArray</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>checkExtRecords</TD>
+			<TD ALIGN=LEFT>a temporary array used for checking ext</TD>
+			<TD ALIGN=LEFT>ArrayList</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>totalProgramLength</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createLinkerFile</TD>
+			<TD ALIGN=LEFT>holds the total length of the program</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT>any possible program length</TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>currentOffSet</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createLinkerFile</TD>
+			<TD ALIGN=LEFT>holds the current offset</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>linkerFileText</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createLinkerFile</TD>
+			<TD ALIGN=LEFT>holds the text to create the linker file</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>tempValue</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createLinkerFile</TD>
+			<TD ALIGN=LEFT>a temporary integer value</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>recordCounter</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createLinkerFile</TD>
+			<TD ALIGN=LEFT>A counter for going through records</TD>
+			<TD ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>returnString</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>padZeros</TD>
+			<TD ALIGN=LEFT>the string to be returned padded with zeros</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>tempCounter</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>padZeros</TD>
+			<TD ALIGN=LEFT>a temporary counter</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>exists</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>linkingLabelExistsInObject</TD>
+			<TD ALIGN=LEFT>whether or not the label exists</TD>
+			<TD ALIGN=LEFT>Boolean</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>value</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>returnLinkingLabelValue</TD>
+			<TD ALIGN=LEFT>the value to return</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>found</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>returnLinkingLabelValue</TD>
+			<TD ALIGN=LEFT>if the address was found or not</TD>
+			<TD ALIGN=LEFT>Boolean</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>fileContentArray</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>an array with all the content from a file</TD>
+			<TD ALIGN=LEFT>Array</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>hasHeader</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>if the file has a header</TD>
+			<TD ALIGN=LEFT>Boolean</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>hasEnd</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>if the file has and end record</TD>
+			<TD ALIGN=LEFT>Boolean</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>fatalError</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>it there's a fatal error</TD>
+			<TD ALIGN=LEFT>Boolean</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>counter</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>a counter</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>objectFile</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>an object file object</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>lineArray</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>createObjectFile</TD>
+			<TD ALIGN=LEFT>an array of a single line</TD>
+			<TD ALIGN=LEFT>Array</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>tempValue</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>parseEndRecord</TD>
+			<TD ALIGN=LEFT>a temporary integer for the end record</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>textRecord</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>parseTextRecord</TD>
+			<TD ALIGN=LEFT>the resulting TextRecord</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>x</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>parseTextRecord</TD>
+			<TD ALIGN=LEFT>a counter</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>adjustment</TD>
+			<TD ALIGN=LEFT>Linker</TD>
+			<TD ALIGN=LEFT>parseTextRecord</TD>
+			<TD ALIGN=LEFT>for adjustment of addresses</TD>
+			<TD ALIGN=LEFT>Adjustment</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>errorItem</TD>
+			<TD ALIGN=LEFT><BR></TD>
+			<TD ALIGN=LEFT>addError</TD>
+			<TD ALIGN=LEFT>the error to be added</TD>
+			<TD ALIGN=LEFT>ListViewItem</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>programName</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the name of the program</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>programLength</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the length of the program</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>programLoadPoint</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the address that the program loads from</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>numberOfLinkingRecords</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the number of linking records</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>numberOfTextRecords</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the number of text records</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>executionStartAddress</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>where execution starts at</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>version</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the version number</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>revision</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the revision number</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>linkingRecords</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>a list of the linking records</TD>
+			<TD ALIGN=LEFT>ArrayList</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>dateValue</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the date</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>timeValue</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the time</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>textRecords</TD>
+			<TD ALIGN=LEFT>ObjectFile</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>a list of the text records</TD>
+			<TD ALIGN=LEFT>ArrayList</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>name</TD>
+			<TD ALIGN=LEFT>LinkingRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the name of the linking record</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>address</TD>
+			<TD ALIGN=LEFT>LinkingRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the address of the linking record</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>type</TD>
+			<TD ALIGN=LEFT>LinkingRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the linking type</TD>
+			<TD ALIGN=LEFT>LinkerTypes</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>programName</TD>
+			<TD ALIGN=LEFT>LinkingRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the name of the program</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>address</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the address of the text record</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>debug</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>if it's in debug mode</TD>
+			<TD ALIGN=LEFT>boolean</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>data</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the amount of data</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>numberOfAdjustments</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the number of adjustments to be made</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>programName</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the name of the program</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>adjustments</TD>
+			<TD ALIGN=LEFT>TextRecord</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the adjustments to be made</TD>
+			<TD ALIGN=LEFT>ArrayList</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>type</TD>
+			<TD ALIGN=LEFT>Adjustment</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the type of adjustment</TD>
+			<TD ALIGN=LEFT>Types</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>action</TD>
+			<TD ALIGN=LEFT>Adjustment</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the action to perform</TD>
+			<TD ALIGN=LEFT>Actions</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>label</TD>
+			<TD ALIGN=LEFT>Adjustment</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the label of the adjustment</TD>
+			<TD ALIGN=LEFT>String</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>labelValue</TD>
+			<TD ALIGN=LEFT>Adjustment</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>the value of the label</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=17 ALIGN=LEFT>loadPoint</TD>
+			<TD ALIGN=LEFT>Adjustment</TD>
+			<TD ALIGN=LEFT>Global</TD>
+			<TD ALIGN=LEFT>where the adjustment loads</TD>
+			<TD ALIGN=LEFT>Integer</TD>
+			<TD ALIGN=LEFT><BR></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<!-- ************************************************************************** -->
+</BODY>
+
+</HTML>

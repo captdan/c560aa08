@@ -1,0 +1,2 @@
+Key		PC		EQU		Use
+altest_02	0	NONE	PROGRAM_NAME
