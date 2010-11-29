@@ -1,4 +1,4 @@
-H|Altest_12|15|0|2010:333|13:02:04|1|14|0|SAL|1|2|Altest_12
+H|Altest_12|15|0|2010:333|13:39:26|1|14|0|SAL|1|2|Altest_12
 L|Altest_12|0|START|Altest_12
 T|0|N|c0e00100|2|A|Altest_12
 T|1|N|68fc0101|3|A|A|A|Altest_12
