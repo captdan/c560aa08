@@ -1,0 +1,2 @@
+﻿Symbol	Address	Linker Address	Program Length
+Altest_06	0	0	65535
