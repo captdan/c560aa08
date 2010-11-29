@@ -1,3 +1,4 @@
-H|Altest_15|07FF|0000|2010:29|11:23:55|0001|0000|03E9|SAL|1|1|Altest_15
-L|Altest_15|0000|start|Altest_15
-E|0003|Altest_15
+H|Altest_15|800|0|2010:333|13:40:02|1|1|0|SAL|1|2|Altest_15
+L|Altest_15|0|START|Altest_15
+T|7ff|N|00000000|0|Altest_15
+E|4|Altest_15
