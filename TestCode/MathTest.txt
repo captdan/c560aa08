@@ -8,7 +8,7 @@ err str.data 'YY=0'
 Exec.Start *
 	debug 1
 	inn 2, YY
-	lw $2,YY
+	lw $2,#YY
 	lw $3, ZZ
 	JEQ $2,$0,ERROR
 	MUL $4,$3,$2
