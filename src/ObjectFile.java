@@ -469,7 +469,7 @@ public class ObjectFile
 		Date time = new Date();
 		header.add(String.valueOf(dateFormat.format(time)));
 		header.add(String.valueOf(Integer.toHexString(linkingRecord.size())));
-		header.add(String.valueOf(textRecord.size()));
+		header.add(String.valueOf(Integer.toHexString(textRecord.size())));
 		header.add(String.valueOf(Integer.toHexString(p.executionStart)));
 		header.add("SAL");
 		header.add("1");
@@ -497,7 +497,7 @@ public class ObjectFile
 		ArrayList<String> endRecord = new ArrayList<String>();
 		
 		endRecord.add("E");
-		endRecord.add(programLength);
+		endRecord.add(Integer.toHexString(2 + linkingRecord.size() + textRecord.size()));
 		endRecord.add(p.programName);
 		
 		return endRecord;
